@@ -24,8 +24,8 @@ export default function App() {
       <Suspense fallback={<Loader />}>
         <SharedLayout>
           <Routes>
-            <Route path="/"/>
-            <Route path="/welcome" element={<WelcomePage />}></Route>
+            {/* <Route path="/"/> */}
+            <Route path="/" element={<WelcomePage />}></Route>
             {/* <Route path="/signin" element={<SignInPage />}></Route> */}
             {/* <Route path="/signup" element={<SignUpPage />}></Route> */}
             {/* <Route path="/home" element={<HomePage />}></Route> */}
