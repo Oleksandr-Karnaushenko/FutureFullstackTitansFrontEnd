@@ -1,0 +1,196 @@
+.pagetitle {
+  font-size: 28px;
+  text-align: left;
+  color: #2f2f2f;
+  font-weight: 700;
+  margin-bottom: 16px;
+  line-height: 32px;
+}
+
+.pagesubtitle {
+  font-size: 24px;
+  text-align: left;
+  color: #2f2f2f;
+  font-weight: 400;
+  line-height: 30px;
+  max-width: 215px;
+}
+
+.sectiontitle {
+  font-size: 18px;
+  text-align: left;
+  color: #2f2f2f;
+  font-weight: 500;
+  margin-bottom: 12px;
+  line-height: 20px;
+}
+
+.waterconsumptiontracker {
+  margin-bottom: 0px;
+}
+
+.trackerbenefits {
+  text-align: left;
+  margin: 24px 0;
+}
+
+.trackerbenefitslist {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.trackerbenefitslistitem {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  line-height: 20px;
+  gap: 8px;
+}
+
+.benefiticon {
+  width: 32px;
+  height: 32px;
+}
+
+.trybutton {
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #407bff;
+  border: none;
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 16px;
+  text-align: center;
+  font-weight: 400;
+  box-shadow: 0px 4px 8px rgba(64, 123, 255, 0.34);
+  transition: background-color 0.3s;
+  line-height: 20px;
+  width: 100%;
+}
+
+.trybutton:hover {
+  box-shadow: 0px 4px 8px rgba(64, 123, 255, 0.54);
+  background-color: #407bff;
+  color: #ffffff;
+}
+
+.trybutton:active {
+  box-shadow: none;
+  background-color: #407bff;
+  color: #ffffff;
+}
+
+@media (min-width: 768px) {
+  .pagetitle {
+    font-size: 36px;
+    text-align: left;
+    color: #2f2f2f;
+    font-weight: 500;
+    margin-bottom: 16px;
+    line-height: 42px;
+  }
+
+  .pagesubtitle {
+    font-size: 26px;
+    line-height: 32px;
+    max-width: max-content;
+  }
+
+  .sectiontitle {
+    font-size: 18px;
+    text-align: left;
+    color: #2f2f2f;
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+
+  .waterconsumptiontracker {
+    margin-bottom: 0px;
+  }
+
+  .trackerbenefits {
+    margin: 24px 0;
+  }
+
+  .trackerbenefitslist {
+    list-style: none;
+    padding-left: 0;
+    margin-left: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .trackerbenefitslistitem {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    margin: 0;
+    gap: 8px;
+  }
+
+  .trybutton {
+    font-size: 18px;
+    width: 336px;
+    max-width: 100%;
+    line-height: 24px;
+    height: 44px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .pagetitle {
+    font-size: 36px;
+    text-align: left;
+    color: #2f2f2f;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .pagesubtitle {
+    font-size: 26px;
+  }
+
+  .sectiontitle {
+    font-size: 18px;
+    text-align: left;
+    color: #2f2f2f;
+    font-weight: 500;
+    margin-bottom: 15px;
+  }
+
+  .waterconsumptiontracker {
+    margin-bottom: 0px;
+  }
+
+  .trackerbenefitslist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0;
+  }
+
+  .trackerbenefitslistitem {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  .trybutton {
+    font-size: 18px;
+    width: 100%;
+    max-width:384px;
+  }
+}

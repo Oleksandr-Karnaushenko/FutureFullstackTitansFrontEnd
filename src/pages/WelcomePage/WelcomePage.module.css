@@ -1,0 +1,41 @@
+.welcomepage {
+  background-image: url(../../assets/img/mobile/MainPageBG.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 4px 20px 40px;
+}
+
+.components {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+@media screen and (min-width:768px) {
+  .welcomepage {
+    background-image: url(../../assets/img/tab/MainPageBG.png);
+    background-position: bottom;
+    padding: 20px 32px 50px;
+  }
+  
+  .components {
+    gap: 60px;
+  }
+  
+}
+
+@media screen and (min-width: 1440px) {
+  .welcomepage {
+    background-image: url(../../assets/img/desc/MainPageBG.png), url(../../assets/img/desc/MainPageBubbleBG.png);
+    background-size: contain;
+  padding: 20px 202px 185px 210px;
+    min-height: 655px;
+  }
+  .components {
+      display: flex;
+      flex-direction: row;
+      gap: 81px;
+      max-width: max-content;
+    }
+  
+}
