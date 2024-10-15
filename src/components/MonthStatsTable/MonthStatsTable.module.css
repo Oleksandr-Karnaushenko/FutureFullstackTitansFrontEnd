@@ -1,0 +1,47 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background-color: #ECF2FF;
+    max-width: 280px;
+}
+
+.calendar {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    row-gap: 36px;
+    column-gap: 26px;
+}
+
+.orangeBorder {
+    border: 1px solid #FF9D43;
+}
+
+
+@media screen and (min-width: 768px) {
+
+
+    .container {
+        max-width: 704px;
+    }
+
+    .calendar {
+        row-gap: 34px;
+        column-gap: 34px;
+        padding-bottom: 40px;
+    }
+
+}
+
+@media screen and (min-width: 1440px) {
+
+
+    .container {
+        max-width: 592px;
+    }
+
+    .calendar {
+        column-gap: 22px;
+    }
+}
