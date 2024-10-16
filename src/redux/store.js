@@ -14,6 +14,7 @@ import authSliceReducer from './auth/authSlice';
 import waterSliceReducer from './water/waterSlice';
 import themeSliceReducer from './theme/themeSlice';
 const authPersistConfig = {
+  // 'key' is identification of one or more storage
   key: 'auth',
   storage,
   whitelist: ['token'],
@@ -29,8 +30,10 @@ const persistedThemeReducer = persistReducer(
   themeSliceReducer
 );
 
+// basic reducer
 const persistedReducer = persistReducer(authPersistConfig, authSliceReducer);
 
+//...or more reducers
 const rootReducer = combineReducers({
   auth: persistedReducer,
   water: waterSliceReducer,
