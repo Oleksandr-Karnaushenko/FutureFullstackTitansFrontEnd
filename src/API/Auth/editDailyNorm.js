@@ -2,7 +2,7 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toastError, toastSuccess } from 'services/toastNotification';
 
-axios.defaults.baseURL = 'https://dreamteam-water-server.onrender.com/api/';
+axios.defaults.baseURL = 'watertrackerbackend-1b9z.onrender.com/';
 
 export const editDailyNorm = createAsyncThunk(
   'auth/editDailyNorm',
