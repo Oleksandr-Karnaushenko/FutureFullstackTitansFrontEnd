@@ -1,6 +1,6 @@
 import css from "./Logo.module.css";
 import { useSelector } from "react-redux";
-import { selectIsLoggedIn } from "../../redux/auth/selectors";
+// import { selectIsLoggedIn } from "";
 import { useNavigate } from "react-router-dom";
 
 const Logo = () => {
