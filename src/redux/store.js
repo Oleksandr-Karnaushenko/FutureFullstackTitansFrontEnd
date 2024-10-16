@@ -9,9 +9,7 @@ const persistConfig = {
   storage,  
 };
 
-
 const persistedReducer = persistReducer(persistConfig, dummyReducer);
-
 
 const store = configureStore({
   reducer: persistedReducer,
