@@ -2,8 +2,8 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 
 import SharedLayout from '../SharedLayout/SharedLayout.jsx';
-import RestrictedRoute from './components/RestrictedRoute/RestrictedRoute';
-import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import RestrictedRoute from '../../utility/RestrictedRoute.jsx';
+import PrivateRoute from '../../utility/PrivateRoute.jsx';
 
 const WelcomePage = lazy(() => import('./pages/WelcomePage/WelcomePage'));
 const SignupPage = lazy(() => import('./pages/SignupPage/SignupPage'));
