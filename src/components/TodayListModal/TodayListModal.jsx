@@ -12,7 +12,7 @@ import css from './TodayListModal.module.css';
 
 export default function TodayListModal({ waterObj, onClose }) {
   const { waterVolume } = useMemo(() => {
-    // тут треба буде з бекенду взяти дані
+    // Тут треба буде з бекенду взяти дані
     return waterObj;
   }, [waterObj]);
 
@@ -67,7 +67,7 @@ export default function TodayListModal({ waterObj, onClose }) {
 
   const handleSubmit = () => {
     if (buttonBlockAmount < 50) {
-      alert('Plese add more water.');
+      alert('Please add more water.');
       return;
     }
     console.log('Saved:', {
@@ -87,13 +87,17 @@ export default function TodayListModal({ waterObj, onClose }) {
           </span>
         </div>
 
-        <div className={css.amountofwaterContainer}>
-          <svg width={23} height={32}>
-            <use href="icons.svg#icon-glass"></use>
-          </svg>
-          <p className={css.waterAmount}>{buttonBlockAmount} ml</p>
-          <p className={css.time}>{selectedTime}</p>
-        </div>
+        {buttonBlockAmount === 0 ? ( // Перевірка на перший запис
+          <p className={css.noNotes}>No notes yet</p>
+        ) : (
+          <div className={css.amountofwaterContainer}>
+            <svg width={23} height={32}>
+              <use href="icons.svg#icon-glass"></use>
+            </svg>
+            <p className={css.waterAmount}>{buttonBlockAmount} ml</p>
+            <p className={css.time}>{selectedTime}</p>
+          </div>
+        )}
 
         <h3 className={css.subtitle}>Correct entered data:</h3>
         <p className={css.text}>Amount of water:</p>
