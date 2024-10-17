@@ -74,7 +74,7 @@ export const changeUserAvatarAPI = createAsyncThunk(
       return avatarURL;
     } catch (error) {
       toastError('Something went wrong');
-      return rejectWithValue('Something went wrong');
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -91,7 +91,7 @@ export const editDailyNorm = createAsyncThunk(
       return norm;
     } catch (error) {
       toastError('Something went wrong');
-      return rejectWithValue('Something went wrong');
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -103,7 +103,7 @@ export const fetchUserData = createAsyncThunk(
       return data;
     } catch (error) {
       toastError('Something went wrong');
-      return rejectWithValue('Something went wrong');
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -118,7 +118,7 @@ export const changeUserData = createAsyncThunk(
       return data;
     } catch (error) {
       toastError('Invalid password');
-      return rejectWithValue('Something went wrong');
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -141,9 +141,7 @@ export const fetchCurrentUserAPI = createAsyncThunk(
       toastError(
         'Auth state is old. Please enter to your personal cabinet again'
       );
-      return rejectWithValue(
-        'Auth state is old. Please enter to your personal cabinet again'
-      );
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -166,9 +164,7 @@ export default createAsyncThunk(
       toastError(
         'Auth state is old. Please enter to your personal cabinet again'
       );
-      return rejectWithValue(
-        'Auth state is old. Please enter to your personal cabinet again'
-      );
+      return rejectWithValue(error.message);
     }
   }
 );

@@ -99,7 +99,7 @@ export const editDailyNorm = createAsyncThunk(
       return data;
     } catch (error) {
       toastError('Something went wrong');
-      return rejectWithValue('Something went wrong');
+      return rejectWithValue(error.message);
     }
   }
 );
