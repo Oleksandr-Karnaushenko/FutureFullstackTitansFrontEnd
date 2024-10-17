@@ -3,7 +3,6 @@ import { getMonthInfoAPI } from '../../API/Water/getMonthInfoAPI';
 import axios from 'axios';
 import { toastError, toastSuccess } from 'services/toastNotification';
 
-//санка для отримання даних по воді за поточний місяць
 export const getCurrentMonthInfoThunk = createAsyncThunk(
   'water/getMonth',
   async (_, thunkAPI) => {
@@ -14,14 +13,13 @@ export const getCurrentMonthInfoThunk = createAsyncThunk(
         month: currentDate.getMonth() + 1,
         year: currentDate.getFullYear(),
       });
-      return currentMonth; // ЦЕ БУДЕ ЗАПИСАНО В ЕКШИН ПЕЙЛОАД
+      return currentMonth;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
-//санка для получения данных по текущему
 export const getCurrentDayInfoThunk = createAsyncThunk(
   'water/getDay',
   async (_, thunkAPI) => {
@@ -36,7 +34,6 @@ export const getCurrentDayInfoThunk = createAsyncThunk(
   }
 );
 
-//Санка добавления воды
 export const addWaterThunk = createAsyncThunk(
   'water/add',
   async (data, thunkAPI) => {
@@ -52,8 +49,6 @@ export const addWaterThunk = createAsyncThunk(
   }
 );
 
-//Санка удаления напитка
-
 export const deleteDrinkThunk = createAsyncThunk(
   'water/delete',
   async (drinkId, thunkAPI) => {
@@ -68,7 +63,6 @@ export const deleteDrinkThunk = createAsyncThunk(
   }
 );
 
-//Санка редактирования напитка
 export const editDrinkThunk = createAsyncThunk(
   'water/edit',
   async (drink, thunkAPI) => {
@@ -83,8 +77,6 @@ export const editDrinkThunk = createAsyncThunk(
     }
   }
 );
-
-//Смена дневной нормы
 
 export const editDailyNorm = createAsyncThunk(
   'auth/editDailyNorm',
