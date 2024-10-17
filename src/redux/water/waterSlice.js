@@ -57,7 +57,7 @@ const waterSlice = createSlice({
       })
       //addWaterThunk
       .addCase(addWaterThunk.pending, state => {
-        state.isAddDrinkLoading = tru e;
+        state.isAddDrinkLoading = true;
       })
       .addCase(addWaterThunk.fulfilled, (state, { payload }) => {
         state.isAddDrinkLoading = false;
