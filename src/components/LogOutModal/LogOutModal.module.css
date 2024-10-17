@@ -1,0 +1,93 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  max-width: 280px;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.23em;
+}
+
+.text {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.11em;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.logButton {
+  background-color: #ef5050;
+  border: none;
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 1.25em;
+  text-align: center;
+  font-weight: 500;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px 0px #407bff57;
+  padding: 8px 30px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.logButton:hover {
+  background-color: #d94343;
+}
+
+.closeIcon {
+  cursor: pointer;
+  margin-left: 112px;
+  color: #407bff;
+}
+
+.cancelButton {
+  background-color: #d7e3ff;
+  border: none;
+  color: #407bff;
+  font-size: 16px;
+  line-height: 1.25em;
+  text-align: center;
+  font-weight: 500;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px 0px #407bff57;
+  padding: 8px 30px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.cancelButton:hover {
+  background: #407bff;
+  color: #ffffff;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 592px;
+  }
+  .buttonContainer {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    gap: 24px;
+    justify-content: flex-end;
+  }
+
+  .cancelButton,
+  .logButton {
+    padding: 10px 30px;
+  }
+}
