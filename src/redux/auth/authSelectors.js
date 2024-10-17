@@ -17,3 +17,5 @@ export const getIsAuthLoading = state => state.auth.authIsLoading;
 export const getIsChangingAvatar = state => state.auth.isLoadingChangeAvatar;
 
 export const getIsDataUpdating = state => state.auth.isDataUpdating;
+
+export const selectIsLoggedIn = state => state.auth.isLoggedIn;

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { toastError } from 'services/toastNotification';
+
+import { toastError } from '../../services/toastNotification';
 
 axios.defaults.baseURL = '';
 
