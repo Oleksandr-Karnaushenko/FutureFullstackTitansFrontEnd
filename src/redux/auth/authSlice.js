@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import logOutAPI from 'API/Auth/logOutAPI';
+import logOutAPI from '../../API/Auth/logOutAPI';
 import signInAPI from '../../API/Auth/signInAPI';
 import signUpAPI from '../../API/Auth/signUpAPI';
-import fetchCurrentUserAPI from 'API/Auth/fetchCurrentUserAPI';
-import { changeUserAvatarAPI } from 'API/Auth/changeUserAvatarAPI';
-import { changeUserData } from 'API/Auth/changeUserDataAPI';
+import fetchCurrentUserAPI from '../../API/Auth/fetchCurrentUserAPI';
+import { changeUserAvatarAPI } from '../../API/Auth/changeUserAvatarAPI';
+import { changeUserData } from '../../API/Auth/changeUserDataAPI';
 
 const initialState = {
   user: {
