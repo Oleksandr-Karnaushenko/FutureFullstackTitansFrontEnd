@@ -67,10 +67,10 @@ export default function TodayListModal({ waterObj, onClose }) {
 
   const handleSubmit = () => {
     if (buttonBlockAmount < 50) {
-      alert('Будь ласка, введіть кількість води більше 50 мл.');
+      alert('Plese add more water.');
       return;
     }
-    console.log('Збережено:', {
+    console.log('Saved:', {
       waterVolume: buttonBlockAmount,
       time: selectedTime,
     });
