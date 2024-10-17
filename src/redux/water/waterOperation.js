@@ -1,20 +1,27 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { getMonthInfoAPI } from '../../API/Water/getMonthInfoAPI';
 import axios from 'axios';
 
 import { toastError, toastSuccess } from '../../services/toastNotification';
+// export const getMonthInfoAPI = async date => {
+//   const { data } = await axios.post('water/month', date);
 
+//   return data;
+// };
 export const getCurrentMonthInfoThunk = createAsyncThunk(
   'water/getMonth',
   async (_, thunkAPI) => {
     try {
       const currentDate = new Date();
-
-      const currentMonth = await getMonthInfoAPI({
+      const { data } = await axios.post('water/month', {
         month: currentDate.getMonth() + 1,
         year: currentDate.getFullYear(),
       });
-      return currentMonth;
+      // const currentMonth = await getMonthInfoAPI({
+      //   month: currentDate.getMonth() + 1,
+      //   year: currentDate.getFullYear(),
+      // });
+      // return currentMonth;
+      return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -93,7 +100,7 @@ export const editDailyNorm = createAsyncThunk(
       return data;
     } catch (error) {
       toastError('Something went wrong');
-      return rejectWithValue('Something went wrong');
+      return rejectWithValue(error.message);
     }
   }
 );
