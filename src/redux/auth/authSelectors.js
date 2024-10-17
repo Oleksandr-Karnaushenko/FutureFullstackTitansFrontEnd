@@ -17,3 +17,5 @@ export const getStartDay = state => state.auth.user.startDay;
 export const getIsChangingAvatar = state => state.auth.isLoadingChangeAvatar;
 
 export const getIsDataUpdating = state => state.auth.isDataUpdating;
+
+export const selectIsLoggedIn = state => state.auth.isLoggedIn;

@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+
 import { toastError, toastSuccess } from '../../services/toastNotification';
 // export const getMonthInfoAPI = async date => {
 //   const { data } = await axios.post('water/month', date);
