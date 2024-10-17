@@ -10,7 +10,7 @@ const LogOutModal = ({ onClose }) => {
 
   const handleLogOut = async () => {
     try {
-      dispatch(logout());
+      dispatch(logout()); //???
       navigate('/');
     } catch (error) {
       console.error('Something went wrong:', error);
@@ -19,7 +19,7 @@ const LogOutModal = ({ onClose }) => {
 
   return (
     <div className={css.container}>
-      <div {css.header}>
+      <div className={css.header}>
         <h2 className={css.title}>Log out</h2>
         <IoCloseSharp size={12} onClick={onClose} className={css.closeIcon} />
       </div>

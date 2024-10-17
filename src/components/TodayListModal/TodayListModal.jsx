@@ -2,12 +2,14 @@ import { useMemo, useState, useEffect } from 'react';
 import { IoCloseOutline } from 'react-icons/io5';
 import Select from 'react-select';
 import { HiOutlinePlusSmall, HiOutlineMinusSmall } from 'react-icons/hi2';
+
 import {
   getCurrentTime,
   countToFiveMinutes,
   TimeDropdown,
   differentStyles,
 } from '../AmountOfWater/AmountOfWater';
+
 import css from './TodayListModal.module.css';
 
 export default function TodayListModal({ waterObj, onClose }) {

@@ -1,7 +1,9 @@
-import css from "./Logo.module.css";
-import { useSelector } from "react-redux";
-import { selectIsLoggedIn } from "../../redux/auth/authSelectors";
-import { useNavigate } from "react-router-dom";
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
+import { selectIsLoggedIn } from '../../redux/auth/authSelectors.jsx';
+
+import css from './Logo.module.css';
 
 const Logo = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -9,9 +11,9 @@ const Logo = () => {
 
   const handleWaterTrackerClick = () => {
     if (isLoggedIn) {
-      navigate("/homepage");
+      navigate('/homepage');
     } else {
-      navigate("/welcome");
+      navigate('/welcome');
     }
   };
 

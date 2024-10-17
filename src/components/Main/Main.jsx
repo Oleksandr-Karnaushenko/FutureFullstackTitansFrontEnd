@@ -1,14 +1,15 @@
-
 import WaterСonsumptionTracker from '../WaterСonsumptionTracker/WaterСonsumptionTracker';
-import WhyDrinkWater from '../WhyDrinkWater/WhyDrinkWater'
+import WhyDrinkWater from '../WhyDrinkWater/WhyDrinkWater';
 
-export default function Main(){
-    return <div>
+export default function Main() {
+  return (
     <div>
-      <WaterСonsumptionTracker/>
+      <div>
+        <WaterСonsumptionTracker />
+      </div>
+      <div>
+        <WhyDrinkWater />
+      </div>
     </div>
-    <div>
-      <WhyDrinkWater/>  
-    </div>
-    </div>
+  );
 }

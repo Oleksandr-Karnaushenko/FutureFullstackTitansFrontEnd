@@ -45,9 +45,9 @@ export const getCurrentDayInfoThunk = createAsyncThunk(
 export const addWaterThunk = createAsyncThunk(
   'water/add',
   async (data, thunkAPI) => {
-    const { drink, dayId } = data;
+    const { drink } = data;
     try {
-      const { data } = await axios.post(`water/drinks/${dayId}`, drink);
+      const { data } = await axios.post(`water`, drink);
       toastSuccess('Drink has been added successful');
       return data;
     } catch (error) {
@@ -61,7 +61,7 @@ export const deleteDrinkThunk = createAsyncThunk(
   'water/delete',
   async (drinkId, thunkAPI) => {
     try {
-      const { data } = await axios.delete(`water/drinks/${drinkId}`);
+      const { data } = await axios.delete(`water/${drinkId}`);
       toastSuccess('Drink has been deleted successful');
       return data;
     } catch (error) {
@@ -76,7 +76,7 @@ export const editDrinkThunk = createAsyncThunk(
   async (drink, thunkAPI) => {
     const { id, time, ml } = drink;
     try {
-      const { data } = await axios.patch(`water/drinks/${id}`, { time, ml });
+      const { data } = await axios.patch(`water/${id}`, { time, ml });
       toastSuccess('Drink has been edited successful');
       return data;
     } catch (error) {
@@ -86,21 +86,21 @@ export const editDrinkThunk = createAsyncThunk(
   }
 );
 
-export const editDailyNorm = createAsyncThunk(
-  'auth/editDailyNorm',
-  async (norm, { rejectWithValue }) => {
-    try {
-      const date = new Date();
-      const { data } = await axios.patch('/water/norm', {
-        date,
-        norm: Math.ceil(norm / 100) * 100,
-      });
+// export const editDailyNorm = createAsyncThunk(
+//   'auth/editDailyNorm',
+//   async (norm, { rejectWithValue }) => {
+//     try {
+//       const date = new Date();
+//       const { data } = await axios.patch('/water/norm', {
+//         date,
+//         norm: Math.ceil(norm / 100) * 100,
+//       });
 
-      toastSuccess('Edit successful');
-      return data;
-    } catch (error) {
-      toastError('Something went wrong');
-      return rejectWithValue(error.message);
-    }
-  }
-);
+//       toastSuccess('Edit successful');
+//       return data;
+//     } catch (error) {
+//       toastError('Something went wrong');
+//       return rejectWithValue(error.message);
+//     }
+//   }
+// );

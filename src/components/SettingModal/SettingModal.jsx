@@ -1,6 +1,7 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import style from './SettingModal.module.css';
 import { FiUpload } from 'react-icons/fi';
+
+import style from './SettingModal.module.css';
 
 function SettingModal() {
   //   const userId = useSelector(state => state.auth.userId);

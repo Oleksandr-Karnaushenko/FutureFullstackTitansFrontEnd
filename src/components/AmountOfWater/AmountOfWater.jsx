@@ -3,6 +3,7 @@ import { toast } from 'react-hot-toast';
 import Select from 'react-select';
 import { IoCloseOutline } from 'react-icons/io5';
 import { HiOutlinePlusSmall, HiOutlineMinusSmall } from 'react-icons/hi2';
+
 import css from './AmountOfWater.module.css';
 
 export const differentStyles = {
