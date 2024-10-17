@@ -1,4 +1,5 @@
-import './App.css';
+import './App.module.css';
+import { lazy } from "react";
 import SharedLayout from "../SharedLayout/SharedLayout";
 import { Suspense } from "react";
 
