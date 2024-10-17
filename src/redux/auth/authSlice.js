@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+
 import logOutAPI from '../../API/Auth/logOutAPI';
 import signInAPI from '../../API/Auth/signInAPI';
 import signUpAPI from '../../API/Auth/signUpAPI';

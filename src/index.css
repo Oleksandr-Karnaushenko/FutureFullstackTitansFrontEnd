@@ -16,14 +16,11 @@ a {
   text-decoration: none;
   color: black;
 }
-
 button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 30px;
-  background-color: #407BFF;
-  color: #ffffff;
-  max-width: 384px;
-  border-radius: 10px;
+  border-radius: 5px;
+  padding: 2px 5px;
+  cursor: pointer;
+  height: min-content;
+  border: none;
+  font-weight: 500;
 }
