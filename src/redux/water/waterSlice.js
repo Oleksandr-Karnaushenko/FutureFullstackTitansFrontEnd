@@ -6,7 +6,7 @@ import {
   deleteDrinkThunk,
   editDrinkThunk,
   editDailyNorm,
-} from './waterFunctions';
+} from './waterOperation';
 
 const initialState = {
   month: null,

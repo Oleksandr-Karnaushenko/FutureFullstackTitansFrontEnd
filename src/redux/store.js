@@ -48,9 +48,7 @@ const middleware = getDefaultMiddleware =>
 export const store = configureStore({
   reducer: rootReducer,
   middleware,
-  devTools: process.env.NODE_ENV === 'development',
+  // devTools: process.env.NODE_ENV === 'development',
 });
 
 export const persistor = persistStore(store);
-
-export default store; // Добавлен экспорт по умолчанию

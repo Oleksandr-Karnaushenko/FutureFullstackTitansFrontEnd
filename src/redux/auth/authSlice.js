@@ -1,10 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import logOutAPI from '../../API/Auth/logOutAPI';
-import signInAPI from '../../API/Auth/signInAPI';
-import signUpAPI from '../../API/Auth/signUpAPI';
-import fetchCurrentUserAPI from '../../API/Auth/fetchCurrentUserAPI';
-import { changeUserAvatarAPI } from '../../API/Auth/changeUserAvatarAPI';
-import { changeUserData } from '../../API/Auth/changeUserDataAPI';
+import {
+  logaut,
+  signInAPI,
+  signUpAPI,
+  fetchCurrentUserAPI,
+  changeUserAvatarAPI,
+  changeUserData,
+} from './authOperation';
 
 const initialState = {
   user: {
@@ -62,15 +64,15 @@ const authSlice = createSlice({
         state.authIsLoading = false;
       })
 
-      .addCase(logOutAPI.fulfilled, state => {
+      .addCase(logaut.fulfilled, state => {
         state.authIsLoading = false;
         state.user = { ...initialState.user };
         state.token = null;
       })
-      .addCase(logOutAPI.pending, state => {
+      .addCase(logaut.pending, state => {
         state.authIsLoading = true;
       })
-      .addCase(logOutAPI.rejected, state => {
+      .addCase(logaut.rejected, state => {
         state.authIsLoading = false;
         state.user = { ...initialState.user };
         state.token = null;
