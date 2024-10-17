@@ -44,4 +44,13 @@ function App() {
   );
 }
 
-export default App;
+
+export default function App() {
+  return (
+    <div className={css.container}>
+      <Suspense fallback={<Loader />}>
+        <SharedLayout></SharedLayout>
+      </Suspense>
+    </div>
+  );
+}
