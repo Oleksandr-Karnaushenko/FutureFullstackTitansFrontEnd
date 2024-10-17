@@ -12,6 +12,8 @@ const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 
 import './App.css';
 
+import HomePage from '../../pages/HomePage/HomePage';
+
 function App() {
   return (
     <Suspense fallback={null}>
