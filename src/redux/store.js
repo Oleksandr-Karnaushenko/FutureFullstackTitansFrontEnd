@@ -13,6 +13,7 @@ import storage from 'redux-persist/lib/storage';
 import authSliceReducer from './auth/authSlice';
 import waterSliceReducer from './water/waterSlice';
 import themeSliceReducer from './theme/themeSlice';
+
 const authPersistConfig = {
   key: 'auth',
   storage,
@@ -51,3 +52,5 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
+
+export default store; // Добавлен экспорт по умолчанию
