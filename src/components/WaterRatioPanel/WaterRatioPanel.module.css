@@ -1,0 +1,45 @@
+.ratioPanelMain {
+  height: 8px;
+  border-radius: 10px;
+  margin: 10px;
+  max-width: 256px;
+  background-color: #d7e3ff;
+  position: relative;
+}
+.ratioPanelProgress {
+  height: 8px;
+  border-radius: 10px;
+  background-color: #9ebbff;
+  width: 0%;
+}
+.ratioPanelLabels {
+  max-width: 280px;
+  display: flex;
+  justify-content: space-between;
+  color: #407bff;
+  position: relative;
+}
+.ratioPanelDot {
+  position: absolute;
+  top: -3px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: #ffff;
+  border: 1px solid #407bff;
+  transform: translateX(-50%);
+}
+.ratioPanelLabels span {
+  font-size: 12px;
+  position: relative;
+}
+.ratioPanelLabels span::before {
+  content: '';
+  position: absolute;
+  top: -9px;
+  left: 55%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 8px;
+  background-color: #d7e3ff;
+}
