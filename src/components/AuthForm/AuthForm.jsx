@@ -3,10 +3,13 @@ import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import toast from 'react-hot-toast';
 import { signInAPI, signUpAPI } from '../../redux/auth/authOperation';
+import { useState } from 'react';
 import styles from './AuthForm.module.css';
 
 export default function AuthForm({ isSignup }) {
   const dispatch = useDispatch();
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const validationSchema = Yup.object().shape({
     email: Yup.string()
@@ -16,14 +19,21 @@ export default function AuthForm({ isSignup }) {
       .min(8, 'Minimum 8 characters')
       .max(64, 'Password must be less than 64 characters')
       .required('Required field'),
+    confirmPassword: isSignup
+      ? Yup.string()
+          .oneOf([Yup.ref('password'), null], 'Passwords must match')
+          .required('Required field')
+      : Yup.string().nullable(),
   });
 
-  const initialValues = { email: '', password: '' };
+  const initialValues = { email: '', password: '', confirmPassword: '' };
 
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
       if (isSignup) {
-        await dispatch(signUpAPI(values)).unwrap();
+        await dispatch(
+          signUpAPI({ email: values.email, password: values.password })
+        ).unwrap();
         toast.success('Successful registration!');
       } else {
         await dispatch(signInAPI(values)).unwrap();
@@ -42,58 +52,102 @@ export default function AuthForm({ isSignup }) {
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
-      {({ isSubmitting }) => (
+      {({ errors, touched, isSubmitting }) => (
         <Form className={styles.form}>
           <div className={styles.inputWrapper}>
+            <label htmlFor="email" className={styles.label}>
+              Enter your email
+            </label>
             <Field
+              id="email"
               type="email"
               name="email"
               placeholder="Email"
-              className={styles.input}
+              className={`${styles.input} ${
+                errors.email && touched.email ? styles.errorInput : ''
+              }`}
             />
             <ErrorMessage
               name="email"
               component="div"
-              className={styles.error}
+              className={styles.errorMessage}
             />
           </div>
 
           <div className={styles.inputWrapper}>
-            <Field
-              type="password"
-              name="password"
-              placeholder="Password"
-              className={styles.input}
-            />
+            <label htmlFor="password" className={styles.label}>
+              Enter your password
+            </label>
+            <div className={styles.passwordWrapper}>
+              <Field
+                type={showPassword ? 'text' : 'password'}
+                name="password"
+                placeholder="Password"
+                className={`${styles.input} ${
+                  errors.password && touched.password ? styles.errorInput : ''
+                }`}
+              />
+              <span
+                className={styles.eyeIcon}
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? '🙈' : '👁️'}
+              </span>
+            </div>
             <ErrorMessage
               name="password"
               component="div"
-              className={styles.error}
+              className={styles.errorMessage}
             />
           </div>
+
+          {isSignup && (
+            <div className={styles.inputWrapper}>
+              <label htmlFor="confirmPassword" className={styles.label}>
+                Repeat your password
+              </label>
+              <div className={styles.passwordWrapper}>
+                <Field
+                  type={showConfirmPassword ? 'text' : 'password'}
+                  name="confirmPassword"
+                  placeholder="Confirm Password"
+                  className={`${styles.input} ${
+                    errors.confirmPassword && touched.confirmPassword
+                      ? styles.errorInput
+                      : ''
+                  }`}
+                />
+                <span
+                  className={styles.eyeIcon}
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                >
+                  {showConfirmPassword ? '🙈' : '👁️'}
+                </span>
+              </div>
+              <ErrorMessage
+                name="confirmPassword"
+                component="div"
+                className={styles.errorMessage}
+              />
+            </div>
+          )}
 
           <button
             type="submit"
             className={styles.submitBtn}
             disabled={isSubmitting}
           >
-            {isSignup ? 'Sign up' : 'Sign in'}
+            {isSignup ? 'Sign Up' : 'Sign In'}
           </button>
 
           <div className={styles.links}>
-            {!isSignup && (
-              <>
-                <a href="/signup" className={styles.link}>
-                  Sign Up
-                </a>
-                <a href="/forgot-password" className={styles.link}>
-                  Forgot your password?
-                </a>
-              </>
-            )}
-            {isSignup && (
+            {isSignup ? (
               <a href="/signin" className={styles.link}>
                 Sign In
+              </a>
+            ) : (
+              <a href="/signup" className={styles.link}>
+                Sign Up
               </a>
             )}
           </div>

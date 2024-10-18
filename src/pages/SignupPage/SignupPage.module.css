@@ -1,4 +1,18 @@
 .container {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 20px;
+    background-color: #fff;
+    background-image: url('/path-to-your-background-image.png');
+    background-repeat: no-repeat;
+    background-position: bottom;
+}
+
+/* .container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,16 +27,16 @@
     text-align: center;
 }
 
-/* Mobile Styles */
+
 @media (max-width: 600px) {
     .title {
         font-size: 24px;
     }
 }
 
-/* Tablet Styles */
+
 @media (min-width: 601px) and (max-width: 1024px) {
     .title {
         font-size: 28px;
     }
-}
+} */
