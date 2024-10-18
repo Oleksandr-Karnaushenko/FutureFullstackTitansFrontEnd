@@ -1,70 +1,59 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { FaTimes } from 'react-icons/fa';
 import css from './LogOutModal.module.css';
 import { logOutAPI } from '../../redux/auth/authOperation';
+import { Formik, Form } from 'formik';
 
-const LogOutModal = () => {
+const LogOutModal = ({ isOpen, onClose }) => {
   const dispatch = useDispatch();
-  const isOpen = useSelector(state => state.auth.isLogoutModalOpen);
-  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(isOpen);
-
-  const closeLogoutModal = () => setIsLogoutModalOpen(false);
 
   const handleLogOut = async () => {
     try {
       await dispatch(logOutAPI()).unwrap();
-      closeLogoutModal();
+      onClose(); // закриваємо модальне вікно після успішного логауту
     } catch (error) {
       console.error('Something went wrong, please try again:', error);
     }
   };
-  useEffect(() => {
-    setIsLogoutModalOpen(true);
 
-    const handleBackdropClick = event => {
-      if (event.target.classList.contains(css.modalOverlay)) {
-        closeLogoutModal();
-      }
-    };
-
-    const handleEscapePress = event => {
-      if (event.key === 'Escape') {
-        closeLogoutModal();
-      }
-    };
-    document.addEventListener('click', handleBackdropClick);
-    document.addEventListener('keydown', handleEscapePress);
-
-    return () => {
-      document.removeEventListener('click', handleBackdropClick);
-      document.removeEventListener('keydown', handleEscapePress);
-    };
-  }, [dispatch]);
+  if (!isOpen) return null; // Якщо модальне вікно закрите не рендеримо його
 
   return (
-    <div>
-      {isLogoutModalOpen && (
-        <div className={css.modalOverlay}>
-          <div className={css.modal}>
-            <div className={css.header}>
-              <h1 className={css.title}>Log out</h1>
-              <span className={css.close} onClick={closeLogoutModal}>
-                <FaTimes />
-              </span>
-            </div>
-            <h2>Do you really want to leave?</h2>
-            <div className={css.buttonContainer}>
-              <button className={css.cancelButton} onClick={closeLogoutModal}>
-                Cancel
-              </button>
-              <button className={css.logoutButton} onClick={handleLogOut}>
-                Log out
-              </button>
-            </div>
-          </div>
+    <div className={css.modalOverlay}>
+      <div className={css.modal}>
+        <div className={css.header}>
+          <h1 className={css.title}>Log out</h1>
+          <span className={css.close} onClick={onClose}>
+            <FaTimes />
+          </span>
         </div>
-      )}
+        <h2>Do you really want to leave?</h2>
+        <div className={css.buttonContainer}>
+          <Formik
+            initialValues={{}}
+            onSubmit={handleLogOut} // логаут якщо в нас виконується сабміт
+          >
+            {({ isSubmitting }) => (
+              <Form>
+                <button
+                  type="button"
+                  className={css.cancelButton}
+                  onClick={onClose} //закривається  модальне вікно без логауту
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className={css.logoutButton}
+                  disabled={isSubmitting}
+                >
+                  Log out
+                </button>
+              </Form>
+            )}
+          </Formik>
+        </div>
+      </div>
     </div>
   );
 };
