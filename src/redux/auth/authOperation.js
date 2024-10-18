@@ -99,17 +99,11 @@ export const editDailyNorm = createAsyncThunk(
 );
 
 export const fetchUserData = createAsyncThunk(
-<<<<<<< HEAD
   'auth/userData',
   async (id, { rejectWithValue }) => {
     try {
       const { data } = await axios.get(`/users/${id}`);
-=======
-  'auth/getUserData',
-  async (_, { rejectWithValue }) => {
-    try {
-      const { data } = await axios.get('/users');
->>>>>>> dd328f80eea918c63c027586029da6910c7796d8
+
       return data;
     } catch (error) {
       toastError('Something went wrong');
@@ -143,7 +137,6 @@ export const fetchCurrentUserAPI = createAsyncThunk(
 
     axios.defaults.headers.common.Authorization = `Bearer ${currentToken}`;
     try {
-
       const { data: user } = await axios.get('/auth/refresh');
 
       return user;
@@ -156,5 +149,3 @@ export const fetchCurrentUserAPI = createAsyncThunk(
     }
   }
 );
-
-
