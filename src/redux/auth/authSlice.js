@@ -22,6 +22,7 @@ const initialState = {
   authIsLoading: false,
   isLoadingChangeAvatar: false,
   isDataUpdating: false,
+  isUserDateGating: false,
   bottleXY: {},
 };
 
@@ -127,26 +128,15 @@ export const authSlice = createSlice({
       })
       .addCase(fetchUserData.fulfilled, (state, { payload }) => {
         state.user = payload;
+        state.isUserDateGating = false;
       })
-      .addCase(fetchUserData.pending, state => state)
+      .addCase(fetchUserData.pending, state => {
+        state.isUserDateGating = true;
+      })
       .addCase(fetchUserData.rejected, state => {
         state.user = initialState.user;
+        state.isUserDateGating = false;
       });
   },
 });
 export const { change } = authSlice.actions;
-
-// export const changeUserData = createAsyncThunk(
-//   'auth/changeUserData',
-//   async (user, { rejectWithValue }) => {
-//     try {
-//       await axios.patch('/users/info', user);
-//       toastSuccess('User info changed successful ');
-//       const { data } = await axios.get('/users/info');
-//       return data;
-//     } catch (error) {
-//       toastError('Invalid password');
-//       return rejectWithValue('Something went wrong');
-//     }
-//   }
-// );

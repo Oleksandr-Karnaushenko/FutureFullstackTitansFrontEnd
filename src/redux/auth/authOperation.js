@@ -97,9 +97,9 @@ export const editDailyNorm = createAsyncThunk(
 );
 export const fetchUserData = createAsyncThunk(
   'auth/userData',
-  async (_, { rejectWithValue }) => {
+  async (id, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get('/users/info');
+      const { data } = await axios.get(`/users/${id}`);
       return data;
     } catch (error) {
       toastError('Something went wrong');
