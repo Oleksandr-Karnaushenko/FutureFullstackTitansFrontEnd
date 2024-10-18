@@ -3,19 +3,23 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 ul {
   list-style: none;
 }
+
 img {
   margin: 0 auto;
   display: block;
   width: 100%;
   height: 100%;
 }
+
 a {
   text-decoration: none;
   color: black;
 }
+
 button {
   border-radius: 5px;
   padding: 2px 5px;
@@ -23,4 +27,31 @@ button {
   height: min-content;
   border: none;
   font-weight: 500;
+}
+
+:root {
+
+  /* Roboto-Regular */
+  @font-face {
+    font-family: "Roboto", serif;
+    font-weight: 400;
+    font-style: normal;
+    src: url('/fonts/Roboto-Regular.ttf');
+  }
+
+  /* Roboto-Medium */
+  @font-face {
+    font-family: "Roboto", serif;
+    font-weight: 500;
+    font-style: normal;
+    src: url('/fonts/Roboto-Medium.ttf');
+  }
+
+  /* Roboto-Bold */
+  @font-face {
+    font-family: "Roboto", serif;
+    font-weight: 700;
+    font-style: normal;
+    src: url('/fonts/Roboto-Bold.ttf');
+  }
 }
