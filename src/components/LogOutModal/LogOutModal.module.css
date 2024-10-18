@@ -1,26 +1,62 @@
-.container {
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000000cc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: white;
+  width: 280px;
+  height: 260px;
+  padding: 32px 24px;
+  gap: 24px;
+  border-radius: 10px;
+  position: fixed;
+  left: 50%;
+  top: 80px;
+  transform: translateX(-50%);
+  opacity: 1;
   display: flex;
   flex-direction: column;
-  padding-top: 32px;
-  padding-bottom: 32px;
-  max-width: 280px;
 }
+
 .header {
+  width: 100%;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 24px;
+  align-items: center;
 }
 
 .title {
-  font-size: 28px;
+  font-family: Roboto;
+  font-size: 26px;
   font-weight: 500;
-  line-height: 1.23em;
+  color: #2f2f2f;
 }
 
-.text {
+.close {
+  padding: 0;
+  color: #407bff;
+  background: transparent;
+  width: 24px;
+  height: 24px;
+  justify-content: center;
+}
+
+h2 {
   font-weight: 500;
+  display: flex;
   font-size: 18px;
-  line-height: 1.11em;
+  line-height: 20px;
+  color: #2f2f2f;
+  margin: 0;
 }
 
 .buttonContainer {
@@ -29,65 +65,68 @@
   gap: 24px;
 }
 
-.logButton {
-  background-color: #ef5050;
-  border: none;
-  color: #ffffff;
-  font-size: 16px;
-  line-height: 1.25em;
-  text-align: center;
-  font-weight: 500;
-  border-radius: 10px;
-  box-shadow: 0px 4px 8px 0px #407bff57;
+.buttonContainer button {
+  width: 232px;
+  height: 36px;
   padding: 8px 30px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+  border-radius: 10px;
+  border-color: transparent;
+  transition: box-shadow 0.3s ease;
+  font-family: Roboto;
+  font-size: 16px;
 }
 
-.logButton:hover {
-  background-color: #d94343;
-}
-
-.closeIcon {
-  cursor: pointer;
-  margin-left: 112px;
-  color: #407bff;
+.logoutButton {
+  background: #ef5050;
+  color: #ffffff;
+  box-shadow: 0px 4px 10px 0px rgba(64, 123, 255, 0.34);
+  font-weight: 500;
 }
 
 .cancelButton {
-  background-color: #d7e3ff;
-  border: none;
+  background: #d7e3ff;
   color: #407bff;
-  font-size: 16px;
-  line-height: 1.25em;
-  text-align: center;
   font-weight: 500;
-  border-radius: 10px;
-  box-shadow: 0px 4px 8px 0px #407bff57;
-  padding: 8px 30px;
-  cursor: pointer;
-  transition: background-color 0.3s;
 }
 
 .cancelButton:hover {
-  background: #407bff;
-  color: #ffffff;
+  box-shadow: 0px 4px 10px 0px rgba(64, 123, 255, 0.34);
+  cursor: pointer;
+}
+
+.logoutButton:hover {
+  box-shadow: 0px 4px 10px 0px rgba(64, 123, 255, 0.5);
+  cursor: pointer;
 }
 
 @media screen and (min-width: 768px) {
-  .container {
-    max-width: 592px;
+  .modal {
+    width: 592px;
+    height: 208px;
+    top: 200px;
   }
+
   .buttonContainer {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row-reverse;
-    gap: 24px;
+    flex-direction: row;
     justify-content: flex-end;
   }
 
-  .cancelButton,
-  .logButton {
-    padding: 10px 30px;
+  .buttonContainer button {
+    width: 160px;
+    height: 44px;
+  }
+
+  .logoutButton {
+    font-size: 18px;
+  }
+
+  .cancelButton {
+    font-size: 18px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .buttonContainer {
+    justify-content: flex-start;
   }
 }

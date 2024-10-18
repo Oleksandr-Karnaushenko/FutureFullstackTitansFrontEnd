@@ -1,39 +1,61 @@
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { IoCloseSharp } from 'react-icons/io5';
-
+import { FaTimes } from 'react-icons/fa';
 import css from './LogOutModal.module.css';
+import { logOutAPI } from '../../redux/auth/authOperation';
+import { Formik, Form } from 'formik';
 
-const LogOutModal = ({ onClose }) => {
+const LogOutModal = ({ isOpen, onClose }) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const handleLogOut = async () => {
     try {
-      dispatch(logout()); //???
-      navigate('/');
+      await dispatch(logOutAPI()).unwrap();
+      onClose(); // закриваємо модальне вікно після успішного логауту
     } catch (error) {
-      console.error('Something went wrong:', error);
+      console.error('Something went wrong, please try again:', error);
     }
   };
 
+  if (!isOpen) return null; // Якщо модальне вікно закрите не рендеримо його
+
   return (
-    <div className={css.container}>
-      <div className={css.header}>
-        <h2 className={css.title}>Log out</h2>
-        <IoCloseSharp size={12} onClick={onClose} className={css.closeIcon} />
-      </div>
-      <h2 className={css.title}>Log out</h2>
-      <p className={css.text}>Do you really want to leave?</p>
-      <div className={css.buttonContainer}>
-        <button className={css.logButton} onClick={handleLogOut}>
-          Log out
-        </button>
-        <button className={css.cancelButton} onClick={onClose}>
-          Cancel
-        </button>
+    <div className={css.modalOverlay}>
+      <div className={css.modal}>
+        <div className={css.header}>
+          <h1 className={css.title}>Log out</h1>
+          <span className={css.close} onClick={onClose}>
+            <FaTimes />
+          </span>
+        </div>
+        <h2>Do you really want to leave?</h2>
+        <div className={css.buttonContainer}>
+          <Formik
+            initialValues={{}}
+            onSubmit={handleLogOut} // логаут якщо в нас виконується сабміт
+          >
+            {({ isSubmitting }) => (
+              <Form>
+                <button
+                  type="button"
+                  className={css.cancelButton}
+                  onClick={onClose} //закривається  модальне вікно без логауту
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className={css.logoutButton}
+                  disabled={isSubmitting}
+                >
+                  Log out
+                </button>
+              </Form>
+            )}
+          </Formik>
+        </div>
       </div>
     </div>
   );
 };
+
 export default LogOutModal;
