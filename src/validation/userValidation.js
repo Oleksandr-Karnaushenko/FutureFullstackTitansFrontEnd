@@ -14,23 +14,27 @@ export const useInfoValidationSchema = Yup.object().shape({
   oldPassword: Yup.string()
     .min(8, 'The field must contain at least 8 characters')
     .max(64, 'The field must contain at most 64 characters')
-    .when(['password', 'confirmPassword'], {
-      is: (password, confirmPassword) => password || confirmPassword,
-      then: Yup.string().required('This field is required'),
+    .test('required-if-password', 'This field is required', function (value) {
+      const { password } = this.parent;
+      return password ? !!value : true;
     }),
 
   password: Yup.string()
     .min(8, 'The field must contain at least 8 characters')
     .max(64, 'The field must contain at most 64 characters')
-    .when(['oldPassword', 'confirmPassword'], {
-      is: (oldPassword, confirmPassword) => oldPassword || confirmPassword,
-      then: Yup.string().required('This field is required'),
-    }),
+    .test(
+      'required-if-old-password',
+      'This field is required',
+      function (value) {
+        const { oldPassword } = this.parent;
+        return oldPassword ? !!value : true;
+      }
+    ),
 
   confirmPassword: Yup.string()
     .oneOf([Yup.ref('password'), null], 'Passwords must match')
-    .when(['oldPassword', 'password'], {
-      is: (oldPassword, password) => oldPassword || password,
-      then: Yup.string().required('This field is required'),
+    .test('required-if-password', 'This field is required', function (value) {
+      const { password } = this.parent;
+      return password ? !!value : true;
     }),
 });
