@@ -1,0 +1,146 @@
+.form {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255);
+    margin-top: 16px;
+    max-width: 320px;
+    width: 280px;
+}
+
+.inputWrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+    width: 100%;
+    padding-bottom: 16px;
+}
+
+.input {
+    font-family: 'Roboto', sans-serif;
+    padding: 12px 10px 12px 10px;
+    border: 1px solid #D7E3FF;
+    border-radius: 6px;
+    font-size: 16px;
+    width: 100%;
+    padding-right: 40px;
+    color: #9EBBFF;
+}
+
+.input::placeholder {
+    font-family: 'Roboto', sans-serif;
+    color: #9EBBFF;
+    opacity: 1;
+}
+
+.input:focus {
+    color: #407BFF;
+    border-color: #D7E3FF;
+    outline: none;
+}
+
+
+.errorInput {
+    border-color: red;
+    color: red;
+}
+
+.label {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    color: #2F2F2F;
+}
+
+.eyeIcon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    padding-top: 12px;
+}
+
+.errorMessage {
+    margin-top: 4px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-size: 14px;
+    color: red;
+}
+
+.submitBtn {
+    font-family: 'Roboto', sans-serif;
+    padding: 8px 30px 8px 30px;
+    background-color: #407BFF;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.link {
+    font-family: 'Roboto', sans-serif;
+    color: #407BFF;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+
+/* @media (min-width: 768px) and (max-width: 1024px) {
+    .form {
+        padding: 32px;
+        max-width: 336px;
+    }
+
+    .input {
+        padding: 12px;
+        font-size: 15px;
+    }
+
+    .submitBtn {
+        padding: 12px;
+        font-size: 15px;
+    }
+}
+
+
+@media (min-width: 1025px) {
+    .form {
+        padding: 40px;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .input {
+        padding: 12px;
+        font-size: 16px;
+    }
+
+    .submitBtn {
+        padding: 12px;
+        font-size: 16px;
+    }
+
+    .links {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+} */

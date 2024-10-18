@@ -1,0 +1,42 @@
+.container {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 20px;
+    background-color: #fff;
+    background-image: url('/path-to-your-background-image.png');
+    background-repeat: no-repeat;
+    background-position: bottom;
+}
+
+/* .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f9ff;
+}
+
+.title {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+
+@media (max-width: 600px) {
+    .title {
+        font-size: 24px;
+    }
+}
+
+
+@media (min-width: 601px) and (max-width: 1024px) {
+    .title {
+        font-size: 28px;
+    }
+} */
