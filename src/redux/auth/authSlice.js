@@ -7,8 +7,10 @@ import {
   changeUserAvatarAPI,
   changeUserData,
   editDailyNorm,
-  fetchUserData, // де загубився?
-} from './authOperation.js';
+  fetchUserData,
+} from './authOperation';
+
+ 
 
 const initialState = {
   user: {
@@ -22,10 +24,11 @@ const initialState = {
   authIsLoading: false,
   isLoadingChangeAvatar: false,
   isDataUpdating: false,
+  isUserDateGating: false,
   bottleXY: {},
 };
 
-const authSlice = createSlice({
+export const authSlice = createSlice({
   name: 'auth',
   initialState,
 
@@ -113,6 +116,28 @@ const authSlice = createSlice({
       })
       .addCase(changeUserData.rejected, state => {
         state.isDataUpdating = false;
+      })
+      .addCase(editDailyNorm.fulfilled, (state, { payload }) => {
+        state.dayInfo.norm = payload.norm;
+        state.dayInfo.percent = payload.percent;
+        state.isEditingNorm = false;
+      })
+      .addCase(editDailyNorm.pending, state => {
+        state.isEditingNorm = true;
+      })
+      .addCase(editDailyNorm.rejected, state => {
+        state.isEditingNorm = false;
+      })
+      .addCase(fetchUserData.fulfilled, (state, { payload }) => {
+        state.user = payload;
+        state.isUserDateGating = false;
+      })
+      .addCase(fetchUserData.pending, state => {
+        state.isUserDateGating = true;
+      })
+      .addCase(fetchUserData.rejected, state => {
+        state.user = initialState.user;
+        state.isUserDateGating = false;
       });
     //editDailyNorm
     // .addCase(editDailyNorm.fulfilled, (state, { payload }) => {
@@ -132,4 +157,3 @@ const authSlice = createSlice({
   },
 });
 export const { change } = authSlice.actions;
-export default authSlice.reducer;
