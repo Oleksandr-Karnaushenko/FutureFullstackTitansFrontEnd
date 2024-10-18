@@ -5,7 +5,6 @@ import {
   addWaterThunk,
   deleteDrinkThunk,
   editDrinkThunk,
-  editDailyNorm,
 } from './waterOperation';
 
 const initialState = {
@@ -28,7 +27,7 @@ const waterSlice = createSlice({
 
   extraReducers: builder => {
     builder
-
+      //getCurrentMonthInfoThunk
       .addCase(getCurrentMonthInfoThunk.pending, state => {
         state.monthDataLoading = true;
         state.monthError = false;
@@ -42,6 +41,7 @@ const waterSlice = createSlice({
         state.monthDataLoading = false;
         state.monthError = payload;
       })
+      //getCurrentDayInfoThunk
       .addCase(getCurrentDayInfoThunk.pending, state => {
         state.dayDataLoading = true;
         state.dayError = false;
@@ -55,6 +55,7 @@ const waterSlice = createSlice({
         state.dayDataLoading = false;
         state.dayError = payload;
       })
+      //addWaterThunk
       .addCase(addWaterThunk.pending, state => {
         state.isAddDrinkLoading = true;
       })
@@ -65,6 +66,7 @@ const waterSlice = createSlice({
       .addCase(addWaterThunk.rejected, state => {
         state.isAddDrinkLoading = false;
       })
+      //deleteDrinkThunk
       .addCase(deleteDrinkThunk.pending, state => {
         state.isDeleting = true;
       })
@@ -75,6 +77,7 @@ const waterSlice = createSlice({
       .addCase(deleteDrinkThunk.rejected, state => {
         state.isDeleting = false;
       })
+      //editDrinkThunk
       .addCase(editDrinkThunk.pending, state => {
         state.isEditingDrink = true;
       })
@@ -84,18 +87,6 @@ const waterSlice = createSlice({
       })
       .addCase(editDrinkThunk.rejected, state => {
         state.isEditingDrink = false;
-      })
-
-      .addCase(editDailyNorm.fulfilled, (state, { payload }) => {
-        state.dayInfo.norm = payload.norm;
-        state.dayInfo.percent = payload.percent;
-        state.isEditingNorm = false;
-      })
-      .addCase(editDailyNorm.pending, state => {
-        state.isEditingNorm = true;
-      })
-      .addCase(editDailyNorm.rejected, state => {
-        state.isEditingNorm = false;
       });
   },
 });
