@@ -1,6 +1,9 @@
 import DailyNorma from '../../components/DailyNorma/DailyNorma';
 import WaterRatioPanel from '../../components/WaterRatioPanel/WaterRatioPanel';
+<<<<<<< Updated upstream
+=======
 import AddWaterBtn from '../../components/AddWaterBtn/AddWaterBtn';
+>>>>>>> Stashed changes
 
 import css from './HomePage.module.css';
 
