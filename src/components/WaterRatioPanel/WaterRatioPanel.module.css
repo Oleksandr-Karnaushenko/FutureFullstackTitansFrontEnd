@@ -2,7 +2,7 @@
   height: 8px;
   border-radius: 10px;
   margin: 10px;
-  width: 256px;
+  max-width: 256px;
   background-color: #d7e3ff;
   position: relative;
 }
@@ -13,6 +13,7 @@
   width: 0%;
 }
 .ratioPanelLabels {
+  max-width: 280px;
   display: flex;
   justify-content: space-between;
   color: #407bff;
