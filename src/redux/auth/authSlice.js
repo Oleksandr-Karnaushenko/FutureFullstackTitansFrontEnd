@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
-  logaut,
+  logOutAPI,
   signInAPI,
   signUpAPI,
   fetchCurrentUserAPI,
@@ -9,6 +9,8 @@ import {
   editDailyNorm,
   fetchUserData,
 } from './authOperation';
+
+ 
 
 const initialState = {
   user: {
@@ -43,7 +45,7 @@ export const authSlice = createSlice({
 
   extraReducers: builder => {
     builder
-
+      //signInAPI
       .addCase(signInAPI.pending, state => {
         state.authIsLoading = true;
       })
@@ -55,7 +57,7 @@ export const authSlice = createSlice({
       .addCase(signInAPI.rejected, state => {
         state.authIsLoading = false;
       })
-
+      //signUpAPI
       .addCase(signUpAPI.pending, state => {
         state.authIsLoading = true;
       })
@@ -65,21 +67,21 @@ export const authSlice = createSlice({
       .addCase(signUpAPI.rejected, state => {
         state.authIsLoading = false;
       })
-
-      .addCase(logaut.fulfilled, state => {
+      //logOutAPI
+      .addCase(logOutAPI.fulfilled, state => {
         state.authIsLoading = false;
         state.user = { ...initialState.user };
         state.token = null;
       })
-      .addCase(logaut.pending, state => {
+      .addCase(logOutAPI.pending, state => {
         state.authIsLoading = true;
       })
-      .addCase(logaut.rejected, state => {
+      .addCase(logOutAPI.rejected, state => {
         state.authIsLoading = false;
         state.user = { ...initialState.user };
         state.token = null;
       })
-
+      //fetchCurrentUserAPI
       .addCase(fetchCurrentUserAPI.pending, state => {
         state.authIsLoading = true;
       })
@@ -92,7 +94,7 @@ export const authSlice = createSlice({
         state.user = { ...initialState.user };
         state.token = null;
       })
-
+      //changeUserAvatarAPI
       .addCase(changeUserAvatarAPI.fulfilled, (state, { payload }) => {
         state.isLoadingChangeAvatar = false;
         state.user.avatarURL = payload;
@@ -103,7 +105,7 @@ export const authSlice = createSlice({
       .addCase(changeUserAvatarAPI.rejected, state => {
         state.isLoadingChangeAvatar = false;
       })
-
+      //changeUserData
       .addCase(changeUserData.pending, state => {
         state.isDataUpdating = true;
       })
@@ -132,6 +134,21 @@ export const authSlice = createSlice({
       .addCase(fetchUserData.rejected, state => {
         state.user = initialState.user;
       });
+    //editDailyNorm
+    // .addCase(editDailyNorm.fulfilled, (state, { payload }) => {
+    //   state.dayInfo.norm = payload.norm;
+    //   state.dayInfo.percent = payload.percent;
+    //   state.isEditingNorm = false;
+    // })
+    // .addCase(editDailyNorm.pending, state => {
+    //   state.isEditingNorm = true;
+    // })
+    // .addCase(editDailyNorm.rejected, state => {
+    //   state.isEditingNorm = false;
+    // });
+
+    // Ми добову норму води записумо юзеру в norm:
+    // Треба переробити
   },
 });
 export const { change } = authSlice.actions;

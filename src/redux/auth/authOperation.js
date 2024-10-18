@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { toastError, toastSuccess } from '../../services/toastNotification';
+import { toastError, toastSuccess } from '../../services/toastNotification.js';
 
-axios.defaults.baseURL = 'http://localhost:3000';
+axios.defaults.baseURL = 'https://watertrackerbackend-1b9z.onrender.com';
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
@@ -11,11 +11,11 @@ const cleareAuthHeader = () => {
 };
 
 export const signUpAPI = createAsyncThunk(
-  'signUp/signUpAPI',
+  'auth/signUpAPI',
 
   async (user, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post('/users/register', user);
+      const { data } = await axios.post('/auth/register', user);
       setAuthHeader(data.token);
       toastSuccess(
         'We have sent email verification on your email. Please, check it'
@@ -27,11 +27,12 @@ export const signUpAPI = createAsyncThunk(
     }
   }
 );
+
 export const signInAPI = createAsyncThunk(
-  'signIn/signInAPI',
+  'auth/signInAPI',
   async (user, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post('/users/login', user);
+      const { data } = await axios.post('/auth/login', user);
 
       setAuthHeader(data.token);
 
@@ -43,11 +44,12 @@ export const signInAPI = createAsyncThunk(
     }
   }
 );
-export const logaut = createAsyncThunk(
+
+export const logOutAPI = createAsyncThunk(
   'auth/logout',
   async (_, { rejectWithValue }) => {
     try {
-      await axios.post('/users/logout');
+      await axios.post('/auth/logout');
       cleareAuthHeader();
       toastSuccess('Log out successful. Come back sooner');
     } catch (error) {
@@ -64,7 +66,7 @@ export const changeUserAvatarAPI = createAsyncThunk(
     try {
       const {
         data: { avatarURL },
-      } = await axios.patch('/users/avatars', formData, {
+      } = await axios.patch('/users/avatar', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -85,7 +87,7 @@ export const editDailyNorm = createAsyncThunk(
     try {
       const {
         data: { norm },
-      } = await axios.patch('/water/norm', data);
+      } = await axios.patch('/users/waterRate', data);
 
       toastSuccess('Deleted successful ');
       return norm;
@@ -95,11 +97,12 @@ export const editDailyNorm = createAsyncThunk(
     }
   }
 );
+
 export const fetchUserData = createAsyncThunk(
-  'auth/userData',
+  'auth/getUserData',
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get('/users/info');
+      const { data } = await axios.get('/users');
       return data;
     } catch (error) {
       toastError('Something went wrong');
@@ -112,7 +115,7 @@ export const changeUserData = createAsyncThunk(
   'auth/changeUserData',
   async (user, { rejectWithValue }) => {
     try {
-      await axios.patch('/users/info', user);
+      await axios.patch('/users', user);
       toastSuccess('User info changed successful ');
       const { data } = await axios.get('/users/info');
       return data;
@@ -133,7 +136,8 @@ export const fetchCurrentUserAPI = createAsyncThunk(
 
     axios.defaults.headers.common.Authorization = `Bearer ${currentToken}`;
     try {
-      const { data: user } = await axios.get('/users/current');
+
+      const { data: user } = await axios.get('/auth/refresh');
 
       return user;
     } catch (error) {
@@ -145,26 +149,5 @@ export const fetchCurrentUserAPI = createAsyncThunk(
     }
   }
 );
-// export default createAsyncThunk(
-//   'auth/refresh',
-//   async (_, { getState, rejectWithValue }) => {
-//     const { token: currentToken } = getState().auth;
 
-//     if (currentToken === null) {
-//       return rejectWithValue('Without token');
-//     }
 
-//     axios.defaults.headers.common.Authorization = `Bearer ${currentToken}`;
-//     try {
-//       const { data: user } = await axios.get('/users/current');
-
-//       return user;
-//     } catch (error) {
-//       axios.defaults.headers.common.Authorization = '';
-//       toastError(
-//         'Auth state is old. Please enter to your personal cabinet again'
-//       );
-//       return rejectWithValue(error.message);
-//     }
-//   }
-// );

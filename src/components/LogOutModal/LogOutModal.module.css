@@ -1,0 +1,132 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000000cc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: white;
+  width: 280px;
+  height: 260px;
+  padding: 32px 24px;
+  gap: 24px;
+  border-radius: 10px;
+  position: fixed;
+  left: 50%;
+  top: 80px;
+  transform: translateX(-50%);
+  opacity: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-family: Roboto;
+  font-size: 26px;
+  font-weight: 500;
+  color: #2f2f2f;
+}
+
+.close {
+  padding: 0;
+  color: #407bff;
+  background: transparent;
+  width: 24px;
+  height: 24px;
+  justify-content: center;
+}
+
+h2 {
+  font-weight: 500;
+  display: flex;
+  font-size: 18px;
+  line-height: 20px;
+  color: #2f2f2f;
+  margin: 0;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.buttonContainer button {
+  width: 232px;
+  height: 36px;
+  padding: 8px 30px;
+  border-radius: 10px;
+  border-color: transparent;
+  transition: box-shadow 0.3s ease;
+  font-family: Roboto;
+  font-size: 16px;
+}
+
+.logoutButton {
+  background: #ef5050;
+  color: #ffffff;
+  box-shadow: 0px 4px 10px 0px rgba(64, 123, 255, 0.34);
+  font-weight: 500;
+}
+
+.cancelButton {
+  background: #d7e3ff;
+  color: #407bff;
+  font-weight: 500;
+}
+
+.cancelButton:hover {
+  box-shadow: 0px 4px 10px 0px rgba(64, 123, 255, 0.34);
+  cursor: pointer;
+}
+
+.logoutButton:hover {
+  box-shadow: 0px 4px 10px 0px rgba(64, 123, 255, 0.5);
+  cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .modal {
+    width: 592px;
+    height: 208px;
+    top: 200px;
+  }
+
+  .buttonContainer {
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
+  .buttonContainer button {
+    width: 160px;
+    height: 44px;
+  }
+
+  .logoutButton {
+    font-size: 18px;
+  }
+
+  .cancelButton {
+    font-size: 18px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .buttonContainer {
+    justify-content: flex-start;
+  }
+}
