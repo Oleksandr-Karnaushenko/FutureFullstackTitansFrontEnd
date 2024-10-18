@@ -1,8 +1,7 @@
 .dailyWrapper {
   margin-top: 24px;
-  border: 1px solid #ecf2ff;
+  border: 1px solid var(--secondary-2);
   border-radius: 10px;
-  background-color: #ffffff;
   padding: 8px 20px;
   /* display: flex;
   flex-direction: column; */
