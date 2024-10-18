@@ -145,26 +145,26 @@ export const fetchCurrentUserAPI = createAsyncThunk(
     }
   }
 );
-export default createAsyncThunk(
-  'auth/refresh',
-  async (_, { getState, rejectWithValue }) => {
-    const { token: currentToken } = getState().auth;
+// export default createAsyncThunk(
+//   'auth/refresh',
+//   async (_, { getState, rejectWithValue }) => {
+//     const { token: currentToken } = getState().auth;
 
-    if (currentToken === null) {
-      return rejectWithValue('Without token');
-    }
+//     if (currentToken === null) {
+//       return rejectWithValue('Without token');
+//     }
 
-    axios.defaults.headers.common.Authorization = `Bearer ${currentToken}`;
-    try {
-      const { data: user } = await axios.get('/users/current');
+//     axios.defaults.headers.common.Authorization = `Bearer ${currentToken}`;
+//     try {
+//       const { data: user } = await axios.get('/users/current');
 
-      return user;
-    } catch (error) {
-      axios.defaults.headers.common.Authorization = '';
-      toastError(
-        'Auth state is old. Please enter to your personal cabinet again'
-      );
-      return rejectWithValue(error.message);
-    }
-  }
-);
+//       return user;
+//     } catch (error) {
+//       axios.defaults.headers.common.Authorization = '';
+//       toastError(
+//         'Auth state is old. Please enter to your personal cabinet again'
+//       );
+//       return rejectWithValue(error.message);
+//     }
+//   }
+// );

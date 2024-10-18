@@ -6,6 +6,8 @@ import {
   fetchCurrentUserAPI,
   changeUserAvatarAPI,
   changeUserData,
+  editDailyNorm,
+  fetchUserData,
 } from './authOperation';
 
 const initialState = {
@@ -23,7 +25,7 @@ const initialState = {
   bottleXY: {},
 };
 
-const authSlice = createSlice({
+export const authSlice = createSlice({
   name: 'auth',
   initialState,
 
@@ -111,8 +113,40 @@ const authSlice = createSlice({
       })
       .addCase(changeUserData.rejected, state => {
         state.isDataUpdating = false;
+      })
+      .addCase(editDailyNorm.fulfilled, (state, { payload }) => {
+        state.dayInfo.norm = payload.norm;
+        state.dayInfo.percent = payload.percent;
+        state.isEditingNorm = false;
+      })
+      .addCase(editDailyNorm.pending, state => {
+        state.isEditingNorm = true;
+      })
+      .addCase(editDailyNorm.rejected, state => {
+        state.isEditingNorm = false;
+      })
+      .addCase(fetchUserData.fulfilled, (state, { payload }) => {
+        state.user = payload;
+      })
+      .addCase(fetchUserData.pending, state => state)
+      .addCase(fetchUserData.rejected, state => {
+        state.user = initialState.user;
       });
   },
 });
 export const { change } = authSlice.actions;
-export default authSlice.reducer;
+
+// export const changeUserData = createAsyncThunk(
+//   'auth/changeUserData',
+//   async (user, { rejectWithValue }) => {
+//     try {
+//       await axios.patch('/users/info', user);
+//       toastSuccess('User info changed successful ');
+//       const { data } = await axios.get('/users/info');
+//       return data;
+//     } catch (error) {
+//       toastError('Invalid password');
+//       return rejectWithValue('Something went wrong');
+//     }
+//   }
+// );
