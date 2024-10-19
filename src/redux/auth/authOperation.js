@@ -18,10 +18,12 @@ export const signUpAPI = createAsyncThunk(
   async (user, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/auth/register', user);
-      setAuthHeader(data.token);
+
+      // setAuthHeader(data.token);
       // toastSuccess(
       //   'We have sent email verification on your email. Please, check it'
       // );
+
       return data;
     } catch (error) {
       toastError('Something went wrong. Please try again or log in');
@@ -36,10 +38,13 @@ export const signInAPI = createAsyncThunk(
     try {
       const { data } = await axios.post('/auth/login', user);
 
-      setAuthHeader(data.token);
+      const backEndData = data.data;
+
+      setAuthHeader(backEndData.accessToken);
 
       toastSuccess('Log in successful. Welcome back ');
-      return data;
+
+      return backEndData;
     } catch (error) {
       toastError(error.response.data.message);
       return rejectWithValue('Not valid email or password. Please, try again');
@@ -52,7 +57,9 @@ export const logOutAPI = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       await axios.post('/auth/logout');
+
       cleareAuthHeader();
+
       toastSuccess('Log out successful. Come back sooner');
     } catch (error) {
       cleareAuthHeader();
@@ -89,20 +96,39 @@ export const fetchCurrentUserAPI = createAsyncThunk(
 
 //user
 
+export const fetchUserDataAPI = createAsyncThunk(
+  'auth/userData',
+  async ({ userId, token }, { rejectWithValue }) => {
+    setAuthHeader(token);
+    try {
+      const { data } = await axios.get(`/users/${userId}`);
+
+      const backEndData = data.data;
+
+      toastSuccess('User info download successful');
+
+      return backEndData;
+    } catch (error) {
+      toastError('Something went wrong');
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 export const changeUserAvatarAPI = createAsyncThunk(
   'auth/changeUserAvatarAPI',
-  async (formData, { rejectWithValue }) => {
+  async ({ formData, userId }, { rejectWithValue }) => {
     try {
-      const {
-        data: { avatarURL },
-      } = await axios.patch('/users/avatar', formData, {
+      const { data } = await axios.patch(`/users/avatar/${userId}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
 
+      const backEndData = data.data;
+
       toastSuccess('Avatar changed successful');
-      return avatarURL;
+      return backEndData;
     } catch (error) {
       toastError('Something went wrong');
       return rejectWithValue(error.message);
@@ -110,16 +136,21 @@ export const changeUserAvatarAPI = createAsyncThunk(
   }
 );
 
-export const editDailyNorm = createAsyncThunk(
+export const editDailyNormAPI = createAsyncThunk(
   'auth/editDailyNorm',
-  async (data, { rejectWithValue }) => {
+  async ({ waterNorma, userId, token }, { rejectWithValue }) => {
+    setAuthHeader(token);
     try {
-      const {
-        data: { norm },
-      } = await axios.patch('/users/waterRate', data);
+      const { data } = await axios.patch(
+        `/users/waterRate/${userId}`,
+        waterNorma
+      );
+
+      const backEndData = data.data;
 
       toastSuccess('Daile water norm changed successful');
-      return norm;
+
+      return backEndData;
     } catch (error) {
       toastError('Something went wrong');
       return rejectWithValue(error.message);
@@ -127,28 +158,19 @@ export const editDailyNorm = createAsyncThunk(
   }
 );
 
-export const fetchUserData = createAsyncThunk(
-  'auth/userData',
-  async (id, { rejectWithValue }) => {
-    try {
-      const { data } = await axios.get(`/users/${id}`);
-
-      return data;
-    } catch (error) {
-      toastError('Something went wrong');
-      return rejectWithValue(error.message);
-    }
-  }
-);
-
-export const changeUserData = createAsyncThunk(
+export const changeUserDataAPI = createAsyncThunk(
   'auth/changeUserData',
-  async (user, { rejectWithValue }) => {
+  async ({ userNewData, userId }, { rejectWithValue }) => {
     try {
-      await axios.patch('/users', user);
+      await axios.patch(`/users/${userId}`, userNewData);
+
       toastSuccess('User info changed successful ');
-      const { data } = await axios.get('/users/${id}');
-      return data;
+
+      const { data } = await axios.get(`/users/${userId}`);
+
+      const backEndData = data.data;
+
+      return backEndData;
     } catch (error) {
       toastError('Invalid password');
       return rejectWithValue(error.message);
