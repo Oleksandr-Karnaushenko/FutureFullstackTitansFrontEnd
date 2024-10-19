@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 import Select from 'react-select';
 import { IoCloseOutline } from 'react-icons/io5';
 import { HiOutlinePlusSmall, HiOutlineMinusSmall } from 'react-icons/hi2';
-
+import { useDispatch } from 'react-redux';
+import { Formik, Form, Field } from 'formik';
+import { addWaterThunk } from '../../redux/water/waterOperation';
 import css from './AmountOfWater.module.css';
 
 export const differentStyles = {
@@ -31,7 +32,6 @@ export const differentStyles = {
   }),
 };
 
-// Форматування поточного часу
 export const getCurrentTime = () => {
   const now = new Date();
   const hours = String(now.getHours()).padStart(2, '0');
@@ -39,7 +39,6 @@ export const getCurrentTime = () => {
   return `${hours}:${minutes}`;
 };
 
-// Округлення часу до найближчих 5 хвилин
 export const countToFiveMinutes = time => {
   let [hours, minutes] = time.split(':').map(Number);
   minutes = Math.round(minutes / 5) * 5;
@@ -53,7 +52,6 @@ export const countToFiveMinutes = time => {
   )}`;
 };
 
-// Генерація варіантів часу з кроком у 5 хвилин
 export const TimeDropdown = () => {
   const options = [];
   for (let hours = 0; hours < 24; hours++) {
@@ -67,137 +65,126 @@ export const TimeDropdown = () => {
   return options;
 };
 
-export default function AmountOfWater({ onClose }) {
-  const [buttonBlockAmount, setButtonBlockAmount] = useState(50);
-  const [inputBlockAmount, setInputBlockAmount] = useState(50);
-  const [currentAmount, setCurrentAmount] = useState(50);
-  const [currentTime, setCurrentTime] = useState(
-    countToFiveMinutes(getCurrentTime())
-  );
+export default function AmountOfWater({ closeModal }) {
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    document.body.classList.add('modal-open');
-    return () => {
-      document.body.classList.remove('modal-open');
-    };
-  }, []);
-
-  // Закриття модального вікна
-  const handleKeyDown = event => {
-    if (event.key === 'Escape') {
-      onClose();
-    }
+  const initialValues = {
+    buttonBlockAmount: 50,
+    inputBlockAmount: 50,
+    currentTime: countToFiveMinutes(getCurrentTime()),
   };
 
-  useEffect(() => {
-    document.addEventListener('keydown', handleKeyDown);
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-    };
-  }, []);
-
-  function handleTimeChange(event) {
-    setCurrentTime(event.value);
-  }
-
-  function addMilliliters(amount = 50) {
-    setButtonBlockAmount(Math.min(5000, buttonBlockAmount + amount));
-  }
-
-  function subtractMilliliters(amount = 50) {
-    setButtonBlockAmount(Math.max(50, buttonBlockAmount - amount));
-  }
-
-  function sendWaterData() {
-    if (currentAmount < 50) {
+  const handleSubmit = (values, { setSubmitting }) => {
+    if (values.inputBlockAmount < 50) {
       toast.error(
         'Please enter the amount of water used. Amount should be more than 50 ml.'
       );
+      setSubmitting(false);
       return;
     }
-    // Записати дані на бекенд
-  }
-
-  useEffect(() => {
-    setCurrentAmount(buttonBlockAmount);
-  }, [buttonBlockAmount]);
-
-  useEffect(() => {
-    setCurrentAmount(inputBlockAmount);
-  }, [inputBlockAmount]);
+    dispatch(
+      addWaterThunk({
+        amount: values.inputBlockAmount,
+        time: values.currentTime,
+      })
+    );
+    setSubmitting(false);
+    closeModal();
+  };
 
   return (
-    <div className={css.backdrop} onClick={onClose}>
-      <div className={css.modal} onClick={e => e.stopPropagation()}>
-        <div className={css.titleContainer}>
-          <h2 className={css.titleText}>Add water</h2>
-          <button className={css.closebtn} onClick={onClose}>
-            <IoCloseOutline size="24" color="407BFF" />
-          </button>
-        </div>
+    <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+      {({ values, setFieldValue }) => (
+        <Form>
+          <div className={css.backdrop} onClick={closeModal}>
+            <div className={css.modal} onClick={e => e.stopPropagation()}>
+              <div className={css.titleContainer}>
+                <h2 className={css.titleText}>Add water</h2>
+                <button
+                  className={css.closebtn}
+                  type="button"
+                  onClick={closeModal}
+                >
+                  <IoCloseOutline size="24" color="407BFF" />
+                </button>
+              </div>
 
-        <h3 className={css.subtitle}>Choose a value:</h3>
-        <p className={css.text}>Amount of water:</p>
-        <div className={css.waterInputContainer}>
-          <button
-            className={css.amountButton}
-            type="button"
-            onClick={() => subtractMilliliters()}
-          >
-            <HiOutlineMinusSmall size="24" color="407BFF" />
-          </button>
-          <p className={css.amountWaterIncome}>{buttonBlockAmount} ml</p>
-          <button
-            className={css.amountButton}
-            type="button"
-            onClick={() => addMilliliters()}
-          >
-            <HiOutlinePlusSmall size="24" color="407BFF" />
-          </button>
-        </div>
+              <h3 className={css.subtitle}>Choose a value:</h3>
+              <p className={css.text}>Amount of water:</p>
+              <div className={css.waterInputContainer}>
+                <button
+                  type="button"
+                  className={css.amountButton}
+                  onClick={() =>
+                    setFieldValue(
+                      'buttonBlockAmount',
+                      Math.max(50, values.buttonBlockAmount - 50)
+                    )
+                  }
+                >
+                  <HiOutlineMinusSmall size="24" color="407BFF" />
+                </button>
+                <p className={css.amountWaterIncome}>
+                  {values.buttonBlockAmount} ml
+                </p>
+                <button
+                  type="button"
+                  className={css.amountButton}
+                  onClick={() =>
+                    setFieldValue(
+                      'buttonBlockAmount',
+                      Math.min(5000, values.buttonBlockAmount + 50)
+                    )
+                  }
+                >
+                  <HiOutlinePlusSmall size="24" color="407BFF" />
+                </button>
+              </div>
 
-        <p className={css.text}>Recording time:</p>
-        <Select
-          styles={differentStyles}
-          defaultValue={{ value: currentTime, label: currentTime }}
-          onChange={handleTimeChange}
-          options={TimeDropdown()}
-          components={{
-            DropdownIndicator: () => null,
-            IndicatorSeparator: () => null,
-          }}
-        />
+              <p className={css.text}>Recording time:</p>
+              <Select
+                styles={differentStyles}
+                defaultValue={{
+                  value: values.currentTime,
+                  label: values.currentTime,
+                }}
+                onChange={option => setFieldValue('currentTime', option.value)}
+                options={TimeDropdown()}
+                components={{
+                  DropdownIndicator: () => null,
+                  IndicatorSeparator: () => null,
+                }}
+              />
 
-        <h3 className={css.subtitle}>Enter the value of the water used:</h3>
-        <input
-          className={css.waterAmount}
-          type="text"
-          value={inputBlockAmount}
-          onChange={event => {
-            const newValue = event.target.value.replace(/[^0-9]/g, '');
-            if (newValue === '') {
-              setInputBlockAmount(0);
-            } else {
-              const parsedValue = parseInt(newValue);
-              if (!isNaN(parsedValue) && parsedValue <= 5000) {
-                setInputBlockAmount(parsedValue);
-              }
-            }
-          }}
-          onBlur={() => setButtonBlockAmount(inputBlockAmount)}
-        />
+              <h3 className={css.subtitle}>
+                Enter the value of the water used:
+              </h3>
+              <Field
+                className={css.waterAmount}
+                type="text"
+                name="inputBlockAmount"
+                onChange={event => {
+                  const newValue = event.target.value.replace(/[^0-9]/g, '');
+                  setFieldValue(
+                    'inputBlockAmount',
+                    newValue === '' ? 0 : Math.min(5000, parseInt(newValue))
+                  );
+                }}
+                onBlur={() =>
+                  setFieldValue('buttonBlockAmount', values.inputBlockAmount)
+                }
+              />
 
-        <div className={css.footerContainer}>
-          <p className={css.incomeFooter}>{currentAmount} ml</p>
-          <button
-            className={css.saveButton}
-            type="button"
-            onClick={sendWaterData}
-          >
-            Save
-          </button>
-        </div>
-      </div>
-    </div>
+              <div className={css.footerContainer}>
+                <p className={css.incomeFooter}>{values.inputBlockAmount} ml</p>
+                <button className={css.saveButton} type="submit">
+                  Save
+                </button>
+              </div>
+            </div>
+          </div>
+        </Form>
+      )}
+    </Formik>
   );
 }

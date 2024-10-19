@@ -1,28 +1,49 @@
-import { useMemo, useState, useEffect } from 'react';
+import { useMemo, useEffect } from 'react';
 import { IoCloseOutline } from 'react-icons/io5';
 import Select from 'react-select';
 import { HiOutlinePlusSmall, HiOutlineMinusSmall } from 'react-icons/hi2';
-
+import { useDispatch } from 'react-redux';
+import { useFormik } from 'formik';
+import { editDrinkThunk } from '../../redux/water/waterOperation';
 import {
   getCurrentTime,
   countToFiveMinutes,
   TimeDropdown,
   differentStyles,
 } from '../AmountOfWater/AmountOfWater';
-
 import css from './TodayListModal.module.css';
 
 export default function TodayListModal({ waterObj, onClose }) {
+  const dispatch = useDispatch();
+
   const { waterVolume } = useMemo(() => {
-    // Тут треба буде з бекенду взяти дані
     return waterObj;
   }, [waterObj]);
 
   const initialTime = countToFiveMinutes(getCurrentTime());
 
-  const [buttonBlockAmount, setButtonBlockAmount] = useState(waterVolume || 0);
-  const [inputBlockAmount, setInputBlockAmount] = useState(waterVolume || 0);
-  const [selectedTime, setSelectedTime] = useState(initialTime);
+  const formik = useFormik({
+    initialValues: {
+      waterVolume: waterVolume || 0,
+      selectedTime: initialTime,
+    },
+    onSubmit: values => {
+      if (values.waterVolume < 50) {
+        alert('Please add more water.');
+        return;
+      }
+
+      dispatch(
+        editDrinkThunk({
+          id: waterObj.id,
+          time: values.selectedTime,
+          ml: values.waterVolume,
+        })
+      );
+
+      onClose(); // Закриття модалки
+    },
+  });
 
   useEffect(() => {
     document.body.classList.add('modal-open');
@@ -31,52 +52,10 @@ export default function TodayListModal({ waterObj, onClose }) {
     };
   }, []);
 
-  const handleTimeChange = selectedOption => {
-    setSelectedTime(selectedOption.value);
-  };
-
-  const handleCloseModal = () => {
-    onClose();
-  };
-
   const handleBackdropClick = e => {
     if (e.target === e.currentTarget) {
-      handleCloseModal();
+      onClose();
     }
-  };
-
-  const handleIncrement = () => {
-    setButtonBlockAmount(prev => Math.min(5000, prev + 50));
-  };
-
-  const handleDecrement = () => {
-    setButtonBlockAmount(prev => Math.max(50, prev - 50));
-  };
-
-  const handleInputChange = event => {
-    const newValue = event.target.value.replace(/[^0-9]/g, '');
-    const parsedValue = parseInt(newValue, 10);
-    if (!isNaN(parsedValue) && parsedValue <= 5000) {
-      setInputBlockAmount(parsedValue);
-    } else {
-      setInputBlockAmount(0);
-    }
-  };
-
-  const handleBlur = () => {
-    setButtonBlockAmount(inputBlockAmount);
-  };
-
-  const handleSubmit = () => {
-    if (buttonBlockAmount < 50) {
-      alert('Please add more water.');
-      return;
-    }
-    console.log('Saved:', {
-      waterVolume: buttonBlockAmount,
-      time: selectedTime,
-    });
-    handleCloseModal();
   };
 
   return (
@@ -84,20 +63,20 @@ export default function TodayListModal({ waterObj, onClose }) {
       <div className={css.modal}>
         <div className={css.titleContainer}>
           <h2 className={css.titletext}>Edit the entered amount of water</h2>
-          <span className={css.closebtn} onClick={handleCloseModal}>
+          <span className={css.closebtn} onClick={onClose}>
             <IoCloseOutline size="24" color="407BFF" />
           </span>
         </div>
 
-        {buttonBlockAmount === 0 ? ( // Перевірка на перший запис
+        {formik.values.waterVolume === 0 ? (
           <p className={css.noNotes}>No notes yet</p>
         ) : (
           <div className={css.amountofwaterContainer}>
             <svg width={23} height={32}>
               <use href="icons.svg#icon-glass"></use>
             </svg>
-            <p className={css.waterAmount}>{buttonBlockAmount} ml</p>
-            <p className={css.time}>{selectedTime}</p>
+            <p className={css.waterAmount}>{formik.values.waterVolume} ml</p>
+            <p className={css.time}>{formik.values.selectedTime}</p>
           </div>
         )}
 
@@ -108,17 +87,27 @@ export default function TodayListModal({ waterObj, onClose }) {
           <button
             className={css.amountButton}
             type="button"
-            onClick={handleDecrement}
-            onBlur={handleBlur}
+            onClick={() =>
+              formik.setFieldValue(
+                'waterVolume',
+                Math.max(50, formik.values.waterVolume - 50)
+              )
+            }
           >
             <HiOutlineMinusSmall size="24" color="407BFF" />
           </button>
-          <p className={css.amountWaterIncome}>{buttonBlockAmount} ml</p>
+          <p className={css.amountWaterIncome}>
+            {formik.values.waterVolume} ml
+          </p>
           <button
             className={css.amountButton}
             type="button"
-            onClick={handleIncrement}
-            onBlur={handleBlur}
+            onClick={() =>
+              formik.setFieldValue(
+                'waterVolume',
+                Math.min(5000, formik.values.waterVolume + 50)
+              )
+            }
           >
             <HiOutlinePlusSmall size="24" color="407BFF" />
           </button>
@@ -127,8 +116,13 @@ export default function TodayListModal({ waterObj, onClose }) {
         <p className={css.text}>Recording time:</p>
         <Select
           styles={differentStyles}
-          defaultValue={{ value: selectedTime, label: selectedTime }}
-          onChange={handleTimeChange}
+          defaultValue={{
+            value: formik.values.selectedTime,
+            label: formik.values.selectedTime,
+          }}
+          onChange={selectedOption =>
+            formik.setFieldValue('selectedTime', selectedOption.value)
+          }
           options={TimeDropdown()}
         />
 
@@ -136,17 +130,24 @@ export default function TodayListModal({ waterObj, onClose }) {
         <input
           className={css.waterInput}
           type="text"
-          value={inputBlockAmount}
-          onChange={handleInputChange}
-          onBlur={handleBlur}
+          value={formik.values.waterVolume}
+          onChange={event => {
+            const newValue = event.target.value.replace(/[^0-9]/g, '');
+            formik.setFieldValue(
+              'waterVolume',
+              newValue ? Math.min(5000, parseInt(newValue)) : 0
+            );
+          }}
         />
 
         <div className={css.footerContainer}>
-          <p className={css.waterIncomeFooter}>{buttonBlockAmount} ml</p>
+          <p className={css.waterIncomeFooter}>
+            {formik.values.waterVolume} ml
+          </p>
           <button
             className={css.saveButton}
             type="button"
-            onClick={handleSubmit}
+            onClick={formik.handleSubmit}
           >
             Save
           </button>
