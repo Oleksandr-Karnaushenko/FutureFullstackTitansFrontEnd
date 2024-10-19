@@ -25,6 +25,9 @@
 }
 
 .listWraper {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
     margin-top: 12px;
 }
 
@@ -59,4 +62,28 @@
     line-height: 1.25;
     text-align: center;
     color: #ffffff;
+}
+
+@media screen and (min-width: 768px) {
+    .container {}
+
+    .listWraper {
+        flex-direction: row;
+        gap: 16px;
+    }
+
+    .wraper {
+        width: calc((100% - 16px) / 2);
+    }
+
+}
+
+/*<----------1280px--------->*/
+
+@media screen and (min-width: 1280px) {
+    .container {}
+
+    .listWraper {
+        flex-direction: column;
+    }
 }

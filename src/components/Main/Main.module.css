@@ -1,6 +1,28 @@
 .container {
-  max-width: 320px;
-  margin: 0 auto;
-  padding: 0 20px;
-  margin-top: 24px;
+  padding-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  min-width: 280px;
+}
+
+
+/*<----------768px--------->*/
+
+@media screen and (min-width: 768px) {
+  .container {
+    gap: 60px;
+    min-width: 704px;
+  }
+}
+
+/*<----------1280px--------->*/
+
+@media screen and (min-width: 1280px) {
+  .container {
+    flex-direction: row;
+    gap: 81px;
+    min-width: 1014px;
+  }
+
 }
