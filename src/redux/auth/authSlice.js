@@ -10,8 +10,6 @@ import {
   fetchUserData,
 } from './authOperation';
 
- 
-
 const initialState = {
   user: {
     name: null,
@@ -21,14 +19,13 @@ const initialState = {
     gender: null,
   },
   token: null,
-  authIsLoading: false,
-  isLoadingChangeAvatar: false,
-  isDataUpdating: false,
-  isUserDateGating: false,
+  isLoggedIn: false,
+  isRefreshing: false,
+  error: null,
   bottleXY: {},
 };
 
-export const authSlice = createSlice({
+const authSlice = createSlice({
   name: 'auth',
   initialState,
 
@@ -46,36 +43,39 @@ export const authSlice = createSlice({
 
   extraReducers: builder => {
     builder
-      //signInAPI
-      .addCase(signInAPI.pending, state => {
-        state.authIsLoading = true;
-      })
-      .addCase(signInAPI.fulfilled, (state, { payload }) => {
-        state.authIsLoading = false;
-        state.user = { ...payload.user };
-        state.token = payload.token;
-      })
-      .addCase(signInAPI.rejected, state => {
-        state.authIsLoading = false;
-      })
+
+      // auth
+
       //signUpAPI
       .addCase(signUpAPI.pending, state => {
-        state.authIsLoading = true;
+        state.error = null;
       })
-      .addCase(signUpAPI.fulfilled, state => {
-        state.authIsLoading = false;
+      .addCase(signUpAPI.fulfilled, (state, { payload }) => {
+        state.token = payload.token;
+        state.isLoggedIn = true;
       })
-      .addCase(signUpAPI.rejected, state => {
-        state.authIsLoading = false;
+      .addCase(signUpAPI.rejected, (state, { payload }) => {
+        state.error = payload;
+      })
+      //signInAPI
+      .addCase(signInAPI.pending, state => {
+        state.error = null;
+      })
+      .addCase(signInAPI.fulfilled, (state, { payload }) => {
+        state.isLoggedIn = true;
+        state.token = payload.token;
+      })
+      .addCase(signInAPI.rejected, (state, { payload }) => {
+        state.error = payload;
       })
       //logOutAPI
-      .addCase(logOutAPI.fulfilled, state => {
-        state.authIsLoading = false;
-        state.user = { ...initialState.user };
-        state.token = null;
-      })
       .addCase(logOutAPI.pending, state => {
-        state.authIsLoading = true;
+        state.error = null;
+      })
+      .addCase(logOutAPI.fulfilled, state => {
+        state.token = null;
+        state.isLoggedIn = false;
+        state.user = { ...initialState.user };
       })
       .addCase(logOutAPI.rejected, state => {
         state.authIsLoading = false;
@@ -84,76 +84,73 @@ export const authSlice = createSlice({
       })
       //fetchCurrentUserAPI
       .addCase(fetchCurrentUserAPI.pending, state => {
-        state.authIsLoading = true;
+        state.error = null;
+        state.isRefreshing = true;
       })
       .addCase(fetchCurrentUserAPI.fulfilled, (state, { payload }) => {
-        state.authIsLoading = false;
-        state.user = { ...payload.user };
+        state.token = payload.token;
+        state.isRefreshing = false;
       })
-      .addCase(fetchCurrentUserAPI.rejected, state => {
-        state.authIsLoading = false;
-        state.user = { ...initialState.user };
-        state.token = null;
+      .addCase(fetchCurrentUserAPI.rejected, (state, { payload }) => {
+        state.error = payload;
+        state.isRefreshing = false;
       })
-      //changeUserAvatarAPI
-      .addCase(changeUserAvatarAPI.fulfilled, (state, { payload }) => {
-        state.isLoadingChangeAvatar = false;
-        state.user.avatarURL = payload;
-      })
-      .addCase(changeUserAvatarAPI.pending, state => {
-        state.isLoadingChangeAvatar = true;
-      })
-      .addCase(changeUserAvatarAPI.rejected, state => {
-        state.isLoadingChangeAvatar = false;
-      })
-      //changeUserData
-      .addCase(changeUserData.pending, state => {
-        state.isDataUpdating = true;
-      })
-      .addCase(changeUserData.fulfilled, (state, { payload }) => {
-        state.user = { ...state.user, ...payload.user };
-        state.isDataUpdating = false;
-      })
-      .addCase(changeUserData.rejected, state => {
-        state.isDataUpdating = false;
-      })
-      .addCase(editDailyNorm.fulfilled, (state, { payload }) => {
-        state.dayInfo.norm = payload.norm;
-        state.dayInfo.percent = payload.percent;
-        state.isEditingNorm = false;
-      })
-      .addCase(editDailyNorm.pending, state => {
-        state.isEditingNorm = true;
-      })
-      .addCase(editDailyNorm.rejected, state => {
-        state.isEditingNorm = false;
+
+      //user
+
+      //fetchUserData
+      .addCase(fetchUserData.pending, state => {
+        state.isRefreshing = true;
+        state.error = null;
       })
       .addCase(fetchUserData.fulfilled, (state, { payload }) => {
         state.user = payload;
-        state.isUserDateGating = false;
+        state.isRefreshing = false;
       })
-      .addCase(fetchUserData.pending, state => {
-        state.isUserDateGating = true;
+      .addCase(fetchUserData.rejected, (state, { payload }) => {
+        state.isRefreshing = false;
+        state.error = payload;
       })
-      .addCase(fetchUserData.rejected, state => {
-        state.user = initialState.user;
-        state.isUserDateGating = false;
+      //changeUserData
+      .addCase(changeUserData.pending, state => {
+        state.isRefreshing = true;
+        state.error = null;
+      })
+      .addCase(changeUserData.fulfilled, (state, { payload }) => {
+        state.user = payload.user;
+        state.isRefreshing = false;
+      })
+      .addCase(changeUserData.rejected, (state, { payload }) => {
+        state.isRefreshing = false;
+        state.error = payload;
+      })
+      //changeUserAvatarAPI
+      .addCase(changeUserAvatarAPI.pending, state => {
+        state.isRefreshing = true;
+        state.error = null;
+      })
+      .addCase(changeUserAvatarAPI.fulfilled, (state, { payload }) => {
+        state.user.avatarURL = payload;
+        state.isRefreshing = false;
+      })
+      .addCase(changeUserAvatarAPI.rejected, (state, { payload }) => {
+        state.isRefreshing = false;
+        state.error = payload;
+      })
+      //editDailyNorm
+      .addCase(editDailyNorm.pending, state => {
+        state.isRefreshing = true;
+        state.error = null;
+      })
+      .addCase(editDailyNorm.fulfilled, (state, { payload }) => {
+        state.dayInfo.norm = payload.norm;
+        state.isRefreshing = false;
+      })
+      .addCase(editDailyNorm.rejected, (state, { payload }) => {
+        state.isRefreshing = false;
+        state.error = payload;
       });
-    //editDailyNorm
-    // .addCase(editDailyNorm.fulfilled, (state, { payload }) => {
-    //   state.dayInfo.norm = payload.norm;
-    //   state.dayInfo.percent = payload.percent;
-    //   state.isEditingNorm = false;
-    // })
-    // .addCase(editDailyNorm.pending, state => {
-    //   state.isEditingNorm = true;
-    // })
-    // .addCase(editDailyNorm.rejected, state => {
-    //   state.isEditingNorm = false;
-    // });
-
-    // Ми добову норму води записумо юзеру в norm:
-    // Треба переробити
   },
 });
-export const { change } = authSlice.actions;
+
+export default authSlice.reducer;

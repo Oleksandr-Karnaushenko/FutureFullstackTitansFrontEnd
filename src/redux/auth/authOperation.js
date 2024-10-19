@@ -10,6 +10,8 @@ const cleareAuthHeader = () => {
   axios.defaults.headers.common.Authorization = '';
 };
 
+//auth
+
 export const signUpAPI = createAsyncThunk(
   'auth/signUpAPI',
 
@@ -17,9 +19,9 @@ export const signUpAPI = createAsyncThunk(
     try {
       const { data } = await axios.post('/auth/register', user);
       setAuthHeader(data.token);
-      toastSuccess(
-        'We have sent email verification on your email. Please, check it'
-      );
+      // toastSuccess(
+      //   'We have sent email verification on your email. Please, check it'
+      // );
       return data;
     } catch (error) {
       toastError('Something went wrong. Please try again or log in');
@@ -60,6 +62,33 @@ export const logOutAPI = createAsyncThunk(
   }
 );
 
+export const fetchCurrentUserAPI = createAsyncThunk(
+  'auth/refresh',
+  async (_, { getState, rejectWithValue }) => {
+    const { token: currentToken } = getState().auth;
+
+    if (currentToken === null) {
+      return rejectWithValue('Without token');
+    }
+
+    try {
+      const { data } = await axios.get('/auth/refresh');
+
+      setAuthHeader(data.token);
+
+      return data;
+    } catch (error) {
+      axios.defaults.headers.common.Authorization = '';
+      toastError(
+        'Auth state is old. Please enter to your personal cabinet again'
+      );
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+//user
+
 export const changeUserAvatarAPI = createAsyncThunk(
   'auth/changeUserAvatarAPI',
   async (formData, { rejectWithValue }) => {
@@ -72,7 +101,7 @@ export const changeUserAvatarAPI = createAsyncThunk(
         },
       });
 
-      toastSuccess('Avatar changed successful ');
+      toastSuccess('Avatar changed successful');
       return avatarURL;
     } catch (error) {
       toastError('Something went wrong');
@@ -89,7 +118,7 @@ export const editDailyNorm = createAsyncThunk(
         data: { norm },
       } = await axios.patch('/users/waterRate', data);
 
-      toastSuccess('Deleted successful ');
+      toastSuccess('Daile water norm changed successful');
       return norm;
     } catch (error) {
       toastError('Something went wrong');
@@ -118,33 +147,10 @@ export const changeUserData = createAsyncThunk(
     try {
       await axios.patch('/users', user);
       toastSuccess('User info changed successful ');
-      const { data } = await axios.get('/users/info');
+      const { data } = await axios.get('/users/${id}');
       return data;
     } catch (error) {
       toastError('Invalid password');
-      return rejectWithValue(error.message);
-    }
-  }
-);
-export const fetchCurrentUserAPI = createAsyncThunk(
-  'auth/refresh',
-  async (_, { getState, rejectWithValue }) => {
-    const { token: currentToken } = getState().auth;
-
-    if (currentToken === null) {
-      return rejectWithValue('Without token');
-    }
-
-    axios.defaults.headers.common.Authorization = `Bearer ${currentToken}`;
-    try {
-      const { data: user } = await axios.get('/auth/refresh');
-
-      return user;
-    } catch (error) {
-      axios.defaults.headers.common.Authorization = '';
-      toastError(
-        'Auth state is old. Please enter to your personal cabinet again'
-      );
       return rejectWithValue(error.message);
     }
   }

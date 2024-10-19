@@ -10,12 +10,12 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { authSlice } from './auth/authSlice';
+import authSliceReducer from './auth/authSlice';
 import waterSliceReducer from './water/waterSlice';
 import themeSliceReducer from './theme/themeSlice';
 
 const authPersistConfig = {
-  key: 'auth',
+  key: 'auth-token',
   storage,
   whitelist: ['token'],
 };
@@ -30,10 +30,13 @@ const persistedThemeReducer = persistReducer(
   themeSliceReducer
 );
 
-const persistedReducer = persistReducer(authPersistConfig, authSlice.reducer);
+const persistedAuthReducer = persistReducer(
+  authPersistConfig,
+  authSliceReducer
+);
 
 const rootReducer = combineReducers({
-  auth: persistedReducer,
+  auth: persistedAuthReducer,
   water: waterSliceReducer,
   theme: persistedThemeReducer,
 });
