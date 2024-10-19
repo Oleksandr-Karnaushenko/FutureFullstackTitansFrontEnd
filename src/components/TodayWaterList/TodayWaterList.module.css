@@ -1,0 +1,12 @@
+.todayWaterList {
+    max-height: 240px;
+     max-height: 140px;
+    height:100%;
+    margin-bottom: 12px;
+    overflow-y: auto;
+  }
+  
+ul {
+    scrollbar-width: thin;         /* Тонкий скролл */
+    scrollbar-color: #9EBBFF transparent; /* Цвет скролла и фона */
+ }
