@@ -1,20 +1,20 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import { FiUpload } from 'react-icons/fi';
+// import { FiUpload } from 'react-icons/fi';
 
-import style from './SettingModal.module.css';
+import styles from './SettingModal.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCurrentUser } from '../../redux/auth/authSelectors.js';
 import { changeUserData } from '../../redux/auth/authOperation.js';
 import { useInfoValidationSchema } from '../../validation/userValidation.js';
+import { selectCurrentUser } from '../../redux/auth/authSelectors.js';
 
 function SettingModal() {
   const dispatch = useDispatch();
-  const { name, email, gender } = useSelector(getCurrentUser);
+  const { name, email, gender } = useSelector(selectCurrentUser);
 
   const initialValues = {
-    gender,
-    name,
-    email,
+    gender: gender || '',
+    name: name || '',
+    email: email || '',
     oldPassword: '',
     password: '',
   };
@@ -31,65 +31,108 @@ function SettingModal() {
   };
 
   return (
-    <div>
-      <form>
+    <div className={styles.modal}>
+      <h1>Setting</h1>
+      {/* <form>
         <label htmlFor="image">
           <FiUpload />
         </label>
         <input type="file" name="image" />
         <img src="" alt="" />
         <button type="submit">Upload a photo</button>
-      </form>
+      </form> */}
 
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
         validationSchema={useInfoValidationSchema}
       >
-        <Form className={style.form}>
-          <div>
-            <label htmlFor="gender">Your gender identity</label>
-            <label>
-              <Field name="gender" type="radio" value="female"></Field>Woman
-            </label>
-            <label>
-              <Field name="gender" type="radio" value="male"></Field>Man
-            </label>
+        <Form className={styles.form}>
+          <div className={styles.form}>
+            <div className={styles.partWrapper}>
+              <label htmlFor="gender" className={styles.labelTitle}>
+                Your gender identity
+              </label>
+              <div className={styles.genderWrapper}>
+                <label className={styles.labelField}>
+                  <Field name="gender" type="radio" value="female"></Field>{' '}
+                  Woman
+                </label>
+                <label className={styles.labelField}>
+                  <Field name="gender" type="radio" value="male"></Field> Man
+                </label>
+              </div>
+            </div>
 
-            <label htmlFor="name">Your name</label>
-            <Field name="name" type="text" placeholder="Name"></Field>
-            <ErrorMessage name="name" component="span" />
+            <div className={styles.fieldWrapper}>
+              <label htmlFor="name" className={styles.labelTitle}>
+                Your name
+              </label>
+              <Field
+                name="name"
+                type="text"
+                placeholder="Name"
+                className={styles.input}
+              ></Field>
+              <ErrorMessage name="name" component="span" />
+            </div>
 
-            <label htmlFor="email">E-mail</label>
-            <Field name="email" type="text" placeholder="Email"></Field>
-            <ErrorMessage name="email" component="span" />
+            <div className={styles.fieldWrapper}>
+              <label htmlFor="email" className={styles.labelTitle}>
+                E-mail
+              </label>
+              <Field
+                name="email"
+                type="text"
+                placeholder="Email"
+                className={styles.input}
+              ></Field>
+              <ErrorMessage name="email" component="span" />
+            </div>
           </div>
 
-          <div>
-            <p>Password</p>
+          <div className={styles.partWrapper}>
+            <label className={styles.labelTitle}>Password</label>
 
-            <label htmlFor="oldPassword">Outdated password:</label>
+            <div className={styles.fieldWrapper}>
+              <label htmlFor="oldPassword" className={styles.labelField}>
+                Outdated password:
+              </label>
+              <Field
+                name="oldPassword"
+                type="text"
+                placeholder="Password"
+                className={styles.input}
+              ></Field>
+              <ErrorMessage name="oldPassword" component="span" />
+            </div>
+
+            <label htmlFor="password" className={styles.labelField}>
+              New Password:
+            </label>
             <Field
-              name="oldPassword"
+              name="password"
               type="text"
               placeholder="Password"
+              className={styles.input}
             ></Field>
-            <ErrorMessage name="oldPassword" component="span" />
-
-            <label htmlFor="password">New Password:</label>
-            <Field name="password" type="text" placeholder="Password"></Field>
             <ErrorMessage name="password" component="span" />
 
-            <label htmlFor="confirmPassword">Repeat new password:</label>
+            <label htmlFor="confirmPassword" className={styles.labelField}>
+              Repeat new password:
+            </label>
             <Field
               name="confirmPassword"
               type="text"
               placeholder="Password"
+              className={styles.input}
             ></Field>
             <ErrorMessage name="confirmPassword" component="span" />
           </div>
 
-          <button type="submit">Save</button>
+          <button type="submit" className={styles.button}>
+            Save
+          </button>
         </Form>
       </Formik>
     </div>
