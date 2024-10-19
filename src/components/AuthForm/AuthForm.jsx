@@ -30,13 +30,13 @@ export default function AuthForm({ isSignup }) {
 
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
+      const { email, password } = values;
+
       if (isSignup) {
-        await dispatch(
-          signUpAPI({ email: values.email, password: values.password })
-        ).unwrap();
+        await dispatch(signUpAPI({ email, password })).unwrap();
         toast.success('Successful registration!');
       } else {
-        await dispatch(signInAPI(values)).unwrap();
+        await dispatch(signInAPI({ email, password })).unwrap();
         toast.success('Successful login!');
       }
     } catch {
