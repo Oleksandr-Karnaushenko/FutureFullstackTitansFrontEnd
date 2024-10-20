@@ -91,7 +91,13 @@ export default function AuthForm({ isSignup }) {
                 className={styles.eyeIcon}
                 onClick={() => setShowPassword(!showPassword)}
               >
-                {showPassword ? '🙈' : '👁️'}
+                <svg width="16" height="16" stroke="#407BFF" fill="none">
+                  <use
+                    href={`/src/assets/img/icons.svg#${
+                      showPassword ? 'icon-open-eye' : 'icon-close-eye'
+                    }`}
+                  />
+                </svg>
               </span>
             </div>
             <ErrorMessage
@@ -121,7 +127,13 @@ export default function AuthForm({ isSignup }) {
                   className={styles.eyeIcon}
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                 >
-                  {showConfirmPassword ? '🙈' : '👁️'}
+                  <svg width="16" height="16" stroke="#407BFF" fill="none">
+                    <use
+                      href={`/src/assets/img/icons.svg#${
+                        showConfirmPassword ? 'icon-open-eye' : 'icon-close-eye'
+                      }`}
+                    />
+                  </svg>
                 </span>
               </div>
               <ErrorMessage
