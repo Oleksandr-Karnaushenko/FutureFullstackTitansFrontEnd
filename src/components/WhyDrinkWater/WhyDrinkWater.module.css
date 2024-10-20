@@ -3,12 +3,13 @@
     padding: 24px 16px;
     box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.3);
     background-color: var(--sec-2-l);
+    min-width: 280px;
 }
 
 .title {
     font-weight: 500;
     font-size: 18px;
-    line-height: 111%;
+    line-height: 1.11;
     color: var(--text-light);
 }
 
@@ -37,16 +38,16 @@
 
 @media screen and (min-width: 768px) {
     .container {
-        max-width: 494px;
+        min-width: 494px;
     }
 
 
 
 }
 
-/*<----------1280px--------->*/
+/*<----------1440px--------->*/
 
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 1440px) {
     .container {}
 
 }

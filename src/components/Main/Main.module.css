@@ -1,26 +1,42 @@
 .container {
   padding-top: 24px;
+  min-width: 280px;
+  min-height: 840px;
+}
+
+.wrapper {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 40px;
-  min-width: 280px;
 }
 
 /*<----------768px--------->*/
 
 @media screen and (min-width: 768px) {
   .container {
-    gap: 60px;
     min-width: 704px;
+    min-height: 646px;
+  }
+
+  .wraper {
+    gap: 60px;
+    align-items: flex-start;
   }
 }
 
-/*<----------1280px--------->*/
+/*<----------1440px--------->*/
 
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 1440px) {
   .container {
+    min-width: 1404px;
+    min-height: 582px;
+  }
+
+  .wraper {
     flex-direction: row;
+    align-items: flex-end;
     gap: 81px;
-    min-width: 1014px;
   }
 }

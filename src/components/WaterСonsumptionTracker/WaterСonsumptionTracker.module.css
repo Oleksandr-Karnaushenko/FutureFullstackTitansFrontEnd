@@ -1,5 +1,6 @@
 .container {
     background-color: transparent;
+    min-height: 384px;
 }
 
 .title {
@@ -65,7 +66,10 @@
 }
 
 @media screen and (min-width: 768px) {
-    .container {}
+    .container {
+        min-height: 254px;
+        min-width: 704px;
+    }
 
     .listWraper {
         flex-direction: row;
@@ -78,10 +82,13 @@
 
 }
 
-/*<----------1280px--------->*/
+/*<----------1440px--------->*/
 
-@media screen and (min-width: 1280px) {
-    .container {}
+@media screen and (min-width: 1440px) {
+    .container {
+        min-height: 366px;
+        min-width: 439px;
+    }
 
     .listWraper {
         flex-direction: column;

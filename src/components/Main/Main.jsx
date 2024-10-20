@@ -5,11 +5,13 @@ import css from './Main.module.css';
 export default function Main() {
   return (
     <div className={css.container}>
-      <div>
-        <WaterСonsumptionTracker />
-      </div>
-      <div>
-        <WhyDrinkWater />
+      <div className={css.wrapper}>
+        <div>
+          <WaterСonsumptionTracker />
+        </div>
+        <div>
+          <WhyDrinkWater />
+        </div>
       </div>
     </div>
   );
