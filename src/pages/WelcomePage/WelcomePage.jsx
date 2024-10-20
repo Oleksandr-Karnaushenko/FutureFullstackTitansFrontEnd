@@ -6,7 +6,7 @@ import { TestBtn } from '../../components/TestBtn/TestBtn.jsx'; // for tests
 export default function WelcomePage() {
   return (
     <div>
-      {/* <TestBtn /> */}
+      <TestBtn />
       <Main />
     </div>
   );

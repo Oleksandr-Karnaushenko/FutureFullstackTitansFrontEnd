@@ -17,6 +17,7 @@ import {
   selectToken,
   selectUserId,
 } from '../../redux/auth/authSelectors.js';
+import { addWaterAPI } from '../../redux/water/waterOperation.js';
 
 export const TestBtn = () => {
   const token = useSelector(selectToken);
@@ -25,13 +26,15 @@ export const TestBtn = () => {
   const waterNorma = { dailyNorm: 1000 };
   const userNewData = { name: 'olololo' };
 
+  const addWater = {};
+
   const dispatch = useDispatch();
 
   const onClick = async () => {
     console.log('reqwery data');
     console.log(userId);
     try {
-      await dispatch(editDailyNormAPI({ userId, token, waterNorma })).unwrap();
+      await dispatch(addWaterAPI({ userId, token, waterNorma })).unwrap();
     } catch (error) {
       console.error('Something went wrong, please try again:', error);
     }

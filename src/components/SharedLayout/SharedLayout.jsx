@@ -6,7 +6,7 @@ import css from './SharedLayout.module.css';
 
 export default function SharedLayout() {
   return (
-    <div className="css.container">
+    <div className={css.container}>
       {/* <Header /> */}
       <main>
         <Outlet />

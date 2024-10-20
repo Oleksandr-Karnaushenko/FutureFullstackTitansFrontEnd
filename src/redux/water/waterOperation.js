@@ -7,7 +7,7 @@ import { toastError, toastSuccess } from '../../services/toastNotification';
 
 //   return data;
 // };
-export const getCurrentMonthInfoThunk = createAsyncThunk(
+export const getCurrentMonthInfoAPI = createAsyncThunk(
   'water/getMonth',
   async (_, thunkAPI) => {
     try {
@@ -28,7 +28,7 @@ export const getCurrentMonthInfoThunk = createAsyncThunk(
   }
 );
 
-export const getCurrentDayInfoThunk = createAsyncThunk(
+export const getCurrentDayInfoAPI = createAsyncThunk(
   'water/getDay',
   async (_, thunkAPI) => {
     try {
@@ -42,14 +42,17 @@ export const getCurrentDayInfoThunk = createAsyncThunk(
   }
 );
 
-export const addWaterThunk = createAsyncThunk(
+export const addWaterAPI = createAsyncThunk(
   'water/add',
-  async (data, thunkAPI) => {
-    const { drink } = data;
+  async (newWater, thunkAPI) => {
     try {
-      const { data } = await axios.post(`water`, drink);
+      const { data } = await axios.post(`water`, newWater);
+
+      const backEndData = data.data;
+
       toastSuccess('Drink has been added successful');
-      return data;
+
+      return backEndData;
     } catch (error) {
       toastError('Sorry, something went wrong. Please, try again');
       return thunkAPI.rejectWithValue(error.message);
@@ -57,28 +60,18 @@ export const addWaterThunk = createAsyncThunk(
   }
 );
 
-export const deleteDrinkThunk = createAsyncThunk(
-  'water/delete',
-  async (drinkId, thunkAPI) => {
-    try {
-      const { data } = await axios.delete(`water/${drinkId}`);
-      toastSuccess('Drink has been deleted successful');
-      return data;
-    } catch (error) {
-      toastError('Sorry, something went wrong. Please, try again');
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
-export const editDrinkThunk = createAsyncThunk(
+export const editDrinkAPI = createAsyncThunk(
   'water/edit',
   async (drink, thunkAPI) => {
     const { id, time, ml } = drink;
     try {
       const { data } = await axios.patch(`water/${id}`, { time, ml });
+
+      const backEndData = data.data;
+
       toastSuccess('Drink has been edited successful');
-      return data;
+
+      return backEndData;
     } catch (error) {
       toastError('Sorry, something went wrong. Please, try again');
       return thunkAPI.rejectWithValue(error.message);
@@ -86,21 +79,20 @@ export const editDrinkThunk = createAsyncThunk(
   }
 );
 
-// export const editDailyNorm = createAsyncThunk(
-//   'auth/editDailyNorm',
-//   async (norm, { rejectWithValue }) => {
-//     try {
-//       const date = new Date();
-//       const { data } = await axios.patch('/water/norm', {
-//         date,
-//         norm: Math.ceil(norm / 100) * 100,
-//       });
+export const deleteDrinkAPI = createAsyncThunk(
+  'water/delete',
+  async (drinkId, thunkAPI) => {
+    try {
+      const { data } = await axios.delete(`water/${drinkId}`);
 
-//       toastSuccess('Edit successful');
-//       return data;
-//     } catch (error) {
-//       toastError('Something went wrong');
-//       return rejectWithValue(error.message);
-//     }
-//   }
-// );
+      const backEndData = data.data;
+
+      toastSuccess('Drink has been deleted successful');
+
+      return backEndData;
+    } catch (error) {
+      toastError('Sorry, something went wrong. Please, try again');
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
