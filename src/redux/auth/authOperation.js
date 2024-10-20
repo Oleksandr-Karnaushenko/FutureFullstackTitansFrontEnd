@@ -98,8 +98,7 @@ export const fetchCurrentUserAPI = createAsyncThunk(
 
 export const fetchUserDataAPI = createAsyncThunk(
   'auth/userData',
-  async ({ userId, token }, { rejectWithValue }) => {
-    setAuthHeader(token);
+  async (userId, { rejectWithValue }) => {
     try {
       const { data } = await axios.get(`/users/${userId}`);
 
@@ -138,8 +137,7 @@ export const changeUserAvatarAPI = createAsyncThunk(
 
 export const editDailyNormAPI = createAsyncThunk(
   'auth/editDailyNorm',
-  async ({ waterNorma, userId, token }, { rejectWithValue }) => {
-    setAuthHeader(token);
+  async (waterNorma, userId, { rejectWithValue }) => {
     try {
       const { data } = await axios.patch(
         `/users/waterRate/${userId}`,
