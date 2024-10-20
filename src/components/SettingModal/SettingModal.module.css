@@ -12,7 +12,6 @@
 
 .title {
   color: var(--text-light);
-  font-family: Roboto;
   font-size: 26px;
   font-style: normal;
   font-weight: 500;
@@ -49,7 +48,6 @@
 
 .labelTitle {
   color: var(--text-light);
-  font-family: Roboto;
   font-size: 18px;
   font-style: normal;
   font-weight: 500;
@@ -58,7 +56,6 @@
 
 .labelField {
   color: var(--text-light);
-  font-family: Roboto;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -70,7 +67,6 @@
   border-radius: 6px;
   border: 1px solid var(--sec-lightblue-l);
   color: var(--primary-blue-l);
-  font-family: Roboto;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -82,17 +78,16 @@
   gap: 10px;
 }
 
+.input:focus {
+  border-color: var(--sec-lightblue-l);
+  outline: none;
+}
 .input::placeholder {
   color: var(--sec-4-l);
-  font-family: Roboto;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 20px; /* 125% */
-}
-
-.input:focus {
-  border: 1px solid var(--sec-lightblue-l);
 }
 
 .button {
@@ -101,11 +96,50 @@
   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
   color: var(--bg-light);
   text-align: center;
-  font-family: Roboto;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
   line-height: 20px; /* 125% */
   width: 100%;
   padding: 8px 30px;
+}
+
+.iconEye {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  line-height: 0px;
+}
+
+.errorMessage {
+  color: var(--sec-3-l);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px; /* 128.571% */
+  box-sizing: border-box;
+  margin-top: 4px;
+}
+
+.inputError {
+  border-color: var(--sec-3-l);
+}
+
+.iconClose {
+  fill: var(--primary-blue-l);
+  stroke: var(--primary-blue-l);
+}
+
+.buttonClose {
+  background: var(--bg-light);
+  border: 1px solid red;
+}
+
+.titleWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 256px;
 }
