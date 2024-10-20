@@ -38,10 +38,7 @@ function SettingModal() {
     confirmPassword: '',
   };
 
-  const handleSubmit = async (
-    values,
-    { setSubmitting, resetForm, setErrors }
-  ) => {
+  const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
       console.log(values);
       await dispatch(
@@ -54,7 +51,6 @@ function SettingModal() {
     } catch (error) {
       console.log(error);
       console.error('Backend response:', error.response?.data || error.message);
-      setErrors({ general: 'Saving data faild.' });
       //  toastError(error);
     } finally {
       setSubmitting(false);
