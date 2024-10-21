@@ -41,10 +41,10 @@
   height: 16px;
   color: #007bff;
 }
-.icon:hover {
+/* .icon:hover {
   stroke: rgb(255, 157, 67);
   fill: rgb(255, 157, 67);
-}
+} */
 .user {
   margin-right: 5px;
 }
