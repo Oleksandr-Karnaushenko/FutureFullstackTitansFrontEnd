@@ -6,6 +6,7 @@ export const selectAuthError = state => state.auth.error;
 
 export const selectToken = state => state.auth.token;
 
+//User
 export const selectCurrentUser = state => state.auth.user;
 
 export const selectUserId = state => state.auth.user._id;

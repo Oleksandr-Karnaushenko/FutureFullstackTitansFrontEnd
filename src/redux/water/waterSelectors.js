@@ -1,14 +1,20 @@
-//Data
-export const selectDayInfo = state => state.water.dayInfo;
-export const selectDayTotalWaterVolume = state =>
+//Day
+export const selectDayInfo = state => state.water.dayInfo; //all day info
+
+export const selectTotalWaterVolume = state =>
   state.water.dayInfo.totalWaterVolume;
-export const selectDayWaterVolumeInPercent = state =>
+
+export const selectWaterVolumeInPercent = state =>
   state.water.dayInfo.waterVolumeInPercent;
-export const selectDayWaterVolumeTimeEntries = state =>
+
+export const selectWaterVolumeTimeEntries = state =>
   state.water.dayInfo.waterVolumeTimeEntries;
+
+//Month
+export const selectMonthInfo = state => state.water.monthInfo;
 
 //Loading
 export const selectWaterIsRefreshing = state => state.water.isRefreshing;
 
 //Errors
-export const selectWaterError = state => state.water.dayError;
+export const selectWaterError = state => state.water.error;
