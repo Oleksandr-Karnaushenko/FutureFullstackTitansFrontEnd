@@ -9,6 +9,10 @@
   --sec-orange-l: #ff9d43;
   --sec-lightblue-l: #d7e3ff;
 
+  /* Light theme cursors */
+  --cursor-fing-h: url('../assets/img/cursors/mdi_cursor-pointer.svg'), pointer;
+  --cursor-fing-a: url('../assets/img/cursors/mdi_cursor-pointer.svg'), pointer;
+
   /* dark-theme-colors */
 
   --bg-dark: #1c1d26;
@@ -20,6 +24,10 @@
   --sec-orange-d: #ffa756;
   --sec-lightblue-d: #2a3052;
 
+  /* Dark theme cursors */
+  --cursor-arr-h: url('../assets/img/cursors/outlineArrow1.svg'), pointer;
+  --cursor-arr-a: url('../assets/img/cursors/outlineArrow2.svg'), pointer;
+
   /* variables */
   --background: var(--bg-light);
   --text: var(--text-light);
@@ -29,18 +37,33 @@
   --secondary-4: var(--sec-4-l);
   --secondary-orange: var(--sec-orange-l);
   --secondary-blue: var(--sec-lightblue-l);
+
+/* Cursors */
+  --cursor-h: var(--cursor-fing-h);
+  --cursor-a: var(--cursor-fing-a);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: var(--bg-dark);
-    --text-color: var(--text-dark);
+    --text: var(--text-dark);
+    --primary-blue: var(--primary-blue-d);
+    --secondary-2: var(--sec-2-d);
+    --secondary-3: var(--sec-3-d);
+    --secondary-4: var(--sec-4-d);
+    --secondary-orange: var(--sec-orange-d);
+    --secondary-blue: var(--sec-lightblue-d);
+
+    /* Applying cursors for dark theme */
+    --cursor-h: var(--cursor-arr-h);
+    --cursor-a: var(--cursor-arr-a);
   }
 }
 
+
 body {
   background-color: var(--background);
-  color: var(--text-color);
+  color: var(--text);
 }
 body.light {
   --background: var(--bg-light);
@@ -61,4 +84,13 @@ body.dark {
   --secondary-4: var(--sec-4-d);
   --secondary-orange: var(--sec-orange-d);
   --secondary-blue: var(--sec-lightblue-d);
+}
+
+/* Hover and active for buttons */
+.button:hover {
+  cursor: var(--cursor-h);
+}
+
+.button:active {
+  cursor: var(--cursor-a);
 }

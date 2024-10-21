@@ -1,5 +1,4 @@
 .container {
-    background-color: transparent;
     min-height: 384px;
     display: flex;
     flex-direction: column;
@@ -9,13 +8,13 @@
     font-weight: 700;
     font-size: 28px;
     line-height: 1.14;
-    color: var(--text-light);
+    color: var(--text);
 }
 
 .subTitle {
     font-size: 24px;
     line-height: 1.25;
-    color: var(--text-light);
+    color: var(--text);
     margin-top: 16px;
 }
 
@@ -23,7 +22,7 @@
     font-weight: 500;
     font-size: 18px;
     line-height: 1.11;
-    color: var(--text-light);
+    color: var(--text);
     margin-top: 24px;
 }
 
@@ -43,11 +42,11 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 1.25;
-    color: var(--text-light);
+    color: var(--text);
 }
 
 .icon {
-    color: var(--primary-blue-l);
+    color: var(--primary-blue);
     margin-right: 8px;
     width: 32px;
     height: 32px;
@@ -60,13 +59,13 @@
     width: 280px;
     height: 36px;
     box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
-    background-color: var(--primary-blue-l);
+    background-color: var(--primary-blue);
     font-weight: 500;
     font-size: 16px;
     line-height: 1.25;
     text-align: center;
     color: #ffffff;
-    cursor: pointer;
+    cursor: var(--cursor-h);
 }
 
 .button:hover {
@@ -75,6 +74,7 @@
 
 .button:active {
     box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
+    cursor: var(--cursor-a);
 }
 
 @media screen and (min-width: 768px) {
@@ -122,7 +122,7 @@
 
 @media screen and (min-width: 1440px) {
     .container {
-        height: 100%;
+        min-height: 366px;
         min-width: 439px;
     }
 
