@@ -19,6 +19,7 @@ const Logo = () => {
     <nav className={css.nav}>
       <button className={css.title} onClick={handleWaterTrackerClick}>
         <svg className={css.icon}>
+          {/* <use href="../../assets/images/icons.svg#icon" /> */}
           <use href="../src/assets/images/icons.svg#icon-logo" />
         </svg>
       </button>
