@@ -1,0 +1,50 @@
+.logoutButton,
+.settingsButton {
+  background: none;
+  border: none;
+  color: rgb(64, 123, 255);
+  cursor: pointer;
+  font-size: 1rem;
+  text-decoration: none;
+  padding: 0;
+  margin-left: 0.5rem;
+}
+
+.buttonsSettings:hover,
+.buttonsLogout:hover {
+  filter: brightness(0) saturate(100%) invert(29%) sepia(45%) saturate(1046%)
+    hue-rotate(3deg) brightness(106%) contrast(102%);
+}
+
+.logoutButton:hover,
+.settingsButton:hover {
+  color: rgb(255, 157, 67);
+  background: none;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  z-index: 1000;
+}
+.buttonsSettings,
+.buttonsLogout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
