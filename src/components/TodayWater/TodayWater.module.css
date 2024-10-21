@@ -1,0 +1,63 @@
+.todayWaterBlock {
+    padding: 24px 8px;
+    background-color: rgb(176, 223, 240);
+    background-color:  #ecf2ff;
+   
+    border-radius: 10px;
+  }
+  
+  .todayWaterSubtitle {
+    margin-bottom: 16px;
+  }
+  
+  .buttonSubmitAdd {
+ font-family: var(--font-family);
+  gap:8px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color:#407BFF;
+  /* color: var(--primery-color-blue); */
+  
+  }
+  
+  .buttonSubmitAdd:hover {
+  color: #FF9D43;
+  }
+  
+  .buttonSubmitAdd:hover svg {
+      fill: currentColor;
+      stroke: currentColor;
+      }
+      
+  
+  .buttonSubmitIcon {
+  width: 16px;
+  height:16px;
+  }
+  
+  /* .buttonSubmitAddIcon svg {
+  width:10px;
+  height:10px;
+  fill: blue;
+  stroke:blue;
+  
+  } */
+
+  .buttonSubmitAddIcon  {
+    width:20px;
+    height:20px;
+    fill: #407BFF;
+    stroke:#407BFF
+    
+    }
+  
+
+  /* .buttonSubmitAddIcon use {
+    width:10px;
+    height:10px;
+    fill: blue;
+    stroke:blue;
+    
+    }
+   */

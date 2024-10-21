@@ -1,26 +1,27 @@
-* {
-  margin: 0;
+/**
+  imports
+*/
+@import url('css/comon.css');
+@import url('css/fonts/fonts.css');
+@import url('css/colorVariables.css');
+
+:root {
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
   padding: 0;
-  box-sizing: border-box;
-}
-ul {
-  list-style: none;
-}
-img {
-  margin: 0 auto;
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-a {
-  text-decoration: none;
-  color: black;
-}
-button {
-  border-radius: 5px;
-  padding: 2px 5px;
-  cursor: pointer;
-  height: min-content;
-  border: none;
-  font-weight: 500;
+
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
 }

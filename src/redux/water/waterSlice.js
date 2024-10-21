@@ -1,24 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
-  getCurrentMonthInfoThunk,
-  getCurrentDayInfoThunk,
-  addWaterThunk,
-  deleteDrinkThunk,
-  editDrinkThunk,
+  getCurrentMonthInfoAPI,
+  getCurrentDayInfoAPI,
+  addWaterAPI,
+  deleteDrinkAPI,
+  editDrinkAPI,
 } from './waterOperation';
 
 const initialState = {
-  month: null,
-  dayInfo: null,
-  registerDay: null,
-  monthDataLoading: false,
-  dayDataLoading: false,
-  monthError: null,
-  dayError: false,
-  isAddDrinkLoading: false,
-  isDeleting: false,
-  isEditingDrink: false,
-  isEditingNorm: false,
+  monthInfo: [],
+  dayInfo: {
+    totalWaterVolume: null,
+    waterVolumeInPercent: null,
+    waterVolumeTimeEntries: [],
+  },
+  isRefreshing: false,
+  error: null,
 };
 
 const waterSlice = createSlice({
@@ -27,66 +24,71 @@ const waterSlice = createSlice({
 
   extraReducers: builder => {
     builder
-      //getCurrentMonthInfoThunk
-      .addCase(getCurrentMonthInfoThunk.pending, state => {
+      //getCurrentMonthInfoAPI
+      .addCase(getCurrentMonthInfoAPI.pending, state => {
         state.monthDataLoading = true;
         state.monthError = false;
         state.month = null;
       })
-      .addCase(getCurrentMonthInfoThunk.fulfilled, (state, { payload }) => {
+      .addCase(getCurrentMonthInfoAPI.fulfilled, (state, { payload }) => {
         state.monthDataLoading = false;
         state.month = [...payload];
       })
-      .addCase(getCurrentMonthInfoThunk.rejected, (state, { payload }) => {
+      .addCase(getCurrentMonthInfoAPI.rejected, (state, { payload }) => {
         state.monthDataLoading = false;
         state.monthError = payload;
       })
-      //getCurrentDayInfoThunk
-      .addCase(getCurrentDayInfoThunk.pending, state => {
+
+      //getCurrentDayInfoAPI
+      .addCase(getCurrentDayInfoAPI.pending, state => {
         state.dayDataLoading = true;
         state.dayError = false;
       })
-      .addCase(getCurrentDayInfoThunk.fulfilled, (state, { payload }) => {
+      .addCase(getCurrentDayInfoAPI.fulfilled, (state, { payload }) => {
         state.dayDataLoading = false;
         state.dayInfo = { ...payload.dayInfo };
         state.registerDay = payload.startDay;
       })
-      .addCase(getCurrentDayInfoThunk.rejected, (state, { payload }) => {
+      .addCase(getCurrentDayInfoAPI.rejected, (state, { payload }) => {
         state.dayDataLoading = false;
         state.dayError = payload;
       })
-      //addWaterThunk
-      .addCase(addWaterThunk.pending, state => {
-        state.isAddDrinkLoading = true;
+
+      //addWaterAPI
+      .addCase(addWaterAPI.pending, state => {
+        state.isRefreshing = true;
+        state.error = null;
       })
-      .addCase(addWaterThunk.fulfilled, (state, { payload }) => {
-        state.isAddDrinkLoading = false;
-        state.dayInfo = { ...payload };
+      .addCase(addWaterAPI.fulfilled, state => {
+        state.isRefreshing = false;
       })
-      .addCase(addWaterThunk.rejected, state => {
-        state.isAddDrinkLoading = false;
+      .addCase(addWaterAPI.rejected, (state, { payload }) => {
+        state.isRefreshing = false;
+        state.error = payload;
       })
-      //deleteDrinkThunk
-      .addCase(deleteDrinkThunk.pending, state => {
-        state.isDeleting = true;
+      //editDrinkAPI
+      .addCase(editDrinkAPI.pending, state => {
+        state.isRefreshing = true;
+        state.error = null;
       })
-      .addCase(deleteDrinkThunk.fulfilled, (state, { payload }) => {
-        state.isDeleting = false;
-        state.dayInfo = { ...payload };
+      .addCase(editDrinkAPI.fulfilled, state => {
+        state.isRefreshing = false;
       })
-      .addCase(deleteDrinkThunk.rejected, state => {
-        state.isDeleting = false;
+      .addCase(editDrinkAPI.rejected, (state, { payload }) => {
+        state.isRefreshing = false;
+        state.error = payload;
       })
-      //editDrinkThunk
-      .addCase(editDrinkThunk.pending, state => {
-        state.isEditingDrink = true;
+      //deleteDrinkAPI
+      .addCase(deleteDrinkAPI.pending, state => {
+        state.isRefreshing = true;
+        state.error = null;
       })
-      .addCase(editDrinkThunk.fulfilled, (state, { payload }) => {
-        state.isEditingDrink = false;
-        state.dayInfo = { ...payload };
+      .addCase(deleteDrinkAPI.fulfilled, state => {
+        state.isRefreshing = false;
       })
-      .addCase(editDrinkThunk.rejected, state => {
-        state.isEditingDrink = false;
+      .addCase(deleteDrinkAPI.rejected, (state, { payload }) => {
+        state.isRefreshing = false;
+        state.error = payload;
       });
   },
 });

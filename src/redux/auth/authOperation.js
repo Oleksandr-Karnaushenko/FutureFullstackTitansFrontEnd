@@ -10,16 +10,20 @@ const cleareAuthHeader = () => {
   axios.defaults.headers.common.Authorization = '';
 };
 
+//auth
+
 export const signUpAPI = createAsyncThunk(
   'auth/signUpAPI',
 
   async (user, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/auth/register', user);
-      setAuthHeader(data.token);
-      toastSuccess(
-        'We have sent email verification on your email. Please, check it'
-      );
+
+      // setAuthHeader(data.token);
+      // toastSuccess(
+      //   'We have sent email verification on your email. Please, check it'
+      // );
+
       return data;
     } catch (error) {
       toastError('Something went wrong. Please try again or log in');
@@ -34,10 +38,13 @@ export const signInAPI = createAsyncThunk(
     try {
       const { data } = await axios.post('/auth/login', user);
 
-      setAuthHeader(data.token);
+      const backEndData = data.data;
+
+      setAuthHeader(backEndData.accessToken);
 
       toastSuccess('Log in successful. Welcome back ');
-      return data;
+
+      return backEndData;
     } catch (error) {
       toastError(error.response.data.message);
       return rejectWithValue('Not valid email or password. Please, try again');
@@ -50,7 +57,9 @@ export const logOutAPI = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       await axios.post('/auth/logout');
+
       cleareAuthHeader();
+
       toastSuccess('Log out successful. Come back sooner');
     } catch (error) {
       cleareAuthHeader();
@@ -60,71 +69,6 @@ export const logOutAPI = createAsyncThunk(
   }
 );
 
-export const changeUserAvatarAPI = createAsyncThunk(
-  'auth/changeUserAvatarAPI',
-  async (formData, { rejectWithValue }) => {
-    try {
-      const {
-        data: { avatarURL },
-      } = await axios.patch('/users/avatar', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-
-      toastSuccess('Avatar changed successful ');
-      return avatarURL;
-    } catch (error) {
-      toastError('Something went wrong');
-      return rejectWithValue(error.message);
-    }
-  }
-);
-
-export const editDailyNorm = createAsyncThunk(
-  'auth/editDailyNorm',
-  async (data, { rejectWithValue }) => {
-    try {
-      const {
-        data: { norm },
-      } = await axios.patch('/users/waterRate', data);
-
-      toastSuccess('Deleted successful ');
-      return norm;
-    } catch (error) {
-      toastError('Something went wrong');
-      return rejectWithValue(error.message);
-    }
-  }
-);
-
-export const fetchUserData = createAsyncThunk(
-  'auth/getUserData',
-  async (_, { rejectWithValue }) => {
-    try {
-      const { data } = await axios.get('/users');
-      return data;
-    } catch (error) {
-      toastError('Something went wrong');
-      return rejectWithValue(error.message);
-    }
-  }
-);
-
-export const changeUserData = createAsyncThunk(
-  'auth/changeUserData',
-  async (user, { rejectWithValue }) => {
-    try {
-      await axios.patch('/users', user);
-      toastSuccess('User info changed successful ');
-      const { data } = await axios.get('/users/info');
-      return data;
-    } catch (error) {
-      toastError('Invalid password');
-      return rejectWithValue(error.message);
-    }
-  }
-);
 export const fetchCurrentUserAPI = createAsyncThunk(
   'auth/refresh',
   async (_, { getState, rejectWithValue }) => {
@@ -134,16 +78,99 @@ export const fetchCurrentUserAPI = createAsyncThunk(
       return rejectWithValue('Without token');
     }
 
-    axios.defaults.headers.common.Authorization = `Bearer ${currentToken}`;
     try {
-      const { data: user } = await axios.get('/auth/refresh');
+      const { data } = await axios.get('/auth/refresh');
 
-      return user;
+      setAuthHeader(data.token);
+
+      return data;
     } catch (error) {
       axios.defaults.headers.common.Authorization = '';
       toastError(
         'Auth state is old. Please enter to your personal cabinet again'
       );
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+//user
+
+export const fetchUserDataAPI = createAsyncThunk(
+  'auth/userData',
+  async (userId, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.get(`/users/${userId}`);
+
+      const backEndData = data.data;
+
+      toastSuccess('User info download successful');
+
+      return backEndData;
+    } catch (error) {
+      toastError('Something went wrong');
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const changeUserAvatarAPI = createAsyncThunk(
+  'auth/changeUserAvatarAPI',
+  async ({ formData, userId }, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.patch(`/users/avatar/${userId}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
+      const backEndData = data.data;
+
+      toastSuccess('Avatar changed successful');
+      return backEndData;
+    } catch (error) {
+      toastError('Something went wrong');
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const editDailyNormAPI = createAsyncThunk(
+  'auth/editDailyNorm',
+  async (waterNorma, userId, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.patch(
+        `/users/waterRate/${userId}`,
+        waterNorma
+      );
+
+      const backEndData = data.data;
+
+      toastSuccess('Daile water norm changed successful');
+
+      return backEndData;
+    } catch (error) {
+      toastError('Something went wrong');
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const changeUserDataAPI = createAsyncThunk(
+  'auth/changeUserData',
+  async ({ userNewData, userId }, { rejectWithValue }) => {
+    try {
+      await axios.patch(`/users/${userId}`, userNewData);
+
+      toastSuccess('User info changed successful ');
+
+      const { data } = await axios.get(`/users/${userId}`);
+
+      const backEndData = data.data;
+
+      return backEndData;
+    } catch (error) {
+      toastError('Invalid password');
       return rejectWithValue(error.message);
     }
   }

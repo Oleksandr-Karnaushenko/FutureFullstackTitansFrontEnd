@@ -1,0 +1,169 @@
+.form {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    margin-top: 16px;
+    max-width: 320px;
+    width: 280px;
+    height: 100vh;
+    background-image: url('/src/assets/img/mobile/SignInBottle.png');
+    background-position: 50% 80%;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+/* @media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+    .background {
+        background-image: url('2х');
+    }
+} */
+
+
+
+.inputWrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+    width: 100%;
+    padding-bottom: 16px;
+}
+
+.input {
+    font-family: 'Roboto', sans-serif;
+    padding: 12px 10px 12px 10px;
+    border: 1px solid #D7E3FF;
+    border-radius: 6px;
+    font-size: 16px;
+    width: 100%;
+    padding-right: 40px;
+    color: #9EBBFF;
+    margin-bottom: 8px;
+}
+
+.input::placeholder {
+    font-family: 'Roboto', sans-serif;
+    color: #9EBBFF;
+    opacity: 1;
+}
+
+.input:focus {
+    color: #407BFF;
+    border-color: #D7E3FF;
+    outline: none;
+}
+
+
+
+.errorInput {
+    border-color: red;
+    color: red;
+}
+
+.label {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    color: #2F2F2F;
+}
+
+.eyeIcon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    padding-top: 12px;
+}
+
+.errorMessage {
+    margin-top: 4px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-size: 14px;
+    color: red;
+}
+
+.submitBtn {
+    font-family: 'Roboto', sans-serif;
+    padding: 8px 30px 8px 30px;
+    background-color: #407BFF;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.link {
+    font-family: 'Roboto', sans-serif;
+    color: #407BFF;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+.image {
+    margin-top: 66px;
+}
+
+
+/*<----------768px--------->*/
+
+@media screen and (min-width: 768px) {
+
+
+    .form {
+        width: 336px;
+        background-image: none;
+        /* background-image: url('/src/assets/img/tab/botleSignInTablet.png');
+                background-position: 50% 80%;
+                background-repeat: no-repeat;
+                background-size: contain; */
+    }
+
+    /* @media (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi) {
+        .background {
+            background-image: url('2х');
+        }
+    } */
+
+}
+
+/*<----------1280px--------->*/
+
+@media screen and (min-width: 1280px) {
+
+
+    .form {
+        width: 384px;
+        background-image: none;
+        /* background-image: url('/src/assets/img/tab/botleSignInTablet.png');
+                        background-position: 50% 80%;
+                        background-repeat: no-repeat;
+                        background-size: contain; */
+    }
+
+    /* @media (-webkit-min-device-pixel-ratio: 2),
+            (min-resolution: 192dpi) {
+                .background {
+                    background-image: url('2х');
+                }
+            } */
+}
