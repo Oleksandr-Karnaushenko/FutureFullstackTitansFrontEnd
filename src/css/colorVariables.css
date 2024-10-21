@@ -63,7 +63,7 @@
 
 body {
   background-color: var(--background);
-  color: var(--text-color);
+  color: var(--text);
 }
 body.light {
   --background: var(--bg-light);
@@ -84,4 +84,13 @@ body.dark {
   --secondary-4: var(--sec-4-d);
   --secondary-orange: var(--sec-orange-d);
   --secondary-blue: var(--sec-lightblue-d);
+}
+
+/* Hover and active for buttons */
+.button:hover {
+  cursor: var(--cursor-h);
+}
+
+.button:active {
+  cursor: var(--cursor-a);
 }
