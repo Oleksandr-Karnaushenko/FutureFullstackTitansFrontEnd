@@ -3,160 +3,71 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 100%;
-    padding: 20px;
     background-color: #fff;
-    background-image: url('/path-to-your-background-image.png');
+    background-image: url('/src/assets/img/mobile/signInMobile.png');
+    background-position: 50% 20%;
     background-repeat: no-repeat;
-    background-position: bottom;
+    background-size: contain;
 }
 
-
-
-
-/* 
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    padding: 20px;
-    background-color: #fff;
-    background-image: url('/path-to-your-background-image.png');
-    background-repeat: no-repeat;
-    background-position: bottom;
-}
-
-.logo {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    padding: 0 20px;
-}
-
-.logo img {
-    width: 50px;
-}
-
-.signInLink {
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-    color: #1e90ff;
-    cursor: pointer;
-}
-
-.signInLink svg {
-    margin-left: 8px;
-}
-
-.form {
-    width: 100%;
-    max-width: 320px;
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+/* @media (-webkit-min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi) {
+            .background {
+                background-image: url('2х');
+            }
+        } */
 
 .title {
     font-size: 26px;
     font-weight: 500;
     color: #333;
-  
-
 }
 
-.field {
-    margin-bottom: 15px;
+.image {
+    margin-top: 66px;
 }
 
-.field input {
-    width: 100%;
-    padding: 10px 12px;
-    font-size: 16px;
-    border: 1px solid #d1d1d1;
-    border-radius: 8px;
-    outline: none;
-}
-
-.field input:focus {
-    border-color: #1e90ff;
-}
-
-.error {
-    font-size: 12px;
-    color: red;
-}
-
-.submitBtn {
-    width: 100%;
-    padding: 12px 0;
-    background-color: #1e90ff;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.submitBtn:hover {
-    background-color: #0074d9;
-}
-
-.switchLink {
-    margin-top: 10px;
-    font-size: 14px;
-    text-align: center;
-}
-
-.switchLink a {
-    color: #1e90ff;
-    text-decoration: none;
-    font-weight: 500;
-}
-
-.switchLink a:hover {
-    text-decoration: underline;
-}
-
-.waterBottle {
-    margin-top: 20px;
-    width: 150px;
-    height: auto;
-}
-
-
-@media (min-width: 601px) and (max-width: 1024px) {
-    .form {
-        max-width: 400px;
-        padding: 30px;
+@media screen and (min-width: 768px) {
+    .container {
+        max-width: 768px;
+        padding: 0 32px;
+        align-items: baseline;
+        background-image: none;
+        /* background-image: url('/src/assets/img/tab/SignInBottle.png');
+        background-position: 50% 20%;
+        background-repeat: no-repeat;
+        background-size: contain; */
     }
 
-    .title {
-        font-size: 26px;
-    }
+    /* @media (-webkit-min-device-pixel-ratio: 2),
+            (min-resolution: 192dpi) {
+                .background {
+                    background-image: url('2х');
+                }
+            } */
 
-    .field input {
-        font-size: 18px;
-    }
 }
 
+/*<----------1280px--------->*/
 
-@media (min-width: 1025px) {
-    .form {
-        max-width: 500px;
-        padding: 40px;
+@media screen and (min-width: 1280px) {
+    .container {
+        max-width: 1280px;
+        padding: 0 18px;
+        align-items: end;
+        padding-right: 198px;
+        padding-top: 113px;
+        background-image: none;
+        /* background-image: url('/src/assets/img/tab/SignInBottle.png');
+                background-position: 50% 20%;
+                background-repeat: no-repeat;
+                background-size: contain; */
     }
 
-    .title {
-        font-size: 28px;
-    }
-
-    .field input {
-        font-size: 20px;
-    }
-} */
+    /* @media (-webkit-min-device-pixel-ratio: 2),
+                        (min-resolution: 192dpi) {
+                            .background {
+                                background-image: url('2х');
+                            }
+                        } */
+}
