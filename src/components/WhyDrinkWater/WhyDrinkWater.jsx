@@ -1,17 +1,39 @@
+import { GoDotFill } from 'react-icons/go';
 import css from './WhyDrinkWater.module.css';
 
 export default function WhyDrinkWater() {
   return (
-    <div>
-      <h2>Why drink water</h2>
-      <ul>
-        <li>Supply of nutrients to all organs</li>
-        <li>Providing oxygen to the lungs</li>
-        <li>Maintaining the work of the heart</li>
-        <li>Release of processed substances</li>
-        <li>Ensuring the stability of the internal environment</li>
-        <li>Maintaining within the normal temperature</li>
-        <li>Maintaining an immune system capable of resisting disease</li>
+    <div className={css.container}>
+      <h2 className={css.title}>Why drink water</h2>
+      <ul className={css.list}>
+        <li className={css.listItem}>
+          <GoDotFill className={css.icon} />
+          Supply of nutrients to all organs
+        </li>
+        <li className={css.listItem}>
+          <GoDotFill className={css.icon} />
+          Providing oxygen to the lungs
+        </li>
+        <li className={css.listItem}>
+          <GoDotFill className={css.icon} />
+          Maintaining the work of the heart
+        </li>
+        <li className={css.listItem}>
+          <GoDotFill className={css.icon} />
+          Release of processed substances
+        </li>
+        <li className={css.listItem}>
+          <GoDotFill className={css.icon} />
+          Ensuring the stability of the internal environment
+        </li>
+        <li className={css.listItem}>
+          <GoDotFill className={css.icon} />
+          Maintaining within the normal temperature
+        </li>
+        <li className={css.listItem}>
+          <GoDotFill className={css.icon} />
+          Maintaining an immune system capable of resisting disease
+        </li>
       </ul>
     </div>
   );

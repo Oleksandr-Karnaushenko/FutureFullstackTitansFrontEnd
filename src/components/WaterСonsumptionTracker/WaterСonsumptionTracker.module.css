@@ -1,34 +1,36 @@
 .container {
     background-color: transparent;
+    min-height: 384px;
+    display: flex;
+    flex-direction: column;
 }
 
 .title {
-    font-family: Roboto;
     font-weight: 700;
     font-size: 28px;
     line-height: 1.14;
-    color: #2F2F2F;
+    color: var(--text-light);
 }
 
 .subTitle {
-    font-family: Roboto;
-    font-weight: 400;
     font-size: 24px;
     line-height: 1.25;
-    color: #2F2F2F;
+    color: var(--text-light);
     margin-top: 16px;
 }
 
 .listTitle {
-    font-family: Roboto;
     font-weight: 500;
     font-size: 18px;
     line-height: 1.11;
-    color: #2F2F2F;
+    color: var(--text-light);
     margin-top: 24px;
 }
 
 .listWraper {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
     margin-top: 12px;
 }
 
@@ -38,16 +40,17 @@
 }
 
 .listItem {
-    font-family: Roboto;
     font-weight: 400;
     font-size: 16px;
     line-height: 1.25;
-    color: #2F2F2F;
+    color: var(--text-light);
 }
 
 .icon {
-    color: #407BFF;
+    color: var(--primary-blue-l);
     margin-right: 8px;
+    width: 32px;
+    height: 32px;
 }
 
 .button {
@@ -57,11 +60,78 @@
     width: 280px;
     height: 36px;
     box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
-    background-color: #407BFF;
-    font-family: Roboto;
+    background-color: var(--primary-blue-l);
     font-weight: 500;
     font-size: 16px;
     line-height: 1.25;
     text-align: center;
     color: #ffffff;
+    cursor: pointer;
+}
+
+.button:hover {
+    box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.54);
+}
+
+.button:active {
+    box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
+}
+
+@media screen and (min-width: 768px) {
+    .container {
+        min-height: 254px;
+        min-width: 704px;
+    }
+
+    .title {
+        font-size: 36px;
+    }
+
+    .subTitle {
+        font-size: 26px;
+    }
+
+    .listWraper {
+        flex-direction: row;
+        gap: 16px;
+    }
+
+    .icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .wraper {
+        width: calc((100% - 16px) / 2);
+    }
+
+    .button {
+        margin-top: 24px;
+        border-radius: 10px;
+        padding: 10px 30px;
+        width: 336px;
+        height: 44px;
+        font-size: 18px;
+        line-height: 1.33;
+
+    }
+
+}
+
+/*<----------1440px--------->*/
+
+@media screen and (min-width: 1440px) {
+    .container {
+        height: 100%;
+        min-width: 439px;
+    }
+
+    .listWraper {
+        flex-direction: column;
+    }
+
+    .button {
+        margin-top: 24px;
+        width: 384px;
+    }
 }
