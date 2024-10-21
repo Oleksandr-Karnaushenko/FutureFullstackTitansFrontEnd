@@ -1,48 +1,18 @@
 .container {
-    padding-top: 31px;
-    /* background-image: url(../../assets/img/mobile/MainPageBG.png);
-    background-color: transparent;
-    background-size: 100%;
-    background-repeat: no-repeat no-repeat;
-    background-position: center center; */
+    padding-top: 24px;
 }
-
-/* @media screen and (-webkit-min-device-pixel-ratio: 2),
-(min-resolution: 2dppx),
-(min-resolution: 192dpi) {
-    .container {
-        background-image: url(../../assets/img/mobile/MainPageBG@2x.png);
-    }
-} */
 
 /*<----------768px--------->*/
 
-/* @media screen and (min-width: 768px) {
+@media screen and (min-width: 768px) {
     .container {
-        background-image: url(../../assets/img/tab/MainPageBG.png);
+        padding-top: 40px;
     }
-
-    @media screen and (-webkit-min-device-pixel-ratio: 2),
-    (min-resolution: 2dppx),
-    (min-resolution: 192dpi) {
-        .container {
-            background-image: url(../../assets/img/tab/MainPageBG@2x.png);
-        }
-    }
-} */
-
+}
 /*<----------1440px--------->*/
 
-/* @media screen and (min-width: 1440px) {
+@media screen and (min-width: 1440px) {
     .container {
-        background-image: url(../../assets/img/desc/MainPageBG.png), url(../../assets/img/desc/MainPageBubbleBG.png);
+     padding-top: 49px;
     }
-
-    @media screen and (-webkit-min-device-pixel-ratio: 2),
-    (min-resolution: 2dppx),
-    (min-resolution: 192dpi) {
-        .container {
-            background-image: url(../../assets/img/desc/MainPageBG@2x.png), url(../../assets/img/desc/MainPageBubbleBG@2x.png);
-        }
-    }
-} */
+}

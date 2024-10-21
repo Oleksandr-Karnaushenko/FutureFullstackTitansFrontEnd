@@ -1,13 +1,13 @@
 .container {
-  padding-top: 24px;
   min-width: 280px;
   min-height: 840px;
+  display: flex;
+  justify-content: center;
 }
 
 .wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   gap: 40px;
 }
@@ -20,7 +20,7 @@
     min-height: 646px;
   }
 
-  .wraper {
+  .wrapper {
     gap: 60px;
     align-items: flex-start;
   }
@@ -34,9 +34,12 @@
     min-height: 582px;
   }
 
-  .wraper {
+  .wrapper {
+    padding-top: 31px;
     flex-direction: row;
     align-items: flex-end;
     gap: 81px;
+    min-width: 1014px;
+    min-height: 366px;
   }
 }
