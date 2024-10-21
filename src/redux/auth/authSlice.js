@@ -5,13 +5,14 @@ import {
   signUpAPI,
   fetchCurrentUserAPI,
   changeUserAvatarAPI,
-  changeUserData,
-  editDailyNorm,
-  fetchUserData,
+  changeUserDataAPI,
+  editDailyNormAPI,
+  fetchUserDataAPI,
 } from './authOperation';
 
 const initialState = {
   user: {
+    _id: null,
     name: null,
     email: null,
     avatarURL: null,
@@ -48,39 +49,46 @@ const authSlice = createSlice({
 
       //signUpAPI
       .addCase(signUpAPI.pending, state => {
+        state.isRefreshing = true;
         state.error = null;
       })
-      .addCase(signUpAPI.fulfilled, (state, { payload }) => {
-        state.token = payload.token;
+      .addCase(signUpAPI.fulfilled, state => {
         state.isLoggedIn = true;
+        state.isRefreshing = false;
       })
       .addCase(signUpAPI.rejected, (state, { payload }) => {
         state.error = payload;
+        state.isRefreshing = false;
       })
       //signInAPI
       .addCase(signInAPI.pending, state => {
         state.error = null;
+        state.isRefreshing = true;
       })
       .addCase(signInAPI.fulfilled, (state, { payload }) => {
         state.isLoggedIn = true;
-        state.token = payload.token;
+        state.isRefreshing = false;
+        state.token = payload.accessToken;
+        state.user._id = payload._id;
       })
       .addCase(signInAPI.rejected, (state, { payload }) => {
+        state.isRefreshing = false;
         state.error = payload;
       })
       //logOutAPI
       .addCase(logOutAPI.pending, state => {
         state.error = null;
+        state.isRefreshing = true;
       })
       .addCase(logOutAPI.fulfilled, state => {
+        state.isRefreshing = false;
         state.token = null;
         state.isLoggedIn = false;
         state.user = { ...initialState.user };
       })
-      .addCase(logOutAPI.rejected, state => {
-        state.authIsLoading = false;
-        state.user = { ...initialState.user };
-        state.token = null;
+      .addCase(logOutAPI.rejected, (state, { payload }) => {
+        state.isRefreshing = false;
+        state.error = payload;
       })
       //fetchCurrentUserAPI
       .addCase(fetchCurrentUserAPI.pending, state => {
@@ -99,28 +107,28 @@ const authSlice = createSlice({
       //user
 
       //fetchUserData
-      .addCase(fetchUserData.pending, state => {
+      .addCase(fetchUserDataAPI.pending, state => {
         state.isRefreshing = true;
         state.error = null;
       })
-      .addCase(fetchUserData.fulfilled, (state, { payload }) => {
+      .addCase(fetchUserDataAPI.fulfilled, (state, { payload }) => {
         state.user = payload;
         state.isRefreshing = false;
       })
-      .addCase(fetchUserData.rejected, (state, { payload }) => {
+      .addCase(fetchUserDataAPI.rejected, (state, { payload }) => {
         state.isRefreshing = false;
         state.error = payload;
       })
       //changeUserData
-      .addCase(changeUserData.pending, state => {
+      .addCase(changeUserDataAPI.pending, state => {
         state.isRefreshing = true;
         state.error = null;
       })
-      .addCase(changeUserData.fulfilled, (state, { payload }) => {
-        state.user = payload.user;
+      .addCase(changeUserDataAPI.fulfilled, (state, { payload }) => {
+        state.user = payload;
         state.isRefreshing = false;
       })
-      .addCase(changeUserData.rejected, (state, { payload }) => {
+      .addCase(changeUserDataAPI.rejected, (state, { payload }) => {
         state.isRefreshing = false;
         state.error = payload;
       })
@@ -130,7 +138,7 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(changeUserAvatarAPI.fulfilled, (state, { payload }) => {
-        state.user.avatarURL = payload;
+        state.user.avatarURL = payload.avatarURL;
         state.isRefreshing = false;
       })
       .addCase(changeUserAvatarAPI.rejected, (state, { payload }) => {
@@ -138,15 +146,15 @@ const authSlice = createSlice({
         state.error = payload;
       })
       //editDailyNorm
-      .addCase(editDailyNorm.pending, state => {
+      .addCase(editDailyNormAPI.pending, state => {
         state.isRefreshing = true;
         state.error = null;
       })
-      .addCase(editDailyNorm.fulfilled, (state, { payload }) => {
-        state.dayInfo.norm = payload.norm;
+      .addCase(editDailyNormAPI.fulfilled, (state, { payload }) => {
+        state.user.norm = payload.norm;
         state.isRefreshing = false;
       })
-      .addCase(editDailyNorm.rejected, (state, { payload }) => {
+      .addCase(editDailyNormAPI.rejected, (state, { payload }) => {
         state.isRefreshing = false;
         state.error = payload;
       });
