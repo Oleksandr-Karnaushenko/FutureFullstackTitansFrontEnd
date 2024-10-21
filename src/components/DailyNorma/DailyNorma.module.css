@@ -1,19 +1,43 @@
 .dailyWrapper {
-  margin-top: 24px;
+  margin-top: 48px;
   border: 1px solid var(--secondary-2);
   border-radius: 10px;
   padding: 8px 20px;
   /* display: flex;
   flex-direction: column; */
+  position: relative;
+  top: -28px;
+  max-width: fit-content;
 }
 
 .title {
-  text-align: center;
+  font-size: 18px;
+  text-align: left;
 }
 
 .normaWrap {
   margin-top: 12px;
   display: flex;
   flex-direction: row;
+  align-items: flex-end;
   gap: 12px;
+}
+.normaText {
+  font-family: inherit;
+  font-size: 22px;
+  font-weight: bold;
+  color: var(--primary-blue);
+}
+.editBtn {
+  background-color: transparent;
+  color: var(--secondary-4);
+}
+
+@media screen and (min-width: 768px) {
+  /* .dailyWrapper {
+    position: static;
+  } */
+}
+
+@media screen and (min-width: 1440px) {
 }

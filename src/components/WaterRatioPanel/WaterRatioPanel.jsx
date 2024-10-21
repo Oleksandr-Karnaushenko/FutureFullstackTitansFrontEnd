@@ -5,7 +5,6 @@ const progressPercentage = 77; //for example, in real it will be gotten from use
 export default function WaterRatioPanel() {
   return (
     <div className={css.ratioPanelWrap}>
-      <h2>Water balance</h2>
       <div className={css.ratioPanelMain}>
         <div
           className={css.ratioPanelProgress}
