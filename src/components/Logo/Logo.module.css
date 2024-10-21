@@ -1,0 +1,22 @@
+.title {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+.title:hover {
+  color: rgb(255, 157, 67);
+  background-color: transparent;
+}
+.icon {
+  width: 102px;
+  height: 48px;
+}
+/* .icon:hover {
+  stroke: rgb(255, 157, 67);
+  fill: rgb(255, 157, 67);
+} */
