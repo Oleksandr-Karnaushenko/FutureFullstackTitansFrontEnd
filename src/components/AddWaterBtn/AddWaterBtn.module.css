@@ -5,8 +5,26 @@
   padding: 8px 72px;
   padding-bottom: 8px;
   border-radius: 10px;
-  background-color: #407bff;
+  background-color: var(--primary-blue);
+  color: var(--background);
+  font-size: 16px;
+  font-family: inherit;
   margin-bottom: 40px;
   margin-top: 16px;
-  cursor: url(../../assets/img/desc/mdi_cursor-pointer.svg);
+  cursor: url('../../assets//img/cursors/mdi_cursor-pointer.svg'), auto;
+}
+
+/* .svgCross {
+  fill: #fff;
+  height: 24px;
+  width: 24px;
+} */
+/* .addWaterBtn::before {
+  content: ('../../assets//img/cursors/mdi_cursor-pointer.svg');
+} */
+@media screen and (min-width: 768px) {
+  .addWaterBtn {
+    max-width: 336px;
+    width: 100%;
+  }
 }
