@@ -9,6 +9,7 @@ export default function HomePage() {
   return (
     <div className={css.background}>
       <div className={css.container}>
+<<<<<<< Updated upstream
         <DailyNorma />
         <WaterRatioPanel />
         <AddWaterBtn />

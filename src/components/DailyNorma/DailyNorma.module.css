@@ -10,9 +10,21 @@
   max-width: fit-content;
 }
 
+.wrapper {
+  position: relative;
+  top: -28px;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 280px;
+  background-size: contain;
+  background-image: url('../../assets//images/home/bottle-mob-1x.png');
+}
+
 .title {
   font-size: 18px;
   text-align: left;
+  color: var(--text);
 }
 
 .normaWrap {
@@ -24,7 +36,7 @@
 }
 .normaText {
   font-family: inherit;
-  font-size: 22px;
+  font-size: 24px;
   font-weight: bold;
   color: var(--primary-blue);
 }
@@ -34,10 +46,26 @@
 }
 
 @media screen and (min-width: 768px) {
-  /* .dailyWrapper {
+  .dailyWrapper {
     position: static;
-  } */
+    margin-top: 40px;
+  }
+  .wrapper {
+    top: -78px;
+    height: 386px;
+    background-image: url('../../assets//images/home/bottle-tab-1x.png');
+  }
 }
 
 @media screen and (min-width: 1440px) {
+  .dailyWrapper {
+    margin-top: 52px;
+  }
+  .wrapper {
+    background-image: url('../../assets//images/home/bottle-desk-1x.png');
+    top: -108px;
+    right: 50px;
+    width: 748px;
+    height: 548px;
+  }
 }
