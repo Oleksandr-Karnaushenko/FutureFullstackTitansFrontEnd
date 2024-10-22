@@ -1,7 +1,40 @@
 .background {
-  background-image: url(../../assets/images);
+  background-image: url('../../assets/images/welcome/backgroundMobileHome.svg');
   background-size: cover;
   background-repeat: no-repeat;
   width: 100%;
-  /* padding: 0px 20px 40px; */
+}
+
+.column {
+  max-width: 280px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 768px) {
+  .background {
+    background-image: url('../../assets/images/welcome/backgroundTablet.svg');
+  }
+
+  .column {
+    max-width: 704px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .background {
+    background-image: url('../../assets/images/welcome/backgroundDesktop.svg');
+  }
+  .column {
+    width: 100%;
+    max-width: 592px;
+    margin-left: 32px;
+  }
+  .container {
+    display: flex; /* Enable flexbox for the container */
+    justify-content: space-between; /* Space out the two columns */
+    width: 100%;
+    max-width: 1200px; /* Optional: limit the max width */
+  }
 }

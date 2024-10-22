@@ -2,9 +2,9 @@ import { useMemo, useEffect } from 'react';
 import { IoCloseOutline } from 'react-icons/io5';
 import Select from 'react-select';
 import { HiOutlinePlusSmall, HiOutlineMinusSmall } from 'react-icons/hi2';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
-import { editDrinkThunk } from '../../redux/water/waterOperation';
+import { editWaterAPI } from '../../redux/water/waterOperation';
 import {
   getCurrentTime,
   countToFiveMinutes,
@@ -12,9 +12,15 @@ import {
   differentStyles,
 } from '../AmountOfWater/AmountOfWater';
 import css from './TodayListModal.module.css';
+import {
+  selectWaterIsRefreshing,
+  selectWaterError,
+} from '../../redux/water/waterSlice';
 
 export default function TodayListModal({ waterObj, onClose }) {
   const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectWaterIsRefreshing);
+  const error = useSelector(selectWaterError);
 
   const { waterVolume } = useMemo(() => {
     return waterObj;
@@ -34,10 +40,12 @@ export default function TodayListModal({ waterObj, onClose }) {
       }
 
       dispatch(
-        editDrinkThunk({
+        editWaterAPI({
           id: waterObj.id,
-          time: values.selectedTime,
-          ml: values.waterVolume,
+          editWater: {
+            time: values.selectedTime,
+            ml: values.waterVolume,
+          },
         })
       );
 
@@ -67,7 +75,10 @@ export default function TodayListModal({ waterObj, onClose }) {
             <IoCloseOutline size="24" color="407BFF" />
           </span>
         </div>
-
+        {isRefreshing && <p>Loading...</p>}{' '}
+        {/* Показуємо спінер при завантаженні */}
+        {error && <p className={css.error}>{error}</p>}{' '}
+        {/* Показуємо повідомлення про помилку */}
         {formik.values.waterVolume === 0 ? (
           <p className={css.noNotes}>No notes yet</p>
         ) : (
@@ -79,10 +90,8 @@ export default function TodayListModal({ waterObj, onClose }) {
             <p className={css.time}>{formik.values.selectedTime}</p>
           </div>
         )}
-
         <h3 className={css.subtitle}>Correct entered data:</h3>
         <p className={css.text}>Amount of water:</p>
-
         <div className={css.waterInputcontainer}>
           <button
             className={css.amountButton}
@@ -112,7 +121,6 @@ export default function TodayListModal({ waterObj, onClose }) {
             <HiOutlinePlusSmall size="24" color="407BFF" />
           </button>
         </div>
-
         <p className={css.text}>Recording time:</p>
         <Select
           styles={differentStyles}
@@ -125,7 +133,6 @@ export default function TodayListModal({ waterObj, onClose }) {
           }
           options={TimeDropdown()}
         />
-
         <h3 className={css.subtitle}>Enter the value of the water used:</h3>
         <input
           className={css.waterInput}
@@ -139,7 +146,6 @@ export default function TodayListModal({ waterObj, onClose }) {
             );
           }}
         />
-
         <div className={css.footerContainer}>
           <p className={css.waterIncomeFooter}>
             {formik.values.waterVolume} ml

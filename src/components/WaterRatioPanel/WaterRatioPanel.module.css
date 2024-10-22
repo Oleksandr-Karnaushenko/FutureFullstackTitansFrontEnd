@@ -1,22 +1,33 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 .ratioPanelMain {
+  max-width: 256px;
+  width: 100%;
   height: 8px;
   border-radius: 10px;
   margin: 10px;
-  max-width: 256px;
-  background-color: #d7e3ff;
+  background-color: var(--secondary-blue);
   position: relative;
+}
+.panelTitle {
+  font-size: 18px;
+  font-weight: 400px;
+  color: var(--primary-blue);
 }
 .ratioPanelProgress {
   height: 8px;
   border-radius: 10px;
-  background-color: #9ebbff;
+  background-color: var(--secondary-4);
   width: 0%;
 }
 .ratioPanelLabels {
   max-width: 280px;
   display: flex;
   justify-content: space-between;
-  color: #407bff;
+  color: var(--primary-blue);
   position: relative;
 }
 .ratioPanelDot {
@@ -25,8 +36,8 @@
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background-color: #ffff;
-  border: 1px solid #407bff;
+  background-color: var(--background);
+  border: 1px solid var(--primary-blue);
   transform: translateX(-50%);
 }
 .ratioPanelLabels span {
@@ -41,5 +52,28 @@
   transform: translateX(-50%);
   width: 1px;
   height: 8px;
-  background-color: #d7e3ff;
+  background-color: var(--secondary-blue);
+}
+
+@media screen and (min-width: 768px) {
+  .wrapper {
+    flex-direction: row;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+  .ratioPanelWrap {
+    max-width: 356px;
+    width: 100%;
+  }
+  .ratioPanelMain {
+    max-width: 325px;
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .wrapper {
+    gap: 23px;
+    margin-bottom: 56px;
+  }
 }

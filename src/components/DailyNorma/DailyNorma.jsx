@@ -10,10 +10,7 @@ export default function DailyNorma() {
           <button className={css.editBtn}>Edit</button>
         </div>
       </div>
-      <img
-        src="../../assets/images/home/bottle-mob-1x.png"
-        alt="Bottle image"
-      />
+      <div className={css.wrapper}></div>
     </>
   );
 }
