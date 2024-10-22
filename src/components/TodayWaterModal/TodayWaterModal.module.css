@@ -1,0 +1,75 @@
+.modalBackdrop {
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-top: 80px;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modalContent {
+  position: relative;
+  margin-inline: auto;
+  padding: 32px 24px;
+  max-width: 280px;
+  width: 100%;
+  /* height: 280px; */
+  border-radius: 10px;
+  background-color: var(--bg-light);
+}
+
+.modalTitle {
+  margin-bottom: 24px;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 1.23;
+  color: var(--text-light);
+}
+
+.modalText {
+  margin-bottom: 24px;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.11;
+  color: var(--text-light);
+}
+
+/*<----------768px--------->*/
+
+@media screen and (min-width: 768px) {
+  .modalBackdrop {
+    padding-top: 200px;
+  }
+
+  .modalContent {
+    max-width: 592px;
+    width: 100%;
+    /* height: 208px; */
+  }
+  .modalButtons {
+    display: flex;
+    gap: 24px;
+    justify-content: flex-end;
+  }
+
+  .modalTitle {
+    margin-bottom: 24px;
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 1.23;
+    color: var(--text-light);
+  }
+}
+
+/*<----------1280px--------->*/
+
+@media screen and (min-width: 1440px) {
+  .modalBackdrop {
+    padding-top: 296px;
+  }
+}
