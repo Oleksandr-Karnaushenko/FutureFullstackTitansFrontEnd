@@ -1,2 +1,18 @@
+.container {
+    padding-top: 24px;
+}
 
+/*<----------768px--------->*/
 
+@media screen and (min-width: 768px) {
+    .container {
+        padding-top: 40px;
+    }
+}
+/*<----------1440px--------->*/
+
+@media screen and (min-width: 1440px) {
+    .container {
+     padding-top: 49px;
+    }
+}

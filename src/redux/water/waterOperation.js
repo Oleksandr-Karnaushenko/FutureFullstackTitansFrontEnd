@@ -9,19 +9,20 @@ import { toastError, toastSuccess } from '../../services/toastNotification';
 // };
 export const getCurrentMonthInfoAPI = createAsyncThunk(
   'water/getMonth',
-  async (_, thunkAPI) => {
+  async (data, thunkAPI) => {
+    const { month, year } = data;
+    console.log('month');
+    console.log(month);
+    console.log('year');
+    console.log(year);
     try {
-      const currentDate = new Date();
-      const { data } = await axios.post('water/month', {
-        month: currentDate.getMonth() + 1,
-        year: currentDate.getFullYear(),
-      });
-      // const currentMonth = await getMonthInfoAPI({
-      //   month: currentDate.getMonth() + 1,
-      //   year: currentDate.getFullYear(),
-      // });
-      // return currentMonth;
-      return data;
+      const { data } = await axios.get(
+        `water/monthInfo?month=${month}&year=${year}`
+      );
+
+      const backEndData = data.data;
+
+      return backEndData;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -32,10 +33,11 @@ export const getCurrentDayInfoAPI = createAsyncThunk(
   'water/getDay',
   async (_, thunkAPI) => {
     try {
-      const date = new Date();
-      const { data } = await axios.post('water', { date });
+      const { data } = await axios.get('water/dayInfo');
 
-      return data;
+      const backEndData = data.data;
+
+      return backEndData;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -47,7 +49,8 @@ export const addWaterAPI = createAsyncThunk(
   async (newWater, thunkAPI) => {
     try {
       const { data } = await axios.post(`water`, newWater);
-
+      console.log('backdata');
+      console.log(data);
       const backEndData = data.data;
 
       toastSuccess('Drink has been added successful');
@@ -60,12 +63,12 @@ export const addWaterAPI = createAsyncThunk(
   }
 );
 
-export const editDrinkAPI = createAsyncThunk(
+export const editWaterAPI = createAsyncThunk(
   'water/edit',
   async (drink, thunkAPI) => {
-    const { id, time, ml } = drink;
+    const { id, editWater } = drink;
     try {
-      const { data } = await axios.patch(`water/${id}`, { time, ml });
+      const { data } = await axios.patch(`water/${id}`, editWater);
 
       const backEndData = data.data;
 
@@ -79,7 +82,7 @@ export const editDrinkAPI = createAsyncThunk(
   }
 );
 
-export const deleteDrinkAPI = createAsyncThunk(
+export const deleteWaterAPI = createAsyncThunk(
   'water/delete',
   async (drinkId, thunkAPI) => {
     try {

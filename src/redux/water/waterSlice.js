@@ -3,8 +3,8 @@ import {
   getCurrentMonthInfoAPI,
   getCurrentDayInfoAPI,
   addWaterAPI,
-  deleteDrinkAPI,
-  editDrinkAPI,
+  deleteWaterAPI,
+  editWaterAPI,
 } from './waterOperation';
 
 const initialState = {
@@ -26,32 +26,32 @@ const waterSlice = createSlice({
     builder
       //getCurrentMonthInfoAPI
       .addCase(getCurrentMonthInfoAPI.pending, state => {
-        state.monthDataLoading = true;
-        state.monthError = false;
-        state.month = null;
+        state.isRefreshing = true;
+        state.error = null;
+        state.monthInfo = initialState.monthInfo;
       })
       .addCase(getCurrentMonthInfoAPI.fulfilled, (state, { payload }) => {
-        state.monthDataLoading = false;
-        state.month = [...payload];
+        state.isRefreshing = false;
+        state.monthInfo = payload;
       })
       .addCase(getCurrentMonthInfoAPI.rejected, (state, { payload }) => {
-        state.monthDataLoading = false;
-        state.monthError = payload;
+        state.isRefreshing = false;
+        state.error = payload;
       })
 
       //getCurrentDayInfoAPI
       .addCase(getCurrentDayInfoAPI.pending, state => {
-        state.dayDataLoading = true;
-        state.dayError = false;
+        state.isRefreshing = true;
+        state.error = null;
+        state.dayInfo = initialState.dayInfo;
       })
       .addCase(getCurrentDayInfoAPI.fulfilled, (state, { payload }) => {
-        state.dayDataLoading = false;
-        state.dayInfo = { ...payload.dayInfo };
-        state.registerDay = payload.startDay;
+        state.isRefreshing = false;
+        state.dayInfo = payload;
       })
       .addCase(getCurrentDayInfoAPI.rejected, (state, { payload }) => {
-        state.dayDataLoading = false;
-        state.dayError = payload;
+        state.isRefreshing = false;
+        state.error = payload;
       })
 
       //addWaterAPI
@@ -66,27 +66,27 @@ const waterSlice = createSlice({
         state.isRefreshing = false;
         state.error = payload;
       })
-      //editDrinkAPI
-      .addCase(editDrinkAPI.pending, state => {
+      //editWaterAPI
+      .addCase(editWaterAPI.pending, state => {
         state.isRefreshing = true;
         state.error = null;
       })
-      .addCase(editDrinkAPI.fulfilled, state => {
+      .addCase(editWaterAPI.fulfilled, state => {
         state.isRefreshing = false;
       })
-      .addCase(editDrinkAPI.rejected, (state, { payload }) => {
+      .addCase(editWaterAPI.rejected, (state, { payload }) => {
         state.isRefreshing = false;
         state.error = payload;
       })
-      //deleteDrinkAPI
-      .addCase(deleteDrinkAPI.pending, state => {
+      //deleteWaterAPI
+      .addCase(deleteWaterAPI.pending, state => {
         state.isRefreshing = true;
         state.error = null;
       })
-      .addCase(deleteDrinkAPI.fulfilled, state => {
+      .addCase(deleteWaterAPI.fulfilled, state => {
         state.isRefreshing = false;
       })
-      .addCase(deleteDrinkAPI.rejected, (state, { payload }) => {
+      .addCase(deleteWaterAPI.rejected, (state, { payload }) => {
         state.isRefreshing = false;
         state.error = payload;
       });
