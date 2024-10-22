@@ -2,14 +2,20 @@ import { Form, Formik, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import toast from 'react-hot-toast';
-import { signInAPI, signUpAPI } from '../../redux/auth/authOperation';
+import {
+  fetchUserDataAPI,
+  signInAPI,
+  signUpAPI,
+} from '../../redux/auth/authOperation';
 import { useState } from 'react';
 import styles from './AuthForm.module.css';
+// import { selectUserId } from '../../redux/auth/authSelectors';
 
 export default function AuthForm({ isSignup }) {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  // const userId = useSelector(selectUserId);
 
   const validationSchema = Yup.object().shape({
     email: Yup.string()
@@ -33,11 +39,27 @@ export default function AuthForm({ isSignup }) {
       const { email, password } = values;
 
       if (isSignup) {
-        await dispatch(signUpAPI({ email, password })).unwrap();
+        const userData = await dispatch(
+          signUpAPI({ email, password })
+        ).unwrap();
+        const userId = userData._id;
         toast.success('Successful registration!');
+
+        if (userId) {
+          await dispatch(fetchUserDataAPI(userId)).unwrap();
+          toast.success('User data updated!');
+        }
       } else {
-        await dispatch(signInAPI({ email, password })).unwrap();
+        const userData = await dispatch(
+          signInAPI({ email, password })
+        ).unwrap();
+        const userId = userData._id;
         toast.success('Successful login!');
+
+        if (userId) {
+          await dispatch(fetchUserDataAPI(userId)).unwrap();
+          toast.success('User data updated!');
+        }
       }
     } catch {
       toast.error('Error during registration/login');

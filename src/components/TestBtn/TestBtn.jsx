@@ -17,16 +17,34 @@ import {
   selectToken,
   selectUserId,
 } from '../../redux/auth/authSelectors.js';
-import { addWaterAPI } from '../../redux/water/waterOperation.js';
+import {
+  addWaterAPI,
+  deleteWaterAPI,
+  editWaterAPI,
+  getCurrentDayInfoAPI,
+  getCurrentMonthInfoAPI,
+} from '../../redux/water/waterOperation.js';
 
 export const TestBtn = () => {
   const token = useSelector(selectToken);
-  //   const data = useSelector(selectUserId);
-  const userId = '6712f7c63f6b0ede6444d149';
+  const userId = useSelector(selectUserId);
+  // const userId = '6712f7c63f6b0ede6444d149';
   const waterNorma = { dailyNorm: 1000 };
   const userNewData = { name: 'olololo' };
+  const id = '6716cd7dca65090473295ace';
 
-  const addWater = {};
+  const addWater = {
+    date: '2024-10-20 19:20',
+    waterVolume: 500,
+  };
+  const editWater = {
+    date: '2024-10-21 17:20',
+    waterVolume: 500,
+  };
+  const monthInfo = {
+    year: 2024,
+    month: 10,
+  };
 
   const dispatch = useDispatch();
 
@@ -34,7 +52,7 @@ export const TestBtn = () => {
     console.log('reqwery data');
     console.log(userId);
     try {
-      await dispatch(addWaterAPI({ userId, token, waterNorma })).unwrap();
+      await dispatch(getCurrentDayInfoAPI()).unwrap();
     } catch (error) {
       console.error('Something went wrong, please try again:', error);
     }

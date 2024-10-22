@@ -1,20 +1,20 @@
 import DailyNorma from '../../components/DailyNorma/DailyNorma';
 import WaterRatioPanel from '../../components/WaterRatioPanel/WaterRatioPanel';
-
 import { TodayWater } from '../../components/TodayWater/TodayWater';
+import MonthStatsTable from '../../components/MonthStatsTable/MonthStatsTable';
 
 import css from './HomePage.module.css';
+// import { TestBtn } from '../../components/TestBtn/TestBtn.jsx';
 
 export default function HomePage() {
   return (
     <div className={css.background}>
       <div className={css.container}>
-<<<<<<< Updated upstream
+        {/* <TestBtn /> */}
         <DailyNorma />
         <WaterRatioPanel />
         <AddWaterBtn />
         <TodayWater />
-=======
         <div className={css.leftColumn}>
           {/* <TestBtn /> */}
           <DailyNorma />
@@ -24,7 +24,7 @@ export default function HomePage() {
           <TodayWater />
           <MonthStatsTable />
         </div>
->>>>>>> Stashed changes
+        <MonthStatsTable />
       </div>
     </div>
   );
