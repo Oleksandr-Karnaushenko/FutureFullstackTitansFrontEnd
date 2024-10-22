@@ -9,6 +9,9 @@
   --sec-orange-l: #ff9d43;
   --sec-lightblue-l: #d7e3ff;
 
+  /* box-shadows light */
+  --box-shadow-l: 0 4px 14px 0 rgba(64, 123, 255, 0.3);
+
   /* Light theme cursors */
   --cursor-fing-h: url('../assets/img/cursors/mdi_cursor-pointer.svg'), pointer;
   --cursor-fing-a: url('../assets/img/cursors/mdi_cursor-pointer.svg'), pointer;
@@ -24,6 +27,9 @@
   --sec-orange-d: #ffa756;
   --sec-lightblue-d: #2a3052;
 
+  /* box-shadows dark*/
+  --box-shadow-d: 0 4px 14px 0 rgba(0, 0, 0, 0.2);
+
   /* Dark theme cursors */
   --cursor-arr-h: url('../assets/img/cursors/outlineArrow1.svg'), pointer;
   --cursor-arr-a: url('../assets/img/cursors/outlineArrow2.svg'), pointer;
@@ -37,6 +43,9 @@
   --secondary-4: var(--sec-4-l);
   --secondary-orange: var(--sec-orange-l);
   --secondary-blue: var(--sec-lightblue-l);
+
+ /* box-shadows*/ 
+  --box-shadow: var(--box-shadow-l);
 
 /* Cursors */
   --cursor-h: var(--cursor-fing-h);
@@ -53,6 +62,9 @@
     --secondary-4: var(--sec-4-d);
     --secondary-orange: var(--sec-orange-d);
     --secondary-blue: var(--sec-lightblue-d);
+
+     /* box-shadows*/ 
+    --box-shadow: var(--box-shadow-d);
 
     /* Applying cursors for dark theme */
     --cursor-h: var(--cursor-arr-h);
@@ -74,6 +86,7 @@ body.light {
   --secondary-4: var(--sec-4-l);
   --secondary-orange: var(--sec-orange-l);
   --secondary-blue: var(--sec-lightblue-l);
+  --box-shadow: var(--box-shadow-l);
 }
 body.dark {
   --background: var(--bg-dark);
@@ -84,6 +97,7 @@ body.dark {
   --secondary-4: var(--sec-4-d);
   --secondary-orange: var(--sec-orange-d);
   --secondary-blue: var(--sec-lightblue-d);
+  --box-shadow: var(--box-shadow-d);
 }
 
 /* Hover and active for buttons */

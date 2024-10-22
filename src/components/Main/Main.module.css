@@ -3,6 +3,7 @@
   min-height: 840px;
   display: flex;
   justify-content: center;
+  align-items: flex-start;
 }
 
 .wrapper {
@@ -23,6 +24,7 @@
   .wrapper {
     gap: 60px;
     align-items: flex-start;
+    min-height: 366px;
   }
 }
 
@@ -30,12 +32,11 @@
 
 @media screen and (min-width: 1440px) {
   .container {
-    min-width: 1404px;
+    max-width: 1404px;
     min-height: 582px;
   }
 
   .wrapper {
-    padding-top: 31px;
     flex-direction: row;
     align-items: flex-end;
     gap: 81px;
