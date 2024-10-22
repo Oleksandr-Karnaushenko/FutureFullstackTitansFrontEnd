@@ -10,11 +10,6 @@ export default function HomePage() {
   return (
     <div className={css.background}>
       <div className={css.container}>
-        {/* <TestBtn /> */}
-        <DailyNorma />
-        <WaterRatioPanel />
-        <AddWaterBtn />
-        <TodayWater />
         <div className={css.leftColumn}>
           {/* <TestBtn /> */}
           <DailyNorma />
@@ -24,7 +19,6 @@ export default function HomePage() {
           <TodayWater />
           <MonthStatsTable />
         </div>
-        <MonthStatsTable />
       </div>
     </div>
   );
