@@ -6,8 +6,8 @@ import { ButtonBtn } from '../ButtonBtn/ButtonBtn'
 import css from './TodayWaterListItem.module.css';
 
 export const TodayWaterListItem = ({ waterItem }) => {
-  const { waterVolume, date } = waterItem;
-  const time = date.split('T')[1];
+  const { waterVolume, time } = waterItem;
+  // const time = date.split('T')[1];
   const waterVolumeLiter =
     waterVolume >= 1000 ? `${waterVolume / 1000} L` : `${waterVolume} ml`;
 

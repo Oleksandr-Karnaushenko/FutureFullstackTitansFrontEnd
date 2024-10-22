@@ -1,41 +1,33 @@
 import { TodayWaterList } from '../TodayWaterList/TodayWaterList';
 import { ButtonBtn } from '../ButtonBtn/ButtonBtn';
-// import svgAdd from '../../images/icons/cross.svg';
 
 import css from './TodayWater.module.css';
 
-const arrayWater = [
-  {
-    date: '2024-10-14T14:20',
-    dailyNorm: 1800,
-    waterVolume: 250,
-    userId: '11111111111',
-  },
-  {
-    date: '2024-10-14T14:20',
-    dailyNorm: 1800,
-    waterVolume: 250,
-    userId: '11111111111',
-  },
-  {
-    date: '2024-10-14T14:20',
-    dailyNorm: 1800,
-    waterVolume: 250,
-    userId: '11111111111',
-  },
-  {
-    date: '2024-10-14T14:20',
-    dailyNorm: 1800,
-    waterVolume: 250,
-    userId: '11111111111',
-  },
-  {
-    date: '2024-10-14T14:20',
-    dailyNorm: 1800,
-    waterVolume: 250,
-    userId: '11111111111',
-  },
+
+const arrayWater= [
+{
+  "_id": "6716a891ad47789dfc91af6a",
+  "waterVolume": 500,
+  "time": "10:40"
+},
+{
+  "_id": "6716a89cad47789dfc91af6e",
+  "waterVolume": 500,
+  "time": "10:40"
+},
+{
+  "_id": "6716a8b6ad47789dfc91af72",
+  "waterVolume": 1000,
+  "time": "12:40"
+},
+{
+  "_id": "6716a8c9ad47789dfc91af76",
+  "waterVolume": 2000,
+  "time": "16:40"
+}
 ];
+
+
 export const TodayWater = () => {
   return (
     <div className={css.todayWaterBlock}>

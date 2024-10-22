@@ -121,10 +121,14 @@
 
 .todayWaterListItemValueLiter {
   font-family: var(--font-family);
+  /* padding-top:5px; */
+  height: 24px;;
   display: flex;
+  justify-content: center;
+  align-items: center;
   font-weight: 400;
   font-size: 18px;
-  line-height: 133%;
+  line-height: 1.33; 
   color: var(--primary-blue-l);
 }
 
