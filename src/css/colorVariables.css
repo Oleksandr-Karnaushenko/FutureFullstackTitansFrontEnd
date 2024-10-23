@@ -11,6 +11,8 @@
 
   /* box-shadows light */
   --box-shadow-l: 0 4px 14px 0 rgba(64, 123, 255, 0.3);
+  --box-shadow-l-2: 0 4px 4px 0 rgba(64, 123, 255, 0.3);
+  --box-shadow-l-3: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
 
   /* Light theme cursors */
   --cursor-fing-h: url('../assets/img/cursors/mdi_cursor-pointer.svg'), pointer;
@@ -29,6 +31,8 @@
 
   /* box-shadows dark*/
   --box-shadow-d: 0 4px 14px 0 rgba(0, 0, 0, 0.2);
+  --box-shadow-d-2: 0 4px 14px 0 rgba(0, 0, 0, 0.2);
+  --box-shadow-d-3: 0 4px 8px 0 rgba(0, 0, 0, 0.34);
 
   /* Dark theme cursors */
   --cursor-arr-h: url('../assets/img/cursors/outlineArrow1.svg'), pointer;
@@ -44,10 +48,12 @@
   --secondary-orange: var(--sec-orange-l);
   --secondary-blue: var(--sec-lightblue-l);
 
- /* box-shadows*/ 
+  /* box-shadows*/
   --box-shadow: var(--box-shadow-l);
+  --box-shadow-2: var(--box-shadow-l-2);
+  --box-shadow-3: var(--box-shadow-l-3);
 
-/* Cursors */
+  /* Cursors */
   --cursor-h: var(--cursor-fing-h);
   --cursor-a: var(--cursor-fing-a);
 }
@@ -63,15 +69,16 @@
     --secondary-orange: var(--sec-orange-d);
     --secondary-blue: var(--sec-lightblue-d);
 
-     /* box-shadows*/ 
+    /* box-shadows*/
     --box-shadow: var(--box-shadow-d);
+    --box-shadow-2: var(--box-shadow-d-2);
+    --box-shadow-3: var(--box-shadow-d-3);
 
     /* Applying cursors for dark theme */
     --cursor-h: var(--cursor-arr-h);
     --cursor-a: var(--cursor-arr-a);
   }
 }
-
 
 body {
   background-color: var(--background);
@@ -87,6 +94,8 @@ body.light {
   --secondary-orange: var(--sec-orange-l);
   --secondary-blue: var(--sec-lightblue-l);
   --box-shadow: var(--box-shadow-l);
+  --box-shadow-2: var(--box-shadow-l-2);
+  --box-shadow-3: var(--box-shadow-l-3);
 }
 body.dark {
   --background: var(--bg-dark);
@@ -98,6 +107,8 @@ body.dark {
   --secondary-orange: var(--sec-orange-d);
   --secondary-blue: var(--sec-lightblue-d);
   --box-shadow: var(--box-shadow-d);
+  --box-shadow-2: var(--box-shadow-d-2);
+  --box-shadow-3: var(--box-shadow-d-3);
 }
 
 /* Hover and active for buttons */
