@@ -46,7 +46,7 @@ export const TodayWater = () => {
           <Loader />
         </div>
       )}
-      {error && { error }}
+      {error && <p className={css.todayWaterError}>{ error }</p>}
       {arrayWater.length > 0 && !isRefreshing && (
         <TodayWaterList arrayWater={waterEntries} onDelete={handleDelete} />
       )}
