@@ -1,12 +1,16 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { useState } from 'react';
 import { IoCloseOutline } from 'react-icons/io5';
-import { HiOutlineEyeSlash, HiOutlineEye } from 'react-icons/hi2';
+
+import { HiOutlineEyeSlash } from 'react-icons/hi2';
+import { HiOutlineEye } from 'react-icons/hi2';
+
+import styles from './SettingModal.module.css';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { changeUserDataAPI } from '../../redux/auth/authOperation.js';
 import { useInfoValidationSchema } from '../../validation/userValidation.js';
 import { selectCurrentUser } from '../../redux/auth/authSelectors.js';
-import styles from './SettingModal.module.css';
 
 function SettingModal({ isOpen, onClose }) {
   const [showPassword, setShowPassword] = useState(false);
@@ -46,10 +50,11 @@ function SettingModal({ isOpen, onClose }) {
       }
 
       const userId = user._id;
-      await dispatch(changeUserDataAPI({ userId, userNewData: updatedData })).unwrap();
+      await dispatch(
+        changeUserDataAPI({ userId, userNewData: updatedData })
+      ).unwrap();
       resetForm({ values: { ...initialValues, ...updatedData } });
     } catch (error) {
-      console.error('Error:', error);
     } finally {
       setSubmitting(false);
     }

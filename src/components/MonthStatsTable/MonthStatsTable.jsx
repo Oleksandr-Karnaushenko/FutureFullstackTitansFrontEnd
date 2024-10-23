@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCurrentMonthInfoAPI } from '../../redux/water/waterOperation.js';
 import { selectMonthInfo } from '../../redux/water/waterSelectors.js';
+import DaysGeneralStats from '../DaysGeneralStats/DaysGeneralStats.jsx';
 import css from './MonthStatsTable.module.css';
 
 export default function MonthStatsTable() {
@@ -10,6 +11,7 @@ export default function MonthStatsTable() {
 
   const [selectedMonth, setSelectedMonth] = useState(currentMonth);
   const [selectedYear, setSelectedYear] = useState(currentYear);
+  const [selectedDayInfo, setSelectedDayInfo] = useState(null);
 
   const dispatch = useDispatch();
 
@@ -67,13 +69,29 @@ export default function MonthStatsTable() {
 
       const dayInfo = validMonthInfo.find(data => data.date === dateFormate);
       const percent = dayInfo ? parseInt(dayInfo.percent, 10) : 0;
+      const dailyNorm = dayInfo ? dayInfo.dailyNorm : 0;
+      const count = dayInfo ? dayInfo.count : 0;
 
       return {
         day,
         percent,
+        dayInfo: {
+          date: dateFormate,
+          dailyNorm,
+          percent,
+          count,
+        },
       };
     });
   }, [daysInMonth, monthInfo, selectedMonth]);
+
+  const handleDayClick = dayInfo => {
+    if (selectedDayInfo && selectedDayInfo.date === dayInfo.date) {
+      setSelectedDayInfo(null);
+    } else {
+      setSelectedDayInfo(dayInfo);
+    }
+  };
 
   return (
     <div className={css.state}>
@@ -102,13 +120,24 @@ export default function MonthStatsTable() {
         </div>
       </div>
       <ul className={css.list}>
-        {formatDays.map(({ day, percent }, index) => (
-          <li key={index} className={css.item}>
+        {formatDays.map(({ day, percent, dayInfo }, index) => (
+          <li
+            key={index}
+            className={`${css.item} ${percent < 100 ? css.notReached : ''}`}
+            onClick={() => handleDayClick(dayInfo)}
+          >
             {day}
             <div className={css.percent}>{percent}%</div>
           </li>
         ))}
       </ul>
+      {selectedDayInfo && (
+        <DaysGeneralStats
+          dayInfo={selectedDayInfo}
+          selectedMonth={selectedMonth}
+          monthNames={monthNames}
+        />
+      )}
     </div>
   );
 }

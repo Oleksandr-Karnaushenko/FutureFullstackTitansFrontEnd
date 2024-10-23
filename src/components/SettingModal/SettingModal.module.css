@@ -59,6 +59,38 @@
   }
 }
 
+@media screen and (min-width: 768px) {
+  .modal {
+    width: 704px;
+    padding: 32px 24px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .modal {
+    width: 1008px;
+    height: 592px;
+  }
+}
+
+.titleWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media screen and (min-width: 768px) {
+  .titleWrapper {
+    width: 656px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .titleWrapper {
+    width: 960px;
+  }
+}
+
 .title {
   color: var(--text-light);
   font-size: 26px;
@@ -76,6 +108,16 @@
 .buttonClose {
   background: var(--bg-light);
   border: none;
+}
+
+.iconClose {
+  fill: var(--primary-blue-l);
+  width: 24px;
+  height: 24px;
+}
+
+.buttonClose {
+  background: var(--bg-light);
 }
 
 .form {
@@ -286,3 +328,4 @@
   color: var(--sec-3-l);
   outline: none;
 }
+
