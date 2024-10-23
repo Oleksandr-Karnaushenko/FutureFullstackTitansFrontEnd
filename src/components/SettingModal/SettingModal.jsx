@@ -1,18 +1,15 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { useEffect, useState } from 'react';
-// import { FiUpload } from 'react-icons/fi';
-
 import styles from './SettingModal.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   changeUserDataAPI,
   fetchUserDataAPI,
 } from '../../redux/auth/authOperation.js';
-// import { useInfoValidationSchema } from '../../validation/userValidation.js';
 import { selectCurrentUser } from '../../redux/auth/authSelectors.js';
 import Icon from '../Icon/Icon.jsx';
 
-function SettingModal() {
+function SettingModal({ isOpen, onClose }) {
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
 
@@ -25,8 +22,6 @@ function SettingModal() {
   }, [dispatch]);
 
   const user = useSelector(selectCurrentUser);
-  console.log(user);
-
   const { name, gender, email } = user;
 
   const initialValues = {
@@ -49,19 +44,22 @@ function SettingModal() {
       ).unwrap();
       resetForm();
     } catch (error) {
-      console.log(error);
       console.error('Backend response:', error.response?.data || error.message);
-      //  toastError(error);
     } finally {
       setSubmitting(false);
     }
   };
 
+  // Якщо `isOpen` - false, модалка не рендериться
+  if (!isOpen) {
+    return null;
+  }
+
   return (
     <div className={styles.modal}>
       <div className={styles.titleWrapper}>
         <h1 className={styles.title}>Setting</h1>
-        <button className={styles.buttonClose}>
+        <button className={styles.buttonClose} onClick={onClose}>
           <Icon
             name="icon-cross"
             width={24}
@@ -72,19 +70,9 @@ function SettingModal() {
         </button>
       </div>
 
-      {/* <form>
-        <label htmlFor="image">
-          <FiUpload />
-        </label>
-        <input type="file" name="image" />
-        <img src="" alt="" />
-        <button type="submit">Upload a photo</button>
-      </form> */}
-
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
-        // validationSchema={useInfoValidationSchema}
       >
         {({ errors, touched, isSubmitting }) => (
           <Form className={styles.form}>

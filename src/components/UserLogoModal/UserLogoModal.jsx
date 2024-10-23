@@ -30,6 +30,13 @@ const UserLogoModal = ({ isOpen, onClose, anchorPosition }) => {
     setIsLogoutModalOpen(false);
   };
 
+  const handleConfirmLogout = () => {
+    // Додайте тут будь-яку додаткову логіку для виходу з акаунту
+    console.log('User logged out');
+    setIsLogoutModalOpen(false);
+    onClose(); // Закриваємо також UserLogoModal після логауту
+  };
+
   useEffect(() => {
     if (isOpen && anchorPosition) {
       const modalElement = modalRef.current;
@@ -61,19 +68,21 @@ const UserLogoModal = ({ isOpen, onClose, anchorPosition }) => {
             </button>
           </div>
         </div>
+
+        {/* Modal for settings */}
         {isSettingModalOpen && (
           <SettingModal
             isOpen={isSettingModalOpen}
             onClose={handleCloseSettings}
           />
         )}
+
+        {/* Modal for logout */}
         {isLogoutModalOpen && (
           <UserLogoutModal
             isOpen={isLogoutModalOpen}
             onClose={handleCloseLogout}
-            onLogout={() => {
-              setIsLogoutModalOpen(false);
-            }}
+            onLogout={handleConfirmLogout} // Логіка логауту
           />
         )}
       </div>
