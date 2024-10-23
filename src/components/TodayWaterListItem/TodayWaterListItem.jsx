@@ -1,30 +1,45 @@
 import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import toast, { Toaster } from 'react-hot-toast';
+
+import * as selector from '../../redux/water/waterSelectors';
+import { deleteWaterAPI } from '../../redux/water/waterOperation/';
 import Icon from '../Icon/Icon';
 import { TodayWaterModal } from '../TodayWaterModal/TodayWaterModal';
 import { ButtonBtn } from '../ButtonBtn/ButtonBtn';
 
 import css from './TodayWaterListItem.module.css';
 
-export const TodayWaterListItem = ({ waterItem }) => {
+export const TodayWaterListItem = ({ waterItem, onDelete }) => {
+  const { waterVolume, time, _id } = waterItem;
+
+  const dispatch = useDispatch();
+  useSelector(selector.selectDayInfo);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   const toggleModal = () => {
     return setIsModalOpen(!isModalOpen);
   };
 
-  // const closeModal = ()=>{
-  //   setIsModalOpen(false);
-  // }
+  const handleDeleteClick = async () => {
+    try {
+      await dispatch(deleteWaterAPI(_id));
+      toast.success('Entry deleted successfully!');
+      toggleModal();
+      onDelete(_id);
+    } catch (error) {
+      console.log(error);
+      toast.error('Failed to delete the entry.');
+    }
+  };
 
-  const { waterVolume, time } = waterItem;
-  // const time = date.split('T')[1];
   const waterVolumeLiter =
     waterVolume >= 1000 ? `${waterVolume / 1000} L` : `${waterVolume} ml`;
 
   return (
     <div className={css.todayWaterListItemContainer}>
       <div className={css.todayWaterListItemValueContainer}>
-        {/* <ReactSVG src={svgIcon} className={css.todayWaterListItemValueIcon} /> */}
-
         <Icon name={'glass'} className={css.todayWaterListItemValueIconNew} />
 
         <span className={css.todayWaterListItemValueLiter}>
@@ -38,9 +53,7 @@ export const TodayWaterListItem = ({ waterItem }) => {
           clasNameBtn={css.buttonBtnEdit}
           classNameBtnIcon={css.buttonBtnEditIcon}
           icon={'notebook'}
-          onClick={() => {
-            // console.log('111111');
-          }}
+          onClick={() => {}}
         />
         <ButtonBtn
           type={'submit'}
@@ -58,34 +71,28 @@ export const TodayWaterListItem = ({ waterItem }) => {
         onClose={toggleModal}
       >
         <ButtonBtn
-          // classNameBtnIcon={css.buttonSubmitAddIcon}
           clasNameBtn={css.buttonModalDelete}
           icon={null}
           name={'Delete'}
           type={'button'}
-          // onClick={toggleModal}
+          onClick={handleDeleteClick}
         />
-
         <ButtonBtn
-          // classNameBtnIcon={css.buttonSubmitAddIcon}
           clasNameBtn={css.buttonModalCancel}
           icon={null}
           name={'Cancel'}
           type={'button'}
           onClick={toggleModal}
         />
-
         <ButtonBtn
           classNameBtnIcon={css.buttonModalIcon}
           clasNameBtn={css.buttonModalClose}
           icon={'cross'}
-          // name={'Close'}
           type={'button'}
           onClick={toggleModal}
         />
       </TodayWaterModal>
+      <Toaster />
     </div>
   );
 };
-
-//

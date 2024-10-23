@@ -1,7 +1,7 @@
 .todayWaterBlock {
   padding: 24px 8px;
   background-color: var(--sec-2-l);
-  border-top-left-radius: 10px; 
+  border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
 
@@ -11,7 +11,7 @@
   font-weight: 500;
   font-size: 24px;
   line-height: 1.25;
-  color: var( --text-light);
+  color: var(--text-light);
 }
 
 .buttonSubmitAdd {
@@ -21,7 +21,6 @@
   font-size: 16px;
   line-height: 125%;
   color: var(--primary-blue-l);
- 
 }
 
 .buttonSubmitAdd:hover {
@@ -43,8 +42,26 @@
   width: 20px;
   height: 20px;
   fill: #407bff;
-  fill: var(  --primary-blue-l);
+  fill: var(--primary-blue-l);
   stroke: #407bff;
-  stroke: var(  --primary-blue-l);
+  stroke: var(--primary-blue-l);
 }
 
+.todayWaterLoader {
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (min-width: 768px) {
+  .todayWaterBlock {
+    max-height: 324px;
+    height: 100%;
+  }
+
+  .todayWaterBlock {
+    padding: 32px 24px;
+    background-color: var(--sec-2-l);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+}
