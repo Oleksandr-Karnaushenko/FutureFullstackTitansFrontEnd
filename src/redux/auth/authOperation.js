@@ -27,7 +27,7 @@ export const signUpAPI = createAsyncThunk(
       return data;
     } catch (error) {
       toastError('Something went wrong. Please try again or log in');
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response.data.data.message);
     }
   }
 );
@@ -64,7 +64,7 @@ export const logOutAPI = createAsyncThunk(
     } catch (error) {
       cleareAuthHeader();
       toastSuccess('Log out successful. Come back sooner');
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response.data.data.message);
     }
   }
 );
@@ -89,7 +89,7 @@ export const fetchCurrentUserAPI = createAsyncThunk(
       toastError(
         'Auth state is old. Please enter to your personal cabinet again'
       );
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response.data.data.message);
     }
   }
 );
@@ -109,7 +109,7 @@ export const fetchUserDataAPI = createAsyncThunk(
       return backEndData;
     } catch (error) {
       toastError('Something went wrong');
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.resp);
     }
   }
 );
@@ -130,7 +130,7 @@ export const changeUserAvatarAPI = createAsyncThunk(
       return backEndData;
     } catch (error) {
       toastError('Something went wrong');
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response.data.data.message);
     }
   }
 );
@@ -151,7 +151,7 @@ export const editDailyNormAPI = createAsyncThunk(
       return backEndData;
     } catch (error) {
       toastError('Something went wrong');
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response.data.data.message);
     }
   }
 );
@@ -171,7 +171,7 @@ export const changeUserDataAPI = createAsyncThunk(
       return backEndData;
     } catch (error) {
       toastError('Invalid password');
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response.data.data.message);
     }
   }
 );

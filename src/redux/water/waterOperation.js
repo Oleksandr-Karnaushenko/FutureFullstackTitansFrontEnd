@@ -2,29 +2,23 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 import { toastError, toastSuccess } from '../../services/toastNotification';
-// export const getMonthInfoAPI = async date => {
-//   const { data } = await axios.post('water/month', date);
 
-//   return data;
-// };
 export const getCurrentMonthInfoAPI = createAsyncThunk(
   'water/getMonth',
   async (data, thunkAPI) => {
     const { month, year } = data;
-    console.log('month');
-    console.log(month);
-    console.log('year');
-    console.log(year);
+
     try {
       const { data } = await axios.get(
         `water/monthInfo?month=${month}&year=${year}`
       );
+      console.log(data);
 
-      const backEndData = data.data;
+      const backEndData = data.data.data;
 
       return backEndData;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.response.data.data.message);
     }
   }
 );
@@ -39,7 +33,7 @@ export const getCurrentDayInfoAPI = createAsyncThunk(
 
       return backEndData;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.response.data.data.message);
     }
   }
 );
@@ -49,8 +43,7 @@ export const addWaterAPI = createAsyncThunk(
   async (newWater, thunkAPI) => {
     try {
       const { data } = await axios.post(`water`, newWater);
-      console.log('backdata');
-      console.log(data);
+
       const backEndData = data.data;
 
       toastSuccess('Drink has been added successful');
@@ -58,7 +51,7 @@ export const addWaterAPI = createAsyncThunk(
       return backEndData;
     } catch (error) {
       toastError('Sorry, something went wrong. Please, try again');
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.response.data.data.message);
     }
   }
 );
@@ -77,7 +70,7 @@ export const editWaterAPI = createAsyncThunk(
       return backEndData;
     } catch (error) {
       toastError('Sorry, something went wrong. Please, try again');
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.response.data.data.message);
     }
   }
 );
@@ -95,7 +88,7 @@ export const deleteWaterAPI = createAsyncThunk(
       return backEndData;
     } catch (error) {
       toastError('Sorry, something went wrong. Please, try again');
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.response.data.data.message);
     }
   }
 );
