@@ -12,7 +12,7 @@ import { changeUserDataAPI } from '../../redux/auth/authOperation.js';
 import { useInfoValidationSchema } from '../../validation/userValidation.js';
 import { selectCurrentUser } from '../../redux/auth/authSelectors.js';
 
-function SettingModal() {
+function SettingModal({ isOpen, onClose }) {
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
 
@@ -21,8 +21,6 @@ function SettingModal() {
   };
 
   const user = useSelector(selectCurrentUser);
-  console.log(user);
-
   const { name, gender, email } = user;
 
   const initialValues = {
@@ -60,13 +58,15 @@ function SettingModal() {
       ).unwrap();
       resetForm({ values: { ...initialValues, ...updatedData } });
     } catch (error) {
-      console.error('Error:', error);
-      console.error('Backend response:', error.response?.data || error.message);
-      //  toastError(error.response?.data || 'An error occurred');
     } finally {
       setSubmitting(false);
     }
   };
+
+  // Якщо `isOpen` - false, модалка не рендериться
+  if (!isOpen) {
+    return null;
+  }
 
   return (
     <div className={styles.modal}>
@@ -74,6 +74,7 @@ function SettingModal() {
         <h1 className={styles.title}>Setting</h1>
         <button className={styles.buttonClose}>
           <IoCloseOutline
+
             name="icon-cross"
             width={24}
             height={24}
@@ -82,15 +83,6 @@ function SettingModal() {
           />
         </button>
       </div>
-
-      {/* <form>
-        <label htmlFor="image">
-          <FiUpload />
-        </label>
-        <input type="file" name="image" />
-        <img src="" alt="" />
-        <button type="submit">Upload a photo</button>
-      </form> */}
 
       <Formik
         initialValues={initialValues}

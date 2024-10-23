@@ -1,8 +1,8 @@
 import { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectUserData } from "../../redux/user/selectors";
-import { logOut } from "../../redux/auth/authOperation";
-// import UserLogoutModal from "../UserLogoutModal/UserLogoutModal";
+import { selectCurrentUser } from "../../redux/auth/authSelectors";
+import { logOutAPI } from "../../redux/auth/authOperation";
+import UserLogoutModal from "../UserLogoutModal/UserLogoutModal";
 import SettingModal from "../SettingModal/SettingModal";
 import UserLogoModal from "../UserLogoModal/UserLogoModal";
 
@@ -10,7 +10,7 @@ import css from "./UserLogo.module.css";
 
 const UserLogo = () => {
   const dispatch = useDispatch();
-  const user = useSelector(selectUserData);
+  const user = useSelector(selectCurrentUser);
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
   const [isSettingModalOpen, setIsSettingModalOpen] = useState(false);
   const [isUserLogoModalOpen, setIsUserLogoModalOpen] = useState(false);
@@ -22,7 +22,7 @@ const UserLogo = () => {
   };
 
   const handleConfirmLogout = () => {
-    dispatch(logOut());
+    dispatch(logOutAPI());
     setIsLogoutModalOpen(false);
   };
 
