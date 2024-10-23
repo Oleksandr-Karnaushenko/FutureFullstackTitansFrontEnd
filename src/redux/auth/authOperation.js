@@ -2,7 +2,7 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toastError, toastSuccess } from '../../services/toastNotification.js';
 
-axios.defaults.baseURL = 'https://watertrackerbackend-1b9z.onrender.com';
+axios.defaults.baseURL = 'http://localhost:3000';
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };

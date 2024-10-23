@@ -1,9 +1,9 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { useEffect, useState } from 'react';
-import styles from './SettingModal.module.css';
+import { useState } from 'react';
+import { IoCloseOutline } from 'react-icons/io5';
+import { HiOutlineEyeSlash, HiOutlineEye } from 'react-icons/hi2';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  changeUserDataAPI,
   fetchUserDataAPI,
 } from '../../redux/auth/authOperation.js';
 import { selectCurrentUser } from '../../redux/auth/authSelectors.js';
