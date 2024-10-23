@@ -52,7 +52,7 @@ export const TestBtn = () => {
     console.log('reqwery data');
     console.log(userId);
     try {
-      await dispatch(getCurrentDayInfoAPI()).unwrap();
+      await dispatch(fetchCurrentUserAPI()).unwrap();
     } catch (error) {
       console.error('Something went wrong, please try again:', error);
     }

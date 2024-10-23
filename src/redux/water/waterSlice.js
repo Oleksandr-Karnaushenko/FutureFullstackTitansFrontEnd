@@ -47,7 +47,7 @@ const waterSlice = createSlice({
       })
       .addCase(getCurrentDayInfoAPI.fulfilled, (state, { payload }) => {
         state.isRefreshing = false;
-        state.dayInfo = payload;
+        if (payload) state.dayInfo = payload;
       })
       .addCase(getCurrentDayInfoAPI.rejected, (state, { payload }) => {
         state.isRefreshing = false;
