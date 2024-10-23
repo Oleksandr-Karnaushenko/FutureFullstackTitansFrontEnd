@@ -1,0 +1,47 @@
+.dayInfo {
+  width: 280px;
+  height: auto;
+  padding: 24px 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background-color: var(--background);
+  border-radius: 10px;
+  box-shadow: 0 4px 4px 0 rgba(64, 123, 255, 0.3);
+  position: absolute;
+  top: 89%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.data {
+  line-height: 20px;
+  color: var(--primary-blue);
+}
+
+.info {
+  line-height: 20px;
+  color: var(--text);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.info span {
+  color: var(--primary-blue);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  padding-left: 6px;
+}
+
+@media screen and (min-width: 768px) {
+  .dayInfo {
+    width: 292px;
+    padding: 24px 16px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+}
