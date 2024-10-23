@@ -1,12 +1,30 @@
 .todayWaterList {
-    max-height: 240px;
-     max-height: 140px;
-    height:100%;
+  max-height: 182px;
+  height: 100%;
+  margin-bottom: 12px;
+  overflow-y: auto;
+}
+
+ul {
+  scrollbar-width: thin; /* Тонкий скролл */
+  scrollbar-color: #9ebbff transparent; /* Цвет скролла и фона */
+}
+
+
+/*<----------768px--------->*/
+@media screen and (min-width: 768px) {
+  .todayWaterList {
+    max-height: 180px;
+
+  }
+}
+
+/*<----------1440px--------->*/
+
+@media screen and (min-width: 1440px) {
+  .todayWaterList {
+    height: auto;
     margin-bottom: 12px;
     overflow-y: auto;
   }
-  
-ul {
-    scrollbar-width: thin;         /* Тонкий скролл */
-    scrollbar-color: #9EBBFF transparent; /* Цвет скролла и фона */
- }
+}

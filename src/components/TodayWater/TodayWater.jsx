@@ -1,33 +1,55 @@
-import { useEffect,useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
-import { TodayWaterModal } from '../TodayWaterModal/TodayWaterModal';
-
 import { getCurrentDayInfoAPI } from '../../redux/water/waterOperation/';
-import { selectDayInfo } from '../../redux/water/waterSelectors';
+import * as selector from '../../redux/water/waterSelectors';
+import Loader from '../Loader/Loader';
 import { TodayWaterList } from '../TodayWaterList/TodayWaterList';
 import { ButtonBtn } from '../ButtonBtn/ButtonBtn';
 
 import css from './TodayWater.module.css';
 
 export const TodayWater = () => {
+  const dayInfo = useSelector(selector.selectDayInfo);
+  const isRefreshing = useSelector(selector.selectWaterIsRefreshing);
+  const error = useSelector(selector.selectWaterError);
 
-// const [isModalOpen, setIsModalOpen] = useState(false)
-// const toggleModal = ()=>{
-//   setIsModalOpen(!isModalOpen);
-// }
-
-  const dayInfo = useSelector(selectDayInfo);
   const dispatch = useDispatch();
   const arrayWater = dayInfo.waterVolumeTimeEntries;
+  // ----------------
+  // Локальное состояние для массива воды
+  const [waterEntries, setWaterEntries] = useState([]);
+
+  useEffect(() => {
+    if (dayInfo && dayInfo.waterVolumeTimeEntries) {
+      setWaterEntries(dayInfo.waterVolumeTimeEntries);
+    }
+  }, [dayInfo]);
+
+  // ---------------
+
   useEffect(() => {
     dispatch(getCurrentDayInfoAPI());
   }, [dispatch]);
 
+  // ---------------
+  // Обновляем массив после удаления
+  const handleDelete = id => {
+    setWaterEntries(prevEntries => prevEntries.filter(item => item._id !== id));
+  };
+  // -----------------
+
   return (
     <div className={css.todayWaterBlock}>
       <h3 className={css.todayWaterSubtitle}>Today</h3>
-      <TodayWaterList arrayWater={arrayWater} />
+      {isRefreshing && (
+        <div className={css.todayWaterLoader}>
+          <Loader />
+        </div>
+      )}
+      {error && <p className={css.todayWaterError}>{ error }</p>}
+      {arrayWater.length > 0 && !isRefreshing && (
+        <TodayWaterList arrayWater={waterEntries} onDelete={handleDelete} />
+      )}
       <ButtonBtn
         classNameBtnIcon={css.buttonSubmitAddIcon}
         clasNameBtn={css.buttonSubmitAdd}
@@ -35,26 +57,6 @@ export const TodayWater = () => {
         name={'Add Water'}
         type={'button'}
       />
-      {/* <TodayWaterModal
-        title="Delete entry"
-        text="Are you sure you want to delete the entry?"
-      >
-        <ButtonBtn
-          // classNameBtnIcon={css.buttonSubmitAddIcon}
-          clasNameBtn={css.buttonModalCancel}
-          icon={'plus'}
-          name={'Delete'}
-          type={'button'}
-        />
-
-        <ButtonBtn
-          // classNameBtnIcon={css.buttonSubmitAddIcon}
-          clasNameBtn={css.buttonModalCancel}
-          icon={'plus'}
-          name={'Close'}
-          type={'button'}
-        />
-      </TodayWaterModal> */}
     </div>
   );
 };

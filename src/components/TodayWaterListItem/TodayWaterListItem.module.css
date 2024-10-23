@@ -8,7 +8,7 @@
 .todayWaterListItemContainer {
   position: relative;
   padding-inline: 8px;
-  margin-bottom: 24px;
+  margin-bottom: 26px;
   width: 100%;
   justify-content: space-between;
 }
@@ -23,8 +23,7 @@
   height: 1px;
   display: block;
   background-color: #9ebbff;
-  /* background-color: grey; */
-  /* border: 1px solid var(--secondary-color---5); */
+
 }
 
 .todayWaterListItemValueContainer {
@@ -59,12 +58,6 @@
   border-bottom: 1px solid #9ebbff;
 }
 
-/* .todayWaterListItemButtonsContainer .buttonBtnDeleteIcon svg {
-  width: 12px;
-  height: 14px;
-  fill: none;
-} */
-
 .buttonBtnDeleteIcon {
   width: 16px;
   height: 18px;
@@ -72,21 +65,12 @@
   stroke: #ef5050;
 }
 
-.buttonBtnDeleteIcon use {
-  /* width: 12px;
-    height: 14px; */
-  /* fill: none;
-    stroke: #EF5050; */
-}
 
 .buttonBtnDelete:hover {
   border-bottom: 1px solid #ef5050;
 }
 
-/* .todayWaterListItemButtonsContainer .buttonBtnEditIcon svg {
-  width: 14px;
-  height: 14px;
-} */
+
 
 .buttonBtnEditIcon {
   width: 16px;
@@ -95,12 +79,6 @@
   stroke: #9ebbff;
 }
 
-/* .buttonBtnEditIcon use {
-    width: 14px;
-    height: 14px;
-    fill: none;
-    stroke: #9EBBFF;
-  } */
 
 .todayWaterListItemValueIcon svg {
   width: 17px;
@@ -112,13 +90,10 @@
   height: 22px;
 }
 
-/* .todayWaterListItemValueIconNew:hover {
-    fill: red;
-}  */
+
 
 .todayWaterListItemValueLiter {
   font-family: var(--font-family);
-  /* padding-top:5px; */
   height: 24px;
   display: flex;
   justify-content: center;
@@ -156,11 +131,7 @@
   background: var(--sec-3-l);
 }
 
-/* .buttonModalDelete {
-  box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
-  background: var(--sec-3-l);
-  color: var(--bg-light);
-} */
+
 .buttonModalCancel {
   margin-bottom: 0;
   background: var(--sec-4-l);
@@ -193,11 +164,16 @@ color: var(--primary-blue-l);
     width: 160px;
     height: 44px;
   }
+  .todayWaterListItemValueIconNew {
+    width: 23px;
+    height: 30px;
+  }
 
 }
 
 /*<----------1280px--------->*/
 
 @media screen and (min-width: 1440px) {
+ 
 
 }

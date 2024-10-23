@@ -1,36 +1,46 @@
+import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import toast, { Toaster } from 'react-hot-toast';
 
-import { useState } from "react";
-import Icon from "../Icon/Icon"
-import { TodayWaterModal } from "../TodayWaterModal/TodayWaterModal";
-import { ButtonBtn } from '../ButtonBtn/ButtonBtn'
-
+import * as selector from '../../redux/water/waterSelectors';
+import { deleteWaterAPI } from '../../redux/water/waterOperation/';
+import Icon from '../Icon/Icon';
+import { TodayWaterModal } from '../TodayWaterModal/TodayWaterModal';
+import { ButtonBtn } from '../ButtonBtn/ButtonBtn';
 
 import css from './TodayWaterListItem.module.css';
 
-export const TodayWaterListItem = ({ waterItem }) => {
+export const TodayWaterListItem = ({ waterItem, onDelete }) => {
+  const { waterVolume, time, _id } = waterItem;
 
-const [isModalOpen, setIsModalOpen] = useState(false)
-const toggleModal = ()=>{
-  return setIsModalOpen(!isModalOpen);
-}
-const closeModal = ()=>{
-  setIsModalOpen(false);
-}
+  const dispatch = useDispatch();
+  useSelector(selector.selectDayInfo);
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const { waterVolume, time } = waterItem;
-  // const time = date.split('T')[1];
+  const toggleModal = () => {
+    return setIsModalOpen(!isModalOpen);
+  };
+
+  const handleDeleteClick = async () => {
+    try {
+      await dispatch(deleteWaterAPI(_id));
+      toast.success('Entry deleted successfully!');
+      toggleModal();
+      onDelete(_id);
+    } catch (error) {
+      console.log(error);
+      toast.error('Failed to delete the entry.');
+    }
+  };
+
   const waterVolumeLiter =
     waterVolume >= 1000 ? `${waterVolume / 1000} L` : `${waterVolume} ml`;
 
   return (
     <div className={css.todayWaterListItemContainer}>
       <div className={css.todayWaterListItemValueContainer}>
-      
-        {/* <ReactSVG src={svgIcon} className={css.todayWaterListItemValueIcon} /> */}
-
-        <Icon name ={"glass"} className={css.todayWaterListItemValueIconNew}/>
-
+        <Icon name={'glass'} className={css.todayWaterListItemValueIconNew} />
 
         <span className={css.todayWaterListItemValueLiter}>
           {waterVolumeLiter}
@@ -38,49 +48,51 @@ const closeModal = ()=>{
         <span className={css.todayWaterListItemValueTime}> {time}</span>
       </div>
       <div className={css.todayWaterListItemButtonsContainer}>
-        
-        <ButtonBtn type ={'submit'} clasNameBtn={css.buttonBtnEdit} classNameBtnIcon={css.buttonBtnEditIcon} icon={"notebook"} onClick={()=>{console.log("111111")}}/>
-        <ButtonBtn type ={'submit'} clasNameBtn={css.buttonBtnDelete} classNameBtnIcon={css.buttonBtnDeleteIcon}  icon={"trashbox"}  onClick={toggleModal} />
+        <ButtonBtn
+          type={'submit'}
+          clasNameBtn={css.buttonBtnEdit}
+          classNameBtnIcon={css.buttonBtnEditIcon}
+          icon={'notebook'}
+          onClick={() => {}}
+        />
+        <ButtonBtn
+          type={'submit'}
+          clasNameBtn={css.buttonBtnDelete}
+          classNameBtnIcon={css.buttonBtnDeleteIcon}
+          icon={'trashbox'}
+          onClick={toggleModal}
+        />
       </div>
 
-      <TodayWaterModal 
-      title="Delete entry"
-      text ="Are you sure you want to delete the entry?"
-      isOpen={isModalOpen}
-      onClose={toggleModal}
+      <TodayWaterModal
+        title="Delete entry"
+        text="Are you sure you want to delete the entry?"
+        isOpen={isModalOpen}
+        onClose={toggleModal}
       >
-        <ButtonBtn 
-          // classNameBtnIcon={css.buttonSubmitAddIcon}
+        <ButtonBtn
           clasNameBtn={css.buttonModalDelete}
           icon={null}
           name={'Delete'}
-          type={"button"}
-          // onClick={toggleModal}
-          />
-          
-        <ButtonBtn 
-          // classNameBtnIcon={css.buttonSubmitAddIcon}
+          type={'button'}
+          onClick={handleDeleteClick}
+        />
+        <ButtonBtn
           clasNameBtn={css.buttonModalCancel}
           icon={null}
           name={'Cancel'}
-          type={"button"}
+          type={'button'}
           onClick={toggleModal}
-          />
-
-<ButtonBtn 
+        />
+        <ButtonBtn
           classNameBtnIcon={css.buttonModalIcon}
           clasNameBtn={css.buttonModalClose}
-          icon={"cross"}
-          // name={'Close'}
-          type={"button"}
+          icon={'cross'}
+          type={'button'}
           onClick={toggleModal}
-          />
-
+        />
       </TodayWaterModal>
-
-     
+      <Toaster />
     </div>
   );
 };
-
-//
