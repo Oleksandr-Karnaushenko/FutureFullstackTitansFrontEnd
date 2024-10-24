@@ -9,13 +9,11 @@ import {
 } from '../../redux/auth/authOperation';
 import { useState } from 'react';
 import styles from './AuthForm.module.css';
-// import { selectUserId } from '../../redux/auth/authSelectors';
 
 export default function AuthForm({ isSignup }) {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  // const userId = useSelector(selectUserId);
 
   const validationSchema = Yup.object().shape({
     email: Yup.string()

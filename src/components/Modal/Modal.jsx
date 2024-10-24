@@ -11,7 +11,7 @@ export default function Modal({ modalTitle, children, isOpen, onClose }) {
 
     const handleKeyDown = ({ key }) => {
       if (key === "Escape") {
-        onClose(); // Закриваємо модалку по Escape
+        onClose();
       }
     };
 
@@ -23,7 +23,7 @@ export default function Modal({ modalTitle, children, isOpen, onClose }) {
     };
   }, [isOpen, onClose]);
 
-  if (!isOpen) return null; // Модалка не рендериться, якщо вона не відкрита
+  if (!isOpen) return null;
 
   return ReactDOM.createPortal(
     <div className={styles.modalWrapper} onClick={onClose}>
@@ -46,6 +46,6 @@ export default function Modal({ modalTitle, children, isOpen, onClose }) {
 Modal.propTypes = {
   modalTitle: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
-  isOpen: PropTypes.bool.isRequired, // Додаємо isOpen як обов'язковий пропс
-  onClose: PropTypes.func.isRequired, // Додаємо onClose як обов'язковий пропс
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
 };

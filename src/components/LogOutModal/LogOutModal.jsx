@@ -10,13 +10,13 @@ const LogOutModal = ({ isOpen, onClose }) => {
   const handleLogOut = async () => {
     try {
       await dispatch(logOutAPI()).unwrap();
-      onClose(); // закриваємо модальне вікно після успішного логауту
+      onClose();
     } catch (error) {
       console.error('Something went wrong, please try again:', error);
     }
   };
 
-  if (!isOpen) return null; // Якщо модальне вікно закрите не рендеримо його
+  if (!isOpen) return null;
 
   return (
     <div className={css.modalOverlay}>
@@ -31,14 +31,14 @@ const LogOutModal = ({ isOpen, onClose }) => {
         <div className={css.buttonContainer}>
           <Formik
             initialValues={{}}
-            onSubmit={handleLogOut} // логаут якщо в нас виконується сабміт
+            onSubmit={handleLogOut}
           >
             {({ isSubmitting }) => (
               <Form>
                 <button
                   type="button"
                   className={css.cancelButton}
-                  onClick={onClose} //закривається  модальне вікно без логауту
+                  onClick={onClose}
                 >
                   Cancel
                 </button>
