@@ -124,7 +124,6 @@
   font-size: 16px;
   line-height: 1.25;
   text-align: center;
-  /* color: aliceblue; */
   color: var(--bg-light);
   border-radius: 10px;
   box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
@@ -135,7 +134,6 @@
 .buttonModalCancel {
   margin-bottom: 0;
   background: var(--sec-4-l);
-
 color: var(--primary-blue-l);
 
 }
@@ -167,6 +165,10 @@ color: var(--primary-blue-l);
   .todayWaterListItemValueIconNew {
     width: 23px;
     height: 30px;
+  }
+
+  .buttonModalDelete{
+  order:1
   }
 
 }
