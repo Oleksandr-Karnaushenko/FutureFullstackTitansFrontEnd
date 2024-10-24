@@ -37,12 +37,15 @@ export default function AuthForm({ isSignup }) {
       const { email, password } = values;
 
       if (isSignup) {
-        const userData = await dispatch(
-          signUpAPI({ email, password })
-        ).unwrap();
-        const userId = userData._id;
+        await dispatch(signUpAPI({ email, password })).unwrap();
         toast.success('Successful registration!');
 
+        const userData = await dispatch(
+          signInAPI({ email, password })
+        ).unwrap();
+
+        const userId = userData._id;
+        console.log(userId);
         if (userId) {
           await dispatch(fetchUserDataAPI(userId)).unwrap();
           toast.success('User data updated!');

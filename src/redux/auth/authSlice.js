@@ -16,31 +16,18 @@ const initialState = {
     name: null,
     email: null,
     avatarURL: null,
-    norm: null,
+    dailyNorm: null,
     gender: null,
   },
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
   error: null,
-  bottleXY: {},
 };
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-
-  reducers: {
-    change(state, action) {
-      switch (action.payload.operation) {
-        case 'changeBottleXY':
-          state.bottleXY = action.payload.data;
-          break;
-        default:
-          break;
-      }
-    },
-  },
 
   extraReducers: builder => {
     builder
@@ -53,7 +40,6 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(signUpAPI.fulfilled, state => {
-        state.isLoggedIn = true;
         state.isRefreshing = false;
       })
       .addCase(signUpAPI.rejected, (state, { payload }) => {
@@ -96,7 +82,7 @@ const authSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(fetchCurrentUserAPI.fulfilled, (state, { payload }) => {
-        state.token = payload.token;
+        state.token = payload.accessToken;
         state.isRefreshing = false;
       })
       .addCase(fetchCurrentUserAPI.rejected, (state, { payload }) => {
@@ -151,7 +137,7 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(editDailyNormAPI.fulfilled, (state, { payload }) => {
-        state.user.norm = payload.norm;
+        state.user.dailyNorm = payload.dailyNorm;
         state.isRefreshing = false;
       })
       .addCase(editDailyNormAPI.rejected, (state, { payload }) => {

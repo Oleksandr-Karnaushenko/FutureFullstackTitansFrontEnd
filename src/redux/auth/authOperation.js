@@ -3,6 +3,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toastError, toastSuccess } from '../../services/toastNotification.js';
 
 axios.defaults.baseURL = 'https://watertrackerbackend-1b9z.onrender.com';
+// axios.defaults.baseURL = 'http://localhost:3000';
+
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
@@ -33,7 +35,9 @@ export const signInAPI = createAsyncThunk(
   'auth/signInAPI',
   async (user, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post('/auth/login', user);
+      const { data } = await axios.post('/auth/login', user, {
+        withCredentials: true,
+      });
 
       const backEndData = data.data;
 
@@ -68,19 +72,16 @@ export const logOutAPI = createAsyncThunk(
 
 export const fetchCurrentUserAPI = createAsyncThunk(
   'auth/refresh',
-  async (_, { getState, rejectWithValue }) => {
-    const { token: currentToken } = getState().auth;
-    if (currentToken === null) {
-      return rejectWithValue('Without token');
-    }
-    setAuthHeader(currentToken);
+  async (_, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get('/auth/refresh');
-      console.log('object');
-      console.log(data);
-      return data;
+      const { data } = await axios.post('/auth/refresh', _, {
+        withCredentials: true,
+      });
+
+      const backEndData = data.data;
+
+      return backEndData;
     } catch (error) {
-      axios.defaults.headers.common.Authorization = '';
       toastError(
         'Auth state is old. Please enter to your personal cabinet again'
       );
@@ -132,7 +133,7 @@ export const changeUserAvatarAPI = createAsyncThunk(
 
 export const editDailyNormAPI = createAsyncThunk(
   'auth/editDailyNorm',
-  async (waterNorma, userId, { rejectWithValue }) => {
+  async ({ waterNorma, userId }, { rejectWithValue }) => {
     try {
       const { data } = await axios.patch(
         `/users/waterRate/${userId}`,
@@ -140,6 +141,7 @@ export const editDailyNormAPI = createAsyncThunk(
       );
 
       const backEndData = data.data;
+      console.log(backEndData);
 
       toastSuccess('Daile water norm changed successful');
 
