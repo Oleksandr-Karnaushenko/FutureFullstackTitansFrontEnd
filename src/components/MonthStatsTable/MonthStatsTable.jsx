@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCurrentMonthInfoAPI } from '../../redux/water/waterOperation.js';
 import { selectMonthInfo } from '../../redux/water/waterSelectors.js';
@@ -12,14 +12,16 @@ export default function MonthStatsTable() {
   const [selectedMonth, setSelectedMonth] = useState(currentMonth);
   const [selectedYear, setSelectedYear] = useState(currentYear);
   const [selectedDayInfo, setSelectedDayInfo] = useState(null);
+  const statsRef = useRef(null);
 
   const dispatch = useDispatch();
-
   const monthInfo = useSelector(selectMonthInfo);
 
   useEffect(() => {
+    const formattedMonth =
+      selectedMonth + 1 < 10 ? '0' + (selectedMonth + 1) : selectedMonth + 1;
     dispatch(
-      getCurrentMonthInfoAPI({ month: selectedMonth + 1, year: selectedYear })
+      getCurrentMonthInfoAPI({ month: formattedMonth, year: selectedYear })
     );
   }, [dispatch, selectedMonth, selectedYear]);
 
@@ -62,13 +64,13 @@ export default function MonthStatsTable() {
     const validMonthInfo = Array.isArray(monthInfo) ? monthInfo : [];
     return Array.from({ length: daysInMonth }, (_, index) => {
       const day = index + 1;
-
-      const dateFormate = `${day < 10 ? '0' + day : day}.${
+      const dateFormat = `${day < 10 ? '0' + day : day}.${
         selectedMonth + 1 < 10 ? '0' + (selectedMonth + 1) : selectedMonth + 1
       }`;
-
-      const dayInfo = validMonthInfo.find(data => data.date === dateFormate);
-      const percent = dayInfo ? parseInt(dayInfo.percent, 10) : 0;
+      const dayInfo = validMonthInfo.find(data => data.date === dateFormat);
+      const percent = dayInfo
+        ? Math.min(parseInt(dayInfo.percent, 10), 100)
+        : 0;
       const dailyNorm = dayInfo ? dayInfo.dailyNorm : 0;
       const count = dayInfo ? dayInfo.count : 0;
 
@@ -76,7 +78,7 @@ export default function MonthStatsTable() {
         day,
         percent,
         dayInfo: {
-          date: dateFormate,
+          date: dateFormat,
           dailyNorm,
           percent,
           count,
@@ -85,11 +87,24 @@ export default function MonthStatsTable() {
     });
   }, [daysInMonth, monthInfo, selectedMonth]);
 
-  const handleDayClick = dayInfo => {
+  const handleDayClick = (dayInfo, event) => {
     if (selectedDayInfo && selectedDayInfo.date === dayInfo.date) {
       setSelectedDayInfo(null);
     } else {
       setSelectedDayInfo(dayInfo);
+
+      const clickedElement = event.currentTarget;
+      const statsElement = statsRef.current;
+
+      if (statsElement) {
+        const stateRect = statsElement.parentNode.getBoundingClientRect();
+        const clickedRect = clickedElement.getBoundingClientRect();
+
+        const positionY =
+          clickedRect.top - stateRect.top - statsElement.offsetHeight - 30;
+
+        statsElement.style.top = `${positionY}px`;
+      }
     }
   };
 
@@ -124,7 +139,7 @@ export default function MonthStatsTable() {
           <li
             key={index}
             className={`${css.item} ${percent < 100 ? css.notReached : ''}`}
-            onClick={() => handleDayClick(dayInfo)}
+            onClick={event => handleDayClick(dayInfo, event)}
           >
             {day}
             <div className={css.percent}>{percent}%</div>
@@ -132,11 +147,13 @@ export default function MonthStatsTable() {
         ))}
       </ul>
       {selectedDayInfo && (
-        <DaysGeneralStats
-          dayInfo={selectedDayInfo}
-          selectedMonth={selectedMonth}
-          monthNames={monthNames}
-        />
+        <div ref={statsRef} className={css.dayInfoWrapper}>
+          <DaysGeneralStats
+            dayInfo={selectedDayInfo}
+            selectedMonth={selectedMonth}
+            monthNames={monthNames}
+          />
+        </div>
       )}
     </div>
   );
