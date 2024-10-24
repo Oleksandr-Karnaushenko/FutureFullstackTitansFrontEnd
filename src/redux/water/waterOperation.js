@@ -12,7 +12,6 @@ export const getCurrentMonthInfoAPI = createAsyncThunk(
       const { data } = await axios.get(
         `water/monthInfo?month=${month}&year=${year}`
       );
-      console.log(data);
 
       const backEndData = data.data.data;
 
@@ -28,6 +27,8 @@ export const getCurrentDayInfoAPI = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const { data } = await axios.get('water/dayInfo');
+
+      if (!data) return;
 
       const backEndData = data.data;
 

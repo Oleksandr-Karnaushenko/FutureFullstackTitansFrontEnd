@@ -19,12 +19,9 @@ export const signUpAPI = createAsyncThunk(
     try {
       const { data } = await axios.post('/auth/register', user);
 
-      // setAuthHeader(data.token);
-      // toastSuccess(
-      //   'We have sent email verification on your email. Please, check it'
-      // );
+      const backEndData = data.data;
 
-      return data;
+      return backEndData;
     } catch (error) {
       toastError('Something went wrong. Please try again or log in');
       return rejectWithValue(error.response.data.data.message);
@@ -73,16 +70,14 @@ export const fetchCurrentUserAPI = createAsyncThunk(
   'auth/refresh',
   async (_, { getState, rejectWithValue }) => {
     const { token: currentToken } = getState().auth;
-
     if (currentToken === null) {
       return rejectWithValue('Without token');
     }
-
+    setAuthHeader(currentToken);
     try {
       const { data } = await axios.get('/auth/refresh');
-
-      setAuthHeader(data.token);
-
+      console.log('object');
+      console.log(data);
       return data;
     } catch (error) {
       axios.defaults.headers.common.Authorization = '';
