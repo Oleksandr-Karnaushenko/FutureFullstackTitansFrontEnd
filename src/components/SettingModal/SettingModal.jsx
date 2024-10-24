@@ -88,7 +88,7 @@ function SettingModal({ isOpen, onClose }) {
     }
   };
 
-  if (!isOpen) return null; // Якщо модальне вікно закрите не рендеримо його
+  if (!isOpen) return null;
 
   return isRefreshing ? (
     <Loader className={styles.loader} />

@@ -4,12 +4,6 @@ import css from "./UserLogoModal.module.css";
 const UserLogoModal = ({ isOpen, onClose, onOpenSettings, onOpenLogout, anchorPosition }) => {
   const modalRef = useRef(null);
 
-  const handleBackdropClick = (e) => {
-    if (e.target === e.currentTarget) {
-      onClose();
-    }
-  };
-
   useEffect(() => {
     if (isOpen && anchorPosition) {
       const modalElement = modalRef.current;
@@ -21,7 +15,6 @@ const UserLogoModal = ({ isOpen, onClose, onOpenSettings, onOpenLogout, anchorPo
   if (!isOpen) return null;
 
   return (
-    <div className={css.backdrop} onClick={handleBackdropClick}>
       <div className={css.modal} ref={modalRef}>
         <div className={css.buttons}>
           <div className={css.buttonsSettings}>
@@ -31,8 +24,8 @@ const UserLogoModal = ({ isOpen, onClose, onOpenSettings, onOpenLogout, anchorPo
             <button
               className={css.settingsButton}
               onClick={() => {
-                onClose(); // Закриваємо UserLogoModal
-                onOpenSettings(); // Відкриваємо модалку налаштувань
+                onClose();
+                onOpenSettings();
               }}
             >
               Settings
@@ -45,8 +38,8 @@ const UserLogoModal = ({ isOpen, onClose, onOpenSettings, onOpenLogout, anchorPo
             <button
               className={css.logoutButton}
               onClick={() => {
-                onClose(); // Закриваємо UserLogoModal
-                onOpenLogout(); // Відкриваємо модалку логауту
+                onClose();
+                onOpenLogout();
               }}
             >
               Logout
@@ -54,7 +47,6 @@ const UserLogoModal = ({ isOpen, onClose, onOpenSettings, onOpenLogout, anchorPo
           </div>
         </div>
       </div>
-    </div>
   );
 };
 

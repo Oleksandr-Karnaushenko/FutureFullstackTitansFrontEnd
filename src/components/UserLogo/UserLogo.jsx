@@ -7,17 +7,14 @@ import LogOutModal from "../LogOutModal/LogOutModal";
 import css from "./UserLogo.module.css";
 
 const UserLogo = () => {
-  // Отримуємо дані поточного користувача зі стору
   const user = useSelector(selectCurrentUser);
 
-  // Стани для управління модалками
   const [isUserLogoModalOpen, setIsUserLogoModalOpen] = useState(false);
   const [isSettingModalOpen, setIsSettingModalOpen] = useState(false);
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
   const [anchorPosition, setAnchorPosition] = useState(null);
   const buttonRef = useRef(null);
 
-  // Функція для відкриття модалки
   const handleUserLogoClick = () => {
     const button = buttonRef.current;
     if (button) {
@@ -27,44 +24,38 @@ const UserLogo = () => {
         left: rect.left + window.scrollX,
       });
     }
-    setIsUserLogoModalOpen(true); // Відкриваємо модалку при натисканні
+    setIsUserLogoModalOpen((prev) => !prev);
   };
 
-  // Закриваємо модалку UserLogoModal
   const handleCloseUserLogoModal = () => {
     setIsUserLogoModalOpen(false);
   };
 
-  // Відкриваємо модалки налаштувань та логауту
   const handleOpenSettingsModal = () => setIsSettingModalOpen(true);
   const handleOpenLogoutModal = () => setIsLogoutModalOpen(true);
 
-  // Закриття модалок
   const handleCloseSettingsModal = () => setIsSettingModalOpen(false);
   const handleCloseLogoutModal = () => setIsLogoutModalOpen(false);
 
-  // Функція для отримання першої літери імені або email
   const getUserInitial = () => {
     if (user && user.name) {
-      return user.name.charAt(0).toUpperCase(); // Повертаємо першу літеру імені
+      return user.name.charAt(0).toUpperCase();
     }
     if (user && user.email) {
-      return user.email.charAt(0).toUpperCase(); // Якщо немає імені, повертаємо першу літеру email
+      return user.email.charAt(0).toUpperCase();
     }
-    return "?"; // Якщо дані відсутні
+    return "?";
   };
 
   return (
     <div className={css.wrapper}>
       <div
         className={css.point}
-        onClick={handleUserLogoClick} // Відкриваємо модалку по кліку на весь елемент
+        onClick={handleUserLogoClick}
         ref={buttonRef}
       >
-        {/* Відображення імені користувача або значення "User" */}
         <p className={css.user}>{user && user.name ? user.name : "User"}</p>
 
-        {/* Кнопка з аватаром або ініціалом */}
         <button className={css.userLogoButton}>
           {user && user.avatarURL ? (
             <img
@@ -74,18 +65,16 @@ const UserLogo = () => {
             />
           ) : (
             <span className={css.userInitial}>
-              {getUserInitial()} {/* Відображаємо ініціал користувача */}
+              {getUserInitial()}
             </span>
           )}
         </button>
 
-        {/* Іконка стрілки */}
         <svg className={css.icon}>
-          <use href="/src/assets/img/icons.svg#icon-arrow-down" />
+          <use href="/src/assets/images/icons.svg#icon-arrow-down" />
         </svg>
       </div>
 
-      {/* Модалка UserLogo */}
       <UserLogoModal
         isOpen={isUserLogoModalOpen}
         onClose={handleCloseUserLogoModal}
@@ -94,7 +83,6 @@ const UserLogo = () => {
         anchorPosition={anchorPosition}
       />
 
-      {/* Модалка налаштувань */}
       {isSettingModalOpen && (
         <SettingModal
           isOpen={isSettingModalOpen}
@@ -102,7 +90,6 @@ const UserLogo = () => {
         />
       )}
 
-      {/* Модалка логауту */}
       {isLogoutModalOpen && (
         <LogOutModal
           isOpen={isLogoutModalOpen}
