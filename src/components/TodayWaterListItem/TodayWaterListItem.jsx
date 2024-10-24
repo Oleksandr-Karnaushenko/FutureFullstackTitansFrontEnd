@@ -7,17 +7,16 @@ import { deleteWaterAPI } from '../../redux/water/waterOperation/';
 import Icon from '../Icon/Icon';
 import { TodayWaterModal } from '../TodayWaterModal/TodayWaterModal';
 import { ButtonBtn } from '../ButtonBtn/ButtonBtn';
-
+import { getCurrentDayInfoAPI } from '../../redux/water/waterOperation/';
 import css from './TodayWaterListItem.module.css';
 
-export const TodayWaterListItem = ({ waterItem, onDelete }) => {
+export const TodayWaterListItem = ({ waterItem }) => {
   const { waterVolume, time, _id } = waterItem;
 
   const dispatch = useDispatch();
   useSelector(selector.selectDayInfo);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const toggleModal = () => {
     return setIsModalOpen(!isModalOpen);
   };
@@ -25,9 +24,10 @@ export const TodayWaterListItem = ({ waterItem, onDelete }) => {
   const handleDeleteClick = async () => {
     try {
       await dispatch(deleteWaterAPI(_id));
+
       toast.success('Entry deleted successfully!');
       toggleModal();
-      onDelete(_id);
+      dispatch(getCurrentDayInfoAPI());
     } catch (error) {
       console.log(error);
       toast.error('Failed to delete the entry.');
