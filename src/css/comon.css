@@ -27,4 +27,5 @@ button {
   height: min-content;
   border: none;
   font-weight: 500;
+  cursor: url('../assets/img/cursors/mdi_cursor-pointer.svg'), auto;
 }
