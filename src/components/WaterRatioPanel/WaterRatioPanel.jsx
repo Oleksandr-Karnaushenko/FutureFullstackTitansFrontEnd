@@ -1,8 +1,11 @@
 import css from './WaterRatioPanel.module.css';
 import AddWaterBtn from '../../components/AddWaterBtn/AddWaterBtn';
-const progressPercentage = 77; //for example, in real it will be gotten from user water info
+import { useSelector } from 'react-redux';
+import { selectWaterVolumeInPercent } from '../../redux/water/waterSelectors';
 
 export default function WaterRatioPanel() {
+  const progress = useSelector(selectWaterVolumeInPercent);
+
   return (
     <div className={css.wrapper}>
       <div className={css.ratioPanelWrap}>
@@ -10,17 +13,29 @@ export default function WaterRatioPanel() {
         <div className={css.ratioPanelMain}>
           <div
             className={css.ratioPanelProgress}
-            style={{ width: `${progressPercentage}%` }}
+            style={{ width: `${progress}%` }}
           ></div>
           <div
             className={css.ratioPanelDot}
-            style={{ left: `${progressPercentage}%` }}
+            style={{ left: `${progress}%` }}
           ></div>
         </div>
         <div className={css.ratioPanelLabels}>
-          <span>0%</span>
-          <span>50%</span>
-          <span>100%</span>
+          <span
+            className={`${css.ratioLabel} ${progress >= 0 ? css.active : ''}`}
+          >
+            0%
+          </span>
+          <span
+            className={`${css.ratioLabel} ${progress >= 0 ? css.active : ''}`}
+          >
+            50%
+          </span>
+          <span
+            className={`${css.ratioLabel} ${progress >= 0 ? css.active : ''}`}
+          >
+            100%
+          </span>
         </div>
       </div>
       <AddWaterBtn />
