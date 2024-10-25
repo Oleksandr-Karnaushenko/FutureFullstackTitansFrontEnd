@@ -49,24 +49,25 @@ const UserLogo = () => {
 
   return (
     <div className={css.wrapper}>
-      <div className={css.point} onClick={handleUserLogoClick} ref={buttonRef}>
+      <div className={css.point}>
         <p className={css.user}>{user && user.name ? user.name : 'User'}</p>
+        <div className={css.logobox}>
+          <button onClick={handleUserLogoClick} ref={buttonRef} className={css.userLogoButton}>
+            {user && user.avatarUrl ? (
+              <img
+                src={user.avatarUrl}
+                alt={`${user.name}'s avatar`}
+                className={css.avatar}
+              />
+            ) : (
+              <span className={css.userInitial}>{getUserInitial()}</span>
+            )}
+          </button>
 
-        <button className={css.userLogoButton}>
-          {user && user.avatarUrl ? (
-            <img
-              src={user.avatarUrl}
-              alt={`${user.name}'s avatar`}
-              className={css.avatar}
-            />
-          ) : (
-            <span className={css.userInitial}>{getUserInitial()}</span>
-          )}
-        </button>
-
-        <svg className={css.icon}>
-          <use href="assets/images/icons.svg#icon-arrow-down" />
-        </svg>
+          <svg className={css.icon}>
+            <use href="/assets/images/icons.svg#icon-arrow-down" />
+          </svg>
+        </div>
       </div>
 
       <UserLogoModal

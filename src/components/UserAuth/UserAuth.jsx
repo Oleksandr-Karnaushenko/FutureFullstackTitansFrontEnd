@@ -7,7 +7,7 @@ const UserAuth = () => {
         <NavLink className={css.navLink} to="/signin">
           Sign in
           <svg className={css.icon}>
-            <use href="assets/images/icons.svg#icon-user" />
+            <use href="/assets/images/icons.svg#icon-user" />
           </svg>
         </NavLink>
       </div>
