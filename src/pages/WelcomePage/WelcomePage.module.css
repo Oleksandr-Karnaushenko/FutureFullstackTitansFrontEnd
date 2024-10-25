@@ -1,4 +1,3 @@
-
 .container {
     width:100%;
     min-height: 100vh;
@@ -9,49 +8,60 @@
     z-index: 1; 
   }
   
-  .container::before {
+.container::before {
     content: '';
     position: absolute;
     top: 0px; 
     left: -20px;
     right: -20px;
     bottom: -24px;
-    background-image: url(../../assets/images/welcome/elD-mob-1x.png), url(../../assets/images/welcome/bgD-mob-1x.png);
+    background-image: var(--bg-image-mobile);
     background-size: auto ,contain;
     background-position: top center, bottom center;
     background-repeat: no-repeat, no-repeat;
     z-index: -1; 
   }
+
+  @media screen and (min-resolution: 2dppx) {
+    .container::before {
+      background-image: var(--bg-image-mobile-2x);
+    }
+  }
   
   /*<----------768px--------->*/
-  @media screen and (min-width: 768px) {
-    .container {
+@media screen and (min-width: 768px) {
+  .container {
       max-width: 768px;
       padding: 0 32px;
       padding-top: 40px;
     }
-    .container::before {
-        background-image: url(../../assets/images/welcome/elD-tab-1x.png), url(../../assets/images/welcome/bgD-tab-1x.png) ;
-        background-size: auto ,contain;
-        background-position: top center, bottom center;
-        background-repeat: no-repeat, no-repeat;
+  .container::before {
+      background-image: var(--bg-image-tablet);
+      background-size: auto ,contain;
+      background-position: top center, bottom center;
+      background-repeat: no-repeat, no-repeat;
       top: 0px;
       left: -32px;
       right: -32px;
       bottom: -40px;
     }
+    @media screen and (min-width: 768px) and (min-resolution: 2dppx) {
+      .container::before {
+        background-image: var(--bg-image-tablet-2x);
+      }
+    }
   }
   
   /*<----------1440px--------->*/
-  @media screen and (min-width: 1440px) {
-    .container {
+@media screen and (min-width: 1440px) {
+  .container {
       max-width: 1440px;
       padding: 0 18px;
       padding-top: 49px;
       align-items: flex-start;
     }
-    .container::before {
-      background-image: url(../../assets/images/welcome/elL-pc-1x.png), url(../../assets/images/welcome/bgD-pc-1x.png);  
+  .container::before {
+      background-image: var(--bg-image-desktop);  
       background-size: 1404px 582px, contain;
       background-position: top center, bottom center;
       background-repeat: no-repeat, no-repeat;
@@ -59,6 +69,11 @@
       left: -18px;
       right: -18px;
       bottom: -49px;
+    }
+    @media screen and (min-width: 1440px) and (min-resolution: 2dppx) {
+      .container::before {
+        background-image: var(--bg-image-desktop-2x);
+      }
     }
   }
   

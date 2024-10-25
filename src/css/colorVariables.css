@@ -18,6 +18,14 @@
   --cursor-fing-h: url('../assets/img/cursors/mdi_cursor-pointer.svg'), pointer;
   --cursor-fing-a: url('../assets/img/cursors/mdi_cursor-pointer.svg'), pointer;
 
+  /* Background-images for WelcomePage light */
+  --bg-image-light-mobile: url(../assets/images/welcome/elL-mob-1x.png), url(../assets/images/welcome/bgL-mob-1x.png);
+  --bg-image-light-mobile-2x: url(../assets/images/welcome/elL-mob-2x.png), url(../assets/images/welcome/bgL-mob-2x.png);
+  --bg-image-light-tablet: url(../assets/images/welcome/elL-tab-1x.png), url(../assets/images/welcome/bgD-taL-1x.png);
+  --bg-image-light-tablet-2x: url(../assets/images/welcome/elL-tab-2x.png), url(../assets/images/welcome/bgL-tab-2x.png);
+  --bg-image-light-desktop: url(../assets/images/welcome/elL-pc-1x.png), url(../assets/images/welcome/bgL-pc-1x.png);
+  --bg-image-light-desktop-2x: url(../assets/images/welcome/elL-pc-2x.png), url(../assets/images/welcome/bgL-pc-2x.png);
+
   /* dark-theme-colors */
 
   --bg-dark: #1c1d26;
@@ -38,6 +46,14 @@
   --cursor-arr-h: url('../assets/img/cursors/outlineArrow1.svg'), pointer;
   --cursor-arr-a: url('../assets/img/cursors/outlineArrow2.svg'), pointer;
 
+  /* Background-images for WelcomePage dark */
+  --bg-image-dark-mobile: url(../assets/images/welcome/elD-mob-1x.png), url(../assets/images/welcome/bgD-mob-1x.png);
+  --bg-image-dark-mobile-2x: url(../assets/images/welcome/elD-mob-2x.png), url(../assets/images/welcome/bgD-mob-2x.png);
+  --bg-image-dark-tablet: url(../assets/images/welcome/elD-tab-1x.png), url(../assets/images/welcome/bgD-tab-1x.png);
+  --bg-image-dark-tablet-2x: url(../assets/images/welcome/elD-tab-2x.png), url(../assets/images/welcome/bgD-tab-2x.png);
+  --bg-image-dark-desktop: url(../assets/images/welcome/elD-pc-1x.png), url(../assets/images/welcome/bgD-pc-1x.png);
+  --bg-image-dark-desktop-2x: url(../assets/images/welcome/elD-pc-2x.png), url(../assets/images/welcome/bgD-pc-2x.png);
+
   /* variables */
   --background: var(--bg-light);
   --text: var(--text-light);
@@ -56,6 +72,15 @@
   /* Cursors */
   --cursor-h: var(--cursor-fing-h);
   --cursor-a: var(--cursor-fing-a);
+  
+  /* Background images */
+  --bg-image-mobile: var(--bg-image-light-mobile);
+  --bg-image-mobile-2x: var(--bg-image-light-mobile-2x);
+  --bg-image-tablet: var(--bg-image-light-tablet);
+  --bg-image-tablet-2x: var(--bg-image-light-tablet-2x);
+  --bg-image-desktop: var(--bg-image-light-desktop);
+  --bg-image-desktop-2x: var(--bg-image-light-desktop-2x);
+
 }
 
 @media (prefers-color-scheme: dark) {
@@ -77,6 +102,14 @@
     /* Applying cursors for dark theme */
     --cursor-h: var(--cursor-arr-h);
     --cursor-a: var(--cursor-arr-a);
+
+    /* Background images for dark theme */
+    --bg-image-mobile: var(--bg-image-dark-mobile);
+    --bg-image-mobile-2x: var(--bg-image-dark-mobile-2x);
+    --bg-image-tablet: var(--bg-image-dark-tablet);
+    --bg-image-tablet-2x: var(--bg-image-dark-tablet-2x);
+    --bg-image-desktop: var(--bg-image-dark-desktop);
+    --bg-image-desktop-2x: var(--bg-image-dark-desktop-2x);
   }
 }
 
