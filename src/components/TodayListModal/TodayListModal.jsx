@@ -4,7 +4,8 @@ import Select from 'react-select';
 import { HiOutlinePlusSmall, HiOutlineMinusSmall } from 'react-icons/hi2';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
-import { editWaterAPI } from '../../redux/water/waterOperation';
+// import { editWaterAPI } from '../../redux/water/waterOperation';
+import { editWaterAPI, getCurrentDayInfoAPI  } from '../../redux/water/waterOperation';
 import {
   getCurrentTime,
   countToFiveMinutes,
@@ -12,15 +13,23 @@ import {
   differentStyles,
 } from '../AmountOfWater/AmountOfWater';
 import css from './TodayListModal.module.css';
+// import {
+//   selectWaterIsRefreshing,
+//   selectWaterError,
+// } from '../../redux/water/waterSlice';
+
 import {
   selectWaterIsRefreshing,
   selectWaterError,
-} from '../../redux/water/waterSlice';
+} from '../../redux/water/waterSelectors';
 
-export default function TodayListModal({ waterObj, onClose }) {
+export default function TodayListModal({ waterObj, onClose}) {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectWaterIsRefreshing);
   const error = useSelector(selectWaterError);
+
+  console.log(waterObj);
+  
 
   const { waterVolume } = useMemo(() => {
     return waterObj;
@@ -39,17 +48,33 @@ export default function TodayListModal({ waterObj, onClose }) {
         return;
       }
 
+      // dispatch(
+      //   editWaterAPI({
+      //     id: waterObj.id,
+      //     editWater: {
+      //       time: values.selectedTime,
+      //       ml: values.waterVolume,
+      //     },
+      //   })
+      // );
+
+const date =new Date;
+
+const dateString =`${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}T${values.selectedTime}:00.000Z`
+
       dispatch(
         editWaterAPI({
-          id: waterObj.id,
+          id: waterObj._id,
           editWater: {
-            time: values.selectedTime,
-            ml: values.waterVolume,
+            date: dateString,
+            waterVolume: values.waterVolume,
           },
         })
       );
 
+      dispatch(getCurrentDayInfoAPI());
       onClose(); // Закриття модалки
+    
     },
   });
 
@@ -60,17 +85,18 @@ export default function TodayListModal({ waterObj, onClose }) {
     };
   }, []);
 
-  const handleBackdropClick = e => {
-    if (e.target === e.currentTarget) {
-      onClose();
-    }
-  };
+  // const handleBackdropClick = e => {
+  //   if (e.target === e.currentTarget) {
+  //     onClose();
+  //   }
+  // };
 
   return (
-    <div className={css.backdrop} onClick={handleBackdropClick}>
+    // <div className={css.backdrop} onClick={handleBackdropClick}>
       <div className={css.modal}>
         <div className={css.titleContainer}>
           <h2 className={css.titletext}>Edit the entered amount of water</h2>
+      
           <span className={css.closebtn} onClick={onClose}>
             <IoCloseOutline size="24" color="407BFF" />
           </span>
@@ -159,6 +185,6 @@ export default function TodayListModal({ waterObj, onClose }) {
           </button>
         </div>
       </div>
-    </div>
+    // </div>
   );
 }
