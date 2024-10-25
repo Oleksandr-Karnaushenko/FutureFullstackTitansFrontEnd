@@ -29,7 +29,7 @@ export const TestBtn = () => {
   const token = useSelector(selectToken);
   const userId = useSelector(selectUserId);
   // const userId = '6712f7c63f6b0ede6444d149';
-  const waterNorma = { dailyNorm: 1000 };
+  const waterNorma = { dailyNorm: 2000 };
   const userNewData = { name: 'olololo' };
   const id = '6716cd7dca65090473295ace';
 
@@ -49,8 +49,6 @@ export const TestBtn = () => {
   const dispatch = useDispatch();
 
   const onClick = async () => {
-    console.log('reqwery data');
-    console.log(userId);
     try {
       await dispatch(fetchCurrentUserAPI()).unwrap();
     } catch (error) {

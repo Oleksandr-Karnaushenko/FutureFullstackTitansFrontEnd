@@ -19,5 +19,4 @@ export const selectUserEmail = state => state.auth.user.email;
 
 export const selectUserGender = state => state.auth.user.gender;
 
-export const selectNormWater = state => state.auth.user.norm;
-
+export const selectNormWater = state => state.auth.user.dailyNorm;

@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 import { selectIsLoggedIn, selectCurrentUser } from "../../redux/auth/authSelectors";
 
 const Header = () => {
-  // Використання селекторів для отримання стану
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const user = useSelector(selectCurrentUser);
 
