@@ -1,11 +1,12 @@
 .container {
     min-height: 384px;
+    min-width: 280px;
     display: flex;
     flex-direction: column;
 }
 
 .title {
-    font-weight: 700;
+    font-weight: 700;   
     font-size: 28px;
     line-height: 1.14;
     color: var(--text);
@@ -113,9 +114,7 @@
         height: 44px;
         font-size: 18px;
         line-height: 1.33;
-
     }
-
 }
 
 /*<----------1440px--------->*/

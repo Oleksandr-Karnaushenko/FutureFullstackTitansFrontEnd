@@ -1,32 +1,64 @@
+
 .container {
-    padding: 24px 20px 40px 20px;
-    background-image: url(../../assets/images/welcome/welcome-bg-mobd1x.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+    width:100%;
     min-height: 100vh;
-    max-width: 100%;
-}
-
-/*<----------768px--------->*/
-
-@media screen and (min-width: 768px) {
+    padding-top: 24px;
+    display: flex;
+    justify-content: center;
+    position: relative; 
+    z-index: 1; 
+  }
+  
+  .container::before {
+    content: '';
+    position: absolute;
+    top: 0px; 
+    left: -20px;
+    right: -20px;
+    bottom: -24px;
+    background-image: url(../../assets/images/welcome/elD-mob-1x.png), url(../../assets/images/welcome/bgD-mob-1x.png);
+    background-size: auto ,contain;
+    background-position: top center, bottom center;
+    background-repeat: no-repeat, no-repeat;
+    z-index: -1; 
+  }
+  
+  /*<----------768px--------->*/
+  @media screen and (min-width: 768px) {
     .container {
-        padding: 40px 32px 50px 32px;
-        background-image: url(../../assets/images/welcome/welcome-bg-tabd1x.png);
+      max-width: 768px;
+      padding: 0 32px;
+      padding-top: 40px;
     }
-}
-
-/*<----------1440px--------->*/
-
-@media screen and (min-width: 1440px) {
-    .container {
-        padding-top: 49px;
-        background-image: url(../../assets/images/welcome/welcome-el-pcd1x.png), url(../../assets/images/welcome/welcome-bg-pcd1x.png);
+    .container::before {
+        background-image: url(../../assets/images/welcome/elD-tab-1x.png), url(../../assets/images/welcome/bgD-tab-1x.png) ;
+        background-size: auto ,contain;
         background-position: top center, bottom center;
-        /* background-size: 1404px 582px, contain; */
         background-repeat: no-repeat, no-repeat;
-        /* overflow: hidden; */
-        min-height: 100vh;
+      top: 0px;
+      left: -32px;
+      right: -32px;
+      bottom: -40px;
     }
-}
+  }
+  
+  /*<----------1440px--------->*/
+  @media screen and (min-width: 1440px) {
+    .container {
+      max-width: 1440px;
+      padding: 0 18px;
+      padding-top: 49px;
+      align-items: flex-start;
+    }
+    .container::before {
+      background-image: url(../../assets/images/welcome/elL-pc-1x.png), url(../../assets/images/welcome/bgD-pc-1x.png);  
+      background-size: 1404px 582px, contain;
+      background-position: top center, bottom center;
+      background-repeat: no-repeat, no-repeat;
+      top: 0px;
+      left: -18px;
+      right: -18px;
+      bottom: -49px;
+    }
+  }
+  

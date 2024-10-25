@@ -1,10 +1,11 @@
 .container {
+  padding-top: 24px;
   min-width: 280px;
   min-height: 840px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   gap: 40px;
 }
 
@@ -13,10 +14,9 @@
 
 @media screen and (min-width: 768px) {
   .container {
-    max-width: 704px;
-    min-height: 646px;
-    gap: 60px;
+    min-width: 704px;
     align-items: flex-start;
+    gap: 60px;
   }
 }
 
