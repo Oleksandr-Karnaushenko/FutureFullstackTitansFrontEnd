@@ -19,7 +19,7 @@ const UserLogoModal = ({ isOpen, onClose, onOpenSettings, onOpenLogout, anchorPo
         <div className={css.buttons}>
           <div className={css.buttonsSettings}>
             <svg width={'28px'} height={'28px'} className={css.buttonsSettingsImg}>
-              <use width={'28px'} height={'28px'} href="../src/assets/images/icons.svg#icon-settings" />
+              <use width={'28px'} height={'28px'} href="/assets/images/icons.svg#icon-settings" />
             </svg>
             <button
               className={css.settingsButton}
@@ -33,7 +33,7 @@ const UserLogoModal = ({ isOpen, onClose, onOpenSettings, onOpenLogout, anchorPo
           </div>
           <div className={css.buttonsLogout}>
             <svg width={'28px'} height={'28px'} className={css.buttonsLogout}>
-              <use width={'28px'} height={'28px'} href="../src/assets/images/icons.svg#icon-logout" />
+              <use width={'28px'} height={'28px'} href="/assets/images/icons.svg#icon-logout" />
             </svg>
             <button
               className={css.logoutButton}
