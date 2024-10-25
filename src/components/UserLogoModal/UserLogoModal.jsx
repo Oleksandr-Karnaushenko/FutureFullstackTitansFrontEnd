@@ -8,7 +8,7 @@ const UserLogoModal = ({ isOpen, onClose, onOpenSettings, onOpenLogout, anchorPo
     if (isOpen && anchorPosition) {
       const modalElement = modalRef.current;
       modalElement.style.top = `${anchorPosition.top}px`;
-      modalElement.style.left = `${anchorPosition.left}px`;
+      modalElement.style.left = `${anchorPosition.left - 60}px`;
     }
   }, [isOpen, anchorPosition]);
 
