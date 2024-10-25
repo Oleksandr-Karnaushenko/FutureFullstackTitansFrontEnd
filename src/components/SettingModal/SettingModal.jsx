@@ -121,25 +121,25 @@ function SettingModal({ isOpen, onClose }) {
                       </label>
 
                       <div className={styles.genderWrapper}>
-                        <label className={styles.labelGender}>
+                        <label className={styles.radioButton}>
                           <Field
                             name="gender"
                             type="radio"
                             value="female"
                             className={styles.radioInput}
                           />
-                          {''}
+                          <div />
                           <span>Woman</span>
                         </label>
 
-                        <label className={styles.labelGender}>
+                        <label className={styles.radioButton}>
                           <Field
                             name="gender"
                             type="radio"
                             value="male"
                             className={styles.radioInput}
                           />
-                          {''}
+                          <div />
                           <span>Man</span>
                         </label>
                       </div>
