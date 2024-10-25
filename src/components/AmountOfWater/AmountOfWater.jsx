@@ -4,7 +4,8 @@ import { IoCloseOutline } from 'react-icons/io5';
 import { HiOutlinePlusSmall, HiOutlineMinusSmall } from 'react-icons/hi2';
 import { useDispatch } from 'react-redux';
 import { Formik, Form, Field } from 'formik';
-import { addWaterThunk } from '../../redux/water/waterOperation';
+// import { addWaterThunk } from '../../redux/water/waterOperation';
+import { addWaterAPI,getCurrentDayInfoAPI } from '../../redux/water/waterOperation';
 import css from './AmountOfWater.module.css';
 
 export const differentStyles = {
@@ -36,7 +37,9 @@ export const getCurrentTime = () => {
   const now = new Date();
   const hours = String(now.getHours()).padStart(2, '0');
   const minutes = String(now.getMinutes()).padStart(2, '0');
+
   return `${hours}:${minutes}`;
+  // return dateString;
 };
 
 export const countToFiveMinutes = time => {
@@ -82,14 +85,28 @@ export default function AmountOfWater({ closeModal }) {
       setSubmitting(false);
       return;
     }
+    console.log(values.currentTime);
+    console.log(values.inputBlockAmount);
+
+    const date  = new Date()
+   
+    const dateString =`${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}T${values.currentTime}:00.000Z`
     dispatch(
-      addWaterThunk({
-        amount: values.inputBlockAmount,
-        time: values.currentTime,
+    
+      
+    
+   addWaterAPI({
+        waterVolume: values.inputBlockAmount,
+         date: dateString,
+        // date: values.currentTime,
+
       })
     );
+
     setSubmitting(false);
     closeModal();
+    dispatch(getCurrentDayInfoAPI());
+
   };
 
   return (
