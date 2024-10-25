@@ -1,0 +1,51 @@
+.label {
+  color: var(--text-light);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px; /* 111.111% */
+  margin-bottom: 8px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.inputAvatar {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.iconUpload {
+  stroke: var(--primary-blue-l);
+  width: 16px;
+  height: 16px;
+}
+
+.iconLabel {
+  cursor: url('../../assets/img/cursors/mdi_cursor-pointer.svg'), auto;
+}
+
+.uploadBtn {
+  color: var(--primary-blue-l);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px;
+  background-color: var(--bg-light);
+  padding: 0px;
+}
