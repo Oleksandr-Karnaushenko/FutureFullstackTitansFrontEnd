@@ -7,8 +7,23 @@ import { deleteWaterAPI } from '../../redux/water/waterOperation/';
 import Icon from '../Icon/Icon';
 import { TodayWaterModal } from '../TodayWaterModal/TodayWaterModal';
 import { ButtonBtn } from '../ButtonBtn/ButtonBtn';
-import { getCurrentDayInfoAPI } from '../../redux/water/waterOperation/';
+import {
+  getCurrentDayInfoAPI,
+  editWaterAPI,
+} from '../../redux/water/waterOperation/';
 import css from './TodayWaterListItem.module.css';
+
+import TodayListModal from '../TodayListModal/TodayListModal';
+import { TodayWaterBackdrop } from '../TodayWaterBackdrop/TodayWaterBackdrop';
+
+let waterObj = {
+  _id: '671a49a0ad47789dfc91b190',
+  waterVolume: 550,
+  time: '10:50',
+};
+// let waterObj ={
+
+// };
 
 export const TodayWaterListItem = ({ waterItem }) => {
   const { waterVolume, time, _id } = waterItem;
@@ -21,17 +36,31 @@ export const TodayWaterListItem = ({ waterItem }) => {
     return setIsModalOpen(!isModalOpen);
   };
 
+  const [isModalOpenEdit, setIsModalOpenEdit] = useState(false);
+  const toggleModalEdit = () => {
+    return setIsModalOpenEdit(!isModalOpenEdit);
+  };
+
   const handleDeleteClick = async () => {
     try {
       await dispatch(deleteWaterAPI(_id));
-
-      toast.success('Entry deleted successfully!');
       toggleModal();
-      dispatch(getCurrentDayInfoAPI());
+      await dispatch(getCurrentDayInfoAPI());
+      toast.success('Entry deleted successfully!', { duration: 4000 });
     } catch (error) {
       console.log(error);
       toast.error('Failed to delete the entry.');
     }
+  };
+
+  const handleEditClick = async () => {
+    waterObj = {
+      _id,
+      waterVolume,
+      time,
+    };
+
+    toggleModalEdit();
   };
 
   const waterVolumeLiter =
@@ -53,7 +82,7 @@ export const TodayWaterListItem = ({ waterItem }) => {
           clasNameBtn={css.buttonBtnEdit}
           classNameBtnIcon={css.buttonBtnEditIcon}
           icon={'notebook'}
-          onClick={() => {}}
+          onClick={handleEditClick}
         />
         <ButtonBtn
           type={'submit'}
@@ -92,6 +121,11 @@ export const TodayWaterListItem = ({ waterItem }) => {
           onClick={toggleModal}
         />
       </TodayWaterModal>
+
+      <TodayWaterBackdrop isOpen={isModalOpenEdit} onClose={toggleModalEdit}>
+        <TodayListModal waterObj={waterObj} onClose={toggleModalEdit} />
+      </TodayWaterBackdrop>
+
       <Toaster />
     </div>
   );

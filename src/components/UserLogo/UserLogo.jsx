@@ -1,10 +1,10 @@
-import { useState, useRef } from "react";
-import { useSelector } from "react-redux";
-import { selectCurrentUser } from "../../redux/auth/authSelectors";
-import UserLogoModal from "../UserLogoModal/UserLogoModal";
-import SettingModal from "../SettingModal/SettingModal";
-import LogOutModal from "../LogOutModal/LogOutModal";
-import css from "./UserLogo.module.css";
+import { useState, useRef } from 'react';
+import { useSelector } from 'react-redux';
+import { selectCurrentUser } from '../../redux/auth/authSelectors';
+import UserLogoModal from '../UserLogoModal/UserLogoModal';
+import SettingModal from '../SettingModal/SettingModal';
+import LogOutModal from '../LogOutModal/LogOutModal';
+import css from './UserLogo.module.css';
 
 const UserLogo = () => {
   const user = useSelector(selectCurrentUser);
@@ -24,7 +24,7 @@ const UserLogo = () => {
         left: rect.left + window.scrollX,
       });
     }
-    setIsUserLogoModalOpen((prev) => !prev);
+    setIsUserLogoModalOpen(prev => !prev);
   };
 
   const handleCloseUserLogoModal = () => {
@@ -44,29 +44,23 @@ const UserLogo = () => {
     if (user && user.email) {
       return user.email.charAt(0).toUpperCase();
     }
-    return "?";
+    return '?';
   };
 
   return (
     <div className={css.wrapper}>
-      <div
-        className={css.point}
-        onClick={handleUserLogoClick}
-        ref={buttonRef}
-      >
-        <p className={css.user}>{user && user.name ? user.name : "User"}</p>
+      <div className={css.point} onClick={handleUserLogoClick} ref={buttonRef}>
+        <p className={css.user}>{user && user.name ? user.name : 'User'}</p>
 
         <button className={css.userLogoButton}>
-          {user && user.avatarURL ? (
+          {user && user.avatarUrl ? (
             <img
-              src={user.avatarURL}
+              src={user.avatarUrl}
               alt={`${user.name}'s avatar`}
               className={css.avatar}
             />
           ) : (
-            <span className={css.userInitial}>
-              {getUserInitial()}
-            </span>
+            <span className={css.userInitial}>{getUserInitial()}</span>
           )}
         </button>
 

@@ -4,7 +4,11 @@ import { IoCloseOutline } from 'react-icons/io5';
 import { HiOutlinePlusSmall, HiOutlineMinusSmall } from 'react-icons/hi2';
 import { useDispatch } from 'react-redux';
 import { Formik, Form, Field } from 'formik';
-import { addWaterThunk } from '../../redux/water/waterOperation';
+// import { addWaterThunk } from '../../redux/water/waterOperation';
+import {
+  addWaterAPI,
+  getCurrentDayInfoAPI,
+} from '../../redux/water/waterOperation';
 import css from './AmountOfWater.module.css';
 
 export const differentStyles = {
@@ -36,7 +40,9 @@ export const getCurrentTime = () => {
   const now = new Date();
   const hours = String(now.getHours()).padStart(2, '0');
   const minutes = String(now.getMinutes()).padStart(2, '0');
+
   return `${hours}:${minutes}`;
+  // return dateString;
 };
 
 export const countToFiveMinutes = time => {
@@ -70,26 +76,33 @@ export default function AmountOfWater({ closeModal }) {
 
   const initialValues = {
     buttonBlockAmount: 50,
-    inputBlockAmount: 50,
     currentTime: countToFiveMinutes(getCurrentTime()),
   };
 
   const handleSubmit = (values, { setSubmitting }) => {
-    if (values.inputBlockAmount < 50) {
+    if (values.buttonBlockAmount < 50) {
       toast.error(
         'Please enter the amount of water used. Amount should be more than 50 ml.'
       );
       setSubmitting(false);
       return;
     }
+
+    const date = new Date();
+
+    const dateString = `${date.getFullYear()}-${
+      date.getMonth() + 1
+    }-${date.getDate()}T${values.currentTime}:00.000Z`;
     dispatch(
-      addWaterThunk({
-        amount: values.inputBlockAmount,
-        time: values.currentTime,
+      addWaterAPI({
+        waterVolume: values.buttonBlockAmount,
+        date: dateString,
       })
     );
+
     setSubmitting(false);
     closeModal();
+    dispatch(getCurrentDayInfoAPI());
   };
 
   return (
@@ -162,21 +175,23 @@ export default function AmountOfWater({ closeModal }) {
               <Field
                 className={css.waterAmount}
                 type="text"
-                name="inputBlockAmount"
+                name="buttonBlockAmount"
                 onChange={event => {
                   const newValue = event.target.value.replace(/[^0-9]/g, '');
                   setFieldValue(
-                    'inputBlockAmount',
+                    'buttonBlockAmount',
                     newValue === '' ? 0 : Math.min(5000, parseInt(newValue))
                   );
                 }}
                 onBlur={() =>
-                  setFieldValue('buttonBlockAmount', values.inputBlockAmount)
+                  setFieldValue('buttonBlockAmount', values.buttonBlockAmount)
                 }
               />
 
               <div className={css.footerContainer}>
-                <p className={css.incomeFooter}>{values.inputBlockAmount} ml</p>
+                <p className={css.incomeFooter}>
+                  {values.buttonBlockAmount} ml
+                </p>
                 <button className={css.saveButton} type="submit">
                   Save
                 </button>

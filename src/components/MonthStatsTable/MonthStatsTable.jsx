@@ -115,7 +115,7 @@ export default function MonthStatsTable() {
         <div className={css.paginator}>
           <button className={css.btn} onClick={() => handleMonthChange('prev')}>
             <svg className={css.svg}>
-              <use href="../src/assets/images/sprite.svg#arrow-left" />
+              <use href="/assets/images/icons.svg#left-arrow" />
             </svg>
           </button>
           <p
