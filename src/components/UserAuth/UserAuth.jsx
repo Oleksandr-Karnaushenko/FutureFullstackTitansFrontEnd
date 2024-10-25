@@ -1,5 +1,5 @@
-import { NavLink } from "react-router-dom";
-import css from "./UserAuth.module.css";
+import { NavLink } from 'react-router-dom';
+import css from './UserAuth.module.css';
 const UserAuth = () => {
   return (
     <div className={css.wrapper}>
