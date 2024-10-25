@@ -34,6 +34,7 @@
 .btn {
   background: transparent;
   padding: 3px 0;
+  cursor: pointer;
 }
 
 .svg {
@@ -46,7 +47,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  gap: 26px;
+  gap: 16px 26px;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -82,12 +83,8 @@
 
 .dayInfoWrapper {
   position: absolute;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  /* left: 50%;
+  left: 50%;
   transform: translateX(-50%);
-  z-index: 10; */
 }
 
 @media screen and (min-width: 768px) {
@@ -115,6 +112,10 @@
     font-size: 16px;
     line-height: 20px;
   }
+
+  .dayInfoWrapper {
+    transform: translate(-88%, 0);
+  }
 }
 
 @media screen and (min-width: 1440px) {
@@ -123,5 +124,8 @@
   }
   .list {
     gap: 20px 22px;
+  }
+  .dayInfoWrapper {
+    transform: translate(-99%, 0);
   }
 }

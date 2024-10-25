@@ -1,5 +1,5 @@
 .dayInfo {
-  width: 280px;
+  min-width: 280px;
   height: auto;
   padding: 24px 13px;
   display: flex;
@@ -8,12 +8,6 @@
   background-color: var(--background);
   border-radius: 10px;
   box-shadow: var(--box-shadow-2);
-  margin-top: 16px;
-  position: absolute;
-  top: -90%;
-  left: 50%;
-  z-index: 10;
-  transform: translate(-50%, -100%);
 }
 
 .data {
@@ -40,7 +34,7 @@
 
 @media screen and (min-width: 768px) {
   .dayInfo {
-    width: 292px;
+    min-width: 292px;
     padding: 24px 16px;
   }
 }
