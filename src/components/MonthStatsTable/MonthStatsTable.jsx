@@ -13,6 +13,7 @@ export default function MonthStatsTable() {
   const [selectedYear, setSelectedYear] = useState(currentYear);
   const [selectedDayInfo, setSelectedDayInfo] = useState(null);
   const statsRef = useRef(null);
+  const clickedElementRef = useRef(null);
 
   const dispatch = useDispatch();
   const monthInfo = useSelector(selectMonthInfo);
@@ -92,21 +93,64 @@ export default function MonthStatsTable() {
       setSelectedDayInfo(null);
     } else {
       setSelectedDayInfo(dayInfo);
-
-      const clickedElement = event.currentTarget;
-      const statsElement = statsRef.current;
-
-      if (statsElement) {
-        const stateRect = statsElement.parentNode.getBoundingClientRect();
-        const clickedRect = clickedElement.getBoundingClientRect();
-
-        const positionY =
-          clickedRect.top - stateRect.top - statsElement.offsetHeight - 30;
-
-        statsElement.style.top = `${positionY}px`;
-      }
+      clickedElementRef.current = event.currentTarget;
     }
   };
+  useEffect(() => {
+    if (selectedDayInfo && statsRef.current && clickedElementRef.current) {
+      const statsElement = statsRef.current;
+      const clickedRect = clickedElementRef.current.getBoundingClientRect();
+      const stateRect = statsElement.parentNode.getBoundingClientRect();
+
+      const isMobile = window.innerWidth < 768;
+      const isTablet = window.innerWidth >= 768 && window.innerWidth < 1440;
+
+      let positionY;
+
+      if (isMobile) {
+        positionY =
+          clickedRect.top - stateRect.top - statsElement.offsetHeight - 16;
+      } else if (isTablet) {
+        positionY = clickedRect.top - stateRect.top - statsElement.offsetHeight;
+
+        const cellIndex = parseInt(clickedElementRef.current.dataset.index);
+        if (cellIndex % 4 < 4) {
+          statsElement.style.left = `${
+            clickedRect.left - stateRect.left - clickedRect.width / 2
+          }px`;
+        } else {
+          statsElement.style.left = `${
+            clickedRect.left - stateRect.left + clickedRect.width / 2
+          }px`;
+        }
+      } else {
+        positionY = clickedRect.top - stateRect.top - statsElement.offsetHeight;
+
+        statsElement.style.left = `${
+          clickedRect.left - stateRect.left + clickedRect.width / 2
+        }px`;
+      }
+
+      statsElement.style.top = `${positionY}px`;
+    }
+  }, [selectedDayInfo]);
+
+  useEffect(() => {
+    const handleClickOutside = event => {
+      if (
+        statsRef.current &&
+        !statsRef.current.contains(event.target) &&
+        !clickedElementRef.current.contains(event.target)
+      ) {
+        setSelectedDayInfo(null);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className={css.state}>
@@ -138,6 +182,7 @@ export default function MonthStatsTable() {
         {formatDays.map(({ day, percent, dayInfo }, index) => (
           <li
             key={index}
+            data-index={index}
             className={`${css.item} ${percent < 100 ? css.notReached : ''}`}
             onClick={event => handleDayClick(dayInfo, event)}
           >
