@@ -4,7 +4,7 @@ import styles from './SigninPage.module.css';
 export default function SigninPage() {
   return (
     <div className={styles.container}>
-      <div>
+      <div className={styles.background}>
         <h2 className={styles.title}>Sign In</h2>
         <AuthForm isSignup={false} />
       </div>
