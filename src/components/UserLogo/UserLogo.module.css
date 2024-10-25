@@ -38,15 +38,22 @@
   display: flex;
   align-items: center;
 }
+.logobox {
+  display: flex;
+  align-items: center;
+}
+.logobox:hover {
+  stroke: rgb(255, 157, 67);
+  fill: rgb(255, 157, 67);
+}
 .icon {
   width: 16px;
   height: 16px;
   color: #007bff;
 }
-.icon:hover {
-  stroke: rgb(255, 157, 67);
-  fill: rgb(255, 157, 67);
-}
 .user {
   margin-right: 5px;
+}
+.userLogoButton:hover {
+  border: 1px solid rgb(255, 157, 67)
 }
