@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
 import styles from './UploadAvatar.module.css';
 
 import { selectCurrentUser } from '../../redux/auth/authSelectors.js';
@@ -16,9 +15,7 @@ function UploadAvatar() {
   const { avatarUrl, name } = user;
   const userInitial = name.charAt(0).toUpperCase();
 
-  const [selectedFile, setSelectedFile] = useState(null);
-
-  const handleFileChange = event => {
+  const handleFileChange = async event => {
     const file = event.target.files[0];
 
     if (file && file.size > 5 * 1024 * 1024) {
@@ -26,26 +23,21 @@ function UploadAvatar() {
       return;
     }
 
-    setSelectedFile(event.target.files[0]);
-  };
-
-  const handleSubmit = async () => {
-    if (!selectedFile) {
-      toast.error('Please select a file before uploading.');
-      return;
+    if (!file) {
+      toast.error('Please choose a photo.');
     }
 
-    const formData = new FormData();
-    formData.append('avatarUrl', selectedFile);
-    console.log(formData.get('avatarUrl'));
+    if (file) {
+      const formData = new FormData();
+      formData.append('avatarUrl', file);
 
-    try {
-      const userId = user._id;
-      await dispatch(changeUserAvatarAPI({ userId, formData }));
-      await dispatch(fetchUserDataAPI(userId));
-      toast.success('Avatar uploaded successfully!');
-    } catch {
-      toast.error('Error during uploading new avatar.');
+      try {
+        const userId = user._id;
+        await dispatch(changeUserAvatarAPI({ userId, formData }));
+        await dispatch(fetchUserDataAPI(userId));
+      } catch {
+        toast.error('Error during uploading new avatar.');
+      }
     }
   };
 
@@ -60,7 +52,8 @@ function UploadAvatar() {
         )}
 
         <label htmlFor="fileInput" className={styles.iconLabel}>
-          <FiUpload className={styles.iconUpload} />
+          <FiUpload className={styles.iconUpload} />{' '}
+          <span className={styles.upload}>Upload a photo</span>
         </label>
         <input
           id="fileInput"
@@ -69,14 +62,6 @@ function UploadAvatar() {
           className={styles.inputAvatar}
           onChange={handleFileChange}
         />
-
-        <button
-          type="button"
-          onClick={handleSubmit}
-          className={styles.uploadBtn}
-        >
-          Upload a photo
-        </button>
       </div>
     </div>
   );
