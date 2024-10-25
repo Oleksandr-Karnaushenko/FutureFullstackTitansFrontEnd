@@ -1,27 +1,31 @@
+.btnDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .addWaterBtn {
   max-width: 280px;
   width: 100%;
   font-size: 16px;
-  padding: 8px 72px;
-  padding-bottom: 8px;
+  padding: 10px 72px;
   border-radius: 10px;
   background-color: var(--primary-blue);
   color: var(--background);
-  font-size: 16px;
-  font-family: inherit;
   margin-bottom: 40px;
   margin-top: 16px;
-  cursor: url('../../assets//img/cursors/mdi_cursor-pointer.svg'), auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: var(--box-shadow-3);
 }
 
-/* .svgCross {
-  fill: #fff;
+.svgCross {
   height: 24px;
   width: 24px;
-} */
-/* .addWaterBtn::before {
-  content: ('../../assets//img/cursors/mdi_cursor-pointer.svg');
-} */
+  stroke: var(--primary-blue);
+}
+
 @media screen and (min-width: 768px) {
   .addWaterBtn {
     max-width: 336px;

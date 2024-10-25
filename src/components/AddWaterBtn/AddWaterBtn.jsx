@@ -12,9 +12,9 @@ export default function AddWaterBtn() {
   return (
     <div className={css.btnDiv}>
       <button className={css.addWaterBtn} onClick={toggleModalAdd}>
-        {/* <svg className={css.svgCross}>
-          <use xlinkHref="/assets/images/icons.svg#icon-circle-plus" />
-        </svg> */}
+        <svg className={css.svgCross}>
+          <use href="/assets/images/icons.svg#icon-circle-plus" />
+        </svg>
         AddWater
       </button>
       <TodayWaterBackdrop isOpen={isModalOpenAdd} onClose={toggleModalAdd}>
