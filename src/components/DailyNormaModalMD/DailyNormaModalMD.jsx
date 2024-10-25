@@ -13,7 +13,7 @@ import {
 // import { ButtonBtn } from '../ButtonBtn/ButtonBtn';
 import { IoCloseOutline } from 'react-icons/io5';
 
-const DailyNormaModalMD = ({ closeModal }) => {
+const DailyNormaModalMD = ({ handleCloseModal }) => {
   const dispatch = useDispatch();
   const userId = useSelector(selectUserId);
   const dailyNorma = useSelector(selectNormWater);
@@ -60,7 +60,7 @@ const DailyNormaModalMD = ({ closeModal }) => {
         })
       ); // Передача userId і waterNorma
       toastSuccess('Daily norma saved successfully!');
-      closeModal();
+      handleCloseModal();
     } catch {
       toastError('Error saving daily norma!');
     } finally {
@@ -72,7 +72,7 @@ const DailyNormaModalMD = ({ closeModal }) => {
     <div className={css.container}>
       <div className={css.titleContainer}>
         <h2 className={css.title}>My daily norma</h2>
-        <button className={css.buttonClose} onClick={closeModal}>
+        <button className={css.buttonClose} onClick={handleCloseModal}>
           <IoCloseOutline
             name="icon-cross"
             width={24}

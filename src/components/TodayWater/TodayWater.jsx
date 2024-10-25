@@ -1,4 +1,4 @@
-import { useEffect,useState} from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getCurrentDayInfoAPI } from '../../redux/water/waterOperation/';
 import * as selector from '../../redux/water/waterSelectors';
@@ -21,14 +21,9 @@ export const TodayWater = () => {
     return setIsModalOpenAdd(!isModalOpenAdd);
   };
 
-
-
   useEffect(() => {
     dispatch(getCurrentDayInfoAPI());
   }, [dispatch]);
-
-
-
 
   return (
     <div className={css.todayWaterBlock}>
@@ -50,19 +45,9 @@ export const TodayWater = () => {
         onClick={toggleModalAdd}
       />
 
-<TodayWaterBackdrop 
-        isOpen={isModalOpenAdd}
-        onClose={toggleModalAdd}
-      >
-        <AmountOfWater
-        closeModal={toggleModalAdd }
-        />
-     
+      <TodayWaterBackdrop isOpen={isModalOpenAdd} onClose={toggleModalAdd}>
+        <AmountOfWater closeModal={toggleModalAdd} />
       </TodayWaterBackdrop>
-
-
-
-      
     </div>
   );
 };

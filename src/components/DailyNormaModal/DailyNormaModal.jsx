@@ -11,7 +11,6 @@ export default function DailyNormaModal({ isOpen, onClose }) {
           initialValues={{}}
           onSubmit={values => {
             // Submit form values, you can handle it accordingly
-            console.log('Form Values:', values);
             onClose(); // Close modal after form submission
           }}
         >

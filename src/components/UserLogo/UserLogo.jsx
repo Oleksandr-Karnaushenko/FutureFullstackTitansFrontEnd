@@ -65,7 +65,7 @@ const UserLogo = () => {
         </button>
 
         <svg className={css.icon}>
-          <use href="/src/assets/images/icons.svg#icon-arrow-down" />
+          <use href="assets/images/icons.svg#icon-arrow-down" />
         </svg>
       </div>
 
