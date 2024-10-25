@@ -1,18 +1,32 @@
 .container {
-    padding-top: 24px;
+    padding: 24px 20px 40px 20px;
+    background-image: url(../../assets/images/welcome/welcome-bg-mobd1x.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 100vh;
+    max-width: 100%;
 }
 
 /*<----------768px--------->*/
 
 @media screen and (min-width: 768px) {
     .container {
-        padding-top: 40px;
+        padding: 40px 32px 50px 32px;
+        background-image: url(../../assets/images/welcome/welcome-bg-tabd1x.png);
     }
 }
+
 /*<----------1440px--------->*/
 
 @media screen and (min-width: 1440px) {
     .container {
-     padding-top: 49px;
+        padding-top: 49px;
+        background-image: url(../../assets/images/welcome/welcome-el-pcd1x.png), url(../../assets/images/welcome/welcome-bg-pcd1x.png);
+        background-position: top center, bottom center;
+        /* background-size: 1404px 582px, contain; */
+        background-repeat: no-repeat, no-repeat;
+        /* overflow: hidden; */
+        min-height: 100vh;
     }
 }
