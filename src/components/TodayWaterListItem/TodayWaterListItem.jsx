@@ -33,7 +33,6 @@ const currentDate = ()=> {
   const date =new Date;
   const year = date.getFullYear();
   const month =date.getMonth()+1;
-  //temp
   return {month, year}
 }
 
@@ -64,7 +63,7 @@ console.log(currentDate());
       toggleModal();
       await dispatch(getCurrentDayInfoAPI());
       await dispatch(getCurrentMonthInfoAPI(currentDate()));
-      toast.success('Entry deleted successfully!', { duration: 4000 });
+      // toast.success('Entry deleted successfully!', { duration: 4000 });
     } catch (error) {
       console.log(error);
       toast.error('Failed to delete the entry.');
