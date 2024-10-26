@@ -7,10 +7,7 @@ import { deleteWaterAPI } from '../../redux/water/waterOperation/';
 import Icon from '../Icon/Icon';
 import { TodayWaterModal } from '../TodayWaterModal/TodayWaterModal';
 import { ButtonBtn } from '../ButtonBtn/ButtonBtn';
-import {
-  getCurrentDayInfoAPI,
-  editWaterAPI,
-} from '../../redux/water/waterOperation/';
+import { getCurrentDayInfoAPI } from '../../redux/water/waterOperation/';
 import css from './TodayWaterListItem.module.css';
 
 import TodayListModal from '../TodayListModal/TodayListModal';
@@ -21,9 +18,14 @@ let waterObj = {
   waterVolume: 550,
   time: '10:50',
 };
-// let waterObj ={
 
-// };
+const handleScroll = isOpen => {
+  if (!isOpen) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = '';
+  }
+};
 
 export const TodayWaterListItem = ({ waterItem }) => {
   const { waterVolume, time, _id } = waterItem;
@@ -33,12 +35,16 @@ export const TodayWaterListItem = ({ waterItem }) => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const toggleModal = () => {
-    return setIsModalOpen(!isModalOpen);
+    setIsModalOpen(!isModalOpen);
+    handleScroll(isModalOpen);
+    return isModalOpen;
   };
 
   const [isModalOpenEdit, setIsModalOpenEdit] = useState(false);
   const toggleModalEdit = () => {
-    return setIsModalOpenEdit(!isModalOpenEdit);
+    setIsModalOpenEdit(!isModalOpenEdit);
+    handleScroll(isModalOpenEdit);
+    return isModalOpenEdit;
   };
 
   const handleDeleteClick = async () => {
