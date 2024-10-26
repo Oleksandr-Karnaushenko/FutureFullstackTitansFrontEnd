@@ -21,7 +21,7 @@
   /* Background-images for WelcomePage light */
   --bg-image-light-mobile: url(../assets/images/welcome/elL-mob-1x.png), url(../assets/images/welcome/bgL-mob-1x.png);
   --bg-image-light-mobile-2x: url(../assets/images/welcome/elL-mob-2x.png), url(../assets/images/welcome/bgL-mob-2x.png);
-  --bg-image-light-tablet: url(../assets/images/welcome/elL-tab-1x.png), url(../assets/images/welcome/bgD-taL-1x.png);
+  --bg-image-light-tablet: url(../assets/images/welcome/elL-tab-1x.png), url(../assets/images/welcome/bgL-tab-1x.png);
   --bg-image-light-tablet-2x: url(../assets/images/welcome/elL-tab-2x.png), url(../assets/images/welcome/bgL-tab-2x.png);
   --bg-image-light-desktop: url(../assets/images/welcome/elL-pc-1x.png), url(../assets/images/welcome/bgL-pc-1x.png);
   --bg-image-light-desktop-2x: url(../assets/images/welcome/elL-pc-2x.png), url(../assets/images/welcome/bgL-pc-2x.png);
@@ -72,7 +72,7 @@
   /* Cursors */
   --cursor-h: var(--cursor-fing-h);
   --cursor-a: var(--cursor-fing-a);
-  
+
   /* Background images */
   --bg-image-mobile: var(--bg-image-light-mobile);
   --bg-image-mobile-2x: var(--bg-image-light-mobile-2x);
@@ -117,6 +117,7 @@ body {
   background-color: var(--background);
   color: var(--text);
 }
+
 body.light {
   --background: var(--bg-light);
   --text: var(--text-light);
@@ -130,6 +131,7 @@ body.light {
   --box-shadow-2: var(--box-shadow-l-2);
   --box-shadow-3: var(--box-shadow-l-3);
 }
+
 body.dark {
   --background: var(--bg-dark);
   --text: var(--text-dark);
