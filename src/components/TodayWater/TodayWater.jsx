@@ -11,7 +11,7 @@ import { TodayWaterBackdrop } from '../TodayWaterBackdrop/TodayWaterBackdrop';
 
 import css from './TodayWater.module.css';
 
-export const TodayWater = () => {
+export default function TodayWater() {
   const isRefreshing = useSelector(selector.selectWaterIsRefreshing);
   const error = useSelector(selector.selectWaterError);
   const dispatch = useDispatch();
@@ -33,7 +33,7 @@ export const TodayWater = () => {
           <Loader />
         </div>
       )}
-      {error && <p className={css.todayWaterError}>{error}</p>}
+      {/* {error && <p className={css.todayWaterError}>{error}</p>} */}
 
       <TodayWaterList />
       <ButtonBtn
@@ -45,9 +45,10 @@ export const TodayWater = () => {
         onClick={toggleModalAdd}
       />
 
+      {/*backdrop*/}
       <TodayWaterBackdrop isOpen={isModalOpenAdd} onClose={toggleModalAdd}>
         <AmountOfWater closeModal={toggleModalAdd} />
       </TodayWaterBackdrop>
     </div>
   );
-};
+}

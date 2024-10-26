@@ -5,6 +5,9 @@ import {
   addWaterAPI,
   deleteWaterAPI,
   editWaterAPI,
+  countPercent,
+  formattedDate,
+  dataTime,
 } from './waterOperation';
 
 const initialState = {
@@ -16,6 +19,7 @@ const initialState = {
   },
   isRefreshing: false,
   error: null,
+  test: null,
 };
 
 const waterSlice = createSlice({
@@ -59,8 +63,26 @@ const waterSlice = createSlice({
         state.isRefreshing = true;
         state.error = null;
       })
-      .addCase(addWaterAPI.fulfilled, state => {
+      .addCase(addWaterAPI.fulfilled, (state, { payload }) => {
         state.isRefreshing = false;
+        //dayInfo
+        state.dayInfo.waterVolumeTimeEntries.push({
+          _id: payload.backEndData._id,
+          waterVolume: payload.backEndData.waterVolume,
+          time: dataTime(payload.backEndData.date),
+        });
+        state.dayInfo.totalWaterVolume += payload.backEndData.waterVolume;
+        state.dayInfo.waterVolumeInPercent = countPercent(
+          state.dayInfo.totalWaterVolume,
+          payload.dailyNorna
+        );
+
+        //monthInfo
+        state.monthInfo.find(item => item.date === formattedDate).percent =
+          countPercent(state.dayInfo.totalWaterVolume, payload.dailyNorna);
+        state.monthInfo.find(item => item.date === formattedDate).count += 1;
+        state.monthInfo.find(item => item.date === formattedDate).waterVolume =
+          state.dayInfo.totalWaterVolume;
       })
       .addCase(addWaterAPI.rejected, (state, { payload }) => {
         state.isRefreshing = false;
@@ -71,8 +93,26 @@ const waterSlice = createSlice({
         state.isRefreshing = true;
         state.error = null;
       })
-      .addCase(editWaterAPI.fulfilled, state => {
+      .addCase(editWaterAPI.fulfilled, (state, { payload }) => {
         state.isRefreshing = false;
+
+        //dayInfo
+        state.dayInfo.waterVolumeTimeEntries.find(
+          item => item._id === payload.id
+        ).waterVolume = payload.backEndData.waterVolume;
+
+        state.dayInfo.waterVolumeTimeEntries.find(
+          item => item._id === payload.id
+        ).time = dataTime(payload.backEndData.date);
+
+        state.dayInfo.totalWaterVolume +=
+          payload.backEndData.waterVolume - state.dayInfo.totalWaterVolume;
+
+        //monthInfo
+        state.monthInfo.find(item => item.date === formattedDate).percent =
+          countPercent(state.dayInfo.totalWaterVolume, payload.dailyNorna);
+        state.monthInfo.find(item => item.date === formattedDate).waterVolume =
+          state.dayInfo.totalWaterVolume;
       })
       .addCase(editWaterAPI.rejected, (state, { payload }) => {
         state.isRefreshing = false;
@@ -83,8 +123,27 @@ const waterSlice = createSlice({
         state.isRefreshing = true;
         state.error = null;
       })
-      .addCase(deleteWaterAPI.fulfilled, state => {
+      .addCase(deleteWaterAPI.fulfilled, (state, { payload }) => {
         state.isRefreshing = false;
+        //dayInfo
+        state.dayInfo.totalWaterVolume -=
+          state.dayInfo.waterVolumeTimeEntries.find(
+            item => item._id === payload.drinkId
+          ).waterVolume;
+        state.dayInfo.waterVolumeInPercent = countPercent(
+          state.dayInfo.totalWaterVolume,
+          payload.dailyNorna
+        );
+        state.dayInfo.waterVolumeTimeEntries =
+          state.dayInfo.waterVolumeTimeEntries.filter(
+            item => item._id !== payload.drinkId
+          );
+        //monthInfo
+        state.monthInfo.find(item => item.date === formattedDate).percent =
+          countPercent(state.dayInfo.totalWaterVolume, payload.dailyNorna);
+        state.monthInfo.find(item => item.date === formattedDate).count -= 1;
+        state.monthInfo.find(item => item.date === formattedDate).waterVolume =
+          state.dayInfo.totalWaterVolume;
       })
       .addCase(deleteWaterAPI.rejected, (state, { payload }) => {
         state.isRefreshing = false;

@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { selectDailyNorm } from '../auth/authSlice.js';
 
 import { toastError, toastSuccess } from '../../services/toastNotification';
 
@@ -41,15 +42,16 @@ export const getCurrentDayInfoAPI = createAsyncThunk(
 
 export const addWaterAPI = createAsyncThunk(
   'water/add',
-  async (newWater, thunkAPI) => {
+  async (newWater, { thunkAPI, getState }) => {
     try {
       const { data } = await axios.post(`water`, newWater);
 
       const backEndData = data.data;
 
       toastSuccess('Drink has been added successful');
+      const dailyNorna = selectDailyNorm(getState());
 
-      return backEndData;
+      return { backEndData, dailyNorna };
     } catch (error) {
       toastError('Sorry, something went wrong. Please, try again');
       return thunkAPI.rejectWithValue(error.response.data.data.message);
@@ -59,7 +61,7 @@ export const addWaterAPI = createAsyncThunk(
 
 export const editWaterAPI = createAsyncThunk(
   'water/edit',
-  async (drink, thunkAPI) => {
+  async (drink, { thunkAPI, getState }) => {
     const { id, editWater } = drink;
     try {
       const { data } = await axios.patch(`water/${id}`, editWater);
@@ -67,8 +69,9 @@ export const editWaterAPI = createAsyncThunk(
       const backEndData = data.data;
 
       toastSuccess('Drink has been edited successful');
+      const dailyNorna = selectDailyNorm(getState());
 
-      return backEndData;
+      return { backEndData, dailyNorna, id };
     } catch (error) {
       toastError('Sorry, something went wrong. Please, try again');
       return thunkAPI.rejectWithValue(error.response.data.data.message);
@@ -78,18 +81,39 @@ export const editWaterAPI = createAsyncThunk(
 
 export const deleteWaterAPI = createAsyncThunk(
   'water/delete',
-  async (drinkId, thunkAPI) => {
+  async (drinkId, { thunkAPI, getState }) => {
     try {
-      const { data } = await axios.delete(`water/${drinkId}`);
-
-      const backEndData = data.data;
+      await axios.delete(`water/${drinkId}`);
 
       toastSuccess('Drink has been deleted successful');
+      const dailyNorna = selectDailyNorm(getState());
 
-      return backEndData;
+      return { drinkId, dailyNorna };
     } catch (error) {
       toastError('Sorry, something went wrong. Please, try again');
       return thunkAPI.rejectWithValue(error.response.data.data.message);
     }
   }
 );
+
+//
+
+export const countPercent = (totalWaterVolume, dailyNorna) =>
+  Math.min(Math.floor((totalWaterVolume / dailyNorna) * 100), 100);
+
+//today
+const today = new Date();
+const day = String(today.getDate()).padStart(2, '0');
+const month = String(today.getMonth() + 1).padStart(2, '0');
+export const formattedDate = `${day}.${month}`;
+
+//date
+export const dataTime = dateStr => {
+  const date = new Date(dateStr);
+
+  const hours = String(date.getUTCHours()).padStart(2, '0');
+  const minutes = String(date.getUTCMinutes()).padStart(2, '0');
+
+  const formattedTime = `${hours}:${minutes}`;
+  return formattedTime;
+};
