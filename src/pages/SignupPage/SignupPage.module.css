@@ -25,7 +25,7 @@
 .background {
     background-image: url('/src/assets/images/home/bottle-mob-1x.png');
     background-repeat: no-repeat;
-    background-position: 50% 75%;
+    background-position: 50% 80%;
     background-size: contain;
     height: 100vh;
 }
@@ -50,7 +50,7 @@
         align-items: baseline;
         background-image: url('/src/assets/images/welcome/elL-tab-1x.png');
         background-repeat: no-repeat;
-        background-position: left -19px top 18px;
+        background-position: left -0px top -80px;
         background-size: 100% auto;
     }
 
@@ -86,7 +86,7 @@
         align-items: end;
         background-image: url('/src/assets/images/welcome/elL-pc-1x.png');
         background-repeat: no-repeat;
-        background-position: top 45px right 0px;
+        background-position: top right;
         background-size: 100% auto;
     }
 
@@ -99,11 +99,11 @@
     .background {
         background-image: url('/src/assets/images/home/bottle-desk-1x.png');
         background-repeat: no-repeat;
-        background-position: left -350px top -40px;
+        background-position: left -350px top -10px;
         background-size: 100% auto;
         width: 100%;
         padding-left: 728px;
-        padding-top: 162px;
+        padding-top: 140px;
     }
 
     @media (min-resolution: 2dppx) {

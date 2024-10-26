@@ -52,7 +52,7 @@
         align-items: baseline;
         background-image: url('/src/assets/images/welcome/elL-tab-1x.png');
         background-repeat: no-repeat;
-        background-position: left -19px top 18px;
+        background-position: left -0px top -80px;
         background-size: 100% auto;
     }
 
@@ -99,7 +99,7 @@
     .background {
         background-image: url('/src/assets/images/home/bottle-desk-1x.png');
         background-repeat: no-repeat;
-        background-position: left -350px top -40px;
+        background-position: left -350px top -10px;
         background-size: 100% auto;
         width: 100%;
         padding-left: 728px;
