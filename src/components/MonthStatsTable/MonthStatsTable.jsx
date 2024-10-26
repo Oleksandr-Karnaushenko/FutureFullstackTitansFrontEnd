@@ -113,15 +113,19 @@ export default function MonthStatsTable() {
       } else if (isTablet) {
         positionY = clickedRect.top - stateRect.top - statsElement.offsetHeight;
 
+        const cellsPerRow = 10;
         const cellIndex = parseInt(clickedElementRef.current.dataset.index);
-        if (cellIndex % 4 < 4) {
+
+        if (cellIndex % cellsPerRow < 4) {
           statsElement.style.left = `${
             clickedRect.left - stateRect.left - clickedRect.width / 2
           }px`;
+          statsElement.style.transform = 'translateX(10%)';
         } else {
           statsElement.style.left = `${
             clickedRect.left - stateRect.left + clickedRect.width / 2
           }px`;
+          statsElement.style.transform = 'translateX(-100%)';
         }
       } else {
         positionY = clickedRect.top - stateRect.top - statsElement.offsetHeight;
