@@ -6,8 +6,8 @@ import {
   selectWaterIsRefreshing,
 } from '../../redux/water/waterSelectors.js';
 import DaysGeneralStats from '../DaysGeneralStats/DaysGeneralStats.jsx';
-import css from './MonthStatsTable.module.css';
 import Loader from '../Loader/Loader.jsx';
+import css from './MonthStatsTable.module.css';
 
 export default function MonthStatsTable() {
   const currentMonth = new Date().getMonth();
@@ -18,6 +18,7 @@ export default function MonthStatsTable() {
   const [selectedMonth, setSelectedMonth] = useState(currentMonth);
   const [selectedYear, setSelectedYear] = useState(currentYear);
   const [selectedDayInfo, setSelectedDayInfo] = useState(null);
+
   const statsRef = useRef(null);
   const clickedElementRef = useRef(null);
 
@@ -164,8 +165,11 @@ export default function MonthStatsTable() {
 
   return (
     <div className={css.state}>
-      {isRefreshing && <Loader />}
-      {/* Показуємо спінер при завантаженні */}
+      {isRefreshing && (
+        <div className={css.loader}>
+          <Loader />
+        </div>
+      )}
       <div className={css.wrap}>
         <h3 className={css.header}>Month</h3>
         <div className={css.paginator}>
