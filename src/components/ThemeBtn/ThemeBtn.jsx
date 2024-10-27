@@ -1,12 +1,24 @@
 import { useTheme } from '../../utility/ThemeContext.jsx';
-import styles from './ThemeBtn.module.css';
+import { BsSun, BsMoon } from 'react-icons/bs';
+import css from './ThemeBtn.module.css';
 
 const ThemeBtn = () => {
-  const { toggleTheme } = useTheme();
+  const { theme, toggleTheme } = useTheme();
 
   return (
-    <button className={styles.themeButton} onClick={toggleTheme}>
-      Swap
+    <button
+      className={css.themeButton}
+      onClick={toggleTheme}
+      aria-label="Toggle theme"
+    >
+      <span
+        className={`${css.icon} ${theme === 'light' ? css.show : css.hide}`}
+      >
+        <BsSun />
+      </span>
+      <span className={`${css.icon} ${theme === 'dark' ? css.show : css.hide}`}>
+        <BsMoon />
+      </span>
     </button>
   );
 };
