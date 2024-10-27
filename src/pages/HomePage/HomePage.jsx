@@ -24,7 +24,7 @@ export default function HomePage() {
   return (
     <div className={css.background}>
       <div className={css.container}>
-        <div className={css.leftColumn}>
+        <div className={(css.column, css.leftcolumn)}>
           <DailyNorma />
           <WaterRatioPanel />
         </div>

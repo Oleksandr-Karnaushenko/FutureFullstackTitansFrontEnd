@@ -19,13 +19,27 @@
   --cursor-fing-a: url('../assets/img/cursors/mdi_cursor-pointer.svg'), pointer;
 
   /* Background-images for WelcomePage light */
-  
-  --bg-image-light-mobile: url(../assets/images/welcome/elL-mob-1x.png), url(../assets/images/welcome/bgL-mob-1x.png);
-  --bg-image-light-mobile-2x: url(../assets/images/welcome/elL-mob-2x.png), url(../assets/images/welcome/bgL-mob-2x.png);
-  --bg-image-light-tablet: url(../assets/images/welcome/elL-tab-1x.png), url(../assets/images/welcome/bgL-tab-1x.png);
-  --bg-image-light-tablet-2x: url(../assets/images/welcome/elL-tab-2x.png), url(../assets/images/welcome/bgL-tab-2x.png);
-  --bg-image-light-desktop: url(../assets/images/welcome/elL-pc-1x.png), url(../assets/images/welcome/bgL-pc-1x.png);
-  --bg-image-light-desktop-2x: url(../assets/images/welcome/elL-pc-2x.png), url(../assets/images/welcome/bgL-pc-2x.png);
+
+  --bg-image-light-mobile: url(../assets/images/welcome/elL-mob-1x.png),
+    url(../assets/images/welcome/bgL-mob-1x.png);
+  --bg-image-light-mobile-2x: url(../assets/images/welcome/elL-mob-2x.png),
+    url(../assets/images/welcome/bgL-mob-2x.png);
+  --bg-image-light-tablet: url(../assets/images/welcome/elL-tab-1x.png),
+    url(../assets/images/welcome/bgL-tab-1x.png);
+  --bg-image-light-tablet-2x: url(../assets/images/welcome/elL-tab-2x.png),
+    url(../assets/images/welcome/bgL-tab-2x.png);
+  --bg-image-light-desktop: url(../assets/images/welcome/elL-pc-1x.png),
+    url(../assets/images/welcome/bgL-pc-1x.png);
+  --bg-image-light-desktop-2x: url(../assets/images/welcome/elL-pc-2x.png),
+    url(../assets/images/welcome/bgL-pc-2x.png);
+
+  /* Background-images for HomePage light */
+  --bg-image-light-mobile-home: url(/assets/images/bg-dots-mob-1x.png);
+  --bg-image-light-mobile-2x-home: url(/assets/images/bg-dots-mob-2x.png);
+  --bg-image-light-tablet-home: url(/assets/images/bg-dots-tab-1x.png);
+  --bg-image-light-tablet-2x-home: url(/assets/images/bg-dots-tab-2x.png);
+  --bg-image-light-desktop-home: url(/assets/images/bg-dots-desk-1x-min.png);
+  --bg-image-light-desktop-2x-home: url(/assets/bg-dots-desk-2x-min.png);
 
   /* dark-theme-colors */
 
@@ -61,6 +75,14 @@
   --bg-image-dark-desktop-2x: url(../assets/images/welcome/elD-pc-2x.png),
     url(../assets/images/welcome/bgD-pc-2x.png);
 
+  /* Background-images for HomePage dark */
+  --bg-image-dark-mobile-home: url(/public/assets/images/bg-dots-mob-dark-1x-min.png);
+  --bg-image-dark-mobile-2x-home: url(/public/assets/images/bg-dots-mob-dark-2x-min.png);
+  --bg-image-dark-tablet-home: url(/assets/images/bg-dots-tab-dark-1x-min.png);
+  --bg-image-dark-tablet-2x-home: url(/assets/images/bg-dots-tab-dark-2x-min.png);
+  --bg-image-dark-desktop-home: url(/assets/images/bg-dots-desk-dark-1x-min.png.png);
+  --bg-image-dark-desktop-2x-home: url(/assets/images/bg-dots-desk-dark-2x-min.png.png);
+
   /* variables */
   --background: var(--bg-light);
   --text: var(--text-light);
@@ -80,13 +102,21 @@
   --cursor-h: var(--cursor-fing-h);
   --cursor-a: var(--cursor-fing-a);
 
-  /* Background images */
+  /* Background images*/
   --bg-image-mobile: var(--bg-image-light-mobile);
   --bg-image-mobile-2x: var(--bg-image-light-mobile-2x);
   --bg-image-tablet: var(--bg-image-light-tablet);
   --bg-image-tablet-2x: var(--bg-image-light-tablet-2x);
   --bg-image-desktop: var(--bg-image-light-desktop);
   --bg-image-desktop-2x: var(--bg-image-light-desktop-2x);
+
+  /* Background images homepage*/
+  --bg-image-mobile-home: var(--bg-image-light-mobile-home);
+  --bg-image-mobile-2x-home: var(--bg-image-light-mobile-2x-home);
+  --bg-image-tablet-home: var(--bg-image-light-tablet-home);
+  --bg-image-tablet-2x-home: var(--bg-image-light-tablet-2x-home);
+  --bg-image-desktop-home: var(--bg-image-light-desktop-home);
+  --bg-image-desktop-2x-home: var(--bg-image-light-desktop-2x-home);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -116,6 +146,14 @@
     --bg-image-tablet-2x: var(--bg-image-dark-tablet-2x);
     --bg-image-desktop: var(--bg-image-dark-desktop);
     --bg-image-desktop-2x: var(--bg-image-dark-desktop-2x);
+
+    /* Background images for Homepage dark theme */
+    --bg-image-mobile-home: var(--bg-image-dark-mobile-home);
+    --bg-image-mobile-2x-home: var(--bg-image-dark-mobile-2x-home);
+    --bg-image-tablet-home: var(--bg-image-dark-tablet-home);
+    --bg-image-tablet-2x-home: var(--bg-image-dark-tablet-2x-home);
+    --bg-image-desktop-home: var(--bg-image-dark-desktop-home);
+    --bg-image-desktop-2x-home: var(--bg-image-dark-desktop-2x-home);
   }
 }
 
@@ -150,6 +188,14 @@ body.light {
   --bg-image-tablet-2x: var(--bg-image-light-tablet-2x);
   --bg-image-desktop: var(--bg-image-light-desktop);
   --bg-image-desktop-2x: var(--bg-image-light-desktop-2x);
+
+  /* Background images homepage*/
+  --bg-image-mobile-home: var(--bg-image-light-mobile-home);
+  --bg-image-mobile-2x-home: var(--bg-image-light-mobile-2x-home);
+  --bg-image-tablet-home: var(--bg-image-light-tablet-home);
+  --bg-image-tablet-2x-home: var(--bg-image-light-tablet-2x-home);
+  --bg-image-desktop-home: var(--bg-image-light-desktop-home);
+  --bg-image-desktop-2x-home: var(--bg-image-light-desktop-2x-home);
 }
 
 body.dark {
@@ -178,6 +224,14 @@ body.dark {
   --bg-image-tablet-2x: var(--bg-image-dark-tablet-2x);
   --bg-image-desktop: var(--bg-image-dark-desktop);
   --bg-image-desktop-2x: var(--bg-image-dark-desktop-2x);
+
+  /* Background images for Homepage dark theme */
+  --bg-image-mobile-home: var(--bg-image-dark-mobile-home);
+  --bg-image-mobile-2x-home: var(--bg-image-dark-mobile-2x-home);
+  --bg-image-tablet-home: var(--bg-image-dark-tablet-home);
+  --bg-image-tablet-2x-home: var(--bg-image-dark-tablet-2x-home);
+  --bg-image-desktop-home: var(--bg-image-dark-desktop-home);
+  --bg-image-desktop-2x-home: var(--bg-image-dark-desktop-2x-home);
 }
 
 /* Hover and active for buttons */
