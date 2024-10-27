@@ -44,10 +44,8 @@ export const signInAPI = createAsyncThunk(
 
       const backEndData = data.data;
 
-      localStorage.setItem('accessToken', backEndData.accessToken);
-      localStorage.setItem('userId', backEndData._id);
-
       setAuthHeader(backEndData.accessToken);
+      localStorage.setItem('userId', backEndData._id);
 
       toastSuccess('Log in successful. Welcome back ');
 
@@ -67,7 +65,7 @@ export const logOutAPI = createAsyncThunk(
 
       cleareAuthHeader();
 
-      localStorage.removeItem('accessToken', 'userId');
+      localStorage.removeItem('userId');
 
       toastSuccess('Log out successful. Come back sooner');
     } catch (error) {
@@ -80,17 +78,26 @@ export const logOutAPI = createAsyncThunk(
 
 export const fetchCurrentUserAPI = createAsyncThunk(
   'auth/refresh',
-  async (_, { rejectWithValue }) => {
+
+  async (_, { rejectWithValue, getState }) => {
+    const state = getState();
+    const persistedToken = state.auth.token;
+
+    if (persistedToken === null) {
+      toastError('Session not found. Please Log In!');
+      return rejectWithValue('Session not found. Please Log In!');
+    }
+
     try {
       const { data } = await axios.post('/auth/refresh', _, {
         withCredentials: true,
       });
-
       const backEndData = data.data;
 
-      localStorage.setItem('accessToken', backEndData.accessToken);
-
       setAuthHeader(backEndData.accessToken);
+      backEndData.userId = localStorage.getItem('userId');
+
+      console.log('🚀 ~ backEndData:', backEndData);
 
       return backEndData;
     } catch (error) {
