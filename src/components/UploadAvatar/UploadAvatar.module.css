@@ -55,7 +55,7 @@
   cursor: url('../../assets/img/cursors/mdi_cursor-pointer.svg'), auto;
 }
 
-.uploadBtn {
+.upload {
   color: var(--primary-blue-l);
   font-size: 14px;
   font-style: normal;
