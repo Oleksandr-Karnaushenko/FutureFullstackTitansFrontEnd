@@ -7,10 +7,7 @@ import { deleteWaterAPI } from '../../redux/water/waterOperation/';
 import Icon from '../Icon/Icon';
 import { TodayWaterModal } from '../TodayWaterModal/TodayWaterModal';
 import { ButtonBtn } from '../ButtonBtn/ButtonBtn';
-import {
-  getCurrentDayInfoAPI,
-  editWaterAPI,
-} from '../../redux/water/waterOperation/';
+import { getCurrentDayInfoAPI, getCurrentMonthInfoAPI } from '../../redux/water/waterOperation/';
 import css from './TodayWaterListItem.module.css';
 
 import TodayListModal from '../TodayListModal/TodayListModal';
@@ -21,24 +18,43 @@ let waterObj = {
   waterVolume: 550,
   time: '10:50',
 };
-// let waterObj ={
 
-// };
+const handleScroll = isOpen => {
+  if (!isOpen) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = '';
+  }
+};
+
+
+
+const currentDate = ()=> {
+  const date =new Date;
+  const year = date.getFullYear();
+  const month =date.getMonth()+1;
+  return {month, year}
+}
 
 export const TodayWaterListItem = ({ waterItem }) => {
   const { waterVolume, time, _id } = waterItem;
+console.log(currentDate());
 
   const dispatch = useDispatch();
   useSelector(selector.selectDayInfo);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const toggleModal = () => {
-    return setIsModalOpen(!isModalOpen);
+    setIsModalOpen(!isModalOpen);
+    handleScroll(isModalOpen);
+    return isModalOpen;
   };
 
   const [isModalOpenEdit, setIsModalOpenEdit] = useState(false);
   const toggleModalEdit = () => {
-    return setIsModalOpenEdit(!isModalOpenEdit);
+    setIsModalOpenEdit(!isModalOpenEdit);
+    handleScroll(isModalOpenEdit);
+    return isModalOpenEdit;
   };
 
   const handleDeleteClick = async () => {
@@ -46,7 +62,8 @@ export const TodayWaterListItem = ({ waterItem }) => {
       await dispatch(deleteWaterAPI(_id));
       toggleModal();
       await dispatch(getCurrentDayInfoAPI());
-      toast.success('Entry deleted successfully!', { duration: 4000 });
+      await dispatch(getCurrentMonthInfoAPI(currentDate()));
+      // toast.success('Entry deleted successfully!', { duration: 4000 });
     } catch (error) {
       console.log(error);
       toast.error('Failed to delete the entry.');
