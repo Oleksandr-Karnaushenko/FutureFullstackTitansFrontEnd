@@ -24,6 +24,7 @@
   height: 24px;
   width: 24px;
   stroke: var(--primary-blue);
+  fill: var(--background);
 }
 
 @media screen and (min-width: 768px) {
