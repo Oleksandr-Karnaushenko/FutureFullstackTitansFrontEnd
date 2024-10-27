@@ -1,4 +1,3 @@
-.logoutButton,
 .settingsButton {
   background: none;
   border: none;
@@ -8,6 +7,32 @@
   text-decoration: none;
   padding: 0;
   margin-left: 0.5rem;
+}
+
+.logoutButton {
+  background: none;
+  border: none;
+  color: rgb(64, 123, 255);
+  cursor: pointer;
+  font-size: 1rem;
+  text-decoration: none;
+  padding: 0;
+  margin-left: 0.5rem;
+}
+
+/* .logoutButton {
+  padding-top: 16px;
+  display: flex;
+}
+
+.settingsButton {
+  display: flex;
+} */
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .buttonsSettings:hover,
@@ -36,11 +61,13 @@
 
 .modal {
   position: absolute;
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 10px;
+  background: var(--background);
+  box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.2);
+  border-radius: 10px;
+  padding: 16px;
   z-index: 1000;
+  font-weight: 400;
+  font-size: 16px;
 }
 .buttonsSettings,
 .buttonsLogout {

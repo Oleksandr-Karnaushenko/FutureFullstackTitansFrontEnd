@@ -47,9 +47,9 @@
   fill: rgb(255, 157, 67);
 }
 .icon {
-  width: 16px;
-  height: 16px;
-  color: #007bff;
+  width: 28px;
+  height: 28px;
+  fill: #007bff;
 }
 .user {
   margin-right: 5px;
