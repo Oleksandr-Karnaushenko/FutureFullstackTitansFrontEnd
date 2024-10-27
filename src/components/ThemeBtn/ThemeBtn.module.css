@@ -1,6 +1,7 @@
 .themeButton {
   background-color: var(--background);
   border: 1px solid var(--secondary-blue);
+  box-shadow: inset 0 4px 14px 0 rgba(64, 123, 255, 0.54);
   color: var(--primary-blue);
   display: flex;
   align-items: center;
@@ -28,10 +29,6 @@
 .hide {
   opacity: 0;
   transform: translateX(-20px);
-}
-
-.themeButton:hover {
-  box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.54);
 }
 
 .themeButton:active {
