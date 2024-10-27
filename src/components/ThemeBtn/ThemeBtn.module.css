@@ -1,27 +1,44 @@
 .themeButton {
-  padding: 10px 20px;
+  background-color: var(--background);
+  border: 1px solid var(--secondary-blue);
+  color: var(--primary-blue);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 10px;
+  border-radius: 20px;
+  width: 56px;
+  cursor: var(--cursor-h);
+  position: relative;
+  overflow: hidden;
+}
+
+.icon {
   font-size: 16px;
-  color: #fff;
-  background-color: #007bff; /* Блакитний колір для світлої теми */
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.hide {
+  opacity: 0;
+  transform: translateX(-20px);
 }
 
 .themeButton:hover {
-  background-color: #0056b3; /* Темніший відтінок для ховера */
+  box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.54);
 }
 
 .themeButton:active {
-  transform: scale(0.95); /* Ефект при натисканні */
+  box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
+  cursor: var(--cursor-a);
 }
 
-/* Темніша тема */
-body.dark .themeButton {
-  background-color: #495057; /* Сірий колір для темної теми */
-}
-
-body.dark .themeButton:hover {
-  background-color: #343a40; /* Темніший відтінок для ховера темної теми */
+.themeButton:hover .icon {
+  color: var(--secondary-orange);
 }
