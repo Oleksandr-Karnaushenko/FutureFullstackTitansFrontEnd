@@ -26,12 +26,12 @@ function PasswordField({ errors, touched }) {
           }`}
         />
         {showOldPassword ? (
-          <HiOutlineEyeSlash
+          <HiOutlineEye
             className={styles.iconEye}
             onClick={() => setShowOldPassword(!showOldPassword)}
           />
         ) : (
-          <HiOutlineEye
+          <HiOutlineEyeSlash
             className={styles.iconEye}
             onClick={() => setShowOldPassword(!showOldPassword)}
           />
@@ -56,12 +56,12 @@ function PasswordField({ errors, touched }) {
           }`}
         />
         {showPassword ? (
-          <HiOutlineEyeSlash
+          <HiOutlineEye
             className={styles.iconEye}
             onClick={() => setShowPassword(!showPassword)}
           />
         ) : (
-          <HiOutlineEye
+          <HiOutlineEyeSlash
             className={styles.iconEye}
             onClick={() => setShowPassword(!showPassword)}
           />
@@ -87,12 +87,12 @@ function PasswordField({ errors, touched }) {
           }`}
         />
         {showConfirmPassword ? (
-          <HiOutlineEyeSlash
+          <HiOutlineEye
             className={styles.iconEye}
             onClick={() => setShowConfirmPassword(!showConfirmPassword)}
           />
         ) : (
-          <HiOutlineEye
+          <HiOutlineEyeSlash
             className={styles.iconEye}
             onClick={() => setShowConfirmPassword(!showConfirmPassword)}
           />
