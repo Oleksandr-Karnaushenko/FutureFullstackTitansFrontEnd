@@ -19,6 +19,7 @@
   --cursor-fing-a: url('../assets/img/cursors/mdi_cursor-pointer.svg'), pointer;
 
   /* Background-images for WelcomePage light */
+  
   --bg-image-light-mobile: url(../assets/images/welcome/elL-mob-1x.png), url(../assets/images/welcome/bgL-mob-1x.png);
   --bg-image-light-mobile-2x: url(../assets/images/welcome/elL-mob-2x.png), url(../assets/images/welcome/bgL-mob-2x.png);
   --bg-image-light-tablet: url(../assets/images/welcome/elL-tab-1x.png), url(../assets/images/welcome/bgL-tab-1x.png);
@@ -47,12 +48,18 @@
   --cursor-arr-a: url('../assets/img/cursors/outlineArrow2.svg'), pointer;
 
   /* Background-images for WelcomePage dark */
-  --bg-image-dark-mobile: url(../assets/images/welcome/elD-mob-1x.png), url(../assets/images/welcome/bgD-mob-1x.png);
-  --bg-image-dark-mobile-2x: url(../assets/images/welcome/elD-mob-2x.png), url(../assets/images/welcome/bgD-mob-2x.png);
-  --bg-image-dark-tablet: url(../assets/images/welcome/elD-tab-1x.png), url(../assets/images/welcome/bgD-tab-1x.png);
-  --bg-image-dark-tablet-2x: url(../assets/images/welcome/elD-tab-2x.png), url(../assets/images/welcome/bgD-tab-2x.png);
-  --bg-image-dark-desktop: url(../assets/images/welcome/elD-pc-1x.png), url(../assets/images/welcome/bgD-pc-1x.png);
-  --bg-image-dark-desktop-2x: url(../assets/images/welcome/elD-pc-2x.png), url(../assets/images/welcome/bgD-pc-2x.png);
+  --bg-image-dark-mobile: url(../assets/images/welcome/elD-mob-1x.png),
+    url(../assets/images/welcome/bgD-mob-1x.png);
+  --bg-image-dark-mobile-2x: url(../assets/images/welcome/elD-mob-2x.png),
+    url(../assets/images/welcome/bgD-mob-2x.png);
+  --bg-image-dark-tablet: url(../assets/images/welcome/elD-tab-1x.png),
+    url(../assets/images/welcome/bgD-tab-1x.png);
+  --bg-image-dark-tablet-2x: url(../assets/images/welcome/elD-tab-2x.png),
+    url(../assets/images/welcome/bgD-tab-2x.png);
+  --bg-image-dark-desktop: url(../assets/images/welcome/elD-pc-1x.png),
+    url(../assets/images/welcome/bgD-pc-1x.png);
+  --bg-image-dark-desktop-2x: url(../assets/images/welcome/elD-pc-2x.png),
+    url(../assets/images/welcome/bgD-pc-2x.png);
 
   /* variables */
   --background: var(--bg-light);
@@ -80,7 +87,6 @@
   --bg-image-tablet-2x: var(--bg-image-light-tablet-2x);
   --bg-image-desktop: var(--bg-image-light-desktop);
   --bg-image-desktop-2x: var(--bg-image-light-desktop-2x);
-
 }
 
 @media (prefers-color-scheme: dark) {
@@ -127,9 +133,23 @@ body.light {
   --secondary-4: var(--sec-4-l);
   --secondary-orange: var(--sec-orange-l);
   --secondary-blue: var(--sec-lightblue-l);
+
+  /* box-shadows*/
   --box-shadow: var(--box-shadow-l);
   --box-shadow-2: var(--box-shadow-l-2);
   --box-shadow-3: var(--box-shadow-l-3);
+
+  /* Cursors */
+  --cursor-h: var(--cursor-fing-h);
+  --cursor-a: var(--cursor-fing-a);
+
+  /* Background images */
+  --bg-image-mobile: var(--bg-image-light-mobile);
+  --bg-image-mobile-2x: var(--bg-image-light-mobile-2x);
+  --bg-image-tablet: var(--bg-image-light-tablet);
+  --bg-image-tablet-2x: var(--bg-image-light-tablet-2x);
+  --bg-image-desktop: var(--bg-image-light-desktop);
+  --bg-image-desktop-2x: var(--bg-image-light-desktop-2x);
 }
 
 body.dark {
@@ -141,9 +161,23 @@ body.dark {
   --secondary-4: var(--sec-4-d);
   --secondary-orange: var(--sec-orange-d);
   --secondary-blue: var(--sec-lightblue-d);
+
+  /* box-shadows*/
   --box-shadow: var(--box-shadow-d);
   --box-shadow-2: var(--box-shadow-d-2);
   --box-shadow-3: var(--box-shadow-d-3);
+
+  /* Cursors */
+  --cursor-h: var(--cursor-arr-h);
+  --cursor-a: var(--cursor-arr-a);
+
+  /* Background images for dark theme */
+  --bg-image-mobile: var(--bg-image-dark-mobile);
+  --bg-image-mobile-2x: var(--bg-image-dark-mobile-2x);
+  --bg-image-tablet: var(--bg-image-dark-tablet);
+  --bg-image-tablet-2x: var(--bg-image-dark-tablet-2x);
+  --bg-image-desktop: var(--bg-image-dark-desktop);
+  --bg-image-desktop-2x: var(--bg-image-dark-desktop-2x);
 }
 
 /* Hover and active for buttons */

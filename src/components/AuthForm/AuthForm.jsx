@@ -2,11 +2,7 @@ import { Form, Formik, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import toast from 'react-hot-toast';
-import {
-  fetchUserDataAPI,
-  signInAPI,
-  signUpAPI,
-} from '../../redux/auth/authOperation';
+import { signInAPI, signUpAPI } from '../../redux/auth/authOperation';
 import { useState } from 'react';
 import styles from './AuthForm.module.css';
 
@@ -40,27 +36,9 @@ export default function AuthForm({ isSignup }) {
         await dispatch(signUpAPI({ email, password })).unwrap();
         toast.success('Successful registration!');
 
-        const userData = await dispatch(
-          signInAPI({ email, password })
-        ).unwrap();
-
-        const userId = userData._id;
-        console.log(userId);
-        if (userId) {
-          await dispatch(fetchUserDataAPI(userId)).unwrap();
-          toast.success('User data updated!');
-        }
+        await dispatch(signInAPI({ email, password })).unwrap();
       } else {
-        const userData = await dispatch(
-          signInAPI({ email, password })
-        ).unwrap();
-        const userId = userData._id;
-        toast.success('Successful login!');
-
-        if (userId) {
-          await dispatch(fetchUserDataAPI(userId)).unwrap();
-          toast.success('User data updated!');
-        }
+        await dispatch(signInAPI({ email, password })).unwrap();
       }
     } catch {
       toast.error('Error during registration/login');

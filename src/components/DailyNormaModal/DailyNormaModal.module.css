@@ -1,105 +1,298 @@
-.modalOverlay {
-  max-width: 280px;
+input,
+textarea {
+  font-family: inherit;
+  font-size: 16px;
+  line-height: calc(1.25);
+  padding: 11px 10px;
+  color: var(--primary-blue);
+  border: 1px solid var(--secondary-blue);
+  border-radius: 6px;
   width: 100%;
-  padding: 24px 12px;
-  background-color: #fff;
-  border-radius: 10px;
-  position: fixed;
-  top: 40px;
-  left: 20px;
-  z-index: 200;
-  overflow-y: auto;
 }
 
-.modalTitle {
+input:focus {
+  color: var(--primary-blue);
+  outline: none;
+  border-color: ar(--secondary-blue);
+}
+
+input::placeholder {
+  color: var(--primary-blue);
+}
+.errorMessage {
+  color: var(--secondary-3);
+  font-size: 14px;
+  line-height: calc(18 / 14);
+  margin-top: -4px;
+}
+
+.container {
+  position: fixed; /* Щоб модалка була завжди по центру */
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  color: var(--text);
+  width: 90%;
+  max-width: 704px; /* Задаємо максимальну ширину */
+  padding: 24px 12px;
+  border-radius: 10px;
+  background: var(--bg-light);
+  overflow-y: auto; /* Прокручування, якщо вміст більше */
+  max-height: 90vh; /* Максимальна висота для великих екранів */
+  z-index: 1000; /* Встановлюємо високий z-index */
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    padding: 32px 24px;
+    max-width: 704px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .container {
+    width: 592px;
+    max-width: 100%; /* Щоб не виходило за рамки екрану */
+  }
+}
+
+.titleContainer {
+  position: relative;
+}
+
+.title {
   font-size: 26px;
-  text-align: left;
+  line-height: calc(32 / 26);
+  font-weight: 500;
+  color: var(--text);
   margin-bottom: 24px;
 }
 
-.closeBtn {
-  margin-left: auto;
-  position: absolute;
-  top: 28px;
-  right: 12px;
+.iconClose {
+  fill: var(--primary-blue);
+  stroke: var(--primary-blue);
   width: 24px;
   height: 24px;
-  background: none;
-  color: var(--primary-blue);
 }
 
-.womanManRatio {
+.buttonClose {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.buttonClose {
+  background: var(--bg-light);
+}
+
+.formulaContainer {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+
   gap: 16px;
+
   margin-bottom: 12px;
+
+  @media screen and (min-width: 768px) {
+    gap: 24px;
+  }
+  @media screen and (min-width: 1440px) {
+  }
 }
 
-.modalText {
+.formula {
   font-size: 16px;
+  line-height: calc(20 / 16);
+
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 4px;
+  align-items: center;
 }
-.modalText span {
+
+.formula > span {
   font-size: 18px;
+  line-height: calc(24 / 18);
   color: var(--primary-blue);
 }
-.modalTextSmall {
+
+.formulaDescription {
+  border-radius: 10px;
+  border: 1px solid var(--secondary-blue);
+  padding: 9px;
+  margin-bottom: 24px;
+
+  color: #8f8f8f;
   font-size: 12px;
-  color: gray;
-  padding: 10px;
-  border: 1px solid #d7e3ff;
-  border-radius: 10px;
+  line-height: calc(16 / 12);
+
+  text-align: justify;
+
+  span {
+    color: var(--primary-blue);
+  }
+  @media screen and (min-width: 768px) {
+  }
+  @media screen and (min-width: 1440px) {
+  }
 }
 
-.modalTextSmall span {
-  color: var(--primary-blue);
-}
-
-.modalTitleSec {
+.titleCalculate {
   font-size: 18px;
-}
-.modalWrap {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+  line-height: calc(20 / 18);
+  /* font-weight: 500; */
+  color: var(--text);
+
+  margin-bottom: 16px;
 }
 
-.calculateWrap {
+.calculation {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 16px;
+  width: 100%;
+  @media screen and (min-width: 768px) {
+  }
+  @media screen and (min-width: 1440px) {
+  }
 }
 
-.chooseGenderWrap {
+.chooseGender {
   display: flex;
-  flex-direction: row;
   gap: 24px;
+
+  @media screen and (min-width: 768px) {
+  }
+  @media screen and (min-width: 1440px) {
+  }
 }
-.chooseGenderWrap input {
-  margin-right: 8px;
+
+.radioButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  line-height: calc(20 / 16);
+
+  input[type='radio'] {
+    display: none;
+  }
+
+  div {
+    width: 14px;
+    height: 14px;
+    border-radius: 100%;
+    border: 1px solid var(--primary-blue);
+    background-color: transparent;
+    cursor: pointer;
+
+    transition: background-color 0.3s cubic-bezier(0.7, 0.98, 0.86, 0.98),
+      border 0.3s cubic-bezier(0.7, 0.98, 0.86, 0.98);
+  }
+
+  input[type='radio']:checked + div {
+    background-color: var(--primary-blue);
+    box-shadow: inset 0 0 0 3px white;
+  }
+
+  span {
+    cursor: pointer;
+  }
 }
-.input {
-  width: 100%;
-  padding: 10px 12px;
-  border: 1px solid #d7e3ff;
-  border-radius: 10px;
-}
-.writeDownWrap {
+
+.chooseWeight,
+.chooseActivTime {
+  /* font-size: 16px; */
+  /* font-weight: 400; */
+  line-height: calc(20 / 16);
+  /* color: var(--text); */
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  align-items: flex-start;
+  gap: 8px;
+  width: 100%;
+  width: 100%;
 }
 
-.btn {
-  max-width: 280px;
+.calcResult {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.titleResult {
+  /* font-size: 16px; */
+  line-height: calc(20 / 16);
+  font-weight: 400;
+  margin-bottom: 0;
+  @media screen and (min-width: 768px) {
+  }
+  @media screen and (min-width: 1440px) {
+  }
+}
+
+.valueResult {
+  white-space: nowrap;
+  color: var(--primary-blue);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: calc(24 / 18);
+
+  @media screen and (min-width: 768px) {
+  }
+  @media screen and (min-width: 1440px) {
+  }
+}
+
+.plannedResult {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 24px;
   width: 100%;
-  font-size: 16px;
-  padding: 8px 72px;
-  padding-bottom: 8px;
+  width: 100%;
+
+  @media screen and (min-width: 768px) {
+  }
+  @media screen and (min-width: 1440px) {
+  }
+}
+
+.writePlannedResult {
+  font-size: 18px;
+  font-weight: bold;
+  line-height: calc(20 / 18);
+}
+
+.saveButton {
   border-radius: 10px;
-  background-color: var(--primary-blue);
-  color: var(--background);
+  background: var(--primary-blue);
+  box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
+  color: var(--bg-light);
+  text-align: center;
   font-size: 16px;
-  font-family: inherit;
-  margin-top: 16px;
-  cursor: url('../../assets//img/cursors/mdi_cursor-pointer.svg'), auto;
+  font-style: normal;
+  font-weight: 500;
+  line-height: calc(20 / 16);
+  width: 100%;
+  padding: 8px 30px;
+}
+
+@media screen and (min-width: 768px) {
+  .buttonSaveContainer {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .saveButton {
+    padding: 10px 30px;
+    width: 160px;
+    height: 44px;
+  }
 }

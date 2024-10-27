@@ -153,7 +153,6 @@ export const editDailyNormAPI = createAsyncThunk(
       );
 
       const backEndData = data.data;
-      console.log(backEndData);
 
       toastSuccess('Daile water norm changed successful');
 

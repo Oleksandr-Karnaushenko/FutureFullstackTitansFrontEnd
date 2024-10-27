@@ -1,7 +1,14 @@
-import { useEffect, useRef } from "react";
-import css from "./UserLogoModal.module.css";
+import { useEffect, useRef } from 'react';
+import css from './UserLogoModal.module.css';
+import ThemeBtn from '../ThemeBtn/ThemeBtn.jsx';
 
-const UserLogoModal = ({ isOpen, onClose, onOpenSettings, onOpenLogout, anchorPosition }) => {
+const UserLogoModal = ({
+  isOpen,
+  onClose,
+  onOpenSettings,
+  onOpenLogout,
+  anchorPosition,
+}) => {
   const modalRef = useRef(null);
 
   useEffect(() => {
@@ -15,38 +22,51 @@ const UserLogoModal = ({ isOpen, onClose, onOpenSettings, onOpenLogout, anchorPo
   if (!isOpen) return null;
 
   return (
-      <div className={css.modal} ref={modalRef}>
-        <div className={css.buttons}>
-          <div className={css.buttonsSettings}>
-            <svg width={'28px'} height={'28px'} className={css.buttonsSettingsImg}>
-              <use width={'28px'} height={'28px'} href="/assets/images/icons.svg#icon-settings" />
-            </svg>
-            <button
-              className={css.settingsButton}
-              onClick={() => {
-                onClose();
-                onOpenSettings();
-              }}
-            >
-              Settings
-            </button>
-          </div>
-          <div className={css.buttonsLogout}>
-            <svg width={'28px'} height={'28px'} className={css.buttonsLogout}>
-              <use width={'28px'} height={'28px'} href="/assets/images/icons.svg#icon-logout" />
-            </svg>
-            <button
-              className={css.logoutButton}
-              onClick={() => {
-                onClose();
-                onOpenLogout();
-              }}
-            >
-              Logout
-            </button>
-          </div>
+    <div className={css.modal} ref={modalRef}>
+      <div className={css.buttons}>
+        <div className={css.buttonsSettings}>
+          <svg
+            width={'28px'}
+            height={'28px'}
+            className={css.buttonsSettingsImg}
+          >
+            <use
+              width={'28px'}
+              height={'28px'}
+              href="/assets/images/icons.svg#icon-settings"
+            />
+          </svg>
+          <button
+            className={css.settingsButton}
+            onClick={() => {
+              onClose();
+              onOpenSettings();
+            }}
+          >
+            Settings
+          </button>
         </div>
+        <div className={css.buttonsLogout}>
+          <svg width={'28px'} height={'28px'} className={css.buttonsLogout}>
+            <use
+              width={'28px'}
+              height={'28px'}
+              href="/assets/images/icons.svg#icon-logout"
+            />
+          </svg>
+          <button
+            className={css.logoutButton}
+            onClick={() => {
+              onClose();
+              onOpenLogout();
+            }}
+          >
+            Logout
+          </button>
+        </div>
+        <ThemeBtn />
       </div>
+    </div>
   );
 };
 

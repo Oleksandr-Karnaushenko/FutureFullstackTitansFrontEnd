@@ -5,10 +5,7 @@ import { HiOutlinePlusSmall, HiOutlineMinusSmall } from 'react-icons/hi2';
 import { useDispatch } from 'react-redux';
 import { Formik, Form, Field } from 'formik';
 // import { addWaterThunk } from '../../redux/water/waterOperation';
-import {
-  addWaterAPI,
-  getCurrentDayInfoAPI,
-} from '../../redux/water/waterOperation';
+import { addWaterAPI } from '../../redux/water/waterOperation';
 import css from './AmountOfWater.module.css';
 
 export const differentStyles = {
@@ -42,7 +39,6 @@ export const getCurrentTime = () => {
   const minutes = String(now.getMinutes()).padStart(2, '0');
 
   return `${hours}:${minutes}`;
-  // return dateString;
 };
 
 export const countToFiveMinutes = time => {
@@ -99,103 +95,95 @@ export default function AmountOfWater({ closeModal }) {
         date: dateString,
       })
     );
-
     setSubmitting(false);
     closeModal();
-    dispatch(getCurrentDayInfoAPI());
   };
 
   return (
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
       {({ values, setFieldValue }) => (
         <Form>
-          <div className={css.backdrop} onClick={closeModal}>
-            <div className={css.modal} onClick={e => e.stopPropagation()}>
-              <div className={css.titleContainer}>
-                <h2 className={css.titleText}>Add water</h2>
-                <button
-                  className={css.closebtn}
-                  type="button"
-                  onClick={closeModal}
-                >
-                  <IoCloseOutline size="24" color="407BFF" />
-                </button>
-              </div>
+          <div className={css.modal} onClick={e => e.stopPropagation()}>
+            <div className={css.titleContainer}>
+              <h2 className={css.titleText}>Add water</h2>
+              <button
+                className={css.closebtn}
+                type="button"
+                onClick={closeModal}
+              >
+                <IoCloseOutline size="24" color="407BFF" />
+              </button>
+            </div>
 
-              <h3 className={css.subtitle}>Choose a value:</h3>
-              <p className={css.text}>Amount of water:</p>
-              <div className={css.waterInputContainer}>
-                <button
-                  type="button"
-                  className={css.amountButton}
-                  onClick={() =>
-                    setFieldValue(
-                      'buttonBlockAmount',
-                      Math.max(50, values.buttonBlockAmount - 50)
-                    )
-                  }
-                >
-                  <HiOutlineMinusSmall size="24" color="407BFF" />
-                </button>
-                <p className={css.amountWaterIncome}>
-                  {values.buttonBlockAmount} ml
-                </p>
-                <button
-                  type="button"
-                  className={css.amountButton}
-                  onClick={() =>
-                    setFieldValue(
-                      'buttonBlockAmount',
-                      Math.min(5000, values.buttonBlockAmount + 50)
-                    )
-                  }
-                >
-                  <HiOutlinePlusSmall size="24" color="407BFF" />
-                </button>
-              </div>
-
-              <p className={css.text}>Recording time:</p>
-              <Select
-                styles={differentStyles}
-                defaultValue={{
-                  value: values.currentTime,
-                  label: values.currentTime,
-                }}
-                onChange={option => setFieldValue('currentTime', option.value)}
-                options={TimeDropdown()}
-                components={{
-                  DropdownIndicator: () => null,
-                  IndicatorSeparator: () => null,
-                }}
-              />
-
-              <h3 className={css.subtitle}>
-                Enter the value of the water used:
-              </h3>
-              <Field
-                className={css.waterAmount}
-                type="text"
-                name="buttonBlockAmount"
-                onChange={event => {
-                  const newValue = event.target.value.replace(/[^0-9]/g, '');
+            <h3 className={css.subtitle}>Choose a value:</h3>
+            <p className={css.text}>Amount of water:</p>
+            <div className={css.waterInputContainer}>
+              <button
+                type="button"
+                className={css.amountButton}
+                onClick={() =>
                   setFieldValue(
                     'buttonBlockAmount',
-                    newValue === '' ? 0 : Math.min(5000, parseInt(newValue))
-                  );
-                }}
-                onBlur={() =>
-                  setFieldValue('buttonBlockAmount', values.buttonBlockAmount)
+                    Math.max(50, values.buttonBlockAmount - 50)
+                  )
                 }
-              />
+              >
+                <HiOutlineMinusSmall size="24" color="407BFF" />
+              </button>
+              <p className={css.amountWaterIncome}>
+                {values.buttonBlockAmount} ml
+              </p>
+              <button
+                type="button"
+                className={css.amountButton}
+                onClick={() =>
+                  setFieldValue(
+                    'buttonBlockAmount',
+                    Math.min(5000, values.buttonBlockAmount + 50)
+                  )
+                }
+              >
+                <HiOutlinePlusSmall size="24" color="407BFF" />
+              </button>
+            </div>
 
-              <div className={css.footerContainer}>
-                <p className={css.incomeFooter}>
-                  {values.buttonBlockAmount} ml
-                </p>
-                <button className={css.saveButton} type="submit">
-                  Save
-                </button>
-              </div>
+            <p className={css.text}>Recording time:</p>
+            <Select
+              styles={differentStyles}
+              defaultValue={{
+                value: values.currentTime,
+                label: values.currentTime,
+              }}
+              onChange={option => setFieldValue('currentTime', option.value)}
+              options={TimeDropdown()}
+              components={{
+                DropdownIndicator: () => null,
+                IndicatorSeparator: () => null,
+              }}
+            />
+
+            <h3 className={css.subtitle}>Enter the value of the water used:</h3>
+            <Field
+              className={css.waterAmount}
+              type="text"
+              name="buttonBlockAmount"
+              onChange={event => {
+                const newValue = event.target.value.replace(/[^0-9]/g, '');
+                setFieldValue(
+                  'buttonBlockAmount',
+                  newValue === '' ? 0 : Math.min(5000, parseInt(newValue))
+                );
+              }}
+              onBlur={() =>
+                setFieldValue('buttonBlockAmount', values.buttonBlockAmount)
+              }
+            />
+
+            <div className={css.footerContainer}>
+              <p className={css.incomeFooter}>{values.buttonBlockAmount} ml</p>
+              <button className={css.saveButton} type="submit">
+                Save
+              </button>
             </div>
           </div>
         </Form>

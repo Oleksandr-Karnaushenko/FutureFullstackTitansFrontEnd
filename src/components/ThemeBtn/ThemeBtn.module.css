@@ -1,0 +1,27 @@
+.themeButton {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff; /* Блакитний колір для світлої теми */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.themeButton:hover {
+  background-color: #0056b3; /* Темніший відтінок для ховера */
+}
+
+.themeButton:active {
+  transform: scale(0.95); /* Ефект при натисканні */
+}
+
+/* Темніша тема */
+body.dark .themeButton {
+  background-color: #495057; /* Сірий колір для темної теми */
+}
+
+body.dark .themeButton:hover {
+  background-color: #343a40; /* Темніший відтінок для ховера темної теми */
+}
