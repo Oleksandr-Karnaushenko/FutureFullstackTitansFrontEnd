@@ -20,9 +20,12 @@ const HomePage = lazy(() => import('../../pages/HomePage/HomePage.jsx'));
 export default function App() {
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(fetchCurrentUserAPI());
-  // }, [dispatch]);
+  useEffect(() => {
+    const token = localStorage.getItem('accessToken');
+    if (token) {
+      dispatch(fetchCurrentUserAPI());
+    }
+  }, [dispatch]);
 
   return (
     <Suspense fallback={<div>Loading page code...</div>}>

@@ -1,6 +1,6 @@
 import DailyNorma from '../../components/DailyNorma/DailyNorma';
 import WaterRatioPanel from '../../components/WaterRatioPanel/WaterRatioPanel';
-import { TodayWater } from '../../components/TodayWater/TodayWater';
+import TodayWater from '../../components/TodayWater/TodayWater';
 import MonthStatsTable from '../../components/MonthStatsTable/MonthStatsTable.jsx';
 import css from './HomePage.module.css';
 

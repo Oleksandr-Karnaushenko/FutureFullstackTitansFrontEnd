@@ -1,4 +1,4 @@
-import { useEffect,useState} from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getCurrentDayInfoAPI } from '../../redux/water/waterOperation/';
 import * as selector from '../../redux/water/waterSelectors';
@@ -11,9 +11,9 @@ import { TodayWaterBackdrop } from '../TodayWaterBackdrop/TodayWaterBackdrop';
 
 import css from './TodayWater.module.css';
 
-export const TodayWater = () => {
+export default function TodayWater() {
   const isRefreshing = useSelector(selector.selectWaterIsRefreshing);
-  const error = useSelector(selector.selectWaterError);
+  // const error = useSelector(selector.selectWaterError);
   const dispatch = useDispatch();
 
   const [isModalOpenAdd, setIsModalOpenAdd] = useState(false);
@@ -21,14 +21,9 @@ export const TodayWater = () => {
     return setIsModalOpenAdd(!isModalOpenAdd);
   };
 
-
-
   useEffect(() => {
     dispatch(getCurrentDayInfoAPI());
   }, [dispatch]);
-
-
-
 
   return (
     <div className={css.todayWaterBlock}>
@@ -38,7 +33,7 @@ export const TodayWater = () => {
           <Loader />
         </div>
       )}
-      {error && <p className={css.todayWaterError}>{error}</p>}
+      {/* {error && <p className={css.todayWaterError}>{error}</p>} */}
 
       <TodayWaterList />
       <ButtonBtn
@@ -50,19 +45,10 @@ export const TodayWater = () => {
         onClick={toggleModalAdd}
       />
 
-<TodayWaterBackdrop 
-        isOpen={isModalOpenAdd}
-        onClose={toggleModalAdd}
-      >
-        <AmountOfWater
-        closeModal={toggleModalAdd }
-        />
-     
+      {/*backdrop*/}
+      <TodayWaterBackdrop isOpen={isModalOpenAdd} onClose={toggleModalAdd}>
+        <AmountOfWater closeModal={toggleModalAdd} />
       </TodayWaterBackdrop>
-
-
-
-      
     </div>
   );
-};
+}

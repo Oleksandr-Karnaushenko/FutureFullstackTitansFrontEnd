@@ -1,18 +1,25 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCurrentMonthInfoAPI } from '../../redux/water/waterOperation.js';
-import { selectMonthInfo } from '../../redux/water/waterSelectors.js';
+import {
+  selectMonthInfo,
+  selectWaterIsRefreshing,
+} from '../../redux/water/waterSelectors.js';
 import DaysGeneralStats from '../DaysGeneralStats/DaysGeneralStats.jsx';
 import css from './MonthStatsTable.module.css';
+import Loader from '../Loader/Loader.jsx';
 
 export default function MonthStatsTable() {
   const currentMonth = new Date().getMonth();
   const currentYear = new Date().getFullYear();
 
+  const isRefreshing = useSelector(selectWaterIsRefreshing);
+
   const [selectedMonth, setSelectedMonth] = useState(currentMonth);
   const [selectedYear, setSelectedYear] = useState(currentYear);
   const [selectedDayInfo, setSelectedDayInfo] = useState(null);
   const statsRef = useRef(null);
+  const clickedElementRef = useRef(null);
 
   const dispatch = useDispatch();
   const monthInfo = useSelector(selectMonthInfo);
@@ -92,30 +99,79 @@ export default function MonthStatsTable() {
       setSelectedDayInfo(null);
     } else {
       setSelectedDayInfo(dayInfo);
-
-      const clickedElement = event.currentTarget;
-      const statsElement = statsRef.current;
-
-      if (statsElement) {
-        const stateRect = statsElement.parentNode.getBoundingClientRect();
-        const clickedRect = clickedElement.getBoundingClientRect();
-
-        const positionY =
-          clickedRect.top - stateRect.top - statsElement.offsetHeight - 30;
-
-        statsElement.style.top = `${positionY}px`;
-      }
+      clickedElementRef.current = event.currentTarget;
     }
   };
+  useEffect(() => {
+    if (selectedDayInfo && statsRef.current && clickedElementRef.current) {
+      const statsElement = statsRef.current;
+      const clickedRect = clickedElementRef.current.getBoundingClientRect();
+      const stateRect = statsElement.parentNode.getBoundingClientRect();
+
+      const isMobile = window.innerWidth < 768;
+      const isTablet = window.innerWidth >= 768 && window.innerWidth < 1440;
+
+      let positionY;
+
+      if (isMobile) {
+        positionY =
+          clickedRect.top - stateRect.top - statsElement.offsetHeight - 16;
+      } else if (isTablet) {
+        positionY = clickedRect.top - stateRect.top - statsElement.offsetHeight;
+
+        const cellsPerRow = 10;
+        const cellIndex = parseInt(clickedElementRef.current.dataset.index);
+
+        if (cellIndex % cellsPerRow < 4) {
+          statsElement.style.left = `${
+            clickedRect.left - stateRect.left - clickedRect.width / 2
+          }px`;
+          statsElement.style.transform = 'translateX(10%)';
+        } else {
+          statsElement.style.left = `${
+            clickedRect.left - stateRect.left + clickedRect.width / 2
+          }px`;
+          statsElement.style.transform = 'translateX(-100%)';
+        }
+      } else {
+        positionY = clickedRect.top - stateRect.top - statsElement.offsetHeight;
+
+        statsElement.style.left = `${
+          clickedRect.left - stateRect.left + clickedRect.width / 2
+        }px`;
+      }
+
+      statsElement.style.top = `${positionY}px`;
+    }
+  }, [selectedDayInfo]);
+
+  useEffect(() => {
+    const handleClickOutside = event => {
+      if (
+        statsRef.current &&
+        !statsRef.current.contains(event.target) &&
+        !clickedElementRef.current.contains(event.target)
+      ) {
+        setSelectedDayInfo(null);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className={css.state}>
+      {isRefreshing && <Loader />}
+      {/* Показуємо спінер при завантаженні */}
       <div className={css.wrap}>
         <h3 className={css.header}>Month</h3>
         <div className={css.paginator}>
           <button className={css.btn} onClick={() => handleMonthChange('prev')}>
             <svg className={css.svg}>
-              <use href="/assets/images/icons.svg#left-arrow" />
+              <use href="/assets/images/icons.svg#icon-left-arrow" />
             </svg>
           </button>
           <p
@@ -128,7 +184,7 @@ export default function MonthStatsTable() {
               onClick={() => handleMonthChange('next')}
             >
               <svg className={css.svg}>
-                <use href="../src/assets/images/sprite.svg#arrow-right" />
+                <use href="assets/images/icons.svg#icon-right-arrow" />
               </svg>
             </button>
           ) : null}
@@ -138,6 +194,7 @@ export default function MonthStatsTable() {
         {formatDays.map(({ day, percent, dayInfo }, index) => (
           <li
             key={index}
+            data-index={index}
             className={`${css.item} ${percent < 100 ? css.notReached : ''}`}
             onClick={event => handleDayClick(dayInfo, event)}
           >

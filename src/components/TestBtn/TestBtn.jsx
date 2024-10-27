@@ -24,8 +24,15 @@ import {
   getCurrentDayInfoAPI,
   getCurrentMonthInfoAPI,
 } from '../../redux/water/waterOperation.js';
+import { useState } from 'react';
+import DailyNormaModal from '../DailyNormaModal/DailyNormaModal.jsx';
+import DailyNormaModalMD from '../DailyNormaModalMD/DailyNormaModalMD.jsx';
 
 export const TestBtn = () => {
+  const [isModalOpen, setModalOpen] = useState(false);
+  const handleOpenModal = () => setModalOpen(true);
+  const handleCloseModal = () => setModalOpen(false);
+
   const token = useSelector(selectToken);
   const userId = useSelector(selectUserId);
   // const userId = '6712f7c63f6b0ede6444d149';
@@ -57,8 +64,17 @@ export const TestBtn = () => {
   };
 
   return (
-    <button onClick={onClick} className={styles.btn}>
-      Test
-    </button>
+    <div>
+      <button onClick={onClick} className={styles.btn}>
+        Test
+      </button>
+      <button onClick={handleOpenModal}>Edit</button>
+      {isModalOpen && (
+        <DailyNormaModalMD
+          isOpen={handleOpenModal}
+          onClose={handleCloseModal}
+        />
+      )}
+    </div>
   );
 };

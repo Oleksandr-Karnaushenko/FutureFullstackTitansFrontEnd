@@ -4,6 +4,9 @@ import { toastError, toastSuccess } from '../../services/toastNotification.js';
 
 axios.defaults.baseURL = 'https://watertrackerbackend-1b9z.onrender.com';
 // axios.defaults.baseURL = 'http://localhost:3000';
+axios.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem(
+  'accessToken'
+)}`;
 
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -41,6 +44,9 @@ export const signInAPI = createAsyncThunk(
 
       const backEndData = data.data;
 
+      localStorage.setItem('accessToken', backEndData.accessToken);
+      localStorage.setItem('userId', backEndData._id);
+
       setAuthHeader(backEndData.accessToken);
 
       toastSuccess('Log in successful. Welcome back ');
@@ -61,6 +67,8 @@ export const logOutAPI = createAsyncThunk(
 
       cleareAuthHeader();
 
+      localStorage.removeItem('accessToken', 'userId');
+
       toastSuccess('Log out successful. Come back sooner');
     } catch (error) {
       cleareAuthHeader();
@@ -79,6 +87,10 @@ export const fetchCurrentUserAPI = createAsyncThunk(
       });
 
       const backEndData = data.data;
+
+      localStorage.setItem('accessToken', backEndData.accessToken);
+
+      setAuthHeader(backEndData.accessToken);
 
       return backEndData;
     } catch (error) {
@@ -141,7 +153,6 @@ export const editDailyNormAPI = createAsyncThunk(
       );
 
       const backEndData = data.data;
-      console.log(backEndData);
 
       toastSuccess('Daile water norm changed successful');
 
