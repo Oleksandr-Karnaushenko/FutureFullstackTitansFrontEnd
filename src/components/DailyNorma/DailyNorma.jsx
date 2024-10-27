@@ -12,7 +12,7 @@ export default function DailyNorma() {
   const [isModalOpen, setModalOpen] = useState(false);
   const handleOpenModal = () => setModalOpen(true);
   const handleCloseModal = () => setModalOpen(false);
-  
+
   return (
     <>
       <div className={css.dailyWrapper}>

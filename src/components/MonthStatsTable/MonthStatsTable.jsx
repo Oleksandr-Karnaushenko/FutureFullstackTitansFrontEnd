@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCurrentMonthInfoAPI } from '../../redux/water/waterOperation.js';
 import {
+  selectIsMonthRefreshing,
   selectMonthInfo,
   selectWaterIsRefreshing,
 } from '../../redux/water/waterSelectors.js';
@@ -14,6 +15,7 @@ export default function MonthStatsTable() {
   const currentYear = new Date().getFullYear();
 
   const isRefreshing = useSelector(selectWaterIsRefreshing);
+  const isMonthRefreshing = useSelector(selectIsMonthRefreshing);
 
   const [selectedMonth, setSelectedMonth] = useState(currentMonth);
   const [selectedYear, setSelectedYear] = useState(currentYear);
@@ -165,7 +167,7 @@ export default function MonthStatsTable() {
 
   return (
     <div className={css.state}>
-      {isRefreshing && (
+      {(isRefreshing || isMonthRefreshing) && (
         <div className={css.loader}>
           <Loader />
         </div>

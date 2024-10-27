@@ -2,10 +2,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  max-width: 280px;
 }
 
 .addWaterBtn {
-  max-width: 280px;
   width: 100%;
   font-size: 16px;
   padding: 10px 72px;
@@ -24,11 +24,20 @@
   height: 24px;
   width: 24px;
   stroke: var(--primary-blue);
+  fill: var(--background);
 }
 
 @media screen and (min-width: 768px) {
+  .btnDiv {
+    margin-left: auto;
+  }
   .addWaterBtn {
     max-width: 336px;
-    width: 100%;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .btnDiv {
+    margin: 0;
   }
 }

@@ -14,8 +14,8 @@ const UserLogoModal = ({
   useEffect(() => {
     if (isOpen && anchorPosition) {
       const modalElement = modalRef.current;
-      modalElement.style.top = `${anchorPosition.top}px`;
-      modalElement.style.left = `${anchorPosition.left - 60}px`;
+      modalElement.style.top = `${anchorPosition.top + 13}px`;
+      modalElement.style.left = `${anchorPosition.left - 85}px`;
     }
   }, [isOpen, anchorPosition]);
 
@@ -26,13 +26,13 @@ const UserLogoModal = ({
       <div className={css.buttons}>
         <div className={css.buttonsSettings}>
           <svg
-            width={'28px'}
-            height={'28px'}
+            width={'16px'}
+            height={'16px'}
             className={css.buttonsSettingsImg}
           >
             <use
-              width={'28px'}
-              height={'28px'}
+              width={'16px'}
+              height={'16px'}
               href="/assets/images/icons.svg#icon-settings"
             />
           </svg>
@@ -47,10 +47,10 @@ const UserLogoModal = ({
           </button>
         </div>
         <div className={css.buttonsLogout}>
-          <svg width={'28px'} height={'28px'} className={css.buttonsLogout}>
+          <svg width={'16px'} height={'16px'} className={css.buttonsLogout}>
             <use
-              width={'28px'}
-              height={'28px'}
+              width={'16px'}
+              height={'16px'}
               href="/assets/images/icons.svg#icon-logout"
             />
           </svg>
