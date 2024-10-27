@@ -12,8 +12,6 @@ import MonthStatsTable from '../../components/MonthStatsTable/MonthStatsTable.js
 import css from './HomePage.module.css';
 import { fetchUserDataAPI } from '../../redux/auth/authOperation.js';
 
-// import { TestBtn } from '../../components/TestBtn/TestBtn.jsx';
-
 export default function HomePage() {
   const dispatch = useDispatch();
   const userId = useSelector(selectUserId);
@@ -27,7 +25,6 @@ export default function HomePage() {
     <div className={css.background}>
       <div className={css.container}>
         <div className={css.leftColumn}>
-          {/* <TestBtn /> */}
           <DailyNorma />
           <WaterRatioPanel />
         </div>
