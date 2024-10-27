@@ -176,15 +176,14 @@ function SettingModal({ isOpen, onClose }) {
                   </div>
 
                   <PasswordField errors={errors} touched={touched} />
-
-                  <button
-                    type="submit"
-                    className={styles.button}
-                    disabled={isSubmitting}
-                  >
-                    Save
-                  </button>
                 </div>
+                <button
+                  type="submit"
+                  className={styles.button}
+                  disabled={isSubmitting}
+                >
+                  Save
+                </button>
               </Form>
             )}
           </Formik>
