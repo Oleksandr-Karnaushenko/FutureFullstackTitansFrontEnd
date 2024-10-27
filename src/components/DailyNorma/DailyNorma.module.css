@@ -17,12 +17,12 @@
   width: 100%;
   height: 280px;
   background-size: contain;
-  background-image: url('src/assets//images/home/bottle-mob-1x.png');
+  background-image: url('/assets/images/home/bottle-mob-1x.png');
 }
 
 @media (min-resolution: 2dppx) {
   .wrapper {
-    background-image: url('/src/assets/images/home/bottle-mob-2x.png');
+    background-image: url('/assets/images/home/bottle-mob-2x.png');
   }
 }
 
@@ -59,13 +59,13 @@
   .wrapper {
     top: -78px;
     height: 386px;
-    background-image: url('src/assets//images/home/bottle-tab-1x.png');
+    background-image: url('/assets/images/home/bottle-tab-1x.png');
   }
 }
 
 @media (min-resolution: 2dppx) {
   .wrapper {
-    background-image: url('/src/assets/images/home/bottle-tab-2x.png');
+    background-image: url('/assets/images/home/bottle-tab-2x.png');
   }
 }
 
@@ -74,7 +74,7 @@
     margin-top: 52px;
   }
   .wrapper {
-    background-image: url('src/assets//images/home/bottle-desk-1x.png');
+    background-image: url('/assets/images/home/bottle-desk-1x.png');
     top: -108px;
     right: 50px;
     width: 748px;
@@ -84,6 +84,6 @@
 
 @media (min-resolution: 2dppx) {
   .wrapper {
-    background-image: url('/src/assets/images/home/bottle-desk-2x.png');
+    background-image: url('/assets/images/home/bottle-desk-2x.png');
   }
 }
