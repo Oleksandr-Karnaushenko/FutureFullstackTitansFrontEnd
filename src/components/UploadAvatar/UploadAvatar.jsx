@@ -12,7 +12,7 @@ import { FiUpload } from 'react-icons/fi';
 function UploadAvatar() {
   const dispatch = useDispatch();
   const user = useSelector(selectCurrentUser);
-  const { avatarUrl, name } = user;
+  const { avatarUrl, _id, name } = user;
   const userInitial = name.charAt(0).toUpperCase();
 
   const handleFileChange = async event => {
@@ -32,7 +32,7 @@ function UploadAvatar() {
       formData.append('avatarUrl', file);
 
       try {
-        const userId = user._id;
+        const userId = _id;
         await dispatch(changeUserAvatarAPI({ userId, formData }));
         await dispatch(fetchUserDataAPI(userId));
       } catch {
