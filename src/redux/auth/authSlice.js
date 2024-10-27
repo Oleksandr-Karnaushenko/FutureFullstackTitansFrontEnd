@@ -83,6 +83,8 @@ const authSlice = createSlice({
       })
       .addCase(fetchCurrentUserAPI.fulfilled, (state, { payload }) => {
         state.token = payload.accessToken;
+        state.user._id = payload.userId;
+        state.isLoggedIn = true;
         state.isRefreshing = false;
       })
       .addCase(fetchCurrentUserAPI.rejected, (state, { payload }) => {

@@ -21,10 +21,7 @@ export default function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const token = localStorage.getItem('accessToken');
-    if (token) {
-      dispatch(fetchCurrentUserAPI());
-    }
+    dispatch(fetchCurrentUserAPI());
   }, [dispatch]);
 
   return (

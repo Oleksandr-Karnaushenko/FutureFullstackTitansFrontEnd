@@ -39,8 +39,9 @@ const waterSlice = createSlice({
           state.dayInfo.totalWaterVolume,
           payload.dailyNorm
         );
-        state.monthInfo.find(item => item.date === formattedDate).percent =
-          countPercent(state.dayInfo.totalWaterVolume, payload.dailyNorm);
+        if (state.monthInfo.length > 0)
+          state.monthInfo.find(item => item.date === formattedDate).percent =
+            countPercent(state.dayInfo.totalWaterVolume, payload.dailyNorm);
         state.isRefreshing = false;
       })
       .addCase(editDailyNormAPI.rejected, (state, { payload }) => {
@@ -96,11 +97,25 @@ const waterSlice = createSlice({
         );
 
         //monthInfo
-        state.monthInfo.find(item => item.date === formattedDate).percent =
-          countPercent(state.dayInfo.totalWaterVolume, payload.dailyNorna);
-        state.monthInfo.find(item => item.date === formattedDate).count += 1;
-        state.monthInfo.find(item => item.date === formattedDate).waterVolume =
-          state.dayInfo.totalWaterVolume;
+        if (state.monthInfo.length === 0) {
+          state.monthInfo.push({
+            date: formattedDate,
+            dailyNorm: payload.dailyNorna,
+            waterVolume: state.dayInfo.totalWaterVolume,
+            count: 1,
+            percent: countPercent(
+              state.dayInfo.totalWaterVolume,
+              payload.dailyNorna
+            ),
+          });
+        } else {
+          state.monthInfo.find(item => item.date === formattedDate).percent =
+            countPercent(state.dayInfo.totalWaterVolume, payload.dailyNorna);
+          state.monthInfo.find(item => item.date === formattedDate).count += 1;
+          state.monthInfo.find(
+            item => item.date === formattedDate
+          ).waterVolume = state.dayInfo.totalWaterVolume;
+        }
 
         state.isRefreshing = false;
       })

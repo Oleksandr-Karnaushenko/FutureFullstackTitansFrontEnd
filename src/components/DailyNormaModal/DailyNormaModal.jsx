@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { editDailyNormAPI } from '../../redux/auth/authOperation';
-import css from './DailyNormaModalMD.module.css';
+import css from './DailyNormaModal.module.css';
 import {
   selectUserId,
   selectNormWater,
@@ -12,7 +12,7 @@ import {
 // import { ButtonBtn } from '../ButtonBtn/ButtonBtn';
 import { IoCloseOutline } from 'react-icons/io5';
 
-const DailyNormaModalMD = ({ onClose }) => {
+const DailyNormaModal = ({ onClose }) => {
   const dispatch = useDispatch();
   const userId = useSelector(selectUserId);
   const dailyNorma = useSelector(selectNormWater);
@@ -248,4 +248,4 @@ const DailyNormaModalMD = ({ onClose }) => {
   );
 };
 
-export default DailyNormaModalMD;
+export default DailyNormaModal;
