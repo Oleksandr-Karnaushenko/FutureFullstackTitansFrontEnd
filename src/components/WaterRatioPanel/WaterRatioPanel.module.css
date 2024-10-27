@@ -24,7 +24,6 @@
   width: 0%;
 }
 .ratioPanelLabels {
-  max-width: 280px;
   display: flex;
   justify-content: space-between;
   color: var(--primary-blue);
@@ -53,11 +52,11 @@
   font-weight: 500;
   font-size: 16px;
 }
-.ratioLabel .ratioLabel::before {
+.ratioLabel::before {
   content: '';
   position: absolute;
   top: -9px;
-  left: 55%;
+  left: 50%;
   transform: translateX(-50%);
   width: 1px;
   height: 8px;
@@ -67,7 +66,6 @@
 @media screen and (min-width: 768px) {
   .wrapper {
     flex-direction: row;
-    gap: 12px;
     margin-bottom: 40px;
   }
   .ratioPanelWrap {
@@ -77,12 +75,5 @@
   .ratioPanelMain {
     max-width: 325px;
     width: 100%;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .wrapper {
-    gap: 23px;
-    margin-bottom: 56px;
   }
 }

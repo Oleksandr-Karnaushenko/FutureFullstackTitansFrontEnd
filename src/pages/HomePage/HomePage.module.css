@@ -1,83 +1,56 @@
-body.light .background {
-  background-image: url('/assets/images/bg-dots-mob-1x.png');
+.background {
+  background-image: var(--bg-image-mobile-home);
   background-size: cover;
   background-repeat: no-repeat;
-  width: 100%;
+  max-width: 320px;
   height: 100vh;
-}
-
-body.dark .background {
-  background-image: url('/assets/images/bg-dots-mob-dark-1x-min.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  width: 100%;
-  height: 100vh;
+  position: relative;
+  z-index: 5;
 }
 
 @media (min-resolution: 2dppx) {
-  body.light .background {
-    background-image: url('/assets/images/bg-dots-mob-2x.png');
+  .background {
+    background-image: var(--bg-image-mobile-2x-home);
   }
-  body.dark .background {
-    background-image: url('/assets/images/bg-dots-mob-dark-2x-min.png');
-  }
-}
-
-.column {
-  max-width: 280px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
 }
 
 @media screen and (min-width: 768px) {
-  body.light .background {
-    background-image: url('/assets/images/bg-dots-tab-1x.png');
-  }
-  body.dark .background {
-    background-image: url('/assets/images/bg-dots-tab-dark-1x.png');
+  .background {
+    background-image: var(--bg-image-tablet-home);
   }
 
-  .column {
-    max-width: 704px;
+  /* .container {
+    display: flex;
+    flex-direction: column;
   }
+  .leftcolumn {
+    max-width: 590px;
+  } */
 }
 
 @media (min-resolution: 2dppx) {
-  body.light .background {
-    background-image: url('/assets/images/bg-dots-tab-2x.png');
-  }
-  body.dark .background {
-    background-image: url('/assets/images/bg-dots-tab-dark-2x.png');
+  .background {
+    background-image: var(--bg-image-tablet-home-2x);
   }
 }
 
 @media screen and (min-width: 1440px) {
-  body.light .background {
-    background-image: url('/assets/images/bg-dots-desk-1x-min.png');
-  }
-  body.dark .background {
-    background-image: url('/assets/images/bg-dots-desk-dark-1x-min.png');
-  }
-
-  .column {
-    width: 100%;
-    max-width: 592px;
-    margin-left: 32px;
+  .background {
+    background-image: var(--bg-image-desktop-home);
   }
   .container {
     display: flex;
     justify-content: space-between;
-    width: 100%;
-    max-width: 1200px;
+    gap: 32px;
+    margin: 0 auto;
   }
+
+  /* .column {
+  } */
 }
 
 @media (min-resolution: 2dppx) {
-  body.light .background {
-    background-image: url('/assets/images/bg-dots-desk-2x-min.png');
-  }
-  body.dark .background {
-    background-image: url('/assets/images/bg-dots-desk-dark-2x-min.png');
+  .background {
+    background-image: var(--bg-image-desktop-2x-home);
   }
 }
