@@ -18,3 +18,6 @@ export const selectWaterIsRefreshing = state => state.water.isRefreshing;
 
 //Errors
 export const selectWaterError = state => state.water.error;
+
+//isWaterDataEdit
+export const selectIsWaterDataEdit = state => state.water.isWaterDataEdit;

@@ -1,79 +1,78 @@
 .container {
-    width:100%;
-    min-height: 100vh;
-    padding-top: 24px;
-    display: flex;
-    justify-content: center;
-    position: relative; 
-    z-index: 1; 
-  }
-  
-.container::before {
-    content: '';
-    position: absolute;
-    top: 0px; 
-    left: -20px;
-    right: -20px;
-    bottom: -24px;
-    background-image: var(--bg-image-mobile);
-    background-size: auto ,contain;
-    background-position: top center, bottom center;
-    background-repeat: no-repeat, no-repeat;
-    z-index: -1; 
-  }
+  width: 100%;
+  min-height: 100vh;
+  padding-top: 24px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
 
-  @media screen and (min-resolution: 2dppx) {
-    .container::before {
-      background-image: var(--bg-image-mobile-2x);
-    }
+.container::before {
+  content: '';
+  position: absolute;
+  top: 0px;
+  left: -20px;
+  right: -20px;
+  bottom: -24px;
+  background-image: var(--bg-image-mobile);
+  background-size: 320px 844px, 320px 952px;
+  background-position: bottom center, bottom center;
+  background-repeat: no-repeat, no-repeat;
+  z-index: -1;
+}
+
+@media screen and (min-resolution: 2dppx) {
+  .container::before {
+    background-image: var(--bg-image-mobile-2x);
   }
-  
-  /*<----------768px--------->*/
+}
+
+/*<----------768px--------->*/
 @media screen and (min-width: 768px) {
   .container {
-      max-width: 768px;
-      padding: 0 32px;
-      padding-top: 40px;
-    }
+    max-width: 768px;
+    padding-top: 40px;
+  }
+
   .container::before {
-      background-image: var(--bg-image-tablet);
-      background-size: auto ,contain;
-      background-position: top center, bottom center;
-      background-repeat: no-repeat, no-repeat;
-      top: 0px;
-      left: -32px;
-      right: -32px;
-      bottom: -40px;
-    }
-    @media screen and (min-width: 768px) and (min-resolution: 2dppx) {
-      .container::before {
-        background-image: var(--bg-image-tablet-2x);
-      }
+    background-image: var(--bg-image-tablet);
+    background-size: 768px 680px, 768px 800px;
+    background-position: top center, bottom center;
+    top: 0px;
+    left: -32px;
+    right: -32px;
+    bottom: -40px;
+  }
+
+  @media screen and (min-width: 768px) and (min-resolution: 2dppx) {
+    .container::before {
+      background-image: var(--bg-image-tablet-2x);
     }
   }
-  
-  /*<----------1440px--------->*/
+}
+
+/*<----------1440px--------->*/
 @media screen and (min-width: 1440px) {
   .container {
-      max-width: 1440px;
-      padding: 0 18px;
-      padding-top: 49px;
-      align-items: flex-start;
-    }
+    max-width: 1440px;
+    padding-top: 49px;
+    align-items: flex-start;
+  }
+
   .container::before {
-      background-image: var(--bg-image-desktop);  
-      background-size: 1404px 582px, contain;
-      background-position: top center, bottom center;
-      background-repeat: no-repeat, no-repeat;
-      top: 0px;
-      left: -18px;
-      right: -18px;
-      bottom: -49px;
-    }
-    @media screen and (min-width: 1440px) and (min-resolution: 2dppx) {
-      .container::before {
-        background-image: var(--bg-image-desktop-2x);
-      }
+    background-image: var(--bg-image-desktop);
+    background-size: 1404px 582px, 1440px 432px;
+    background-position: top center, bottom center;
+    top: 0px;
+    left: -18px;
+    right: -18px;
+    bottom: -49px;
+  }
+
+  @media screen and (min-width: 1440px) and (min-resolution: 2dppx) {
+    .container::before {
+      background-image: var(--bg-image-desktop-2x);
     }
   }
-  
+}

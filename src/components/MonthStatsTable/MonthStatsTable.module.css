@@ -4,6 +4,12 @@
   min-width: 264px;
   padding: 24px 8px;
 }
+
+.loader {
+  display: flex;
+  justify-content: center;
+}
+
 .wrap {
   display: flex;
   justify-content: space-between;
@@ -73,6 +79,7 @@
 .notReached {
   border-color: var(--secondary-orange);
 }
+
 .percent {
   color: var(--secondary-4);
   font-size: 10px;
@@ -118,9 +125,11 @@
   .state {
     min-width: 592px;
   }
+
   .list {
     gap: 20px 22px;
   }
+
   .dayInfoWrapper {
     transform: translateX(-99%);
   }

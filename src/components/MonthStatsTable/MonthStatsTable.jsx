@@ -1,17 +1,24 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCurrentMonthInfoAPI } from '../../redux/water/waterOperation.js';
-import { selectMonthInfo } from '../../redux/water/waterSelectors.js';
+import {
+  selectMonthInfo,
+  selectWaterIsRefreshing,
+} from '../../redux/water/waterSelectors.js';
 import DaysGeneralStats from '../DaysGeneralStats/DaysGeneralStats.jsx';
+import Loader from '../Loader/Loader.jsx';
 import css from './MonthStatsTable.module.css';
 
 export default function MonthStatsTable() {
   const currentMonth = new Date().getMonth();
   const currentYear = new Date().getFullYear();
 
+  const isRefreshing = useSelector(selectWaterIsRefreshing);
+
   const [selectedMonth, setSelectedMonth] = useState(currentMonth);
   const [selectedYear, setSelectedYear] = useState(currentYear);
   const [selectedDayInfo, setSelectedDayInfo] = useState(null);
+
   const statsRef = useRef(null);
   const clickedElementRef = useRef(null);
 
@@ -158,6 +165,11 @@ export default function MonthStatsTable() {
 
   return (
     <div className={css.state}>
+      {isRefreshing && (
+        <div className={css.loader}>
+          <Loader />
+        </div>
+      )}
       <div className={css.wrap}>
         <h3 className={css.header}>Month</h3>
         <div className={css.paginator}>
