@@ -19,6 +19,7 @@ const initialState = {
     waterVolumeTimeEntries: [],
   },
   isRefreshing: false,
+  isMonthRefreshing: false,
   error: null,
   test: null,
 };
@@ -39,9 +40,19 @@ const waterSlice = createSlice({
           state.dayInfo.totalWaterVolume,
           payload.dailyNorm
         );
-        if (state.monthInfo.length > 0)
+        if (state.monthInfo.length === 0) {
+          state.monthInfo.push({
+            date: formattedDate,
+            dailyNorm: payload.dailyNorna,
+            waterVolume: 0,
+            count: 0,
+            percent: 0,
+          });
+        } else {
           state.monthInfo.find(item => item.date === formattedDate).percent =
             countPercent(state.dayInfo.totalWaterVolume, payload.dailyNorm);
+          state.isRefreshing = false;
+        }
         state.isRefreshing = false;
       })
       .addCase(editDailyNormAPI.rejected, (state, { payload }) => {
@@ -50,16 +61,16 @@ const waterSlice = createSlice({
       })
       //getCurrentMonthInfoAPI
       .addCase(getCurrentMonthInfoAPI.pending, state => {
-        state.isRefreshing = true;
+        state.isMonthRefreshing = true;
         state.error = null;
         state.monthInfo = initialState.monthInfo;
       })
       .addCase(getCurrentMonthInfoAPI.fulfilled, (state, { payload }) => {
         state.monthInfo = payload;
-        state.isRefreshing = false;
+        state.isMonthRefreshing = false;
       })
       .addCase(getCurrentMonthInfoAPI.rejected, (state, { payload }) => {
-        state.isRefreshing = false;
+        state.isMonthRefreshing = false;
         state.error = payload;
       })
 

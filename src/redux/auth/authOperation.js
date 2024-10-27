@@ -97,8 +97,6 @@ export const fetchCurrentUserAPI = createAsyncThunk(
       setAuthHeader(backEndData.accessToken);
       backEndData.userId = localStorage.getItem('userId');
 
-      console.log('🚀 ~ backEndData:', backEndData);
-
       return backEndData;
     } catch (error) {
       toastError(
