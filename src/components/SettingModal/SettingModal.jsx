@@ -1,12 +1,10 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { toast } from 'react-toastify';
 import styles from './SettingModal.module.css';
 
 import Loader from '../Loader/Loader.jsx';
 import { IoCloseOutline } from 'react-icons/io5';
-import { HiOutlineEyeSlash } from 'react-icons/hi2';
-import { HiOutlineEye } from 'react-icons/hi2';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { changeUserDataAPI } from '../../redux/auth/authOperation.js';
@@ -16,9 +14,9 @@ import {
   selectCurrentUser,
 } from '../../redux/auth/authSelectors.js';
 import UploadAvatar from '../UploadAvatar/UploadAvatar.jsx';
+import PasswordField from './PasswordField.jsx';
 
 function SettingModal({ isOpen, onClose }) {
-  const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
 
   const isRefreshing = useSelector(selectAuthIsRefreshing);
@@ -26,7 +24,6 @@ function SettingModal({ isOpen, onClose }) {
   const user = useSelector(selectCurrentUser);
   const { name, gender, email } = user;
 
-  // це треба щоб було у загальному компоненті для модалок
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -46,11 +43,6 @@ function SettingModal({ isOpen, onClose }) {
       document.body.style.overflow = 'auto';
     };
   }, [isOpen, onClose]);
-  // до цього
-
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
 
   const initialValues = {
     gender: gender || 'female',
@@ -183,56 +175,16 @@ function SettingModal({ isOpen, onClose }) {
                     </div>
                   </div>
 
-                  <div className={styles.partWrapper}>
-                    <label className={styles.labelTitle}>Password</label>
-                    {['oldPassword', 'password', 'confirmPassword'].map(
-                      (field, index) => (
-                        <div className={styles.fieldWrapper} key={index}>
-                          <label htmlFor={field} className={styles.labelField}>
-                            {field === 'oldPassword' && 'Outdated password:'}
-                            {field === 'password' && 'New Password:'}
-                            {field === 'confirmPassword' &&
-                              'Repeat new password:'}
-                          </label>
-                          <Field
-                            name={field}
-                            type={showPassword ? 'text' : 'password'}
-                            placeholder="Password"
-                            className={`${styles.input} ${
-                              errors[field] && touched[field]
-                                ? styles.inputError
-                                : ''
-                            }`}
-                          />
-                          {showPassword ? (
-                            <HiOutlineEyeSlash
-                              className={styles.iconEye}
-                              onClick={togglePasswordVisibility}
-                            />
-                          ) : (
-                            <HiOutlineEye
-                              className={styles.iconEye}
-                              onClick={togglePasswordVisibility}
-                            />
-                          )}
-                          <ErrorMessage
-                            name={field}
-                            component="span"
-                            className={styles.errorMessage}
-                          />
-                        </div>
-                      )
-                    )}
-                  </div>
-                </div>
+                  <PasswordField errors={errors} touched={touched} />
 
-                <button
-                  type="submit"
-                  className={styles.button}
-                  disabled={isSubmitting}
-                >
-                  Save
-                </button>
+                  <button
+                    type="submit"
+                    className={styles.button}
+                    disabled={isSubmitting}
+                  >
+                    Save
+                  </button>
+                </div>
               </Form>
             )}
           </Formik>
