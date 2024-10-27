@@ -64,3 +64,7 @@
   background-color: var(--bg-light);
   padding: 0px;
 }
+
+.upload:hover {
+  color: var(--sec-orange-l);
+}
