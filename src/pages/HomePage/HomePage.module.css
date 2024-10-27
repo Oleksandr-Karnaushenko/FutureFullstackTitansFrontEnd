@@ -2,10 +2,10 @@
   background-image: var(--bg-image-mobile-home);
   background-size: cover;
   background-repeat: no-repeat;
-  max-width: 320px;
+  width: 100%;
   height: 100vh;
-  position: relative;
-  z-index: 5;
+  /* position: relative;
+  z-index: 5; */
 }
 
 @media (min-resolution: 2dppx) {
@@ -45,8 +45,7 @@
     margin: 0 auto;
   }
 
-  /* .column {
-  } */
+  
 }
 
 @media (min-resolution: 2dppx) {

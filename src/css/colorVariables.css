@@ -76,8 +76,8 @@
     url(../assets/images/welcome/bgD-pc-2x.png);
 
   /* Background-images for HomePage dark */
-  --bg-image-dark-mobile-home: url(/public/assets/images/bg-dots-mob-dark-1x-min.png);
-  --bg-image-dark-mobile-2x-home: url(/public/assets/images/bg-dots-mob-dark-2x-min.png);
+  --bg-image-dark-mobile-home: url(../public/assets/images/bg-dots-mob-1x.png);
+  --bg-image-dark-mobile-2x-home: url(../public/assets/images/bg-dots-mob-dark-2x-min.png);
   --bg-image-dark-tablet-home: url(/assets/images/bg-dots-tab-dark-1x-min.png);
   --bg-image-dark-tablet-2x-home: url(/assets/images/bg-dots-tab-dark-2x-min.png);
   --bg-image-dark-desktop-home: url(/assets/images/bg-dots-desk-dark-1x-min.png.png);
