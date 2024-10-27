@@ -39,8 +39,9 @@ const waterSlice = createSlice({
           state.dayInfo.totalWaterVolume,
           payload.dailyNorm
         );
-        state.monthInfo.find(item => item.date === formattedDate).percent =
-          countPercent(state.dayInfo.totalWaterVolume, payload.dailyNorm);
+        if (state.monthInfo.length > 0)
+          state.monthInfo.find(item => item.date === formattedDate).percent =
+            countPercent(state.dayInfo.totalWaterVolume, payload.dailyNorm);
         state.isRefreshing = false;
       })
       .addCase(editDailyNormAPI.rejected, (state, { payload }) => {
