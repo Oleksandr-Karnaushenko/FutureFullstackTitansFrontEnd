@@ -1,8 +1,30 @@
-.background {
-  background-image: url('../../assets/images/welcome/backgroundMobileHome.svg');
+body.light .background {
+  background-image: url('/assets/images/bg-dots-mob-1x.png');
   background-size: cover;
   background-repeat: no-repeat;
   width: 100%;
+  height: 100vh;
+  position: relative;
+  z-index: 3;
+}
+
+body.dark .background {
+  background-image: url('/assets/images/bg-dots-mob-dark-1x-min.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  z-index: 3;
+}
+
+@media (min-resolution: 2dppx) {
+  body.light .background {
+    background-image: url('/assets/images/bg-dots-mob-2x.png');
+  }
+  body.dark .background {
+    background-image: url('/assets/images/bg-dots-mob-dark-2x-min.png');
+  }
 }
 
 .column {
@@ -13,8 +35,8 @@
 }
 
 @media screen and (min-width: 768px) {
-  .background {
-    background-image: url('../../assets/images/welcome/backgroundTablet.svg');
+  body.light .background {
+    background-image: url('/src/assets/images/home/bg-dots-tab-1x.png');
   }
 
   .column {
@@ -22,19 +44,32 @@
   }
 }
 
-@media screen and (min-width: 1440px) {
-  .background {
-    background-image: url('../../assets/images/welcome/backgroundDesktop.svg');
+@media (min-resolution: 2dppx) {
+  body.light .background {
+    background-image: url('/src/assets/images/home/bg-dots-tab-2x.png');
   }
+}
+
+@media screen and (min-width: 1440px) {
+  body.light .background {
+    background-image: url('/images/welcome/elL-pc-1x.png');
+  }
+
   .column {
     width: 100%;
     max-width: 592px;
     margin-left: 32px;
   }
   .container {
-    display: flex; /* Enable flexbox for the container */
-    justify-content: space-between; /* Space out the two columns */
+    display: flex;
+    justify-content: space-between;
     width: 100%;
-    max-width: 1200px; /* Optional: limit the max width */
+    max-width: 1200px;
+  }
+}
+
+@media (min-resolution: 2dppx) {
+  body.light .background {
+    background-image: url('/images/welcome/elL-pc-1x.png');
   }
 }
