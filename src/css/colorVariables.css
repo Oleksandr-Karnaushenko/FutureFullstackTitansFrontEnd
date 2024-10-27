@@ -19,18 +19,13 @@
   --cursor-fing-a: url('../assets/img/cursors/mdi_cursor-pointer.svg'), pointer;
 
   /* Background-images for WelcomePage light */
-  --bg-image-light-mobile: url(../assets/images/welcome/elL-mob-1x.png),
-    url(../assets/images/welcome/bgL-mob-1x.png);
-  --bg-image-light-mobile-2x: url(../assets/images/welcome/elL-mob-2x.png),
-    url(../assets/images/welcome/bgL-mob-2x.png);
-  --bg-image-light-tablet: url(../assets/images/welcome/elL-tab-1x.png),
-    url(../assets/images/welcome/bgD-taL-1x.png);
-  --bg-image-light-tablet-2x: url(../assets/images/welcome/elL-tab-2x.png),
-    url(../assets/images/welcome/bgL-tab-2x.png);
-  --bg-image-light-desktop: url(../assets/images/welcome/elL-pc-1x.png),
-    url(../assets/images/welcome/bgL-pc-1x.png);
-  --bg-image-light-desktop-2x: url(../assets/images/welcome/elL-pc-2x.png),
-    url(../assets/images/welcome/bgL-pc-2x.png);
+  
+  --bg-image-light-mobile: url(../assets/images/welcome/elL-mob-1x.png), url(../assets/images/welcome/bgL-mob-1x.png);
+  --bg-image-light-mobile-2x: url(../assets/images/welcome/elL-mob-2x.png), url(../assets/images/welcome/bgL-mob-2x.png);
+  --bg-image-light-tablet: url(../assets/images/welcome/elL-tab-1x.png), url(../assets/images/welcome/bgL-tab-1x.png);
+  --bg-image-light-tablet-2x: url(../assets/images/welcome/elL-tab-2x.png), url(../assets/images/welcome/bgL-tab-2x.png);
+  --bg-image-light-desktop: url(../assets/images/welcome/elL-pc-1x.png), url(../assets/images/welcome/bgL-pc-1x.png);
+  --bg-image-light-desktop-2x: url(../assets/images/welcome/elL-pc-2x.png), url(../assets/images/welcome/bgL-pc-2x.png);
 
   /* dark-theme-colors */
 
@@ -128,6 +123,7 @@ body {
   background-color: var(--background);
   color: var(--text);
 }
+
 body.light {
   --background: var(--bg-light);
   --text: var(--text-light);
@@ -155,6 +151,7 @@ body.light {
   --bg-image-desktop: var(--bg-image-light-desktop);
   --bg-image-desktop-2x: var(--bg-image-light-desktop-2x);
 }
+
 body.dark {
   --background: var(--bg-dark);
   --text: var(--text-dark);
