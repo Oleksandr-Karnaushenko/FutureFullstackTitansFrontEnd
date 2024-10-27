@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { editDailyNormAPI } from '../../redux/auth/authOperation';
-import { toastSuccess, toastError } from '../../services/toastNotification'; // Імпорт нових функцій
 import css from './DailyNormaModalMD.module.css';
 import {
   selectUserId,
@@ -13,7 +12,7 @@ import {
 // import { ButtonBtn } from '../ButtonBtn/ButtonBtn';
 import { IoCloseOutline } from 'react-icons/io5';
 
-const DailyNormaModalMD = ({ handleCloseModal }) => {
+const DailyNormaModalMD = ({ onClose }) => {
   const dispatch = useDispatch();
   const userId = useSelector(selectUserId);
   const dailyNorma = useSelector(selectNormWater);
@@ -52,27 +51,21 @@ const DailyNormaModalMD = ({ handleCloseModal }) => {
 
   // Відправка даних на сервер
   const handleSubmit = async (values, { setSubmitting }) => {
-    try {
-      await dispatch(
-        editDailyNormAPI({
-          userId,
-          waterNorma: { dailyNorm: values.plannedIntake * 1000 },
-        })
-      ); // Передача userId і waterNorma
-      toastSuccess('Daily norma saved successfully!');
-      handleCloseModal();
-    } catch {
-      toastError('Error saving daily norma!');
-    } finally {
-      setSubmitting(false); // Дозволяємо повторне відправлення форми
-    }
+    dispatch(
+      editDailyNormAPI({
+        userId,
+        waterNorma: { dailyNorm: values.plannedIntake * 1000 },
+      })
+    ); // Передача userId і waterNorma
+    onClose();
+    setSubmitting(false); // Дозволяємо повторне відправлення форми
   };
 
   return (
     <div className={css.container}>
       <div className={css.titleContainer}>
         <h2 className={css.title}>My daily norma</h2>
-        <button className={css.buttonClose} onClick={handleCloseModal}>
+        <button className={css.buttonClose} onClick={onClose}>
           <IoCloseOutline
             name="icon-cross"
             width={24}
@@ -81,7 +74,6 @@ const DailyNormaModalMD = ({ handleCloseModal }) => {
             className={css.iconClose}
           />
         </button>
-        {/* <ButtonBtn name="X" onClick={closeModal} clasNameBtn={css.closeButton} /> */}
       </div>
       <div className={css.formulaContainer}>
         <div className={css.formula}>

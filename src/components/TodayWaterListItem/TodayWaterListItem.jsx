@@ -7,10 +7,7 @@ import { deleteWaterAPI } from '../../redux/water/waterOperation/';
 import Icon from '../Icon/Icon';
 import { TodayWaterModal } from '../TodayWaterModal/TodayWaterModal';
 import { ButtonBtn } from '../ButtonBtn/ButtonBtn';
-import {
-  getCurrentDayInfoAPI,
-  getCurrentMonthInfoAPI,
-} from '../../redux/water/waterOperation/';
+
 import css from './TodayWaterListItem.module.css';
 
 import TodayListModal from '../TodayListModal/TodayListModal';
@@ -61,7 +58,7 @@ export const TodayWaterListItem = ({ waterItem }) => {
     try {
       await dispatch(deleteWaterAPI(_id));
       toggleModal();
-    } catch (error) {
+    } catch (e) {
       toast.error('Failed to delete the entry.');
     }
   };

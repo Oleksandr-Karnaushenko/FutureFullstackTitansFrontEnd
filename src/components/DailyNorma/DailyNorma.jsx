@@ -1,9 +1,9 @@
-import DailyNormaModal from '../DailyNormaModal/DailyNormaModal';
 import { useState } from 'react';
 import css from './DailyNorma.module.css';
 import DailyNormaModalMD from '../DailyNormaModalMD/DailyNormaModalMD.jsx';
 import { useSelector } from 'react-redux';
 import { selectNormWater } from '../../redux/auth/authSelectors.js';
+import { TodayWaterBackdrop } from '../TodayWaterBackdrop/TodayWaterBackdrop.jsx';
 
 export default function DailyNorma() {
   const dailyNorm = useSelector(selectNormWater);
@@ -28,12 +28,9 @@ export default function DailyNorma() {
           Edit
         </button>
       </div>
-      {isModalOpen && (
-        <DailyNormaModalMD
-          isOpen={isModalOpen}
-          handleCloseModal={handleCloseModal}
-        />
-      )}
+      <TodayWaterBackdrop isOpen={isModalOpen} onClose={handleCloseModal}>
+        <DailyNormaModalMD onClose={handleCloseModal} />
+      </TodayWaterBackdrop>
     </>
   );
 }

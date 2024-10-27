@@ -13,7 +13,7 @@ import css from './TodayWater.module.css';
 
 export default function TodayWater() {
   const isRefreshing = useSelector(selector.selectWaterIsRefreshing);
-  const error = useSelector(selector.selectWaterError);
+  // const error = useSelector(selector.selectWaterError);
   const dispatch = useDispatch();
 
   const [isModalOpenAdd, setIsModalOpenAdd] = useState(false);
