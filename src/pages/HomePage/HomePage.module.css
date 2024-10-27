@@ -4,8 +4,6 @@ body.light .background {
   background-repeat: no-repeat;
   width: 100%;
   height: 100vh;
-  position: relative;
-  z-index: 3;
 }
 
 body.dark .background {
@@ -14,8 +12,6 @@ body.dark .background {
   background-repeat: no-repeat;
   width: 100%;
   height: 100vh;
-  position: relative;
-  z-index: 3;
 }
 
 @media (min-resolution: 2dppx) {
@@ -36,7 +32,10 @@ body.dark .background {
 
 @media screen and (min-width: 768px) {
   body.light .background {
-    background-image: url('/src/assets/images/home/bg-dots-tab-1x.png');
+    background-image: url('/assets/images/bg-dots-tab-1x.png');
+  }
+  body.dark .background {
+    background-image: url('/assets/images/bg-dots-tab-dark-1x.png');
   }
 
   .column {
@@ -46,13 +45,19 @@ body.dark .background {
 
 @media (min-resolution: 2dppx) {
   body.light .background {
-    background-image: url('/src/assets/images/home/bg-dots-tab-2x.png');
+    background-image: url('/assets/images/bg-dots-tab-2x.png');
+  }
+  body.dark .background {
+    background-image: url('/assets/images/bg-dots-tab-dark-2x.png');
   }
 }
 
 @media screen and (min-width: 1440px) {
   body.light .background {
-    background-image: url('/images/welcome/elL-pc-1x.png');
+    background-image: url('/assets/images/bg-dots-desk-1x-min.png');
+  }
+  body.dark .background {
+    background-image: url('/assets/images/bg-dots-desk-dark-1x-min.png');
   }
 
   .column {
@@ -70,6 +75,9 @@ body.dark .background {
 
 @media (min-resolution: 2dppx) {
   body.light .background {
-    background-image: url('/images/welcome/elL-pc-1x.png');
+    background-image: url('/assets/images/bg-dots-desk-2x-min.png');
+  }
+  body.dark .background {
+    background-image: url('/assets/images/bg-dots-desk-dark-2x-min.png');
   }
 }
