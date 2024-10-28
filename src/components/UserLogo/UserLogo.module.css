@@ -43,17 +43,21 @@
   align-items: center;
 }
 .logobox:hover {
-  stroke: rgb(255, 157, 67);
-  fill: rgb(255, 157, 67);
+  fill: var(--secondary-orange);
 }
 .icon {
   width: 28px;
   height: 28px;
   fill: #007bff;
+  cursor: pointer;
+}
+
+.icon:hover{
+  fill: var(--secondary-orange);
 }
 .user {
   margin-right: 5px;
 }
 .userLogoButton:hover {
-  border: 1px solid rgb(255, 157, 67)
+  border: 1px solid var(--secondary-orange)
 }

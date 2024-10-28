@@ -19,35 +19,17 @@
   padding: 0;
   margin-left: 0.5rem;
 }
-
-/* .logoutButton {
-  padding-top: 16px;
-  display: flex;
-}
-
-.settingsButton {
-  display: flex;
-} */
-
 .buttons {
   display: flex;
   flex-direction: column;
   gap: 16px;
   align-items: center;
 }
-
-.buttonsSettings:hover,
-.buttonsLogout:hover {
-  filter: brightness(0) saturate(100%) invert(29%) sepia(45%) saturate(1046%)
-    hue-rotate(3deg) brightness(106%) contrast(102%);
-}
-
 .logoutButton:hover,
 .settingsButton:hover {
-  color: rgb(255, 157, 67);
+  color: var(--secondary-orange);
   background: none;
 }
-
 .backdrop {
   position: fixed;
   top: 0;
@@ -59,7 +41,6 @@
   justify-content: center;
   align-items: center;
 }
-
 .modal {
   position: absolute;
   background: var(--background);
@@ -74,5 +55,5 @@
 .buttonsLogout {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
 }
