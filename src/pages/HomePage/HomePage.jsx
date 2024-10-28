@@ -23,12 +23,12 @@ export default function HomePage() {
 
   return (
     <div className={css.background}>
-      <div className={css.container}>
+      <div className={(css.container, css.containerData)}>
         <div className={(css.column, css.leftcolumn)}>
           <DailyNorma />
-          <WaterRatioPanel />
+          <WaterRatioPanel className={css.homePageWaterRatioPanel}/>
         </div>
-        <div className={css.column}>
+        <div className={(css.column, css.rightColumn)}>
           <TodayWater />
           <MonthStatsTable />
         </div>

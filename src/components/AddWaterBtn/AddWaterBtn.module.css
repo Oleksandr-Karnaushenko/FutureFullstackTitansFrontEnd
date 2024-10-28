@@ -38,6 +38,10 @@
 
 @media screen and (min-width: 1440px) {
   .addWaterBtn  {
+    display: flex;
+    justify-content: center;
+    padding-inline: 0;
+    width: 178px;
     margin-bottom: 0px;
     margin-top: 0px;
   }

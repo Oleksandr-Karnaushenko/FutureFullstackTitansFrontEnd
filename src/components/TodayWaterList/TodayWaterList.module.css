@@ -1,6 +1,7 @@
 .todayWaterList {
   max-height: 182px;
-  height: 100%;
+  min-height: 0;
+  /* height: 100%; */
   margin-bottom: 12px;
   overflow-y: auto;
 }
