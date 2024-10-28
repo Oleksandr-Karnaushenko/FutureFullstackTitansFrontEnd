@@ -1,3 +1,12 @@
+@keyframes scaleUp {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.5);
+  }
+}
+
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -39,10 +48,10 @@
   border: 1px solid var(--primary-blue);
   transform: translateX(-50%);
 }
-.ratioPanelLabels span {
+/* .ratioPanelLabels span {
   font-size: 12px;
   position: relative;
-}
+} */
 
 .ratioLabel {
   font-size: 12px;
@@ -50,7 +59,8 @@
 }
 .ratioLabel.active {
   font-weight: 500;
-  font-size: 16px;
+  /* font-size: 16px; */
+  animation: scaleUp 0.3s ease forwards;
 }
 .ratioLabel::before {
   content: '';
@@ -67,8 +77,8 @@
   .wrapper {
     flex-direction: row;
     position: absolute;
-    top:430px;
-    width:100%
+    top: 430px;
+    width: 100%;
     /* margin-bottom: 40px; */
   }
   .ratioPanelWrap {
@@ -85,14 +95,11 @@
   .wrapper {
     flex-direction: row;
     margin-bottom: 0;
-  
   }
 
-    .wrapper {
-    
-    
-    top:590px;
-    
+  .wrapper {
+    top: 590px;
+
     /* margin-bottom: 40px; */
   }
   .ratioPanelWrap {
