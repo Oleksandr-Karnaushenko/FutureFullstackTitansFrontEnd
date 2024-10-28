@@ -15,7 +15,8 @@
   background-position: center;
   background-repeat: no-repeat;
   width: 100%;
-  height: 280px;
+  /* height: 280px; */
+  height: 206px;
   background-size: contain;
   background-image: url('/assets/images/bottle-mob-1x.png');
   z-index: 1;
@@ -58,7 +59,9 @@
     margin-top: 40px;
   }
   .wrapper {
+    height: 388px;
     top: -78px;
+   
     height: 386px;
     background-image: url('/assets/images/bottle-tab-1x.png');
   }
