@@ -18,13 +18,13 @@
   /* height: 280px; */
   height: 206px;
   background-size: contain;
-  background-image: url('/assets/images/bottle-mob-1x.png');
+  background-image: var(--bg-bottle-mobile-home);
   z-index: 1;
 }
 
 @media (min-resolution: 2dppx) {
   .wrapper {
-    background-image: url('/assets/images/bottle-mob-2x.png');
+    background-image: var(--bg-bottle-mobile-2x-home);
   }
 }
 
@@ -61,15 +61,15 @@
   .wrapper {
     height: 388px;
     top: -78px;
-   
+
     height: 386px;
-    background-image: url('/assets/images/bottle-tab-1x.png');
+    background-image: var(--bg-bottle-tablet-home);
   }
 }
 
 @media (min-resolution: 2dppx) {
   .wrapper {
-    background-image: url('/assets/images/bottle-tab-2x.png');
+    background-image: var(--bg-bottle-tablet-2x-home);
   }
 }
 
@@ -78,7 +78,7 @@
     margin-top: 52px;
   }
   .wrapper {
-    background-image: url('/assets/images/bottle-desk-1x.png');
+    background-image: var(--bg-bottle-desktop-home);
     top: -108px;
     right: 50px;
     width: 748px;
@@ -88,6 +88,6 @@
 
 @media (min-resolution: 2dppx) {
   .wrapper {
-    background-image: url('/assets/images/bottle-desk-2x.png');
+    background-image: var(--bg-bottle-desktop-2x-home);
   }
 }
