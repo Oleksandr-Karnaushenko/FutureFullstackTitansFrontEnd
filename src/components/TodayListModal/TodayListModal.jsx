@@ -81,7 +81,9 @@ export default function TodayListModal({ waterObj, onClose }) {
       ) : (
         <div className={css.amountofwaterContainer}>
           <svg width={23} height={32}>
-            <use href="icons.svg#icon-glass"></use>
+            {/* <use href="icons.svg#icon-glass"></use> */}
+                <use href="/assets/images/icons.svg#icon-glass"></use>
+          
           </svg>
           <p className={css.waterAmount}>{formik.values.oldWaterVolume} ml</p>
           <p className={css.time}>{formik.values.oldselectedTime}</p>
@@ -118,6 +120,7 @@ export default function TodayListModal({ waterObj, onClose }) {
       </div>
       <p className={css.text}>Recording time:</p>
       <Select
+      className={css.select}
         styles={differentStyles}
         defaultValue={{
           value: formik.values.oldselectedTime,
