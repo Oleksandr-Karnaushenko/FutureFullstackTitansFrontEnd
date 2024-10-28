@@ -40,7 +40,9 @@ const waterSlice = createSlice({
           state.dayInfo.totalWaterVolume,
           payload.dailyNorm
         );
-        if (state.monthInfo.length === 0) {
+        if (
+          state.monthInfo.find(item => item.date === formattedDate) !== null
+        ) {
           state.monthInfo.push({
             date: formattedDate,
             dailyNorm: payload.dailyNorna,
@@ -108,7 +110,9 @@ const waterSlice = createSlice({
         );
 
         //monthInfo
-        if (state.monthInfo.length === 0) {
+        if (
+          state.monthInfo.find(item => item.date === formattedDate) !== null
+        ) {
           state.monthInfo.push({
             date: formattedDate,
             dailyNorm: payload.dailyNorna,

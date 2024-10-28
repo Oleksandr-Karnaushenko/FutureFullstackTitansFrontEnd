@@ -18,7 +18,7 @@
   padding: 24px 12px;
   width: 280px;
   height: auto;
-  background-color: var( --background);
+  background-color: var(--background);
 }
 
 .titleContainer {
@@ -27,8 +27,6 @@
   margin-bottom: 24px;
   width: 256px;
 }
-
-
 
 .text {
   font-size: 16px;
@@ -41,7 +39,7 @@
   font-weight: 500;
   font-size: 26px;
   line-height: 1.23;
-  color: var( --text);
+  color: var(--text);
 }
 
 .closebtn {
@@ -77,7 +75,7 @@
   padding: 10px;
   width: 44px;
   height: 44px;
-  background-color: var( --background);
+  background-color: var(--background);
   box-shadow: 0 2px 4px 0 #407bff33;
   cursor: pointer;
 }
@@ -109,19 +107,18 @@
   text-align: center;
   color: #407bff;
   /* background-color: #d7e3ff; */
-  background: var( --secondary-4);
+  background: var(--secondary-4);
 }
 
 .waterAmount {
   -moz-appearance: textfield;
   -webkit-appearance: textfield;
   appearance: textfield;
-  border: 1px solid var( --secondary-blue);
+  border: 1px solid var(--secondary-blue);
   border-radius: 6px;
   padding: 12px 10px;
   width: 120px;
   height: 44px;
-  margin-bottom: 24px;
   outline: none;
   font-family: 'Roboto', sans-serif;
   color: #407bff;
@@ -137,6 +134,7 @@
   justify-content: center;
   gap: 20px;
   width: 256px;
+  margin-top: 24px;
 }
 
 .incomeFooter {
@@ -160,7 +158,7 @@
   line-height: 1.25;
   text-align: center;
   color: var(--secondary-2);
- 
+
   cursor: pointer;
 }
 .saveButton:hover {
