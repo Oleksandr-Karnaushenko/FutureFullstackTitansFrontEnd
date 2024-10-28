@@ -39,3 +39,7 @@
 .themeButton:hover .icon {
   color: var(--secondary-orange);
 }
+
+.themeButton:hover{
+  border: solid 1px var(--secondary-orange);
+}
