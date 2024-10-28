@@ -77,3 +77,19 @@
     width: 100%;
   }
 }
+
+@media screen and (min-width: 1440px) {
+  .wrapper {
+    flex-direction: row;
+    margin-bottom: 0;
+  
+  }
+  .ratioPanelWrap {
+    max-width: 356px;
+    width: 100%;
+  }
+  .ratioPanelMain {
+    max-width: 325px;
+    width: 100%;
+  }
+}

@@ -11,21 +11,26 @@ import css from './AmountOfWater.module.css';
 export const differentStyles = {
   control: provided => ({
     ...provided,
-    border: '1px solid #D7E3FF',
+    // border: '1px solid #D7E3FF',
+   border: '1px solid var( --secondary-blue)',
     borderRadius: '6px',
     height: '44px',
     marginBottom: '24px',
+    backgroundColor: "var(--background)"
   }),
   menu: provided => ({
     ...provided,
     scrollBehavior: 'smooth',
-    border: '1px solid #D7E3FF',
+    // border: '1px solid #D7E3FF',
+    border: "1px solid var( --secondary-blue)",
     borderRadius: '6px',
+    backgroundColor: "var(--background)"
   }),
   option: (provided, { isSelected }) => ({
     ...provided,
-    background: isSelected ? '#D7E3FF' : '#ffffff',
+    // background: isSelected ? '#D7E3FF' : '#ffffff',
     color: '#407BFF',
+      backgroundColor: "var(--background)"
   }),
   singleValue: provided => ({
     ...provided,

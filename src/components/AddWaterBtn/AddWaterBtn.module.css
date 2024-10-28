@@ -37,7 +37,8 @@
 }
 
 @media screen and (min-width: 1440px) {
-  .btnDiv {
-    margin: 0;
+  .addWaterBtn  {
+    margin-bottom: 0px;
+    margin-top: 0px;
   }
 }
