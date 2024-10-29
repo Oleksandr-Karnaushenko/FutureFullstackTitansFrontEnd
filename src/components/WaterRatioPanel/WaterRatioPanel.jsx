@@ -14,7 +14,7 @@ export default function WaterRatioPanel() {
 
   return (
     <div className={css.wrapper}>
-      <div className={css.ratioPanelWrap}>
+      <div className={css.panel}>
         <h2 className={css.panelTitle}>Today</h2>
         <div className={css.ratioPanelMain}>
           <div

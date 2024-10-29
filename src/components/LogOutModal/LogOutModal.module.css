@@ -47,6 +47,7 @@
   width: 24px;
   height: 24px;
   justify-content: center;
+  cursor: (--cursor-h);
 }
 
 h2 {
@@ -79,12 +80,14 @@ h2 {
   color: var(--background);
   box-shadow: 0px 4px 10px 0px var(--box-shadow);
   font-weight: 500;
+  cursor: var(--cursor-h);
 }
 
 .cancelButton {
   background: var(--secondary-blue);
   color: var(--primary-blue);
   font-weight: 500;
+  cursor: var(--cursor-h);
 }
 
 .cancelButton:hover {

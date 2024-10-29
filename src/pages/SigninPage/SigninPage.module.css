@@ -59,7 +59,7 @@
 
   @media (min-resolution: 2dppx) {
     .container {
-      background-image: var(--bg-image-tablet-2x-sign);
+      background-image: url('/src/assets/images/welcome/elL-tab-2x.png');
     }
   }
 

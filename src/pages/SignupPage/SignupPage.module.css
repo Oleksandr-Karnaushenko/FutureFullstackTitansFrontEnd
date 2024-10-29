@@ -7,33 +7,31 @@
   min-width: 320px;
   background-color: var(--background);
   margin-top: 24px;
-  background-image: var(--bg-image-mobile-sign);
+  background-image: url('/src/assets/images/welcome/elL-mob-1x.png');
   background-repeat: no-repeat;
-  background-position: 0 -7%;
+  background-position: 0 -10%;
   background-size: 100% auto;
   width: 320px;
   padding: 0 20px;
-  transform: translateX(-20px);
-
 }
 
 @media (min-resolution: 2dppx) {
   .container {
-    background-image: var(--bg-image-mobile-2x-sign);
+    background-image: url('/src/assets/images/welcome/elL-mob-2x.png');
   }
 }
 
 .background {
-  background-image: var(--bg-bottle-mobile-home);
+  background-image: url('/assets/images/bottle-mob-1x.png');
   background-repeat: no-repeat;
   background-position: 50% 100%;
   background-size: contain;
-  height: 584px;
+  height: 100vh;
 }
 
 @media (min-resolution: 2dppx) {
   .background {
-    background-image: var(--bg-bottle-mobile-2x-home);
+    background-image: url('/assets/images/bottle-mob-2x.png');
   }
 }
 
@@ -49,7 +47,7 @@
     padding: 40px 32px 0 32px;
     width: 768px;
     align-items: baseline;
-    background-image: var(--bg-image-tablet-sign);
+    background-image: url('/src/assets/images/welcome/elL-tab-1x.png');
     background-repeat: no-repeat;
     background-position: left -0px top -73px;
     background-size: 100% auto;
@@ -58,12 +56,12 @@
 
   @media (min-resolution: 2dppx) {
     .container {
-      background-image: var(--bg-image-tablet-2x-sign);
+      background-image: url('/src/assets/images/welcome/elL-tab-2x.png');
     }
   }
 
   .background {
-    background-image: var(--bg-bottle-tablet-home);
+    background-image: url('/assets/images/bottle-tab-1x.png');
     background-repeat: no-repeat;
     background-position: top right -100px;
     background-size: 100% auto;
@@ -72,7 +70,7 @@
 
   @media (min-resolution: 2dppx) {
     .background {
-      background-image: var(--bg-bottle-tablet-2x-home);
+      background-image: url('/assets/images/bottle-tab-2x.png');
     }
   }
 }
@@ -84,7 +82,7 @@
     width: 1440px;
     padding: 0 18px;
     align-items: end;
-    background-image: var(--bg-image-desktop-sign);
+    background-image: url('/src/assets/images/welcome/elL-pc-1x.png');
     background-repeat: no-repeat;
     background-position: top right;
     background-size: 100% auto;
@@ -93,12 +91,12 @@
 
   @media (min-resolution: 2dppx) {
     .container {
-      background-image: var(--bg-image-desktop-2x-sign);
+      background-image: url('/src/assets/images/welcome/elL-pc-2x.png');
     }
   }
 
   .background {
-    background-image: var(--bg-bottle-desktop-home);
+    background-image: url('/assets/images/bottle-desk-1x.png');
     background-repeat: no-repeat;
     background-position: left -350px top -10px;
     background-size: 100% auto;
@@ -110,7 +108,7 @@
 
   @media (min-resolution: 2dppx) {
     .background {
-      background-image: var(--bg-bottle-desktop-2x-home);
+      background-image: url('/assets/images/bottle-desk-2x.png');
     }
   }
 }
