@@ -7,16 +7,19 @@
   background-color: rgba(0, 0, 0, 0.8);
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   z-index: 1000;
-  overflow-y: scroll;
+  overflow: auto;
+}
+
+@media screen and (min-width: 1440px) {
+  .modalOverlay {
+    align-items: center;
+  }
 }
 
 .modal {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
   display: flex;
   padding: 32px 12px;
   flex-direction: column;
@@ -27,6 +30,7 @@
   background: var(--background);
   min-width: 280px;
   z-index: 1001;
+  margin-top: 40px;
 }
 
 @media screen and (min-width: 768px) {
@@ -41,6 +45,7 @@
     width: 1008px;
     min-height: 592px;
     max-height: 90vh;
+    margin: 0;
   }
 }
 
@@ -90,6 +95,7 @@
 
 .buttonClose {
   background: var(--background);
+  cursor: var(--cursor-h);
 }
 
 .form {
@@ -175,7 +181,7 @@
     border-radius: 100%;
     border: 1px solid var(--primary-blue);
     background-color: var(--background);
-    cursor: url('../../assets/img/cursors/mdi_cursor-pointer.svg'), auto;
+    cursor: var(--cursor-h), auto;
 
     transition: background-color 0.3s cubic-bezier(0.7, 0.98, 0.86, 0.98),
       border 0.3s cubic-bezier(0.7, 0.98, 0.86, 0.98);
@@ -187,7 +193,7 @@
   }
 
   span {
-    cursor: url('../../assets/img/cursors/mdi_cursor-pointer.svg'), auto;
+    cursor: var(--cursor-h), auto;
   }
 }
 
@@ -262,6 +268,7 @@
   line-height: 20px;
   width: 100%;
   padding: 8px 30px;
+  cursor: var(--cursor-h);
 }
 
 .button:hover {
@@ -288,7 +295,7 @@
 
 .iconEye {
   stroke: var(--primary-blue);
-  cursor: pointer;
+  cursor: var(--cursor-h);
   width: 16px;
   height: 16px;
   position: absolute;

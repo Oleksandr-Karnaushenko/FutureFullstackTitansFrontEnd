@@ -4,6 +4,7 @@
 @import url('css/comon.css');
 @import url('css/fonts/fonts.css');
 @import url('css/colorVariables.css');
+@import url('css/imagesVariables.css');
 
 :root {
   font-family: 'Roboto', sans-serif;

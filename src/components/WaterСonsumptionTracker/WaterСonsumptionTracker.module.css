@@ -1,5 +1,5 @@
 .container {
-    min-height: 384px;
+    max-height: 384px;
     min-width: 280px;
     display: flex;
     flex-direction: column;
@@ -7,13 +7,15 @@
 
 .title {
     font-weight: 700;
+    letter-spacing: normal;
     font-size: 28px;
     line-height: 1.14;
     color: var(--text);
+    min-width: 246px;
 }
 
 .subTitle {
-    max-width: 246px;
+    
     font-weight: 400;
     font-size: 24px;
     line-height: 1.25;
@@ -82,17 +84,20 @@
 
 @media screen and (min-width: 768px) {
     .container {
-        min-height: 254px;
+        max-height: 254px;
         min-width: 704px;
     }
 
     .title {
         font-size: 36px;
+        line-height: 1.17;
+        min-width: 439px;
+        white-space: nowrap
     }
 
     .subTitle {
         font-size: 26px;
-        max-width: 439px;
+        
     }
 
     .listWraper {
@@ -124,7 +129,7 @@
 
 @media screen and (min-width: 1440px) {
     .container {
-        min-height: 366px;
+        max-height: 366px;
         min-width: 439px;
     }
 

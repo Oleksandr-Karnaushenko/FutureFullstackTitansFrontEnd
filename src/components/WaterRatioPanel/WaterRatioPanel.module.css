@@ -1,33 +1,39 @@
-.wrapper {
-  display: flex;
-  flex-direction: column;
+@keyframes scaleUp {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.5);
+  }
 }
 
-.ratioPanelMain {
-  max-width: 256px;
+.wrapper {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+.panel {
   width: 100%;
+}
+.panelTitle {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--primary-blue);
+}
+.ratioPanelMain {
   height: 8px;
   border-radius: 10px;
   margin: 10px;
   background-color: var(--secondary-blue);
   position: relative;
 }
-.panelTitle {
-  font-size: 18px;
-  font-weight: 400px;
-  color: var(--primary-blue);
-}
 .ratioPanelProgress {
   height: 8px;
   border-radius: 10px;
   background-color: var(--secondary-4);
   width: 0%;
-}
-.ratioPanelLabels {
-  display: flex;
-  justify-content: space-between;
-  color: var(--primary-blue);
-  position: relative;
 }
 .ratioPanelDot {
   position: absolute;
@@ -39,18 +45,20 @@
   border: 1px solid var(--primary-blue);
   transform: translateX(-50%);
 }
-.ratioPanelLabels span {
-  font-size: 12px;
+.ratioPanelLabels {
+  display: flex;
+  justify-content: space-between;
+  color: var(--primary-blue);
   position: relative;
 }
-
 .ratioLabel {
   font-size: 12px;
   position: relative;
 }
 .ratioLabel.active {
   font-weight: 500;
-  font-size: 16px;
+
+  animation: scaleUp 0.3s ease forwards;
 }
 .ratioLabel::before {
   content: '';
@@ -62,45 +70,27 @@
   height: 8px;
   background-color: var(--secondary-blue);
 }
+.ratioLabel:last-child::before {
+  left: 70%;
+}
 
 @media screen and (min-width: 768px) {
   .wrapper {
     flex-direction: row;
-    position: absolute;
-    top:430px;
-    width:100%
-    /* margin-bottom: 40px; */
+    gap: 12px;
   }
-  .ratioPanelWrap {
-    max-width: 356px;
-    width: 100%;
-  }
-  .ratioPanelMain {
-    max-width: 325px;
-    width: 100%;
+  .panel {
+    min-width: 325px;
   }
 }
 
 @media screen and (min-width: 1440px) {
   .wrapper {
-    flex-direction: row;
-    margin-bottom: 0;
-  
+    gap: 23px;
+    margin-top: 24px;
+    margin-bottom: 16px;
   }
-
-    .wrapper {
-    
-    
-    top:590px;
-    
-    /* margin-bottom: 40px; */
-  }
-  .ratioPanelWrap {
-    max-width: 356px;
-    width: 100%;
-  }
-  .ratioPanelMain {
-    max-width: 325px;
-    width: 100%;
+  .panel {
+    min-width: 391px;
   }
 }

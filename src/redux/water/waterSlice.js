@@ -41,7 +41,8 @@ const waterSlice = createSlice({
           payload.dailyNorm
         );
         if (
-          state.monthInfo.find(item => item.date === formattedDate) !== null
+          state.monthInfo.find(item => item.date === formattedDate) ===
+          undefined
         ) {
           state.monthInfo.push({
             date: formattedDate,
@@ -111,8 +112,10 @@ const waterSlice = createSlice({
 
         //monthInfo
         if (
-          state.monthInfo.find(item => item.date === formattedDate) !== null
+          state.monthInfo.find(item => item.date === formattedDate) ===
+          undefined
         ) {
+          console.log('true');
           state.monthInfo.push({
             date: formattedDate,
             dailyNorm: payload.dailyNorna,
@@ -124,6 +127,10 @@ const waterSlice = createSlice({
             ),
           });
         } else {
+          console.log('false');
+          console.log(
+            state.monthInfo.find(item => item.date === formattedDate)
+          );
           state.monthInfo.find(item => item.date === formattedDate).percent =
             countPercent(state.dayInfo.totalWaterVolume, payload.dailyNorna);
           state.monthInfo.find(item => item.date === formattedDate).count += 1;

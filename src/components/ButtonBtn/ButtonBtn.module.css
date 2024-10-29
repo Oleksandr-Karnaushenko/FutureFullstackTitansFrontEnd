@@ -1,8 +1,8 @@
 .buttonBtn {
-   padding: 0;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   background-color: transparent;
-    
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  cursor: var(--cursor-h);
 }

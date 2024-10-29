@@ -55,6 +55,7 @@ export const addWaterAPI = createAsyncThunk(
       return { backEndData, dailyNorna };
     } catch (error) {
       toastError('Sorry, something went wrong. Please, try again');
+      console.log(error.response.data.data.message);
       return thunkAPI.rejectWithValue(error.response.data.data.message);
     }
   }

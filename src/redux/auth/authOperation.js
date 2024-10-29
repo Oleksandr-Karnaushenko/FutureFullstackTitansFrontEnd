@@ -45,7 +45,6 @@ export const signInAPI = createAsyncThunk(
       const backEndData = data.data;
 
       setAuthHeader(backEndData.accessToken);
-      localStorage.setItem('userId', backEndData._id);
 
       toastSuccess('Log in successful. Welcome back ');
 
@@ -77,7 +76,7 @@ export const logOutAPI = createAsyncThunk(
 );
 
 export const fetchCurrentUserAPI = createAsyncThunk(
-  'auth/refresh',
+  'auth/refreshSesion',
 
   async (_, { rejectWithValue, getState }) => {
     const state = getState();
@@ -102,12 +101,41 @@ export const fetchCurrentUserAPI = createAsyncThunk(
       toastError(
         'Auth state is old. Please enter to your personal cabinet again'
       );
+
       return rejectWithValue(error.response.data.data.message);
     }
   }
 );
 
 //user
+
+export const refreshUserAPI = createAsyncThunk(
+  'auth/refresh',
+
+  async (_, { rejectWithValue, getState }) => {
+    const state = getState();
+    const persistedToken = state.auth.token;
+
+    if (persistedToken === null) {
+      toastError('Unable to fetch user');
+      return rejectWithValue('Unable to fetch user');
+    }
+
+    try {
+      setAuthHeader(persistedToken);
+      const { data } = await axios.get('/users/curent');
+
+      const backEndData = data.data;
+
+      return backEndData;
+    } catch (error) {
+      toastError(
+        'Auth state is old. Please enter to your personal cabinet again'
+      );
+      return rejectWithValue(error.response.data.data.message);
+    }
+  }
+);
 
 export const fetchUserDataAPI = createAsyncThunk(
   'auth/userData',

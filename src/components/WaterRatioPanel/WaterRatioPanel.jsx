@@ -5,10 +5,16 @@ import { selectWaterVolumeInPercent } from '../../redux/water/waterSelectors';
 
 export default function WaterRatioPanel() {
   const progress = useSelector(selectWaterVolumeInPercent);
+  const getLabelClass = threshold => {
+    if (progress === threshold) {
+      return `${css.ratioLabel} ${css.active}`;
+    }
+    return css.ratioLabel;
+  };
 
   return (
     <div className={css.wrapper}>
-      <div className={css.ratioPanelWrap}>
+      <div className={css.panel}>
         <h2 className={css.panelTitle}>Today</h2>
         <div className={css.ratioPanelMain}>
           <div
@@ -21,21 +27,9 @@ export default function WaterRatioPanel() {
           ></div>
         </div>
         <div className={css.ratioPanelLabels}>
-          <span
-            className={`${css.ratioLabel} ${progress >= 0 ? css.active : ''}`}
-          >
-            0%
-          </span>
-          <span
-            className={`${css.ratioLabel} ${progress >= 0 ? css.active : ''}`}
-          >
-            50%
-          </span>
-          <span
-            className={`${css.ratioLabel} ${progress >= 0 ? css.active : ''}`}
-          >
-            100%
-          </span>
+          <span className={getLabelClass(0)}>0%</span>
+          <span className={getLabelClass(50)}>50%</span>
+          <span className={getLabelClass(100)}>100%</span>
         </div>
       </div>
       <AddWaterBtn />

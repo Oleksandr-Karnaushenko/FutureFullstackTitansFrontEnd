@@ -1,6 +1,6 @@
 .container {
-  min-width: 280px;
-  min-height: 840px;
+  max-width: 280px;
+  max-height: 840px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -13,8 +13,8 @@
 
 @media screen and (min-width: 768px) {
   .container {
-    min-width: 704px;
-    min-height: 646px;
+    max-width: 704px;
+    max-height: 646px;
     align-items: flex-start;
     gap: 60px;
   }
@@ -25,7 +25,7 @@
 @media screen and (min-width: 1440px) {
   .container {
     max-width: 1014px;
-    min-height: 366px;
+    max-height: 366px;
     flex-direction: row;
     align-items: flex-end;
     gap: 81px;

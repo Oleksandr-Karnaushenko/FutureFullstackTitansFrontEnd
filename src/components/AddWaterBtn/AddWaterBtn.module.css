@@ -1,23 +1,17 @@
-.btnDiv {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  max-width: 280px;
-}
-
 .addWaterBtn {
   width: 100%;
   font-size: 16px;
-  padding: 10px 72px;
+  padding: 8px 76px;
   border-radius: 10px;
   background-color: var(--primary-blue);
   color: var(--background);
-  margin-bottom: 40px;
   margin-top: 16px;
+  justify-content: center;
   display: flex;
   align-items: center;
   gap: 10px;
   box-shadow: var(--box-shadow-3);
+  cursor: var(--cursor-h);
 }
 
 .svgCross {
@@ -28,21 +22,16 @@
 }
 
 @media screen and (min-width: 768px) {
-  .btnDiv {
-    margin-left: auto;
-  }
   .addWaterBtn {
-    max-width: 336px;
+    padding: 10px 104px;
+    min-width: 336px;
+    margin-top: 0;
   }
 }
 
 @media screen and (min-width: 1440px) {
-  .addWaterBtn  {
-    display: flex;
-    justify-content: center;
-    padding-inline: 0;
-    width: 178px;
-    margin-bottom: 0px;
-    margin-top: 0px;
+  .addWaterBtn {
+    min-width: 178px;
+    padding: 10px 30px;
   }
 }

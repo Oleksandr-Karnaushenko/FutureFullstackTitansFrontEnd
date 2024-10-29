@@ -3,8 +3,11 @@
     padding: 24px 16px;
     box-shadow: var(--box-shadow);
     background-color: var(--secondary-2);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
     min-width: 280px;
-    min-height: 416px;
+    max-height: 416px;
 }
 
 .title {
@@ -32,7 +35,7 @@
 
 .icon {
     font-size: 1rem;
-    min-width: 24px;
+    min-width: 16px;
     color: var(--primary-blue);
     vertical-align: middle;
 }
@@ -40,8 +43,11 @@
 @media screen and (min-width: 768px) {
     .container {
         min-width: 494px;
-        min-height: 332px;
+        max-height: 332px;
         padding: 32px 24px;
+    }
+    .listItem {
+        white-space: nowrap
     }
 }
 
@@ -49,6 +55,6 @@
 
 @media screen and (min-width: 1440px) {
     .container {
-        min-height: 332px;
+        max-height: 332px;
     }
 }
