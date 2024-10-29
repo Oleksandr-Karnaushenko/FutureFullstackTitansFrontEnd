@@ -16,7 +16,7 @@ import css from './TodayListModal.module.css';
 
 import { selectWaterError } from '../../redux/water/waterSelectors';
 
-export default function TodayListModal({ waterObj, onClose }) {
+export default function TodayListModal({ waterObj, onClose, className, onMouseUp, onMouseDown, }) {
   const dispatch = useDispatch();
   const error = useSelector(selectWaterError);
 
@@ -66,7 +66,16 @@ export default function TodayListModal({ waterObj, onClose }) {
   }, []);
 
   return (
-    <div className={css.modal}>
+    <div 
+    className={`${css.modal} ${className}`}
+    onMouseDown={onMouseDown}
+    onMouseUp ={onMouseUp}
+    onClick={(event) => event.stopPropagation()}  // предотвращаем всплытие
+    
+   
+   
+    
+    >
       <div className={css.titleContainer}>
         <h2 className={css.titletext}>Edit the entered amount of water</h2>
 

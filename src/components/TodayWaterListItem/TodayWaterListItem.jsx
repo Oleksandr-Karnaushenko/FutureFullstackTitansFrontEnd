@@ -37,6 +37,8 @@ const currentDate = () => {
 export const TodayWaterListItem = ({ waterItem }) => {
   const { waterVolume, time, _id } = waterItem;
 
+
+
   const dispatch = useDispatch();
   useSelector(selector.selectDayInfo);
 
@@ -132,8 +134,9 @@ export const TodayWaterListItem = ({ waterItem }) => {
         />
       </TodayWaterModal>
 
-      <TodayWaterBackdrop isOpen={isModalOpenEdit} onClose={toggleModalEdit}>
-        <TodayListModal waterObj={waterObj} onClose={toggleModalEdit} />
+      {/* <TodayWaterBackdrop isOpen={isModalOpenEdit} onClose={toggleModalEdit}> */}
+      <TodayWaterBackdrop isOpen={isModalOpenEdit} onClose={ toggleModalEdit}>
+        <TodayListModal waterObj={waterObj} onClose={toggleModalEdit} className={"modalContent"}/>
       </TodayWaterBackdrop>
 
       <Toaster />
