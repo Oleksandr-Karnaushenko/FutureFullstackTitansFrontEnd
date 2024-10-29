@@ -27,15 +27,15 @@ body {
     background-image: var(--bg-image-tablet-home);
     background-position: top 88px center;
   }
-}
 
-@media (min-resolution: 2dppx) {
-  body {
-    background-image: var(--bg-image-tablet-2x-home);
-  }
+  @media (min-resolution: 2dppx) {
+    body {
+      background-image: var(--bg-image-tablet-2x-home);
+    }
 
-  .background {
-    padding-bottom: 44px;
+    .background {
+      padding-bottom: 44px;
+    }
   }
 }
 
