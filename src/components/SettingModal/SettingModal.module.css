@@ -7,16 +7,19 @@
   background-color: rgba(0, 0, 0, 0.8);
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   z-index: 1000;
-  overflow-y: scroll;
+  overflow: auto;
+}
+
+@media screen and (min-width: 1440px) {
+  .modalOverlay {
+    align-items: center;
+  }
 }
 
 .modal {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
   display: flex;
   padding: 32px 12px;
   flex-direction: column;
@@ -27,6 +30,7 @@
   background: var(--background);
   min-width: 280px;
   z-index: 1001;
+  margin-top: 40px;
 }
 
 @media screen and (min-width: 768px) {
@@ -41,6 +45,7 @@
     width: 1008px;
     min-height: 592px;
     max-height: 90vh;
+    margin: 0;
   }
 }
 
