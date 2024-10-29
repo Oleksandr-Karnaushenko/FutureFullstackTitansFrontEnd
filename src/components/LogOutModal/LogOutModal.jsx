@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { FaTimes } from 'react-icons/fa';
 import css from './LogOutModal.module.css';
@@ -7,6 +8,7 @@ import { useEffect } from 'react';
 
 const LogOutModal = ({ isOpen, onClose }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleKeyDown = event => {
@@ -25,8 +27,10 @@ const LogOutModal = ({ isOpen, onClose }) => {
   }, [isOpen, onClose]);
 
   const handleLogOut = async () => {
+    
     try {
       await dispatch(logOutAPI()).unwrap();
+      navigate('/welcome');
       onClose();
     } catch (error) {
       console.error('Something went wrong, please try again:', error);
