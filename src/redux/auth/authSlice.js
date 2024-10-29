@@ -8,6 +8,7 @@ import {
   changeUserDataAPI,
   editDailyNormAPI,
   fetchUserDataAPI,
+  refreshUserAPI,
 } from './authOperation';
 
 const initialState = {
@@ -22,6 +23,7 @@ const initialState = {
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
+  isRefreshUser: false,
   error: null,
 };
 
@@ -77,23 +79,37 @@ const authSlice = createSlice({
         state.error = payload;
       })
       //fetchCurrentUserAPI
-      .addCase(fetchCurrentUserAPI.pending, state => {
-        state.error = null;
-        state.isRefreshing = true;
-      })
-      .addCase(fetchCurrentUserAPI.fulfilled, (state, { payload }) => {
-        state.token = payload.accessToken;
-        state.user._id = payload.userId;
-        state.isLoggedIn = true;
-        state.isRefreshing = false;
-      })
-      .addCase(fetchCurrentUserAPI.rejected, (state, { payload }) => {
-        state.error = payload;
-        state.isRefreshing = false;
-      })
+      // .addCase(fetchCurrentUserAPI.pending, state => {
+      //   state.error = null;
+      //   state.isRefreshing = true;
+      // })
+      // .addCase(fetchCurrentUserAPI.fulfilled, (state, { payload }) => {
+      //   state.token = payload.accessToken;
+      //   state.user._id = payload.userId;
+      //   state.isLoggedIn = true;
+      //   state.isRefreshing = false;
+      // })
+      // .addCase(fetchCurrentUserAPI.rejected, (state, { payload }) => {
+      //   state.error = payload;
+      //   state.isRefreshing = false;
+      // })
 
       //user
 
+      //refreshUser
+      .addCase(refreshUserAPI.pending, state => {
+        state.isRefreshUser = true;
+        state.error = null;
+      })
+      .addCase(refreshUserAPI.fulfilled, (state, { payload }) => {
+        state.user._id = payload;
+        state.isLoggedIn = true;
+        state.isRefreshUser = false;
+      })
+      .addCase(refreshUserAPI.rejected, (state, { payload }) => {
+        state.isRefreshUser = false;
+        state.error = payload;
+      })
       //fetchUserData
       .addCase(fetchUserDataAPI.pending, state => {
         state.isRefreshing = true;

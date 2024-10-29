@@ -40,7 +40,7 @@
 .btn {
   background: transparent;
   padding: 3px 0;
-  cursor: pointer;
+  cursor: var(--cursor-h);
 }
 
 .svg {

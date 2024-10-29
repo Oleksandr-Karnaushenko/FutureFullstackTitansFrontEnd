@@ -90,6 +90,7 @@
 
 .buttonClose {
   background: var(--background);
+  cursor: var(--cursor-h);
 }
 
 .form {
@@ -175,7 +176,7 @@
     border-radius: 100%;
     border: 1px solid var(--primary-blue);
     background-color: var(--background);
-    cursor: url('../../assets/img/cursors/mdi_cursor-pointer.svg'), auto;
+    cursor: var(--cursor-h), auto;
 
     transition: background-color 0.3s cubic-bezier(0.7, 0.98, 0.86, 0.98),
       border 0.3s cubic-bezier(0.7, 0.98, 0.86, 0.98);
@@ -187,7 +188,7 @@
   }
 
   span {
-    cursor: url('../../assets/img/cursors/mdi_cursor-pointer.svg'), auto;
+    cursor: var(--cursor-h), auto;
   }
 }
 
@@ -262,6 +263,7 @@
   line-height: 20px;
   width: 100%;
   padding: 8px 30px;
+  cursor: var(--cursor-h);
 }
 
 .button:hover {
@@ -288,7 +290,7 @@
 
 .iconEye {
   stroke: var(--primary-blue);
-  cursor: pointer;
+  cursor: var(--cursor-h);
   width: 16px;
   height: 16px;
   position: absolute;

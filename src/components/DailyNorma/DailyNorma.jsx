@@ -14,7 +14,7 @@ export default function DailyNorma() {
   const handleCloseModal = () => setModalOpen(false);
 
   return (
-    <>
+    <div className={css.dailyNorma}>
       <div className={css.dailyWrapper}>
         <h2 className={css.title}>My daily norma</h2>
         <div className={css.normaWrap}>
@@ -28,6 +28,6 @@ export default function DailyNorma() {
       <TodayWaterBackdrop isOpen={isModalOpen} onClose={handleCloseModal}>
         <DailyNormaModal onClose={handleCloseModal} />
       </TodayWaterBackdrop>
-    </>
+    </div>
   );
 }

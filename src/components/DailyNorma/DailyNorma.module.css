@@ -1,31 +1,9 @@
 .dailyWrapper {
-  margin-top: 48px;
   border: 1px solid var(--secondary-2);
   border-radius: 10px;
   padding: 8px 20px;
-  position: relative;
-  top: -28px;
   max-width: fit-content;
   box-shadow: var(--box-shadow-2);
-}
-
-.wrapper {
-  position: relative;
-  top: -28px;
-  background-position: center;
-  background-repeat: no-repeat;
-  width: 100%;
-  /* height: 280px; */
-  height: 206px;
-  background-size: contain;
-  background-image: var(--bg-bottle-mobile-home);
-  z-index: 1;
-}
-
-@media (min-resolution: 2dppx) {
-  .wrapper {
-    background-image: var(--bg-bottle-mobile-2x-home);
-  }
 }
 
 .title {
@@ -50,19 +28,38 @@
 .editBtn {
   background-color: transparent;
   color: var(--secondary-4);
-  z-index: 2;
+  cursor: var(--cursor-h);
+}
+
+.wrapper {
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 208px;
+  background-size: contain;
+  background-image: var(--bg-bottle-mobile-home);
+}
+
+@media (min-resolution: 2dppx) {
+  .wrapper {
+    background-image: var(--bg-bottle-mobile-2x-home);
+  }
 }
 
 @media screen and (min-width: 768px) {
+  .dailyNorma {
+    min-height: 402px;
+  }
   .dailyWrapper {
-    position: static;
-    margin-top: 40px;
+    margin-top: 16px;
   }
   .wrapper {
-    height: 388px;
-    top: -78px;
-
-    height: 386px;
+    min-width: 518px;
+    min-height: 386px;
+    top: 104px;
+    left: 50%;
+    transform: translate(-50%);
+    z-index: -1;
+    position: absolute;
     background-image: var(--bg-bottle-tablet-home);
   }
 }
@@ -74,20 +71,23 @@
 }
 
 @media screen and (min-width: 1440px) {
+  .dailyNorma {
+    min-height: 550px;
+  }
   .dailyWrapper {
-    margin-top: 52px;
+    margin-top: 30px;
   }
   .wrapper {
     background-image: var(--bg-bottle-desktop-home);
-    top: -108px;
-    right: 50px;
-    width: 748px;
-    height: 548px;
+    min-width: 738px;
+    min-height: 548px;
+    top: 82px;
+    left: -73px;
+    transform: translate(0);
   }
-}
-
-@media (min-resolution: 2dppx) {
-  .wrapper {
-    background-image: var(--bg-bottle-desktop-2x-home);
+  @media (min-resolution: 2dppx) {
+    .wrapper {
+      background-image: var(--bg-bottle-desktop-2x-home);
+    }
   }
 }
