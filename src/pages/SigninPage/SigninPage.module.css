@@ -102,6 +102,8 @@
     background-repeat: no-repeat;
     background-position: left -350px top -10px;
     background-size: 100% auto;
+    background-position: left -100px top;
+    background-size: contain;
     width: 100%;
     padding-left: 822px;
     padding-top: 162px;
