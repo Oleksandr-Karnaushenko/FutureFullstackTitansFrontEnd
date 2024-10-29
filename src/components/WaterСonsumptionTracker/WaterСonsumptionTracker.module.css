@@ -1,5 +1,5 @@
 .container {
-    min-height: 384px;
+    max-height: 384px;
     min-width: 280px;
     display: flex;
     flex-direction: column;
@@ -84,7 +84,7 @@
 
 @media screen and (min-width: 768px) {
     .container {
-        min-height: 254px;
+        max-height: 254px;
         min-width: 704px;
     }
 
@@ -129,7 +129,7 @@
 
 @media screen and (min-width: 1440px) {
     .container {
-        min-height: 366px;
+        max-height: 366px;
         min-width: 439px;
     }
 
