@@ -26,6 +26,7 @@
   padding-right: 40px;
   color: var(--secondary-4);
   margin-bottom: 8px;
+  background-color: var(--background);
 }
 
 .input::placeholder {
