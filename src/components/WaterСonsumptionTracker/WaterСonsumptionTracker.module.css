@@ -7,13 +7,15 @@
 
 .title {
     font-weight: 700;
+    letter-spacing: normal;
     font-size: 28px;
     line-height: 1.14;
     color: var(--text);
+    min-width: 246px;
 }
 
 .subTitle {
-    max-width: 246px;
+    
     font-weight: 400;
     font-size: 24px;
     line-height: 1.25;
@@ -88,11 +90,14 @@
 
     .title {
         font-size: 36px;
+        line-height: 1.17;
+        min-width: 439px;
+        white-space: nowrap
     }
 
     .subTitle {
         font-size: 26px;
-        max-width: 439px;
+        
     }
 
     .listWraper {
