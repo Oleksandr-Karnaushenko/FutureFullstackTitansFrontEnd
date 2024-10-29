@@ -1,12 +1,70 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toastError, toastSuccess } from '../../services/toastNotification.js';
+import { store } from '../store';
+import { setToken } from './authSlice.js';
 
 axios.defaults.baseURL = 'https://watertrackerbackend-1b9z.onrender.com';
 // axios.defaults.baseURL = 'http://localhost:3000';
-axios.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem(
-  'accessToken'
-)}`;
+
+export const axiosInstance = axios.create({
+  baseURL: 'https://watertrackerbackend-1b9z.onrender.com',
+});
+
+axiosInstance.interceptors.request.use(
+  request => {
+    const state = store.getState();
+    const accessToken = state.auth.token;
+    if (accessToken) {
+      request.headers['Authorization'] = `Bearer ${accessToken}`;
+    }
+    return request;
+  },
+  error => {
+    return Promise.reject(error);
+  }
+);
+
+axiosInstance.interceptors.response.use(
+  response => response, // Directly return successful responses.
+  async error => {
+    const originalRequest = error.config;
+
+    if (
+      error.response.status === 401 &&
+      !originalRequest._retry &&
+      error.response.data.data.message === 'Access token expired'
+    ) {
+      originalRequest._retry = true; // Mark the request as retried to avoid infinite loops.
+      try {
+        // Make a request to your auth server to refresh the token.
+        const { data } = await axios.post(
+          '/auth/refresh',
+          {},
+          {
+            withCredentials: true,
+          }
+        );
+        const { accessToken } = data.data;
+        console.log('ac');
+        console.log(accessToken);
+        if (accessToken) {
+          store.dispatch(setToken(accessToken));
+          setAuthHeader(accessToken);
+        }
+        setAuthHeader(accessToken);
+
+        return axiosInstance(originalRequest); // Retry the original request with the new access token.
+      } catch (refreshError) {
+        // Handle refresh token errors by clearing stored tokens and redirecting to the login page.
+        console.error('Token refresh failed:', refreshError);
+        // window.location.href = '/login';
+        return Promise.reject(refreshError);
+      }
+    }
+    return Promise.reject(error); // For all other errors, return the error as is.
+  }
+);
 
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -75,38 +133,6 @@ export const logOutAPI = createAsyncThunk(
   }
 );
 
-export const fetchCurrentUserAPI = createAsyncThunk(
-  'auth/refreshSesion',
-
-  async (_, { rejectWithValue, getState }) => {
-    const state = getState();
-    const persistedToken = state.auth.token;
-
-    if (persistedToken === null) {
-      toastError('Session not found. Please Log In!');
-      return rejectWithValue('Session not found. Please Log In!');
-    }
-
-    try {
-      const { data } = await axios.post('/auth/refresh', _, {
-        withCredentials: true,
-      });
-      const backEndData = data.data;
-
-      setAuthHeader(backEndData.accessToken);
-      backEndData.userId = localStorage.getItem('userId');
-
-      return backEndData;
-    } catch (error) {
-      toastError(
-        'Auth state is old. Please enter to your personal cabinet again'
-      );
-
-      return rejectWithValue(error.response.data.data.message);
-    }
-  }
-);
-
 //user
 
 export const refreshUserAPI = createAsyncThunk(
@@ -117,7 +143,6 @@ export const refreshUserAPI = createAsyncThunk(
     const persistedToken = state.auth.token;
 
     if (persistedToken === null) {
-      toastError('Unable to fetch user');
       return rejectWithValue('Unable to fetch user');
     }
 
@@ -141,7 +166,7 @@ export const fetchUserDataAPI = createAsyncThunk(
   'auth/userData',
   async (userId, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get(`/users/${userId}`);
+      const { data } = await axiosInstance.get(`/users/${userId}`);
 
       const backEndData = data.data;
 
@@ -159,11 +184,15 @@ export const changeUserAvatarAPI = createAsyncThunk(
   'auth/changeUserAvatarAPI',
   async ({ formData, userId }, { rejectWithValue }) => {
     try {
-      const { data } = await axios.patch(`/users/avatar/${userId}`, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+      const { data } = await axiosInstance.patch(
+        `/users/avatar/${userId}`,
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
 
       const backEndData = data.data;
 
@@ -180,7 +209,7 @@ export const editDailyNormAPI = createAsyncThunk(
   'auth/editDailyNorm',
   async ({ waterNorma, userId }, { rejectWithValue }) => {
     try {
-      const { data } = await axios.patch(
+      const { data } = await axiosInstance.patch(
         `/users/waterRate/${userId}`,
         waterNorma
       );
@@ -201,7 +230,7 @@ export const changeUserDataAPI = createAsyncThunk(
   'auth/changeUserData',
   async ({ userNewData, userId }, { rejectWithValue }) => {
     try {
-      await axios.patch(`/users/${userId}`, userNewData);
+      await axiosInstance.patch(`/users/${userId}`, userNewData);
 
       toastSuccess('User info changed successful ');
 

@@ -1,16 +1,11 @@
-import { useEffect,useState } from 'react';
+import { useEffect, useState } from 'react';
 import css from './TodayWaterBackdrop.module.css';
 
 export const TodayWaterBackdrop = ({ isOpen, onClose, children }) => {
-
   const [isDragging, setIsDragging] = useState(false);
 
-  const handleBackdropClick = (event) => {
+  const handleBackdropClick = event => {
     if (!isDragging && event.target === event.currentTarget) {
-      console.log(event.target);
-      console.log(isDragging);
-      
-      
       onClose();
     }
   };
@@ -21,19 +16,7 @@ export const TodayWaterBackdrop = ({ isOpen, onClose, children }) => {
 
   const handleMouseUp = () => {
     setIsDragging(false);
-
-  }
-
-
-  console.log(isDragging);
-  
-
-
-
-
-
-
-
+  };
 
   useEffect(() => {
     const handleKeyDown = event => {
@@ -61,13 +44,14 @@ export const TodayWaterBackdrop = ({ isOpen, onClose, children }) => {
     return null;
   }
   return (
-    <div className={css.modalBackdrop} onClick={handleBackdropClick} >
-        <div 
-         onMouseDown={handleMouseDown}
-         onMouseUp={handleMouseUp}
-         onClick={(event) => event.stopPropagation()}
-        >{children}</div>
-      
+    <div className={css.modalBackdrop} onClick={handleBackdropClick}>
+      <div
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+        onClick={event => event.stopPropagation()}
+      >
+        {children}
+      </div>
     </div>
   );
 };

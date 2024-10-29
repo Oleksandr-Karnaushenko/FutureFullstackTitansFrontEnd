@@ -127,7 +127,6 @@ const waterSlice = createSlice({
             ),
           });
         } else {
-          console.log('false');
           console.log(
             state.monthInfo.find(item => item.date === formattedDate)
           );

@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 import { selectDailyNorm } from '../auth/authSlice.js';
 
 import { toastError, toastSuccess } from '../../services/toastNotification';
+import { axiosInstance } from '../auth/authOperation.js';
 
 export const getCurrentMonthInfoAPI = createAsyncThunk(
   'water/getMonth',
@@ -10,7 +10,7 @@ export const getCurrentMonthInfoAPI = createAsyncThunk(
     const { month, year } = data;
 
     try {
-      const { data } = await axios.get(
+      const { data } = await axiosInstance.get(
         `water/monthInfo?month=${month}&year=${year}`
       );
 
@@ -28,7 +28,7 @@ export const getCurrentDayInfoAPI = createAsyncThunk(
   async (_, thunkAPI) => {
     const todayStr = new Date().toISOString();
     try {
-      const { data } = await axios.get(`water/dayInfo/${todayStr}`);
+      const { data } = await axiosInstance.get(`water/dayInfo/${todayStr}`);
 
       if (!data) return;
 
@@ -45,7 +45,7 @@ export const addWaterAPI = createAsyncThunk(
   'water/add',
   async (newWater, { thunkAPI, getState }) => {
     try {
-      const { data } = await axios.post(`water`, newWater);
+      const { data } = await axiosInstance.post(`water`, newWater);
 
       const backEndData = data.data;
 
@@ -66,7 +66,7 @@ export const editWaterAPI = createAsyncThunk(
   async (drink, { thunkAPI, getState }) => {
     const { id, editWater } = drink;
     try {
-      const { data } = await axios.patch(`water/${id}`, editWater);
+      const { data } = await axiosInstance.patch(`water/${id}`, editWater);
 
       const backEndData = data.data;
 
@@ -85,7 +85,7 @@ export const deleteWaterAPI = createAsyncThunk(
   'water/delete',
   async (drinkId, { thunkAPI, getState }) => {
     try {
-      await axios.delete(`water/${drinkId}`);
+      await axiosInstance.delete(`water/${drinkId}`);
 
       toastSuccess('Drink has been deleted successful');
       const dailyNorna = selectDailyNorm(getState());

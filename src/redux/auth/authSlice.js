@@ -3,7 +3,6 @@ import {
   logOutAPI,
   signInAPI,
   signUpAPI,
-  fetchCurrentUserAPI,
   changeUserAvatarAPI,
   changeUserDataAPI,
   editDailyNormAPI,
@@ -30,7 +29,11 @@ const initialState = {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-
+  reducers: {
+    setToken(state, action) {
+      state.token = action.payload;
+    },
+  },
   extraReducers: builder => {
     builder
 
@@ -78,21 +81,6 @@ const authSlice = createSlice({
         state.isRefreshing = false;
         state.error = payload;
       })
-      //fetchCurrentUserAPI
-      // .addCase(fetchCurrentUserAPI.pending, state => {
-      //   state.error = null;
-      //   state.isRefreshing = true;
-      // })
-      // .addCase(fetchCurrentUserAPI.fulfilled, (state, { payload }) => {
-      //   state.token = payload.accessToken;
-      //   state.user._id = payload.userId;
-      //   state.isLoggedIn = true;
-      //   state.isRefreshing = false;
-      // })
-      // .addCase(fetchCurrentUserAPI.rejected, (state, { payload }) => {
-      //   state.error = payload;
-      //   state.isRefreshing = false;
-      // })
 
       //user
 
@@ -164,6 +152,8 @@ const authSlice = createSlice({
       });
   },
 });
+
+export const { setToken } = authSlice.actions;
 
 export default authSlice.reducer;
 
