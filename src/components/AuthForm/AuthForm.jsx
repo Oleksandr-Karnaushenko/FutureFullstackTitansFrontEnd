@@ -92,7 +92,7 @@ export default function AuthForm({ isSignup }) {
                 className={styles.eyeIcon}
                 onClick={() => setShowPassword(!showPassword)}
               >
-                <svg width="16" height="16" stroke="#407BFF" fill="none">
+                <svg width="16" height="16" fill="none">
                   <use
                     href={`assets/images/icons.svg#${
                       showPassword ? 'icon-open-eye' : 'icon-close-eye'
@@ -128,7 +128,7 @@ export default function AuthForm({ isSignup }) {
                   className={styles.eyeIcon}
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                 >
-                  <svg width="16" height="16" stroke="#407BFF" fill="none">
+                  <svg width="16" height="16" fill="none">
                     <use
                       href={`assets/images/icons.svg#${
                         showConfirmPassword ? 'icon-open-eye' : 'icon-close-eye'

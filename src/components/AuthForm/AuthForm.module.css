@@ -59,7 +59,7 @@
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
-  cursor: var(--cursor-h);
+  stroke: var(--primary-blue);
   padding-top: 12px;
 }
 
