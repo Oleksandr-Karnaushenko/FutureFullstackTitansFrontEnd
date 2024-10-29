@@ -160,6 +160,7 @@ function SettingModal({ isOpen, onClose }) {
                         E-mail
                       </label>
                       <Field
+                        disabled
                         name="email"
                         type="text"
                         placeholder="Email"

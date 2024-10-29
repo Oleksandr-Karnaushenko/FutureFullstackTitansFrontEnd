@@ -52,7 +52,7 @@
 }
 
 .iconLabel {
-  cursor: url('../../assets/img/cursors/mdi_cursor-pointer.svg'), auto;
+  cursor: var(--cursor-h);
 }
 
 .upload {
