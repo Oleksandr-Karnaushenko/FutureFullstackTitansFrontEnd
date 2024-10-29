@@ -1,5 +1,5 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import styles from './SettingModal.module.css';
 
@@ -24,6 +24,26 @@ function SettingModal({ isOpen, onClose }) {
   const user = useSelector(selectCurrentUser);
   const { name, gender, email } = user;
 
+
+  const [isDragging, setIsDragging] = useState(false);
+
+  const handleBackdropClick = (event) => {
+    if (!isDragging && event.target === event.currentTarget) {
+      onClose();
+    }
+  };
+
+  const handleMouseDown = () => {
+    setIsDragging(true);
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+  
+
+
+  
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -84,11 +104,19 @@ function SettingModal({ isOpen, onClose }) {
   if (!isOpen) return null;
 
   return (
-    <div className={styles.modalOverlay} onClick={onClose}>
+    <div
+     className={styles.modalOverlay}
+     onClick={handleBackdropClick}
+  
+    >
       {isRefreshing ? (
         <Loader className={styles.loader} />
       ) : (
-        <div className={styles.modal} onClick={e => e.stopPropagation()}>
+        <div
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+        className={styles.modal} 
+        onClick={e => e.stopPropagation()}>
           <div className={styles.titleWrapper}>
             <h2 className={styles.title}>Setting</h2>
             <button className={styles.buttonClose} onClick={onClose}>
