@@ -24,6 +24,14 @@
   --bg-image-light-desktop-home: url(/assets/images/home/bg-dots-desk-1x-min.png);
   --bg-image-light-desktop-2x-home: url(/assets/images/home/bg-dots-desk-2x-min.png);
 
+  /* Background-images for SigninPage+SignupPage light */
+  --bg-image-light-mobile: url(../assets/images/welcome/elL-mob-1x.png);
+  --bg-image-light-mobile-2x: url(../assets/images/welcome/elL-mob-2x.png);
+  --bg-image-light-tablet: url(../assets/images/welcome/elL-tab-1x.png);
+  --bg-image-light-tablet-2x: url(../assets/images/welcome/elL-tab-2x.png);
+  --bg-image-light-desktop: url(../assets/images/welcome/elL-pc-1x.png);
+  --bg-image-light-desktop-2x: url(../assets/images/welcome/elL-pc-2x.png);
+
   /* Background-bottle for HomePage light */
   --bg-bottle-light-mobile-home: url(/assets/images/home/bottle-mob-1x.png);
   --bg-bottle-light-mobile-2x-home: url(/assets/images/home/bottle-mob-2x.png);
@@ -56,6 +64,14 @@
   --bg-image-dark-desktop-home: url(/assets/images/home/bg-dots-desk-dark-1x-min.png);
   --bg-image-dark-desktop-2x-home: url(/assets/images/home/bg-dots-desk-dark-2x-min.png);
 
+  /* Background-images for Signin+Signup dark */
+  --bg-image-dark-mobile: url(../assets/images/welcome/elD-mob-1x.png);
+  --bg-image-dark-mobile-2x: url(../assets/images/welcome/elD-mob-2x.png);
+  --bg-image-dark-tablet: url(../assets/images/welcome/elD-tab-1x.png);
+  --bg-image-dark-tablet-2x: url(../assets/images/welcome/elD-tab-2x.png);
+  --bg-image-dark-desktop: url(../assets/images/welcome/elD-pc-1x.png);
+  --bg-image-dark-desktop-2x: url(../assets/images/welcome/elD-pc-2x.png);
+
   /* Background-bottle for HomePage dark */
   --bg-bottle-dark-mobile-home: url(/assets/images/home/bottle-mob-dark-1x.png);
   --bg-bottle-dark-mobile-2x-home: url(/assets/images/home/bottle-mob-dark-2x.png);
@@ -81,6 +97,14 @@
   --bg-image-tablet-2x-home: var(--bg-image-light-tablet-2x-home);
   --bg-image-desktop-home: var(--bg-image-light-desktop-home);
   --bg-image-desktop-2x-home: var(--bg-image-light-desktop-2x-home);
+
+  /* Background images Signin+Signup light theme*/
+  --bg-image-mobile-sign: var(--bg-image-light-mobile);
+  --bg-image-mobile-2x-sign: var(--bg-image-light-mobile-2x);
+  --bg-image-tablet-sign: var(--bg-image-light-tablet);
+  --bg-image-tablet-2x-sign: var(--bg-image-light-tablet-2x);
+  --bg-image-desktop-sign: var(--bg-image-light-desktop);
+  --bg-image-desktop-2x-sign: var(--bg-image-light-desktop-2x);
 
   /* Background bottle homepage*/
   --bg-bottle-mobile-home: var(--bg-bottle-light-mobile-home);
@@ -109,6 +133,14 @@
     --bg-image-desktop-home: var(--bg-image-dark-desktop-home);
     --bg-image-desktop-2x-home: var(--bg-image-dark-desktop-2x-home);
 
+    /* Background images Signin+Signup dark theme*/
+    --bg-image-mobile-sign: var(--bg-image-dark-mobile);
+    --bg-image-mobile-2x-sign: var(--bg-image-dark-mobile-2x);
+    --bg-image-tablet-sign: var(--bg-image-dark-tablet);
+    --bg-image-tablet-2x-sign: var(--bg-image-dark-tablet-2x);
+    --bg-image-desktop-sign: var(--bg-image-dark-desktop);
+    --bg-image-desktop-2x-sign: var(--bg-image-dark-desktop-2x);
+
     /* Background bottle homepage*/
     --bg-bottle-mobile-home: var(--bg-bottle-dark-mobile-home);
     --bg-bottle-mobile-2x-home: var(--bg-bottle-dark-mobile-2x-home);
@@ -136,6 +168,14 @@ body.light {
   --bg-image-desktop-home: var(--bg-image-light-desktop-home);
   --bg-image-desktop-2x-home: var(--bg-image-light-desktop-2x-home);
 
+  /* Background images Signin+Signup light theme*/
+  --bg-image-mobile-sign: var(--bg-image-light-mobile);
+  --bg-image-mobile-2x-sign: var(--bg-image-light-mobile-2x);
+  --bg-image-tablet-sign: var(--bg-image-light-tablet);
+  --bg-image-tablet-2x-sign: var(--bg-image-light-tablet-2x);
+  --bg-image-desktop-sign: var(--bg-image-light-desktop);
+  --bg-image-desktop-2x-sign: var(--bg-image-light-desktop-2x);
+
   /* Background bottle homepage*/
   --bg-bottle-mobile-home: var(--bg-bottle-light-mobile-home);
   --bg-bottle-mobile-2x-home: var(--bg-bottle-light-mobile-2x-home);
@@ -161,6 +201,14 @@ body.dark {
   --bg-image-tablet-2x-home: var(--bg-image-dark-tablet-2x-home);
   --bg-image-desktop-home: var(--bg-image-dark-desktop-home);
   --bg-image-desktop-2x-home: var(--bg-image-dark-desktop-2x-home);
+
+  /* Background images Signin+Signup dark theme*/
+  --bg-image-mobile-sign: var(--bg-image-dark-mobile);
+  --bg-image-mobile-2x-sign: var(--bg-image-dark-mobile-2x);
+  --bg-image-tablet-sign: var(--bg-image-dark-tablet);
+  --bg-image-tablet-2x-sign: var(--bg-image-dark-tablet-2x);
+  --bg-image-desktop-sign: var(--bg-image-dark-desktop);
+  --bg-image-desktop-2x-sign: var(--bg-image-dark-desktop-2x);
 
   /* Background bottle homepage*/
   --bg-bottle-mobile-home: var(--bg-bottle-dark-mobile-home);
