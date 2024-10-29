@@ -60,7 +60,7 @@ export default function App() {
             <Route
               path="home"
               element={
-                <PrivateRoute component={<HomePage />} redirectTo="/signin" />
+                <PrivateRoute component={<HomePage />} redirectTo="/welcome" />
               }
             />
           </Route>
