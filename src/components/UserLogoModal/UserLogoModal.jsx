@@ -61,7 +61,7 @@ const UserLogoModal = ({
               onOpenLogout();
             }}
           >
-            Logout
+            Log out
           </button>
         </div>
         <ThemeBtn />
