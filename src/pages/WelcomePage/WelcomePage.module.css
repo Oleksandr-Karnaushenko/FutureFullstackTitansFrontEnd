@@ -17,7 +17,7 @@ body{
   left: -20px;
   right: -20px;
   bottom: -40px;
-  background-image: var(--bg-image-mobile);
+  background-image: var(--bg-image-mobile-welcome);
   background-size: 320px 844px, 320px 952px;
   background-position: top center, bottom center;
   background-repeat: no-repeat, no-repeat;
@@ -27,7 +27,7 @@ body{
 
 @media screen and (min-resolution: 2dppx) {
   .container::before {
-    background-image: var(--bg-image-mobile-2x);
+    background-image: var(--bg-image-mobile-2x-welcome);
   }
 }
 
@@ -39,7 +39,7 @@ body{
   }
 
   .container::before {
-    background-image: var(--bg-image-tablet);
+    background-image: var(--bg-image-tablet-welcome);
     background-size: 768px 680px, 768px 800px;
     background-position: top center, bottom center;
     top: -64px;
@@ -50,7 +50,7 @@ body{
 
   @media screen and (min-width: 768px) and (min-resolution: 2dppx) {
     .container::before {
-      background-image: var(--bg-image-tablet-2x);
+      background-image: var(--bg-image-tablet-2x-welcome);
     }
   }
 }
@@ -64,7 +64,7 @@ body{
   }
 
   .container::before {
-    background-image: var(--bg-image-desktop);
+    background-image: var(--bg-image-desktop-welcome);
     background-size: 1404px 582px, 1440px 432px;
     background-position: top center, bottom center;
     top: 49px;
@@ -75,7 +75,7 @@ body{
 
   @media screen and (min-width: 1440px) and (min-resolution: 2dppx) {
     .container::before {
-      background-image: var(--bg-image-desktop-2x);
+      background-image: var(--bg-image-desktop-2x-welcome);
     }
   }
 }

@@ -3,17 +3,17 @@
 
   /* Background-images for WelcomePage light */
 
-  --bg-image-light-mobile: url(/assets/images/welcome/elL-mob-1x.png),
+  --bg-image-light-mobile-welcome: url(/assets/images/welcome/elL-mob-1x.png),
     url(/assets/images/welcome/bgL-mob-1x.png);
-  --bg-image-light-mobile-2x: url(/assets/images/welcome/elL-mob-2x.png),
+  --bg-image-light-mobile-2x-welcome: url(/assets/images/welcome/elL-mob-2x.png),
     url(/assets/images/welcome/bgL-mob-2x.png);
-  --bg-image-light-tablet: url(/assets/images/welcome/elL-tab-1x.png),
+  --bg-image-light-tablet-welcome: url(/assets/images/welcome/elL-tab-1x.png),
     url(/assets/images/welcome/bgL-tab-1x.png);
-  --bg-image-light-tablet-2x: url(/assets/images/welcome/elL-tab-2x.png),
+  --bg-image-light-tablet-2x-welcome: url(/assets/images/welcome/elL-tab-2x.png),
     url(/assets/images/welcome/bgL-tab-2x.png);
-  --bg-image-light-desktop: url(/assets/images/welcome/elL-pc-1x.png),
+  --bg-image-light-desktop-welcome: url(/assets/images/welcome/elL-pc-1x.png),
     url(/assets/images/welcome/bgL-pc-1x.png);
-  --bg-image-light-desktop-2x: url(/assets/images/welcome/elL-pc-2x.png),
+  --bg-image-light-desktop-2x-welcome: url(/assets/images/welcome/elL-pc-2x.png),
     url(/assets/images/welcome/bgL-pc-2x.png);
 
   /* Background-images for HomePage light */
@@ -43,17 +43,17 @@
   /* DARK */
 
   /* Background-images for WelcomePage dark */
-  --bg-image-dark-mobile: url(/assets/images/welcome/elD-mob-1x.png),
+  --bg-image-dark-mobile-welcome: url(/assets/images/welcome/elD-mob-1x.png),
     url(/assets/images/welcome/bgD-mob-1x.png);
-  --bg-image-dark-mobile-2x: url(/assets/images/welcome/elD-mob-2x.png),
+  --bg-image-dark-mobile-2x-welcome: url(/assets/images/welcome/elD-mob-2x.png),
     url(/assets/images/welcome/bgD-mob-2x.png);
-  --bg-image-dark-tablet: url(/assets/images/welcome/elD-tab-1x.png),
+  --bg-image-dark-tablet-welcome: url(/assets/images/welcome/elD-tab-1x.png),
     url(/assets/images/welcome/bgD-tab-1x.png);
-  --bg-image-dark-tablet-2x: url(/assets/images/welcome/elD-tab-2x.png),
+  --bg-image-dark-tablet-2x-welcome: url(/assets/images/welcome/elD-tab-2x.png),
     url(/assets/images/welcome/bgD-tab-2x.png);
-  --bg-image-dark-desktop: url(/assets/images/welcome/elD-pc-1x.png),
+  --bg-image-dark-desktop-welcome: url(/assets/images/welcome/elD-pc-1x.png),
     url(/assets/images/welcome/bgD-pc-1x.png);
-  --bg-image-dark-desktop-2x: url(/assets/images/welcome/elD-pc-2x.png),
+  --bg-image-dark-desktop-2x-welcome: url(/assets/images/welcome/elD-pc-2x.png),
     url(/assets/images/welcome/bgD-pc-2x.png);
 
   /* Background-images for HomePage dark */
@@ -82,13 +82,13 @@
 
   /* VARIABLES */
 
-  /* Background images*/
-  --bg-image-mobile: var(--bg-image-light-mobile);
-  --bg-image-mobile-2x: var(--bg-image-light-mobile-2x);
-  --bg-image-tablet: var(--bg-image-light-tablet);
-  --bg-image-tablet-2x: var(--bg-image-light-tablet-2x);
-  --bg-image-desktop: var(--bg-image-light-desktop);
-  --bg-image-desktop-2x: var(--bg-image-light-desktop-2x);
+  /* Background images WelcomePage*/
+  --bg-image-mobile-welcome: var(--bg-image-light-mobile-welcome);
+  --bg-image-mobile-2x-welcome: var(--bg-image-light-mobile-2x-welcome);
+  --bg-image-tablet-welcome: var(--bg-image-light-tablet-welcome);
+  --bg-image-tablet-2x-welcome: var(--bg-image-light-tablet-2x-welcome);
+  --bg-image-desktop-welcome: var(--bg-image-light-desktop-welcome);
+  --bg-image-desktop-2x-welcome: var(--bg-image-light-desktop-2x-welcome);
 
   /* Background images homepage*/
   --bg-image-mobile-home: var(--bg-image-light-mobile-home);
@@ -117,13 +117,13 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    /* Background images for dark theme */
-    --bg-image-mobile: var(--bg-image-dark-mobile);
-    --bg-image-mobile-2x: var(--bg-image-dark-mobile-2x);
-    --bg-image-tablet: var(--bg-image-dark-tablet);
-    --bg-image-tablet-2x: var(--bg-image-dark-tablet-2x);
-    --bg-image-desktop: var(--bg-image-dark-desktop);
-    --bg-image-desktop-2x: var(--bg-image-dark-desktop-2x);
+    /* Background images for WelcomePage dark theme */
+    --bg-image-mobile-welcome: var(--bg-image-dark-mobile-welcome);
+    --bg-image-mobile-2x-welcome: var(--bg-image-dark-mobile-2x-welcome);
+    --bg-image-tablet-welcome: var(--bg-image-dark-tablet-welcome);
+    --bg-image-tablet-2x-welcome: var(--bg-image-dark-tablet-2x-welcome);
+    --bg-image-desktop-welcome: var(--bg-image-dark-desktop-welcome);
+    --bg-image-desktop-2x-welcome: var(--bg-image-dark-desktop-2x-welcome);
 
     /* Background images for Homepage dark theme */
     --bg-image-mobile-home: var(--bg-image-dark-mobile-home);
@@ -152,13 +152,13 @@
 }
 
 body.light {
-  /* Background images */
-  --bg-image-mobile: var(--bg-image-light-mobile);
-  --bg-image-mobile-2x: var(--bg-image-light-mobile-2x);
-  --bg-image-tablet: var(--bg-image-light-tablet);
-  --bg-image-tablet-2x: var(--bg-image-light-tablet-2x);
-  --bg-image-desktop: var(--bg-image-light-desktop);
-  --bg-image-desktop-2x: var(--bg-image-light-desktop-2x);
+  /* Background images WelcomePage */
+  --bg-image-mobile-welcome: var(--bg-image-light-mobile-welcome);
+  --bg-image-mobile-2x-welcome: var(--bg-image-light-mobile-2x-welcome);
+  --bg-image-tablet-welcome: var(--bg-image-light-tablet-welcome);
+  --bg-image-tablet-2x-welcome: var(--bg-image-light-tablet-2x-welcome);
+  --bg-image-desktop-welcome: var(--bg-image-light-desktop-welcome);
+  --bg-image-desktop-2x-welcome: var(--bg-image-light-desktop-2x-welcome);
 
   /* Background images homepage*/
   --bg-image-mobile-home: var(--bg-image-light-mobile-home);
@@ -186,13 +186,13 @@ body.light {
 }
 
 body.dark {
-  /* Background images for dark theme */
-  --bg-image-mobile: var(--bg-image-dark-mobile);
-  --bg-image-mobile-2x: var(--bg-image-dark-mobile-2x);
-  --bg-image-tablet: var(--bg-image-dark-tablet);
-  --bg-image-tablet-2x: var(--bg-image-dark-tablet-2x);
-  --bg-image-desktop: var(--bg-image-dark-desktop);
-  --bg-image-desktop-2x: var(--bg-image-dark-desktop-2x);
+  /* Background images for WelcomePage dark theme */
+  --bg-image-mobile-welcome: var(--bg-image-dark-mobile-welcome);
+  --bg-image-mobile-2x-welcome: var(--bg-image-dark-mobile-2x-welcome);
+  --bg-image-tablet-welcome: var(--bg-image-dark-tablet-welcome);
+  --bg-image-tablet-2xv: var(--bg-image-dark-tablet-2x-welcome);
+  --bg-image-desktop-welcome: var(--bg-image-dark-desktop-welcome);
+  --bg-image-desktop-2x-welcome: var(--bg-image-dark-desktop-2x-welcome);
 
   /* Background images for Homepage dark theme */
   --bg-image-mobile-home: var(--bg-image-dark-mobile-home);
