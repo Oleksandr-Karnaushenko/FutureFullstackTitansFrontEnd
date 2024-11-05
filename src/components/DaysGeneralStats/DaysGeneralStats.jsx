@@ -1,3 +1,6 @@
+import { useSelector } from 'react-redux';
+import { formattedDate } from '../../redux/water/waterOperation.js';
+import { selectNormWater } from '../../redux/auth/authSelectors.js';
 import css from './DaysGeneralStats.module.css';
 
 export default function DaysGeneralStats({
@@ -5,8 +8,11 @@ export default function DaysGeneralStats({
   selectedMonth,
   monthNames,
 }) {
+  const userDailyNorm = useSelector(selectNormWater);
   const { date, dailyNorm, percent, count } = dayInfo;
-  const dailyNormInLitr = ((dailyNorm || 1500) / 1000).toFixed(1);
+  let dailyNormInLitr = ((dailyNorm || 1500) / 1000).toFixed(1);
+  if (date === formattedDate)
+    dailyNormInLitr = (userDailyNorm / 1000).toFixed(1);
 
   return (
     <div className={css.dayInfo}>

@@ -50,12 +50,11 @@ export const addWaterAPI = createAsyncThunk(
       const backEndData = data.data;
 
       toastSuccess('Drink has been added successful');
-      const dailyNorna = selectDailyNorm(getState());
+      const dailyNorma = selectDailyNorm(getState());
 
-      return { backEndData, dailyNorna };
+      return { backEndData, dailyNorma };
     } catch (error) {
       toastError('Sorry, something went wrong. Please, try again');
-      console.log(error.response.data.data.message);
       return thunkAPI.rejectWithValue(error.response.data.data.message);
     }
   }
@@ -71,9 +70,9 @@ export const editWaterAPI = createAsyncThunk(
       const backEndData = data.data;
 
       toastSuccess('Drink has been edited successful');
-      const dailyNorna = selectDailyNorm(getState());
+      const dailyNorma = selectDailyNorm(getState());
 
-      return { backEndData, dailyNorna, id };
+      return { backEndData, dailyNorma, id };
     } catch (error) {
       toastError('Sorry, something went wrong. Please, try again');
       return thunkAPI.rejectWithValue(error.response.data.data.message);
@@ -88,9 +87,9 @@ export const deleteWaterAPI = createAsyncThunk(
       await axiosInstance.delete(`water/${drinkId}`);
 
       toastSuccess('Drink has been deleted successful');
-      const dailyNorna = selectDailyNorm(getState());
+      const dailyNorma = selectDailyNorm(getState());
 
-      return { drinkId, dailyNorna };
+      return { drinkId, dailyNorma };
     } catch (error) {
       toastError('Sorry, something went wrong. Please, try again');
       return thunkAPI.rejectWithValue(error.response.data.data.message);
@@ -100,8 +99,8 @@ export const deleteWaterAPI = createAsyncThunk(
 
 //
 
-export const countPercent = (totalWaterVolume, dailyNorna) =>
-  Math.min(Math.floor((totalWaterVolume / dailyNorna) * 100), 100);
+export const countPercent = (totalWaterVolume, dailyNorma) =>
+  Math.min(Math.floor((totalWaterVolume / dailyNorma) * 100), 100);
 
 //today
 const today = new Date();

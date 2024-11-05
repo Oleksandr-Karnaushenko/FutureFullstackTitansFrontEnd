@@ -12,25 +12,25 @@ export const differentStyles = {
   control: provided => ({
     ...provided,
     // border: '1px solid #D7E3FF',
-   border: '1px solid var( --secondary-blue)',
+    border: '1px solid var( --secondary-blue)',
     borderRadius: '6px',
     height: '44px',
     marginBottom: '24px',
-    backgroundColor: "var(--background)"
+    backgroundColor: 'var(--background)',
   }),
   menu: provided => ({
     ...provided,
     scrollBehavior: 'smooth',
     // border: '1px solid #D7E3FF',
-    border: "1px solid var( --secondary-blue)",
+    border: '1px solid var( --secondary-blue)',
     borderRadius: '6px',
-    backgroundColor: "var(--background)"
+    backgroundColor: 'var(--background)',
   }),
   option: (provided, { isSelected }) => ({
     ...provided,
     // background: isSelected ? '#D7E3FF' : '#ffffff',
     color: '#407BFF',
-      backgroundColor: "var(--background)"
+    backgroundColor: 'var(--background)',
   }),
   singleValue: provided => ({
     ...provided,
@@ -91,9 +91,12 @@ export default function AmountOfWater({ closeModal }) {
 
     const date = new Date();
 
-    const dateString = `${date.getFullYear()}-${
-      date.getMonth() + 1
-    }-${date.getDate()}T${values.currentTime}:00.000Z`;
+    const dateString = `${date.getFullYear()}-${(date.getMonth() + 1)
+      .toString()
+      .padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}T${
+      values.currentTime
+    }:00.000Z`;
+
     dispatch(
       addWaterAPI({
         waterVolume: values.buttonBlockAmount,

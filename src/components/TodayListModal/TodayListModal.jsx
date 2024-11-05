@@ -16,7 +16,13 @@ import css from './TodayListModal.module.css';
 
 import { selectWaterError } from '../../redux/water/waterSelectors';
 
-export default function TodayListModal({ waterObj, onClose, className, onMouseUp, onMouseDown, }) {
+export default function TodayListModal({
+  waterObj,
+  onClose,
+  className,
+  onMouseUp,
+  onMouseDown,
+}) {
   const dispatch = useDispatch();
   const error = useSelector(selectWaterError);
 
@@ -41,9 +47,11 @@ export default function TodayListModal({ waterObj, onClose, className, onMouseUp
 
       const date = new Date();
 
-      const dateString = `${date.getFullYear()}-${
-        date.getMonth() + 1
-      }-${date.getDate()}T${values.selectedTime}:00.000Z`;
+      const dateString = `${date.getFullYear()}-${(date.getMonth() + 1)
+        .toString()
+        .padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}T${
+        values.selectedTime
+      }:00.000Z`;
 
       dispatch(
         editWaterAPI({
@@ -66,15 +74,11 @@ export default function TodayListModal({ waterObj, onClose, className, onMouseUp
   }, []);
 
   return (
-    <div 
-    className={`${css.modal} ${className}`}
-    onMouseDown={onMouseDown}
-    onMouseUp ={onMouseUp}
-    onClick={(event) => event.stopPropagation()}  // предотвращаем всплытие
-    
-   
-   
-    
+    <div
+      className={`${css.modal} ${className}`}
+      onMouseDown={onMouseDown}
+      onMouseUp={onMouseUp}
+      onClick={event => event.stopPropagation()} // предотвращаем всплытие
     >
       <div className={css.titleContainer}>
         <h2 className={css.titletext}>Edit the entered amount of water</h2>
@@ -91,8 +95,7 @@ export default function TodayListModal({ waterObj, onClose, className, onMouseUp
         <div className={css.amountofwaterContainer}>
           <svg width={23} height={32}>
             {/* <use href="icons.svg#icon-glass"></use> */}
-                <use href="/assets/images/icons.svg#icon-glass"></use>
-          
+            <use href="/assets/images/icons.svg#icon-glass"></use>
           </svg>
           <p className={css.waterAmount}>{formik.values.oldWaterVolume} ml</p>
           <p className={css.time}>{formik.values.oldselectedTime}</p>
@@ -129,7 +132,7 @@ export default function TodayListModal({ waterObj, onClose, className, onMouseUp
       </div>
       <p className={css.text}>Recording time:</p>
       <Select
-      className={css.select}
+        className={css.select}
         styles={differentStyles}
         defaultValue={{
           value: formik.values.oldselectedTime,

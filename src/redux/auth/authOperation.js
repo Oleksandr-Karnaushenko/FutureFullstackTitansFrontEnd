@@ -9,6 +9,7 @@ axios.defaults.baseURL = 'https://watertrackerbackend-1b9z.onrender.com';
 
 export const axiosInstance = axios.create({
   baseURL: 'https://watertrackerbackend-1b9z.onrender.com',
+  // baseURL: 'http://localhost:3000',
 });
 
 axiosInstance.interceptors.request.use(
@@ -57,7 +58,6 @@ axiosInstance.interceptors.response.use(
         return axiosInstance(originalRequest); // Retry the original request with the new access token.
       } catch (refreshError) {
         // Handle refresh token errors by clearing stored tokens and redirecting to the login page.
-        console.error('Token refresh failed:', refreshError);
         // window.location.href = '/login';
         return Promise.reject(refreshError);
       }
@@ -217,7 +217,6 @@ export const editDailyNormAPI = createAsyncThunk(
       const backEndData = data.data;
 
       toastSuccess('Daile water norm changed successful');
-
       return backEndData;
     } catch (error) {
       toastError('Something went wrong');

@@ -44,16 +44,24 @@ const waterSlice = createSlice({
           state.monthInfo.find(item => item.date === formattedDate) ===
           undefined
         ) {
+          console.log('true2');
           state.monthInfo.push({
             date: formattedDate,
-            dailyNorm: payload.dailyNorna,
+            dailyNorm: payload.dailyNorm,
             waterVolume: 0,
             count: 0,
             percent: 0,
           });
         } else {
-          state.monthInfo.find(item => item.date === formattedDate).percent =
-            countPercent(state.dayInfo.totalWaterVolume, payload.dailyNorm);
+          // .find(item => item.date === formattedDate).percent =
+          //   countPercent(state.dayInfo.totalWaterVolume, payload.dailyNorm);
+          // state.monthInfo.find(item => item.date === formattedDate).dailyNorm =
+          //   payload.dailyNorm;
+          console.log('false');
+          state.monthInfo.forEach(item => {
+            item.percent = countPercent(item.waterVolume, payload.dailyNorm);
+            item.dailyNorm = payload.dailyNorm;
+          });
           state.isRefreshing = false;
         }
         state.isRefreshing = false;
@@ -107,7 +115,7 @@ const waterSlice = createSlice({
         state.dayInfo.totalWaterVolume += payload.backEndData.waterVolume;
         state.dayInfo.waterVolumeInPercent = countPercent(
           state.dayInfo.totalWaterVolume,
-          payload.dailyNorna
+          payload.dailyNorma
         );
 
         //monthInfo
@@ -118,20 +126,17 @@ const waterSlice = createSlice({
           console.log('true');
           state.monthInfo.push({
             date: formattedDate,
-            dailyNorm: payload.dailyNorna,
+            dailyNorm: payload.dailyNorma,
             waterVolume: state.dayInfo.totalWaterVolume,
             count: 1,
             percent: countPercent(
               state.dayInfo.totalWaterVolume,
-              payload.dailyNorna
+              payload.dailyNorma
             ),
           });
         } else {
-          console.log(
-            state.monthInfo.find(item => item.date === formattedDate)
-          );
           state.monthInfo.find(item => item.date === formattedDate).percent =
-            countPercent(state.dayInfo.totalWaterVolume, payload.dailyNorna);
+            countPercent(state.dayInfo.totalWaterVolume, payload.dailyNorma);
           state.monthInfo.find(item => item.date === formattedDate).count += 1;
           state.monthInfo.find(
             item => item.date === formattedDate
@@ -167,12 +172,12 @@ const waterSlice = createSlice({
 
         state.dayInfo.waterVolumeInPercent = countPercent(
           state.dayInfo.totalWaterVolume,
-          payload.dailyNorna
+          payload.dailyNorma
         );
 
         //monthInfo
         state.monthInfo.find(item => item.date === formattedDate).percent =
-          countPercent(state.dayInfo.totalWaterVolume, payload.dailyNorna);
+          countPercent(state.dayInfo.totalWaterVolume, payload.dailyNorma);
         state.monthInfo.find(item => item.date === formattedDate).waterVolume =
           state.dayInfo.totalWaterVolume;
 
@@ -195,7 +200,7 @@ const waterSlice = createSlice({
           ).waterVolume;
         state.dayInfo.waterVolumeInPercent = countPercent(
           state.dayInfo.totalWaterVolume,
-          payload.dailyNorna
+          payload.dailyNorma
         );
         state.dayInfo.waterVolumeTimeEntries =
           state.dayInfo.waterVolumeTimeEntries.filter(
@@ -203,7 +208,7 @@ const waterSlice = createSlice({
           );
         //monthInfo
         state.monthInfo.find(item => item.date === formattedDate).percent =
-          countPercent(state.dayInfo.totalWaterVolume, payload.dailyNorna);
+          countPercent(state.dayInfo.totalWaterVolume, payload.dailyNorma);
         state.monthInfo.find(item => item.date === formattedDate).count -= 1;
         state.monthInfo.find(item => item.date === formattedDate).waterVolume =
           state.dayInfo.totalWaterVolume;
