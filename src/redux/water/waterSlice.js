@@ -44,7 +44,6 @@ const waterSlice = createSlice({
           state.monthInfo.find(item => item.date === formattedDate) ===
           undefined
         ) {
-          console.log('true2');
           state.monthInfo.push({
             date: formattedDate,
             dailyNorm: payload.dailyNorm,
@@ -57,13 +56,11 @@ const waterSlice = createSlice({
           //   countPercent(state.dayInfo.totalWaterVolume, payload.dailyNorm);
           // state.monthInfo.find(item => item.date === formattedDate).dailyNorm =
           //   payload.dailyNorm;
-          console.log('false');
-          state.monthInfo.forEach(item => {
-            item.percent = countPercent(item.waterVolume, payload.dailyNorm);
-            item.dailyNorm = payload.dailyNorm;
-          });
-          state.isRefreshing = false;
         }
+        state.monthInfo.forEach(item => {
+          item.percent = countPercent(item.waterVolume, payload.dailyNorm);
+          item.dailyNorm = payload.dailyNorm;
+        });
         state.isRefreshing = false;
       })
       .addCase(editDailyNormAPI.rejected, (state, { payload }) => {
