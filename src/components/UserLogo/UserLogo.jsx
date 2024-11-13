@@ -52,13 +52,19 @@ const UserLogo = () => {
       <div className={css.point}>
         <p className={css.user}>{user && user.name ? user.name : 'User'}</p>
         <div className={css.logobox}>
-          <button width={'28px'} height={'28px'} onClick={handleUserLogoClick} ref={buttonRef} className={css.userLogoButton}>
+          <button
+            width={'28px'}
+            height={'28px'}
+            onClick={handleUserLogoClick}
+            ref={buttonRef}
+            className={css.userLogoButton}
+          >
             {user && user.avatarUrl ? (
               <img
                 src={user.avatarUrl}
                 alt={`${user.name}'s avatar`}
                 className={css.avatar}
-                width={'28px'} 
+                width={'28px'}
                 height={'28px'}
               />
             ) : (
@@ -66,7 +72,13 @@ const UserLogo = () => {
             )}
           </button>
 
-          <svg width={28} height={28} onClick={handleUserLogoClick} ref={buttonRef} className={css.icon}>
+          <svg
+            width={28}
+            height={28}
+            onClick={handleUserLogoClick}
+            ref={buttonRef}
+            className={css.icon}
+          >
             <use href="/assets/images/icons.svg#icon-arrow-down" />
           </svg>
         </div>

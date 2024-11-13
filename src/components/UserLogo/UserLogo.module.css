@@ -57,6 +57,11 @@
 }
 .user {
   margin-right: 5px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100px;
 }
 .userLogoButton:hover {
   border: 1px solid var(--secondary-orange);
