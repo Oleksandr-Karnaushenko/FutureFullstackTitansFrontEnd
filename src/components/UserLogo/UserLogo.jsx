@@ -50,7 +50,9 @@ const UserLogo = () => {
   return (
     <div className={css.wrapper}>
       <div className={css.point}>
-        <p className={css.user}>{user && user.name ? user.name : 'User'}</p>
+        <p className={css.user}>
+          {user && user.name ? user.name.substring(0, 10) : 'User'}
+        </p>
         <div className={css.logobox}>
           <button
             width={'28px'}

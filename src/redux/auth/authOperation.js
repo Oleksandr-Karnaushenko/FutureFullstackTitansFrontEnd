@@ -86,8 +86,10 @@ export const signUpAPI = createAsyncThunk(
 
       return backEndData;
     } catch (error) {
-      toastError('Something went wrong. Please try again or log in');
-      return rejectWithValue(error.response.data.data.message);
+      toastError(error.response.data.data.message);
+      return rejectWithValue(
+        'Something went wrong. Please try again or log in'
+      );
     }
   }
 );
@@ -108,7 +110,7 @@ export const signInAPI = createAsyncThunk(
 
       return backEndData;
     } catch (error) {
-      toastError(error.response.data.message);
+      toastError(error.response.data.data.message);
       return rejectWithValue('Not valid email or password. Please, try again');
     }
   }

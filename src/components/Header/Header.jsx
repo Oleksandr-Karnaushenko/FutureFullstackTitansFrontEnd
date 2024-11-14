@@ -16,8 +16,10 @@ const Header = () => {
   return (
     <header className={css.container}>
       <Logo isAuthenticated={isLoggedIn} />
-      {!isLoggedIn && <ThemeBtn />}
-      {isLoggedIn ? <UserLogo user={user} /> : <UserAuth />}
+      <div className={css.btn_info}>
+        {!isLoggedIn && <ThemeBtn />}
+        {isLoggedIn ? <UserLogo user={user} /> : <UserAuth />}
+      </div>
     </header>
   );
 };

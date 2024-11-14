@@ -32,14 +32,16 @@ export default function AuthForm({ isSignup }) {
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
       const { email, password } = values;
+      //one more check
+      const lowerCaseEmail = email.toLowerCase();
 
       if (isSignup) {
-        await dispatch(signUpAPI({ email, password })).unwrap();
+        await dispatch(signUpAPI({ email: lowerCaseEmail, password })).unwrap();
         toast.success('Successful registration!');
 
-        await dispatch(signInAPI({ email, password })).unwrap();
+        await dispatch(signInAPI({ email: lowerCaseEmail, password })).unwrap();
       } else {
-        await dispatch(signInAPI({ email, password })).unwrap();
+        await dispatch(signInAPI({ email: lowerCaseEmail, password })).unwrap();
       }
     } catch {
       toast.error('Error during registration/login');
