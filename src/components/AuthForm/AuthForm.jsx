@@ -13,6 +13,7 @@ export default function AuthForm({ isSignup }) {
 
   const validationSchema = Yup.object().shape({
     email: Yup.string()
+      .transform(value => value?.toLowerCase())
       .email('Invalid email format')
       .required('Required field'),
     password: Yup.string()
